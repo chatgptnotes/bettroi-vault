@@ -1,56 +1,60 @@
 // Pharmacy reorder scan — Supabase Edge Function.
 //
-// Reads Adamrit's `medicines` table → finds items where current_stock <= reorder_level
-// → drafts a Purchase Order (or skips if DRY_RUN) → pings Slack for human approval
-// → writes an audit row.
+// Reads Adamrit's pre-built view `v_pharmacy_low_stock_alert` (which already
+// returns medications where stock <= reorder_level OR stock <= minimum_stock).
+// For each row: drafts a Purchase Order, pings Slack, writes audit row.
 //
-// Grounds on the SOPs at corpus/pharmacy/inventory-management.md and reorder-thresholds.md
-// (currently hardcoded thresholds; v2 will read the .md from vault Storage and pass to LLM).
+// Adamrit pharmacy DDL: github.com/chatgptnotes/adamrit/blob/main/2_CREATE_PHARMACY_TABLES.sql
+//   - Table: public.medication  (NOT "medicines")
+//   - View:  public.v_pharmacy_low_stock_alert (returns: id, name, current_stock,
+//            reorder_level, minimum_stock, supplier_name, manufacturer, shelf)
 //
-// Trigger options:
-//   - Cron: every 6 hours via supabase scheduled functions
-//   - Manual: invoke from CLI or any HTTP client
-//   - Webhook: from Adamrit `medicines` table on row update
+// Grounds on SOPs: corpus/pharmacy/inventory-management.md + reorder-thresholds.md
 //
 // Env vars (set via `supabase secrets set`):
 //   ADAMRIT_SUPABASE_URL              — Adamrit's project URL
-//   ADAMRIT_SUPABASE_SERVICE_ROLE_KEY — write access to medicines + purchase_orders + audit log
+//   ADAMRIT_SUPABASE_SERVICE_ROLE_KEY — write access to medication + purchase_orders + agent_audit_log
 //   SLACK_WEBHOOK_URL                 — #pharmacy-alerts channel
 //   DRY_RUN                           — "true" (default) prevents real PO writes
 //   SOP_VERSION                       — date string for audit trail (default: today)
 
 import { createClient } from "jsr:@supabase/supabase-js@2";
-import type { Medicine, ReorderSuggestion, ScanResult } from "../_shared/types.ts";
+import type { Medication, ReorderSuggestion, ScanResult } from "../_shared/types.ts";
 import { postSlack } from "../_shared/slack.ts";
 
 // ----- Pure logic — easy to unit-test -----------------------------------------
 
-export function suggestReorder(med: Medicine): ReorderSuggestion {
-  // Default monthly demand proxy: assume reorder_level is a 30-day buffer.
-  // Order enough to bring stock to 2× reorder_level (60 days), rounded up to pack_size.
-  const target = med.reorder_level * 2;
+export function suggestReorder(med: Medication): ReorderSuggestion {
+  const threshold = med.reorder_level ?? med.minimum_stock ?? 0;
+
+  // Order enough to bring stock to 2× threshold (~60-day cover), rounded up to pack_size.
+  const target = threshold * 2;
   const need = Math.max(1, target - med.current_stock);
   const pack = med.pack_size ?? 1;
   const packs = Math.ceil(need / pack);
   const suggested_qty = packs * pack;
 
   // Critical categories per corpus/pharmacy/inventory-management.md §2 + reorder-thresholds.md
-  const isEmergency = ["adrenaline", "atropine", "epinephrine", "naloxone"]
-    .some((n) => med.name.toLowerCase().includes(n));
-  const isControlled = ["H", "H1", "X"].includes(med.schedule ?? "");
-  const lowSupply = med.current_stock <= med.reorder_level / 2; // critical red line
+  const lower = med.name.toLowerCase();
+  const isEmergency = ["adrenaline", "atropine", "epinephrine", "naloxone", "noradrenaline"]
+    .some((n) => lower.includes(n));
 
-  const needs_human = isControlled || (isEmergency && lowSupply);
+  // Below the "Critical Red Line" — minimum_stock is the floor; <50% of reorder_level is also red
+  const belowMin = med.minimum_stock != null && med.current_stock <= med.minimum_stock;
+  const belowHalfThreshold = threshold > 0 && med.current_stock <= threshold / 2;
+  const lowSupply = belowMin || belowHalfThreshold;
+
+  // Auto-dispatch is fine for routine; emergency drugs at low supply need human eyes
+  const needs_human = isEmergency && lowSupply;
 
   const rationale = [
-    `current_stock=${med.current_stock}, reorder_level=${med.reorder_level}`,
+    `current_stock=${med.current_stock}, reorder_level=${med.reorder_level ?? "-"}, minimum_stock=${med.minimum_stock ?? "-"}`,
     `suggested ${suggested_qty} units (${packs}×${pack}-pack) → ~60-day cover`,
     isEmergency ? "EMERGENCY drug" : null,
-    isControlled ? `CONTROLLED schedule ${med.schedule}` : null,
-    lowSupply ? "BELOW critical red line (50% of threshold)" : null,
+    lowSupply ? "BELOW critical red line" : null,
   ].filter(Boolean).join(" · ");
 
-  return { medicine: med, suggested_qty, rationale, needs_human };
+  return { medication: med, suggested_qty, rationale, needs_human };
 }
 
 // ----- Main handler ----------------------------------------------------------
@@ -69,42 +73,56 @@ Deno.serve(async (_req) => {
   }
   const adamrit = createClient(adamritUrl, adamritKey, { auth: { persistSession: false } });
 
-  // Fetch all medicines and filter in JS — Adamrit may have tens of thousands of rows
-  // but the "below threshold" set is typically tiny. Adjust to a server-side filter
-  // once we confirm Adamrit's schema supports `lte('current_stock', col('reorder_level'))`.
-  const { data: meds, error } = await adamrit
-    .from("medicines")
-    .select("id,name,current_stock,reorder_level,supplier,pack_size,lead_time_days,cold_chain,schedule");
-  if (error) return json({ error: `medicines fetch: ${error.message}` }, 500);
+  // Adamrit's pre-built view returns only rows that ARE below threshold.
+  // Saves us from reading the full medication catalog (1,071 rows).
+  const { data: rows, error } = await adamrit
+    .from("v_pharmacy_low_stock_alert")
+    .select("id,name,generic_name,item_code,current_stock,reorder_level,minimum_stock,supplier_name,manufacturer,shelf");
+  if (error) return json({ error: `low-stock view fetch: ${error.message}` }, 500);
 
-  const all: Medicine[] = meds ?? [];
-  const below = all.filter((m) => m.current_stock <= m.reorder_level);
+  const below: Medication[] = rows ?? [];
+
+  // Fetch pack_size separately (not in the view, but in the underlying medication table)
+  if (below.length > 0) {
+    const ids = below.map((m) => m.id);
+    const { data: medsExtra } = await adamrit
+      .from("medication")
+      .select("id,pack_size")
+      .in("id", ids);
+    const packMap = new Map<string, number>(
+      (medsExtra ?? []).map((m: { id: string; pack_size: number | null }) => [m.id, m.pack_size ?? 1]),
+    );
+    for (const med of below) med.pack_size = packMap.get(med.id) ?? 1;
+  }
 
   for (const med of below) {
     try {
       const sug = suggestReorder(med);
+      const supplier = med.supplier_name ?? "<no-supplier>";
+      const prefix = dryRun ? "DRY RUN — " : "";
 
       // 1. Slack alert
-      const supplier = med.supplier ?? "<no-supplier>";
-      const prefix = dryRun ? "DRY RUN — " : "";
       const ok = await postSlack(
-        `${prefix}⚠️ *${med.name}* at ${med.current_stock} units (threshold ${med.reorder_level}). ` +
+        `${prefix}⚠️ *${med.name}* at ${med.current_stock} units` +
+        ` (reorder ${med.reorder_level ?? "-"}, min ${med.minimum_stock ?? "-"}, shelf ${med.shelf ?? "-"}). ` +
         `Suggested PO: ${sug.suggested_qty} units → ${supplier}. ` +
-        `${sug.needs_human ? "🚨 Requires human approval — " : ""}Rationale: ${sug.rationale}`,
+        `${sug.needs_human ? "🚨 Requires human approval — " : ""}` +
+        `Rationale: ${sug.rationale}`,
       );
       if (ok) alerts += 1;
 
-      // 2. Draft PO (skipped in dry run)
+      // 2. Draft PO (skipped in dry run). Adamrit's purchase_orders schema:
+      //    po_number (text), supplier_id (int), order_date, status, notes, totals, etc.
+      //    For now we insert a header-only PO with status='Draft' and a marker note.
+      //    purchase_order_items insertion is a v2 task once we agree on totals/MRP source.
       if (!dryRun) {
         const { error: poErr } = await adamrit.from("purchase_orders").insert({
-          medicine_id: med.id,
-          supplier: med.supplier,
-          quantity: sug.suggested_qty,
-          status: sug.needs_human ? "pending_approval" : "auto_dispatched",
-          triggered_by: "reorder-suggester-agent",
-          sop_version: sopVersion,
-          rationale: sug.rationale,
-          created_at: new Date().toISOString(),
+          po_number: `AGENT-${Date.now()}-${med.id.slice(0, 8)}`,
+          order_for: "Pharmacy",
+          status: sug.needs_human ? "pending_approval" : "Draft",
+          notes: `Auto-drafted by reorder-suggester agent (SOP v${sopVersion}). ` +
+                 `Item: ${med.name} · Qty: ${sug.suggested_qty}. ${sug.rationale}`,
+          order_date: new Date().toISOString(),
         });
         if (poErr) {
           errors.push(`PO ${med.name}: ${poErr.message}`);
@@ -113,21 +131,25 @@ Deno.serve(async (_req) => {
         drafted += 1;
       }
 
-      // 3. Audit log (best-effort — table may not exist yet)
+      // 3. Audit log (best-effort — table may not exist yet in Adamrit)
       await adamrit.from("agent_audit_log").insert({
         agent: "reorder-suggester",
         agent_version: sopVersion,
         action: dryRun ? "scan_dry_run" : "po_drafted",
         medicine_id: med.id,
         details: {
+          name: med.name,
           current_stock: med.current_stock,
+          reorder_level: med.reorder_level,
+          minimum_stock: med.minimum_stock,
           suggested_qty: sug.suggested_qty,
           needs_human: sug.needs_human,
+          supplier_name: med.supplier_name,
           rationale: sug.rationale,
         },
         created_at: new Date().toISOString(),
-      }).then(({ error }) => {
-        if (error) console.warn(`audit log skip: ${error.message}`);
+      }).then(({ error: auditErr }) => {
+        if (auditErr) console.warn(`audit log skip: ${auditErr.message}`);
       });
     } catch (err) {
       errors.push(`${med.name}: ${(err as Error).message}`);
@@ -136,16 +158,15 @@ Deno.serve(async (_req) => {
 
   // Summary ping at end of scan
   await postSlack(
-    `📋 Pharmacy reorder scan complete (SOP v${sopVersion}, ${dryRun ? "DRY RUN" : "LIVE"}): ` +
-    `checked ${all.length} medicines · ${below.length} below threshold · ` +
+    `📋 Pharmacy reorder scan (SOP v${sopVersion}, ${dryRun ? "DRY RUN" : "LIVE"}): ` +
+    `${below.length} medications below threshold · ` +
     `${drafted} POs drafted · ${alerts} alerts sent` +
     (errors.length ? ` · ⚠️ ${errors.length} errors` : ""),
   );
 
   const result: ScanResult = {
     scanned_at: new Date().toISOString(),
-    total_medicines_checked: all.length,
-    below_threshold: below.length,
+    total_medications_below_threshold: below.length,
     drafted_pos: drafted,
     alerts_sent: alerts,
     dry_run: dryRun,

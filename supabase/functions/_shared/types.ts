@@ -1,19 +1,23 @@
 // Shared types for Bettroi pharmacy/clinical Edge Functions.
+// Schema mirrors Adamrit's `medication` table + `v_pharmacy_low_stock_alert` view
+// (canonical DDL: github.com/chatgptnotes/adamrit/blob/main/2_CREATE_PHARMACY_TABLES.sql).
 
-export interface Medicine {
-  id: string | number;
+export interface Medication {
+  id: string;
   name: string;
-  current_stock: number;
-  reorder_level: number;
-  supplier: string | null;
-  pack_size?: number | null;
-  lead_time_days?: number | null;
-  cold_chain?: boolean | null;
-  schedule?: string | null; // H, H1, X for controlled
+  generic_name: string | null;
+  item_code: string | null;
+  current_stock: number;       // view CASTs from medication.stock (which is text)
+  reorder_level: number | null;
+  minimum_stock: number | null;
+  supplier_name: string | null;
+  manufacturer: string | null;
+  shelf: string | null;
+  pack_size?: number;          // not in view; pulled from medication if needed
 }
 
 export interface ReorderSuggestion {
-  medicine: Medicine;
+  medication: Medication;
   suggested_qty: number;
   rationale: string;
   needs_human: boolean;
@@ -21,8 +25,7 @@ export interface ReorderSuggestion {
 
 export interface ScanResult {
   scanned_at: string;
-  total_medicines_checked: number;
-  below_threshold: number;
+  total_medications_below_threshold: number;
   drafted_pos: number;
   alerts_sent: number;
   dry_run: boolean;
