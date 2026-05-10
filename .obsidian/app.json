@@ -1,5 +1,6 @@
 {
   "trustedPlugins": [
     "obsidian-git"
-  ]
+  ],
+  "alwaysUpdateLinks": true
 }
