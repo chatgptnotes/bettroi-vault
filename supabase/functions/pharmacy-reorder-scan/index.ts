@@ -11,9 +11,15 @@
 //
 // Grounds on SOPs: corpus/pharmacy/inventory-management.md + reorder-thresholds.md
 //
-// Env vars (set via `supabase secrets set`):
-//   ADAMRIT_SUPABASE_URL              — Adamrit's project URL
-//   ADAMRIT_SUPABASE_SERVICE_ROLE_KEY — write access to medication + purchase_orders + agent_audit_log
+// This function runs INSIDE Adamrit's Supabase project, so it uses the
+// auto-injected SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY (no cross-project keys
+// needed). Only SLACK_WEBHOOK_URL needs to be set explicitly via `supabase secrets set`.
+//
+// Auto-injected (no setup needed):
+//   SUPABASE_URL                      — Adamrit's project URL
+//   SUPABASE_SERVICE_ROLE_KEY         — write access to medicine_master + purchase_orders + agent_audit_log
+//
+// Manually set via `supabase secrets set`:
 //   SLACK_WEBHOOK_URL                 — #pharmacy-alerts channel
 //   DRY_RUN                           — "true" (default) prevents real PO writes
 //   SOP_VERSION                       — date string for audit trail (default: today)
@@ -66,10 +72,10 @@ Deno.serve(async (_req) => {
   let drafted = 0;
   let alerts = 0;
 
-  const adamritUrl = Deno.env.get("ADAMRIT_SUPABASE_URL");
-  const adamritKey = Deno.env.get("ADAMRIT_SUPABASE_SERVICE_ROLE_KEY");
+  const adamritUrl = Deno.env.get("SUPABASE_URL");
+  const adamritKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
   if (!adamritUrl || !adamritKey) {
-    return json({ error: "ADAMRIT_SUPABASE_URL and ADAMRIT_SUPABASE_SERVICE_ROLE_KEY required" }, 500);
+    return json({ error: "SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY (auto-injected) missing" }, 500);
   }
   const adamrit = createClient(adamritUrl, adamritKey, { auth: { persistSession: false } });
 
