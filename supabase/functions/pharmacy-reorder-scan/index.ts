@@ -73,27 +73,15 @@ Deno.serve(async (_req) => {
   }
   const adamrit = createClient(adamritUrl, adamritKey, { auth: { persistSession: false } });
 
-  // Adamrit's pre-built view returns only rows that ARE below threshold.
-  // Saves us from reading the full medication catalog (1,071 rows).
+  // Adamrit's pre-built view returns only rows that ARE below threshold,
+  // already joined to suppliers and including pack_size from medicine_master.
+  // Saves us from reading the full catalog (1,071 rows).
   const { data: rows, error } = await adamrit
     .from("v_pharmacy_low_stock_alert")
-    .select("id,name,generic_name,item_code,current_stock,reorder_level,minimum_stock,supplier_name,manufacturer,shelf");
+    .select("id,name,generic_name,item_code,current_stock,reorder_level,minimum_stock,supplier_name,manufacturer,shelf,pack_size");
   if (error) return json({ error: `low-stock view fetch: ${error.message}` }, 500);
 
   const below: Medication[] = rows ?? [];
-
-  // Fetch pack_size separately (not in the view, but in the underlying medication table)
-  if (below.length > 0) {
-    const ids = below.map((m) => m.id);
-    const { data: medsExtra } = await adamrit
-      .from("medication")
-      .select("id,pack_size")
-      .in("id", ids);
-    const packMap = new Map<string, number>(
-      (medsExtra ?? []).map((m: { id: string; pack_size: number | null }) => [m.id, m.pack_size ?? 1]),
-    );
-    for (const med of below) med.pack_size = packMap.get(med.id) ?? 1;
-  }
 
   for (const med of below) {
     try {

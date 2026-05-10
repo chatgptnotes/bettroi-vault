@@ -14,15 +14,17 @@ Confirmed against the canonical DDL at `github.com/chatgptnotes/adamrit/blob/mai
 
 ## Source of truth in Adamrit
 
+> **Important** — Adamrit's deployed schema uses `medicine_master`, not `medication`. The DDL file in the repo (`2_CREATE_PHARMACY_TABLES.sql`) targets `medication` but was never run on this instance. The bootstrap SQL at `agents/pharmacy/reorder-suggester/adamrit-bootstrap.sql` adapts the columns + view onto `medicine_master` instead.
+
 | Concept | Adamrit object | Notes |
 |---|---|---|
-| Master drug catalog | `public.medication` (1,071 rows) | Use `name`, `generic_name`, `item_code`, `barcode` |
-| Current stock | `public.medication.stock` (text, cast to int) | Updated by sales/dispense triggers |
-| Reorder threshold | `public.medication.reorder_level` (int) | Per-medicine override |
-| Critical floor | `public.medication.minimum_stock` (int) | "Red line" — anything below should escalate |
-| Pack size | `public.medication.pack_size` (int, default 1) | Suggested qty rounds UP to multiples |
-| Loose units | `public.medication.loose_stock_quantity` | Track partial packs |
-| Pre-filtered low-stock list | `public.v_pharmacy_low_stock_alert` (view) | What the agent reads — already filtered |
+| Master drug catalog | `public.medicine_master` (1,071 rows) | `medicine_name`, `generic_name`, `manufacturer_id`, `supplier_id`, `type` |
+| Current stock | `public.medicine_master.stock` (int) | Added by bootstrap; populated by Adamrit dispense logic |
+| Reorder threshold | `public.medicine_master.reorder_level` (int) | Per-medicine — added by bootstrap |
+| Critical floor | `public.medicine_master.minimum_stock` (int) | "Red line" — added by bootstrap |
+| Pack size | `public.medicine_master.pack_size` (int, default 1) | Added by bootstrap |
+| Loose units | `public.medicine_master.loose_stock_quantity` | Added by bootstrap |
+| Pre-filtered low-stock list | `public.v_pharmacy_low_stock_alert` (view) | Created by bootstrap — joins suppliers, returns only below-threshold rows |
 | Suppliers | `public.suppliers` (17 rows) | `supplier_name`, `supplier_code`, `credit_day`, `credit_limit` |
 | Goods received | `public.grn_items` (2,014 rows) | Has batch_number, expiry_date, ordered/received/accepted |
 | Purchase orders | `public.purchase_orders` (203 rows) + `purchase_order_items` | Header + line items |
