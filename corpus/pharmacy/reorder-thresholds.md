@@ -51,3 +51,4 @@ Example: at avg-daily 38.4 with 4-day lead time and pack 100, the math says 30-d
 - Brand swap requested by clinical (use a different generic supplier this month).
 - Promotional / bulk-discount opportunity from a supplier.
 - Anticipated event-driven spike (epidemic, surgery campaign) — pharmacist increases qty at PO time.
+
