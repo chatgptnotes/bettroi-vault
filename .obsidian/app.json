@@ -1,3 +1,5 @@
 {
-  "trustedPlugins": ["obsidian-git"]
+  "trustedPlugins": [
+    "obsidian-git"
+  ]
 }
