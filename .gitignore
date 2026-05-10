@@ -20,3 +20,6 @@ desktop.ini
 
 # Sync intermediates (in case Obsidian Sync ever runs alongside)
 .trash/
+
+# Auto-sync log — local only
+scripts/auto-sync.log
