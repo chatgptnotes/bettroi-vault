@@ -1,0 +1,14 @@
+{
+  "name": "bettroi-vault",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Bettroi knowledge vault — SOPs, agent persona packs, glossaries, ADRs.",
+  "type": "module",
+  "scripts": {
+    "sync": "node scripts/sync-to-supabase.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.46.1",
+    "gray-matter": "^4.0.3"
+  }
+}

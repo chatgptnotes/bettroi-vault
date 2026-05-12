@@ -1,0 +1,88 @@
+name: sync-vault-to-supabase
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "agents/**"
+      - "corpus/**"
+      - "glossary/**"
+      - "decisions/**"
+      - "scripts/sync-to-supabase.mjs"
+      - "package.json"
+      - ".github/workflows/sync-vault.yml"
+  workflow_dispatch: {}
+
+concurrency:
+  group: sync-vault-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout (with previous commit for diff)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install deps
+        run: npm install --no-audit --no-fund
+
+      - name: Compute changed .md files
+        id: diff
+        run: |
+          # On the first push (no prior commit), diff against an empty tree.
+          if git rev-parse HEAD~1 >/dev/null 2>&1; then
+            base="HEAD~1"
+          else
+            base="$(git hash-object -t tree --stdin </dev/null)"
+          fi
+
+          git diff --name-status --diff-filter=AMDR "$base" HEAD -- \
+            'agents/***.md' \
+            'corpus/***.md' \
+            'glossary/***.md' \
+            'decisions/***.md' \
+            > changed.tsv
+
+          echo "Changed file count: $(wc -l < changed.tsv)"
+          echo "--- changed.tsv ---"
+          cat changed.tsv
+          echo "-------------------"
+
+      - name: Sync to Supabase
+        if: ${{ hashFiles('changed.tsv') != '' }}
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/sync-to-supabase.mjs
+
+      - name: Notify Slack on failure
+        if: failure() && env.SLACK_WEBHOOK_URL != ''
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          curl -s -X POST -H "Content-Type: application/json" \
+            -d "{\"text\":\"❌ vault sync failed on commit ${{ github.sha }} — ${{ github.event.head_commit.message }}\\nLogs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+            "$SLACK_WEBHOOK_URL"
+
+      - name: Notify Slack on success (only when files actually synced)
+        if: success() && hashFiles('changed.tsv') != ''
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          if [ -n "${SLACK_WEBHOOK_URL:-}" ] && [ -s changed.tsv ]; then
+            count=$(wc -l < changed.tsv | tr -d ' ')
+            curl -s -X POST -H "Content-Type: application/json" \
+              -d "{\"text\":\"✅ vault sync: $count file(s) synced to Supabase from \`${{ github.event.head_commit.message }}\`\"}" \
+              "$SLACK_WEBHOOK_URL" || true
+          fi

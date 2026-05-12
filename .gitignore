@@ -1,7 +1,25 @@
+# Scratch folder — for drafts and any real-data debugging.
+# NEVER commit anything from here.
+_scratch/
+
+# Obsidian local-only state
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 .obsidian/cache
 .obsidian/graph.json
-.trash/
+
+# OS noise
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# Editor noise
+*.swp
+*.bak
+*~
+
+# Sync intermediates (in case Obsidian Sync ever runs alongside)
+.trash/
+
+# Auto-sync log — local only
+scripts/auto-sync.log

@@ -1,10 +1,6 @@
 {
-  "showLineNumber": true,
-  "spellcheck": false,
-  "useMarkdownLinks": false,
-  "newLinkFormat": "shortest",
-  "alwaysUpdateLinks": true,
-  "defaultViewMode": "preview",
-  "livePreview": true,
-  "showInlineTitle": true
+  "trustedPlugins": [
+    "obsidian-git"
+  ],
+  "alwaysUpdateLinks": true
 }
