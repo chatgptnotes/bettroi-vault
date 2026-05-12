@@ -30,7 +30,7 @@ This project uses the Ironbark learning loop with auto-sync to the community ski
 - **Background sync**: Every 30 min, `sync-cli.js` pulls new community skills and pushes local ones
 - **Opt-out**: `IRONBARK_SYNC_DISABLED=1`
 
-### Available Harvested Skills (86)
+### Available Harvested Skills (90)
 
 Loaded from `~/.claude/skills/harvested/`. Reference any skill below by name or path when the task matches.
 
@@ -79,6 +79,7 @@ Loaded from `~/.claude/skills/harvested/`. Reference any skill below by name or 
 | `oauth-headless-ssh-tunnel` | Complete an OAuth2 browser flow on a headless Linux server by forwarding the redirect URI port via SSH tunnel — no browser, VNC, or public p | `/Users/murali/.claude/skills/harvested/oauth-headless-ssh-tunnel/SKILL.md` |
 | `OpenClaw WhatsApp Echo Loop & LLM Quota Fix` | Stop infinite WhatsApp message loops caused by selfChatMode and quota-exceeded LLM keys in OpenClaw. Also covers zai/custom provider 404 bug | `/Users/murali/.claude/skills/harvested/openclaw-whatsapp-loop-fix/SKILL.md` |
 | `openwrt-busybox-shell-scripting` | Practical shell scripting on OpenWrt/BusyBox edge devices (Teltonika TRB/RUT, GL.iNet, etc.). Covers what doesn't work (bash, jq, arrays) an | `/Users/murali/.claude/skills/harvested/openwrt-busybox-shell-scripting/SKILL.md` |
+| `pdf-spec-to-compliance-matrix` | Methodological pattern for turning a vendor specification PDF into a citation-anchored markdown compliance matrix. Extract PDF text with pdf | `/Users/murali/.claude/skills/harvested/pdf-spec-to-compliance-matrix/SKILL.md` |
 | `Pentest-Driven Architecture Review` | Validate architectural decisions against the most recent pentest report + a handful of targeted live probes — faster and more precise than r | `/Users/murali/.claude/skills/harvested/pentest-driven-architecture-review/SKILL.md` |
 | `pgvector Multi-Tenant Retrieval` | Multi-tenant pgvector RAG pattern — enforce project/tenant isolation at the query layer with WHERE project_id = ANY($ids), never trust RLS w | `/Users/murali/.claude/skills/harvested/pgvector-multitenant-retrieval/SKILL.md` |
 | `Placeholder Audit and Resolution Pattern` | Systematic scan for empty placeholders, disabled buttons, stub endpoints, dead files, and unmounted routes — then resolve each by either imp | `/Users/murali/.claude/skills/harvested/placeholder-audit-pattern/SKILL.md` |
@@ -99,6 +100,7 @@ Loaded from `~/.claude/skills/harvested/`. Reference any skill below by name or 
 | `SCADA Tag Autocomplete Component` | Inline searchable dropdown for selecting PLC/SCADA tags scoped to the active project — fetches once, filters client-side | `/Users/murali/.claude/skills/harvested/scada-tag-autocomplete/SKILL.md` |
 | `Screenshot-to-Root-Cause Error Diagnosis` | Decode minified React/production errors from browser screenshots — decode error URLs, trace stack traces, identify the actual component and  | `/Users/murali/.claude/skills/harvested/screenshot-error-diagnosis/SKILL.md` |
 | `Self-Updating Cron Script via Remote Fetch and Atomic Re-Exec` | A long-running cron script installed at `/usr/local/bin/foo.sh` is a frozen snapshot of the day it was installed — every logic change requir | `/Users/murali/.claude/skills/harvested/self-updating-cron-script/SKILL.md` |
+| `shared-vps-coexistence` | Operational rules and procedures for safely adding a new product to a busy multi-tenant Linux VPS (Hostinger, DigitalOcean droplet, EC2, bar | `/Users/murali/.claude/skills/harvested/shared-vps-coexistence/SKILL.md` |
 | `Sliding Window Dedup Guard` | Time-windowed event counting with three dedup layers (memory Map, database query, cooldown period) for rate-sensitive detectors that must av | `/Users/murali/.claude/skills/harvested/sliding-window-dedup-guard/SKILL.md` |
 | `Socket.IO Room Subscription Chain` | Complete the subscribe chain — frontend store must emit subscribe event to server, server must join client to room, then room-scoped emit wo | `/Users/murali/.claude/skills/harvested/socketio-room-subscription-chain/SKILL.md` |
 | `Soft-Delete via hidden Flag for Reversible Dedupe` | Instead of `delete from`, mark duplicate or stale records with `hidden=true` and have every list view filter `hidden=false` by default with  | `/Users/murali/.claude/skills/harvested/soft-delete-hidden-flag/SKILL.md` |
@@ -108,11 +110,13 @@ Loaded from `~/.claude/skills/harvested/`. Reference any skill below by name or 
 | `Supabase Owner-Only Storage + RLS for Sensitive Per-User PII` | When a Supabase app needs to store sensitive per-user files (KYC docs, ID cards, medical reports, financial records) such that only the file | `/Users/murali/.claude/skills/harvested/supabase-owner-only-storage-pii/SKILL.md` |
 | `Supabase Polling Overload — Diagnosis and Fix` | When Supabase shows millions of DB requests from a React app, the cause is almost always cascading React Query refetchIntervals and unguarde | `/Users/murali/.claude/skills/harvested/supabase-polling-overload-fix/SKILL.md` |
 | `Supabase Tenant Filtering via Inner Joins` | Use !inner join + dot-notation filtering to scope Supabase queries through related tables for multi-tenant isolation | `/Users/murali/.claude/skills/harvested/supabase-tenant-filtering/SKILL.md` |
+| `supabase-multi-tenant-rls-jwt-claims` | Full recipe for multi-tenant SaaS isolation on Supabase using Postgres Row Level Security and JWT custom claims. Covers the profiles ↔ auth. | `/Users/murali/.claude/skills/harvested/supabase-multi-tenant-rls-jwt-claims/SKILL.md` |
 | `SVG Sanitization with DOMPurify` | Replace regex-based SVG sanitizers with DOMPurify SVG profile — regex is trivially bypassable | `/Users/murali/.claude/skills/harvested/svg-sanitization-dompurify/SKILL.md` |
 | `svg-icons-html-pdf` |  | `/Users/murali/.claude/skills/harvested/svg-icons-html-pdf/SKILL.md` |
 | `Timezone-Aware Hourly Cron Fanout` | Run an hourly cron that uses Intl.DateTimeFormat to check each user's local hour — only deliver to users whose timezone hour matches the tar | `/Users/murali/.claude/skills/harvested/timezone-aware-cron-fanout/SKILL.md` |
 | `Token-Saving Toolkit Install` | One-stop install procedure for the 5 Claude Code tools that cut token / API spend the most — Graphify (codebase knowledge graph), Firecrawl  | `/Users/murali/.claude/skills/harvested/token-saving-toolkit-install/SKILL.md` |
 | `Vercel Prebuilt Deploy Workaround` | When Vercel remote builds fail silently (empty error message), build locally with vercel build --prod then deploy with vercel deploy --prebu | `/Users/murali/.claude/skills/harvested/vercel-prebuilt-deploy/SKILL.md` |
+| `vercel-frontend-vps-backend-split` | Topology pattern when the frontend is on Vercel (auto-deploy from GitHub) but the backend (API + DB + workers) lives on a separate self-host | `/Users/murali/.claude/skills/harvested/vercel-frontend-vps-backend-split/SKILL.md` |
 | `Vite Environment URL Auto-Detection` | Frontend apps deployed to Vercel must auto-detect API/WebSocket URLs for production vs development — never default to localhost for both API | `/Users/murali/.claude/skills/harvested/vite-env-url-detection/SKILL.md` |
 | `WhatsApp Instant Acknowledgment Before Slow Processing` | Send an immediate ack message to the user before kicking off a long-running operation (AI inference, email fetch, DB query). Prevents user t | `/Users/murali/.claude/skills/harvested/whatsapp-instant-ack/SKILL.md` |
 | `WhatsApp Personalized Research Before Replying` | Before replying to any BNI member on WhatsApp, research their company, specialty, city, and prior conversation context. Never send generic r | `/Users/murali/.claude/skills/harvested/whatsapp-personalized-research/SKILL.md` |
