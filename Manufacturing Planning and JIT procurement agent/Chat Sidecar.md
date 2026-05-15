@@ -1,5 +1,5 @@
 # Chat Sidecar
-[][]
+[[]]
 > A read-only conversational companion to the structured approval UI. The planner can **ask about** decisions; they cannot **make** decisions through chat.
 
 ## Why Both UIs (and Not Just Chat)
