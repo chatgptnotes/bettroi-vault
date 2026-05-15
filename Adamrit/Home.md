@@ -13,11 +13,12 @@ For a one-glance overview of how the whole Adamrit system fits together, open **
 
 Designed for non-technical readers — no code, no tables. Shows the patient journey from arrival → care → billing → discharge → accounting, with the money flow alongside.
 
-## 🤖 Build plan — Super-Admin Code Assistant (DeepSeek-powered)
+## 🤖 Super-Admin Code Assistant (DeepSeek-powered)
 
-Comprehensive plan for the in-app super-admin tab where DeepSeek edits the Adamrit codebase from natural-language prompts: **[[Super-Admin-Code-Assistant-Plan|🤖 Code Assistant Plan]]**.
+Two documents — read them in this order:
 
-Covers the full 8-tab Super-Admin Panel, the Code Assistant deep dive (state machine, full error catalog with 40+ codes, field specs, DeepSeek system prompt, multi-provider fallback, multi-turn iteration, failure self-heal, visual diff editor, 2-person approval, complete SQL migration, real code samples, cost projection, test plan, telemetry, phased rollout, disaster recovery, compliance, onboarding).
+1. **[[Super-Admin-Code-Assistant-Plan|🤖 The Plan]]** — WHAT we're building. The full design, architecture, error catalog (40+ codes), DeepSeek system prompt, complete SQL, code samples, test plan, phased rollout, risks.
+2. **[[Super-Admin-Code-Assistant-Build-Guide|🛠 The Build Guide]]** — HOW to build it. Day-by-day step-by-step commands for Phase 1 (the MVP), with verification after each step. Roughly 3 working days of focused work.
 
 ---
 
