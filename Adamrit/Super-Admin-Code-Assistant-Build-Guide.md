@@ -6,6 +6,23 @@
 > - [[Super-Admin-Code-Assistant-Plan]] — the WHAT (architecture, error catalog, contracts, design)
 > - This file — the HOW (commands, sequence, milestones)
 
+> ## 🚫 HARD RULE — no deployment without per-action permission
+>
+> Every step that lands code on `main` or affects production must be a **conscious individual choice asked of the user**. One blanket approval does not carry over.
+>
+> Always ask before:
+> - `git push origin main`
+> - `gh pr merge` (or merging via the GitHub UI)
+> - `supabase db push` against the live project
+> - `vercel deploy --prod`
+> - Any of the build-chain safety guards being removed
+>
+> Allowed freely:
+> - feature-branch pushes (Vercel preview only, main untouched)
+> - all local commands (`dev`, `lint`, `build`, `test`)
+>
+> Same rule lives in `adamrit/CLAUDE.md` and in the Claude memory store.
+
 ---
 
 ## Day 0 — Prerequisites (before you start)
@@ -558,7 +575,9 @@ Commit and push.
 
 # Day 3-4 — Production deployment
 
-## Step 4.1 — Open a PR to main
+> ⚠ **Stop and ask the user before any of the steps in this section.** Each step below affects production. The "no deployment without permission" rule means none of these run on autopilot — the user must explicitly approve each one in conversation.
+
+## Step 4.1 — Open a PR to main *(asks user first)*
 
 ```bash
 gh pr create --base main --head feat/super-admin-code-assistant \
@@ -618,9 +637,9 @@ In Vercel → Settings → Environment Variables → Production scope, add:
 - `CODE_ASSIST_MONTHLY_COST_USD`
 - `CODE_ASSIST_CONTEXT_BUDGET_CHARS`
 
-## Step 4.4 — Merge the PR
+## Step 4.4 — Merge the PR *(asks user first — this is the actual prod deploy)*
 
-Once CI is green and the preview tests pass, merge. Vercel deploys main.
+Once CI is green and the preview tests pass, **ask the user** before clicking merge. Merging triggers the production Vercel deploy. Per the hard rule, this is never automatic.
 
 ## Step 4.5 — Smoke test production
 
