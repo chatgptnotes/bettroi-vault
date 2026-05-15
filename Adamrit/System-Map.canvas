@@ -1,0 +1,72 @@
+{
+  "nodes": [
+    { "id": "g1", "type": "group", "label": "🟢 Intake", "x": -60, "y": -60, "width": 360, "height": 290, "color": "4" },
+    { "id": "g2", "type": "group", "label": "🔵 Clinical care", "x": -520, "y": 240, "width": 1280, "height": 420, "color": "5" },
+    { "id": "g3", "type": "group", "label": "🟡 Money flow", "x": -200, "y": 680, "width": 640, "height": 590, "color": "3" },
+    { "id": "g4", "type": "group", "label": "🟣 Exit and accounting", "x": -200, "y": 1260, "width": 640, "height": 470, "color": "6" },
+
+    { "id": "n1", "type": "text", "text": "Patient arrives\nat the hospital", "x": 0, "y": 0, "width": 240, "height": 80, "color": "4" },
+    { "id": "n2", "type": "text", "text": "Reception registers\nthe patient", "x": 0, "y": 130, "width": 240, "height": 80, "color": "4" },
+
+    { "id": "n3", "type": "text", "text": "Outpatient visit\n(OPD)", "x": -160, "y": 290, "width": 240, "height": 80, "color": "5" },
+    { "id": "n4", "type": "text", "text": "Admitted as inpatient\n(IPD)", "x": 160, "y": 290, "width": 240, "height": 80, "color": "5" },
+
+    { "id": "n5", "type": "text", "text": "Doctor examines\nand orders treatment", "x": 0, "y": 420, "width": 240, "height": 80, "color": "5" },
+
+    { "id": "n6",  "type": "text", "text": "Lab tests",                  "x": -460, "y": 550, "width": 200, "height": 70, "color": "5" },
+    { "id": "n7",  "type": "text", "text": "Scans and imaging",          "x": -220, "y": 550, "width": 200, "height": 70, "color": "5" },
+    { "id": "n8",  "type": "text", "text": "Medicines (pharmacy)",       "x":   20, "y": 550, "width": 200, "height": 70, "color": "5" },
+    { "id": "n9",  "type": "text", "text": "Surgery\n(operation theatre)","x":  260, "y": 550, "width": 200, "height": 70, "color": "5" },
+    { "id": "n10", "type": "text", "text": "Nursing care\nand ward stay","x":  500, "y": 550, "width": 200, "height": 70, "color": "5" },
+
+    { "id": "n11", "type": "text", "text": "Every service\nadds to the bill", "x": 0, "y": 720, "width": 240, "height": 80, "color": "3" },
+
+    { "id": "n12", "type": "text", "text": "Patient pays\nadvance", "x": -160, "y": 850, "width": 240, "height": 80, "color": "3" },
+    { "id": "n13", "type": "text", "text": "Scheme / insurer\ncovers part of bill\n(ESIC, CGHS, PMJAY,\nMJPJAY, corporate)", "x": 160, "y": 850, "width": 240, "height": 120, "color": "3" },
+
+    { "id": "n14", "type": "text", "text": "Final bill\nis prepared", "x": 0, "y": 1010, "width": 240, "height": 80, "color": "3" },
+    { "id": "n15", "type": "text", "text": "Patient settles\nthe balance", "x": 0, "y": 1140, "width": 240, "height": 80, "color": "3" },
+
+    { "id": "n16", "type": "text", "text": "Discharge summary\n+ gate pass", "x": 0, "y": 1300, "width": 240, "height": 80, "color": "6" },
+
+    { "id": "n17", "type": "text", "text": "Patient goes home", "x": -160, "y": 1430, "width": 240, "height": 80, "color": "6" },
+    { "id": "n18", "type": "text", "text": "Money flows to books\ncash book · ledger · Tally", "x": 160, "y": 1430, "width": 240, "height": 90, "color": "6" },
+
+    { "id": "n19", "type": "text", "text": "Reports for management\n(daily · monthly · aging)", "x": 160, "y": 1570, "width": 240, "height": 90, "color": "6" }
+  ],
+  "edges": [
+    { "id": "e1",  "fromNode": "n1",  "fromSide": "bottom", "toNode": "n2",  "toSide": "top" },
+
+    { "id": "e2",  "fromNode": "n2",  "fromSide": "bottom", "toNode": "n3",  "toSide": "top" },
+    { "id": "e3",  "fromNode": "n2",  "fromSide": "bottom", "toNode": "n4",  "toSide": "top" },
+
+    { "id": "e4",  "fromNode": "n3",  "fromSide": "bottom", "toNode": "n5",  "toSide": "top" },
+    { "id": "e5",  "fromNode": "n4",  "fromSide": "bottom", "toNode": "n5",  "toSide": "top" },
+
+    { "id": "e6",  "fromNode": "n5",  "fromSide": "bottom", "toNode": "n6",  "toSide": "top" },
+    { "id": "e7",  "fromNode": "n5",  "fromSide": "bottom", "toNode": "n7",  "toSide": "top" },
+    { "id": "e8",  "fromNode": "n5",  "fromSide": "bottom", "toNode": "n8",  "toSide": "top" },
+    { "id": "e9",  "fromNode": "n5",  "fromSide": "bottom", "toNode": "n9",  "toSide": "top" },
+    { "id": "e10", "fromNode": "n5",  "fromSide": "bottom", "toNode": "n10", "toSide": "top" },
+
+    { "id": "e11", "fromNode": "n6",  "fromSide": "bottom", "toNode": "n11", "toSide": "top" },
+    { "id": "e12", "fromNode": "n7",  "fromSide": "bottom", "toNode": "n11", "toSide": "top" },
+    { "id": "e13", "fromNode": "n8",  "fromSide": "bottom", "toNode": "n11", "toSide": "top" },
+    { "id": "e14", "fromNode": "n9",  "fromSide": "bottom", "toNode": "n11", "toSide": "top" },
+    { "id": "e15", "fromNode": "n10", "fromSide": "bottom", "toNode": "n11", "toSide": "top" },
+
+    { "id": "e16", "fromNode": "n11", "fromSide": "bottom", "toNode": "n12", "toSide": "top" },
+    { "id": "e17", "fromNode": "n11", "fromSide": "bottom", "toNode": "n13", "toSide": "top" },
+
+    { "id": "e18", "fromNode": "n12", "fromSide": "bottom", "toNode": "n14", "toSide": "top" },
+    { "id": "e19", "fromNode": "n13", "fromSide": "bottom", "toNode": "n14", "toSide": "top" },
+
+    { "id": "e20", "fromNode": "n14", "fromSide": "bottom", "toNode": "n15", "toSide": "top" },
+    { "id": "e21", "fromNode": "n15", "fromSide": "bottom", "toNode": "n16", "toSide": "top" },
+
+    { "id": "e22", "fromNode": "n16", "fromSide": "bottom", "toNode": "n17", "toSide": "top" },
+    { "id": "e23", "fromNode": "n16", "fromSide": "bottom", "toNode": "n18", "toSide": "top" },
+
+    { "id": "e24", "fromNode": "n18", "fromSide": "bottom", "toNode": "n19", "toSide": "top" }
+  ]
+}

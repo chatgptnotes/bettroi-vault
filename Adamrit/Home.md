@@ -7,6 +7,14 @@ This is the developer-facing reference. The same content rewritten for agent ret
 
 ---
 
+## 📊 See the visual map first
+
+For a one-glance overview of how the whole Adamrit system fits together, open **[[System-Map.canvas|🗺 System Map]]**.
+
+Designed for non-technical readers — no code, no tables. Shows the patient journey from arrival → care → billing → discharge → accounting, with the money flow alongside.
+
+---
+
 ## 🟢 Start Here
 
 1. **[[Architecture]]** — Tech stack, top-level folder layout, entry points (`src/App.tsx`, `vite.config.ts`).
