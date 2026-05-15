@@ -12,85 +12,136 @@ tags: [sop, adamrit, supabase, schema, data-model]
 
 ## How to read this note
 
-Entity-level descriptions for grounding. No raw SQL. The authoritative SQL lives in `supabase/migrations/` of the adamrit repo (331 files). Generated TypeScript types live at `src/integrations/supabase/types.ts` — the structural truth for the running app.
+Entity descriptions for retrieval grounding. **Table and column names below were verified against `src/integrations/supabase/types.ts`** (the auto-generated TypeScript schema, which mirrors the live Supabase project). Developer-side reference with full table inventory is in [[Supabase-Schema]] one folder up.
 
-For developer-side schema documentation including migration history, see the dev-reference [[Supabase-Schema]] in `Adamrit/` (one level up).
+Agents should treat this note as the canonical entity glossary for Adamrit data.
 
 ---
 
 ## Core entities
 
 ### `patients`
-- The master patient record.
-- Stores demographics, primary scheme (ESIC / CGHS / PMJAY / MJPJAY / corporate / private), ID-card numbers, contact, registration date.
-- A single patient has many visits.
+The master patient record. ~30 columns. Identifies the human across visits.
+
+**Key fields:** `id`, `name`, `age`, `gender`, `date_of_birth`, `blood_group`, `allergies`, `phone`, `address`, `aadhar_passport`, `identity_type`, `insurance_person_no`, `corporate`, `hospital_name`, `relationship_manager`, two emergency-contact pairs.
+
+There is also a separate `patient_data` table for extended fields, `patient_documents` for uploaded files, and `patient_ledgers` for a per-patient running account.
 
 ### `visits`
-- One row per OPD or IPD encounter.
-- Carries: patient ref, visit type (OPD/IPD), admission/discharge timestamps, room ref (for IPD), assigned doctor, scheme overrides, status.
-- Billing fields were added directly to this table (migration `20250116140000`).
-- A `condonation_delay_submission` flag tracks late insurance submissions (migration `20250117000000`).
+One row per OPD or IPD encounter. **The wide central table — ~50 columns.** All billing, clinical, and discharge state for a single encounter lives here.
 
-### `diagnoses`
-- Diagnosis catalog. Coded against ICD-10 ([[icd10-shortlist]]).
+**Identification & dates:** `id` (uuid), `visit_id` (string), `patient_id` (FK to `patients`), `visit_type` (OPD/IPD), `visit_date`, `admission_date`, `discharge_date`, `surgery_date`.
 
-### `visit_diagnoses`
-- Junction: which diagnoses apply to which visit. Captures both primary and secondary diagnoses, plus any complications.
+**Clinical:** `appointment_with`, `reason_for_visit`, `referring_doctor_id`, `diagnosis_id`, `treatment_type`, `package_amount`.
 
-### `visit_implants`
-- Junction: implants used during a visit. Drives implant-line billing. (Migration `20250121_create_visit_implants_table`, rate-type fix on the same day.)
+**Billing:** `bill_paid`, `billing_status`, `billing_sub_status`, `billing_executive`, `claim_id`, `final_bill_printed`.
 
-### `medications`
-- Pharmacy master: drug name, form, strength, generic, default rate.
+**Insurance / scheme:** `cghs_code`, `esic_uh_id`, `condonation_delay_claim`, `condonation_delay_intimation`, `condonation_delay_submission`, `delay_waiver_intimation`, `extension_of_stay`, `extension_taken`, `intimation_done`, `surgical_approval`, `additional_approvals`, `authorized_by`, `relation_with_employee`, `sst_treatment`.
 
-### `pharmacy_batches` (and related inventory tables)
-- Per-batch stock with batch number + expiry + quantity. Dispensing decrements at this level. See [[adamrit-pharmacy-workflow]].
+**Discharge & clearance:** `discharge_mode`, `discharge_notes`, `discharge_summary_signed`, `discharge_intimation_at`, `discharged_sr_no`, `nurse_clearance`, `pharmacy_clearance`, `gate_pass_generated`, `gate_pass_id`, `file_status`.
 
-### `lab_tests` and lab configuration
-- Lab catalog plus formula rules (e.g. iron-studies formula added in migration `20250124_add_iron_studies_formula`).
+**Other:** `sr_no`, `bunch_no`, `remark1`, `remark2`, `thumb_registration_no`, `status`.
 
-### `radiology_orders`
-- Imaging requests linked to a visit.
+When an agent reasons about a single hospital encounter, it should start with the `visits` row and join out from there.
 
-### `bills` / `bill_items`
-- Open and closed bills against visits. Line items capture service type, quantity, rate, scheme override.
+### Junction tables (visit × X)
 
-### `advance_payments`
-- Pre-bill advance receipts. Multiple advances allowed per visit.
+Every clinical / billing artifact attached to a visit goes through a junction table:
 
-### `financial_summary`
-- Pre-computed summary row driving the final-bill financial-summary card. (Migration `20250120000000_create_financial_summary_table`.)
+- `visit_diagnoses` — diagnoses attached to this visit
+- `visit_complications` — complications observed
+- `visit_consultants` / `visit_hope_consultants` — consultants seen
+- `visit_surgeons` / `visit_hope_surgeons` / `visit_esic_surgeons` — surgeons assigned
+- `visit_referees` — referees
+- `visit_medical_data` — captured clinical data
+- `visit_medications` — prescribed/dispensed meds
+- `visit_labs` — lab orders
+- `visit_radiology` — imaging orders
+- `visit_surgeries` — surgeries performed
 
-### `ledger` / `cash_book` / `day_book`
-- Accounting tables. Posted from billing events and direct cash transactions.
+### Clinical masters
 
-### `bill_submissions`
-- Queue for insurance / corporate claim submissions.
+- `diagnoses` (+ `diagnosis_categories`) — diagnosis catalog
+- `complications` — complications catalog
+- `referees`, `staff_members` — doctor / staff masters
+- `cghs_surgery`, `esic_surgeons`, `hope_surgeons`, `hope_consultants` — **scheme-specific masters** (one per scheme; no unified doctors table)
+- `nabh_rates` — NABH-accredited hospital rate cards
+- `ai_clinical_recommendations` — LLM-generated suggestions stored for review
 
-### `corporate_companies`, `corporate_areas`, `corporate_bulk_payments`
-- B2B masters and bulk-payment ingestion records.
+### Operation theatre
 
-### `marketing_*`
-- Marketing CRM tables — leads, field tracking, incentives.
+- `operation_theatres`, `ot_patients`, `active_ot_patients` — scheduling
+- `pre_op_checklist`, `intra_op_notes`, `post_op_notes`, `post_surgical_consultations` — surgery notes
+- `surgical_treatments`, `surgical_billing` — surgery line items + scheme billing
 
-### `tariff_*` (CGHS / Hope / Ayushman / PMJAY / MJPJAY)
-- Scheme-specific tariff masters. Each scheme has its own rate file; selecting the wrong one silently produces wrong bills.
+### Lab
 
-### `users` + RBAC
-- Auth, roles, permissions. Surfaced via `usePermissions`.
+- `lab`, `lab_orders`, `lab_worklists`, `worklist_items` — orders + worklists
+- `lab_departments`, `lab_sub_speciality` (note: also a duplicate-spelled `lab_subspeciality`)
+- `lab_parameters`, `test_categories`, `test_panels`, `panel_tests`, `order_test_items` — test catalog
+- `lab_samples`, `lab_reports`, `lab_results`, `test_results` — execution
+- `lab_equipment`, `external_labs`, `quality_controls` — operations
 
-### `agent_audit_log` (cross-cutting)
-- Every agent action (e.g. pharmacy reorder PO drafts) writes a row here with the agent identity, action, vendor/qty, and the SOP version (`last_reviewed` date) the agent grounded on.
+### Radiology
+
+- `radiology`, `radiology_orders`, `radiology_appointments` — orders
+- `radiology_modalities`, `radiology_procedures` — catalog
+- `radiology_reports`, `radiology_qa_checks` — output + QA
+- `radiologists`, `radiology_technologists` — staff
+- `dicom_studies` — DICOM imaging studies
+- `radiation_dose_tracking` — dose audit log
+
+### Pharmacy
+
+- `medicines` (primary master, plural)
+  - A `medication` table (singular) also exists — likely legacy. **When in doubt, prefer `medicines`.**
+- `medicine_categories`, `medicine_manufacturers` — taxonomy
+- `medicine_inventory` — current stock (no separate `pharmacy_batches` table; batch + expiry live here)
+- `prescriptions`, `prescription_items` — doctor-written prescriptions
+- `medicine_sales`, `medicine_sale_items` — pharmacy sales (header + lines)
+- `medicine_returns`, `medicine_return_items` — returns
+- `pharmacy_sales` — **separate** pharmacy-side sales table. Verify which one the live workflow writes to before adding logic.
+- `inventory_items`, `inventory_status`, `item_stock`, `stock_movements`, `stock_transactions` — general inventory
+
+### Procurement
+
+- `purchase_orders`, `purchase_order_items` — PO header + lines. The pharmacy reorder agent (see [[inventory-management]]) writes drafts here.
+
+### Billing
+
+- `bills` — **lean header table** (10 columns: `bill_no`, `category`, `claim_id`, `patient_id`, `date`, `total_amount`, `status`, plus timestamps)
+- `bill_sections`, `bill_line_items` — detail
+- `aging_snapshots` — time-series aging buckets
+- `outstanding_invoices` — unpaid invoices
+
+> **Important:** the `financial_summary` table from migration `20250120000000_create_financial_summary_table.sql` is **not present in the current schema snapshot**. It may have been dropped or renamed. Agents should not assume it exists — query `bills` / `bill_line_items` directly or check `types.ts` before using.
+
+### Accounting
+
+- `chart_of_accounts` — account heads
+- `ledger_groups`, `ledgers` — ledger structure
+- `vouchers`, `voucher_types`, `voucher_entries` — double-entry vouchers
+- `payment_allocations`, `payment_transactions` — payment lifecycle (a payment can be split across multiple bills)
+- `daily_balances` — day-end roll-ups
+
+### Resources & system
+
+- `equipment`, `resource_allocations`, `resource_allocation_summary` — assets + allocation
+- `gate_passes`, `discharge_checklist` — exit workflow
+- `audit_trail` — cross-cutting change log
+- `workflow_transitions` — state-machine transitions
 
 ---
 
-## Conventions agents should follow
+## Rules agents should follow
 
-1. **Always filter by tenant / hospital scope** if the table has one. RLS should enforce this, but never assume.
-2. **Read from `financial_summary` for totals**, not by re-aggregating `bill_items` — the summary table is the source of truth for what the printed bill shows.
-3. **Respect `condonation_delay_submission`** when reasoning about late insurance claims — it means the deadline has been formally extended.
-4. **Treat `*_master` tables as read-only** unless you are explicitly the master-data agent.
-5. **Match the patient's scheme to the right tariff master** when generating cost estimates. See [[adamrit-billing-workflow]] for the mapping.
+1. **Start from `visits` for any per-encounter reasoning** — billing, discharge, clinical state are all on this table or one join away.
+2. **Match scheme → surgery master** when generating cost estimates: `cghs_surgery` for CGHS patients, `hope_surgeons`/`hope_consultants` for private/Hope, scheme-specific masters elsewhere. Selecting the wrong master silently produces wrong bills.
+3. **Verify `medicines` vs `medication` and `medicine_sales` vs `pharmacy_sales`** before writing. The duplicates are legacy ambiguity, not deliberate design.
+4. **Respect `condonation_delay_submission`** when reasoning about late insurance claims — it means the deadline has been formally extended; the bill is not actually stale.
+5. **Never assume `financial_summary` exists** — re-check `types.ts` first.
+6. **Use `audit_trail`** when explaining "who changed what when" — it's the system-wide change log.
+7. **All mutating operations must respect RLS** — never bypass with a service-role key from a user-context agent.
 
 ## Related
 
@@ -98,4 +149,6 @@ For developer-side schema documentation including migration history, see the dev
 - [[adamrit-clinical-workflows]]
 - [[adamrit-billing-workflow]]
 - [[adamrit-pharmacy-workflow]]
-- [[Supabase-Schema]] (developer-side reference)
+- [[Supabase-Schema]] (developer-side, with the full table inventory)
+- [[hospital-abbreviations]]
+- [[icd10-shortlist]]
