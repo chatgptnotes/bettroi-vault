@@ -8,6 +8,7 @@ on:
       - "corpus/**"
       - "glossary/**"
       - "decisions/**"
+      - "Adamrit/agent-corpus/**"
       - "scripts/sync-to-supabase.mjs"
       - "package.json"
       - ".github/workflows/sync-vault.yml"
@@ -52,6 +53,7 @@ jobs:
             'corpus/***.md' \
             'glossary/***.md' \
             'decisions/***.md' \
+            'Adamrit/agent-corpus/***.md' \
             > changed.tsv
 
           echo "Changed file count: $(wc -l < changed.tsv)"

@@ -4,7 +4,7 @@ agent_pack: adamrit-integration
 sensitivity: internal
 last_reviewed: 2026-05-15
 owner: chatgptnotes@gmail.com
-status: draft
+status: approved
 tags: [sop, adamrit, pharmacy, inventory, dispensing]
 ---
 
