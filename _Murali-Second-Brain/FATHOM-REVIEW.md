@@ -104,24 +104,24 @@ folder: Bettroi-HopeTech-project-status
 ## [7/41] 2026-05-13 — Huzaifa dubai media
 ```
 id: 145975999
-folder: decisions
+folder: flowaccel.work
 ```
 - url: https://fathom.video/calls/672415633
 - attendees: _(none listed)_
 - suggested: **decisions** (confidence 0.75) — _Meeting discusses dashboard architecture decisions and explicit decision to remove old dashboard in favor of modern one. Contains role-based filtering and access control decisions._
-- summary: ### Dashboard Architecture Dr. BK presented Flow Excel dashboard with sections: pending, approval, rejected, completed. Multiple view options (grid, list, compact, timeline, calendar, person, split), responsive. Prefetch+cache for performance. Super admins see all requests; regul...
+- summary: demo to Huzaifa ### Dashboard Architecture Dr. BK presented Flow Excel dashboard with sections: pending, approval, rejected, completed. Multiple view options (grid, list, compact, timeline, calendar, person, split), responsive. Prefetch+cache for performance. Super admins see all requests; regul...
 
 ---
 
 ## [8/41] 2026-05-13 — stakes
 ```
 id: 145924655
-folder: decisions
+folder: Bettroi-HopeTech-project-status
 ```
 - url: https://fathom.video/calls/672097417
 - attendees: _(none listed)_
 - suggested: **decisions** (confidence 0.85) — _Meeting covers multiple strategic decisions: budget allocation approval, deal closure terms, pricing strategy, and new business opportunity evaluation - all requiring stakeholder decision-making._
-- summary: ### Budget allocation 83,000 added to budget as third-party charges for cloud services (OpEx). ### Bajaj power plant AI BT introduced significant new opportunity from Bajaj — AI system for five identical power plants. Scoping questionnaire sent. Solving for one plant replicates a...
+- summary: stakes ### Budget allocation 83,000 added to budget as third-party charges for cloud services (OpEx). ### Bajaj power plant AI BT introduced significant new opportunity from Bajaj — AI system for five identical power plants. Scoping questionnaire sent. Solving for one plant replicates a...
 
 ---
 
