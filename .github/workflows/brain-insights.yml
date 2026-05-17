@@ -1,0 +1,30 @@
+name: Brain — Daily Cross-Project Insights
+
+# Detects recurring patterns, contradictions, reuse opportunities, risks across all projects.
+# Posts findings to Murali's Slack DM at 08:00 IST (30 min after morning digest).
+
+on:
+  schedule:
+    - cron: '30 2 * * *'  # 02:30 UTC = 08:00 IST
+  workflow_dispatch:
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - run: npm ci
+
+      - name: Discover insights
+        env:
+          SUPABASE_URL: ${{ secrets.BRAIN_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.BRAIN_SUPABASE_SERVICE_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.BRAIN_ANTHROPIC_API_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.BRAIN_SLACK_BOT_TOKEN }}
+          SLACK_MURALI_USER_ID: ${{ secrets.BRAIN_SLACK_MURALI_USER_ID }}
+        run: node _Murali-Second-Brain/discover-insights.mjs
