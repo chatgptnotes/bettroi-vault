@@ -14,7 +14,8 @@
     "brain:fathom-review": "node --env-file=.env.local _Murali-Second-Brain/fathom-review.mjs",
     "brain:fathom-apply": "node --env-file=.env.local _Murali-Second-Brain/fathom-apply.mjs",
     "brain:digest": "node --env-file=.env.local _Murali-Second-Brain/digest.mjs",
-    "brain:repo-overview": "node _Murali-Second-Brain/repo-overview.mjs"
+    "brain:repo-overview": "node _Murali-Second-Brain/repo-overview.mjs",
+    "brain:extract-actions": "node --env-file=.env.local _Murali-Second-Brain/extract-action-items.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.96.0",
