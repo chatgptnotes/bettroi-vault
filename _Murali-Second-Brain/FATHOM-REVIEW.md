@@ -32,7 +32,7 @@ folder: decisions
 
 ---
 
-## [2/41] 2026-05-16 — Impromptu Zoom Meeting - Dr Sandeep Neurosurgeon
+## [2/41] 2026-05-16 —  - Dr Sandeep Neurosurgeon
 ```
 id: 147010899
 folder: agents
