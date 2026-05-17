@@ -49,8 +49,13 @@ Output ONLY JSON: {"score": <0-1>, "type": "<decision|commitment|quote|meeting|b
     });
     const m = res.content[0].text.match(/\{[\s\S]*\}/);
     return m ? JSON.parse(m[0]) : { score: 0, type: 'parse-fail', summary: '' };
-  } catch { return { score: 0, type: 'error', summary: '' }; }
+  } catch (e) {
+    console.warn('  classifier error:', e.message);
+    return { score: 0, type: 'error', summary: '' };
+  }
 }
+
+async function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 async function inferProject(subject, body) {
   const KNOWN = ['Adamrit', 'Adamrit.com', 'NABH-quality-HR', 'BNI-Networking', 'Doctors digital office',
@@ -101,9 +106,17 @@ async function run() {
   console.log(`Fetched ${emails.length} emails. Classifying...`);
 
   // Phase 2: classify + ingest (no IMAP connection needed now)
-  let ingested = 0, skipped = 0;
-  for (const e of emails) {
+  // Quick pre-filter: skip obvious newsletters/notifications based on sender/subject pattern
+  const NOISE_PATTERNS = /noreply|no-reply|notifications?@|newsletter|updates@|alerts@|info@anthropic|@vercel\.com$|@supabase\.com$|@github\.com$|@google\.com$|unsubscribe|automated|do.not.reply/i;
+  const preFiltered = emails.filter(e => !NOISE_PATTERNS.test(e.from) && !NOISE_PATTERNS.test(e.subject));
+  console.log(`Pre-filtered to ${preFiltered.length} (skipped ${emails.length - preFiltered.length} noise)`);
+
+  let ingested = 0, skipped = 0, errored = 0;
+  for (let i = 0; i < preFiltered.length; i++) {
+    const e = preFiltered[i];
     const cls = await classifyEmail({ subject: e.subject, from: e.from, snippet: e.text });
+    if (cls.type === 'error') errored++;
+    if (i % 25 === 0) console.log(`  [${i}/${preFiltered.length}] ingested=${ingested} skipped=${skipped} errored=${errored}`);
     if (cls.score < 0.6) { skipped++; continue; }
 
     const project = await inferProject(e.subject, e.text);
