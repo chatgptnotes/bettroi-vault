@@ -10,11 +10,6 @@
 
 **Existing project folders:**
 - Adamrit.com
-- `Manufacturing Planning and JIT procurement agent`
-- `agents`
-- `corpus`
-- `decisions`
-- `glossary`
 - PIMS.nexaproc.in
 - bajajenergy.nexaproc.in
 - adnoc.nexaproc.in
@@ -37,6 +32,7 @@
 - modeaewintrack.com
 - hopetech.me
 - drawtoboq.com
+- decodemybrain.com
 
 
 
