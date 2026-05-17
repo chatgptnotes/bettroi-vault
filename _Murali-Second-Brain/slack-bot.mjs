@@ -122,6 +122,95 @@ app.event('message', async ({ event }) => {
   }
 });
 
+// ── "Send to Brain" message shortcut ─────────────────────────────────────────
+// Right-click any message → Send to Brain → ingests the full thread
+
+app.shortcut('send_to_brain', async ({ shortcut, ack, client, respond }) => {
+  await ack();
+
+  const channelId = shortcut.channel.id;
+  const messageTs = shortcut.message.ts;
+  const threadTs  = shortcut.message.thread_ts ?? messageTs;
+
+  try {
+    // Pull the full thread (parent + all replies)
+    const replies = await client.conversations.replies({
+      channel: channelId,
+      ts: threadTs,
+      limit: 200,
+    });
+
+    if (!replies.messages?.length) {
+      await client.chat.postEphemeral({
+        channel: channelId, user: shortcut.user.id,
+        text: '⚠ Could not read this thread (bot may not be in this channel).',
+      });
+      return;
+    }
+
+    // Resolve user IDs to names for readability
+    const userCache = new Map();
+    async function nameFor(uid) {
+      if (!uid) return 'unknown';
+      if (userCache.has(uid)) return userCache.get(uid);
+      try {
+        const r = await client.users.info({ user: uid });
+        const name = r.user.real_name ?? r.user.name ?? uid;
+        userCache.set(uid, name);
+        return name;
+      } catch { return uid; }
+    }
+
+    // Get channel name + permalink for source ref
+    let channelName = channelId;
+    try {
+      const info = await client.conversations.info({ channel: channelId });
+      channelName = info.channel.name ?? channelId;
+    } catch {}
+
+    const permalinkRes = await client.chat.getPermalink({ channel: channelId, message_ts: threadTs });
+    const permalink = permalinkRes.permalink ?? `slack://${channelId}/${threadTs}`;
+
+    // Format the thread as text
+    const lines = [`Slack thread from #${channelName}`, `Link: ${permalink}`, ''];
+    for (const m of replies.messages) {
+      const author = await nameFor(m.user);
+      const ts = new Date(parseFloat(m.ts) * 1000).toISOString();
+      lines.push(`[${ts}] ${author}: ${m.text ?? '(no text)'}`);
+    }
+    const text = lines.join('\n');
+
+    // Extract project tag from parent message if it has [Prefix]
+    const parentText = replies.messages[0].text ?? '';
+    const prefixMatch = parentText.match(/^\[([^\]]+)\]/);
+    const project_tag = prefixMatch ? prefixMatch[1] : `slack-${channelName}`;
+
+    await ingestText({
+      text,
+      project_tag,
+      source_type: 'slack-thread',
+      source_ref: permalink,
+      metadata: {
+        channel: channelName,
+        thread_ts: threadTs,
+        message_count: replies.messages.length,
+        date: new Date().toISOString(),
+      },
+    });
+
+    await client.chat.postEphemeral({
+      channel: channelId, user: shortcut.user.id,
+      text: `✅ Ingested ${replies.messages.length} message(s) from #${channelName} → filed under \`${project_tag}\``,
+    });
+  } catch (err) {
+    console.error('send_to_brain error:', err);
+    await client.chat.postEphemeral({
+      channel: channelId, user: shortcut.user.id,
+      text: `❌ Failed to ingest thread: ${err.message}`,
+    });
+  }
+});
+
 // ── Start ─────────────────────────────────────────────────────────────────────
 
 await app.start();
