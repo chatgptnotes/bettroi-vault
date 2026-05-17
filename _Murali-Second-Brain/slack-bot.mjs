@@ -85,53 +85,176 @@ app.event('message', async ({ event, client }) => {
   }
 });
 
-// ── #brain-inbox: ingest new messages ────────────────────────────────────────
+// ── #brain-inbox: ingest new messages (diary OCR pipeline + text capture) ───
 
-app.event('message', async ({ event }) => {
+import { writeFile, mkdir } from 'node:fs/promises';
+import { join as pathJoin, dirname as pathDirname } from 'node:path';
+const VAULT_PATH = '/Users/murali/BeBrain/bettroi-vault';
+
+// Project folders the OCR auto-classifier can route to
+const KNOWN_PROJECTS = [
+  'Adamrit', 'Adamrit.com', 'Hope', 'NABH-quality-HR', 'BNI-Networking',
+  'Doctors digital office', 'Pangong-preventive-healthcare', 'Foyertech',
+  'Bettroi-HopeTech-project-status', 'hopetech.me', 'fluxio.work Standupmeeting',
+  'pulseofproject.com', '2men.co', 'Linkist.ai', 'DDO.center', 'aiinmail.com',
+  'pratyaya.in', 'hrpulse.site', 'modeaewintrack.com', 'drawtoboq.com',
+  'decodemybrain.com', 'nexaproc.in', 'bajajenergy.nexaproc.in',
+  'PIMS.nexaproc.in', 'adnoc.nexaproc.in', 'digitaltwin.nexaproc.in',
+  'solaxis.com', 'amprix.in', 'app.headzhairfixing.com',
+  'limitlessbrainlab.com', 'flowaccel.work',
+  'Manufacturing Planning and JIT procurement agent',
+];
+
+async function classifyDiaryPage(ocrText) {
+  if (!process.env.ANTHROPIC_API_KEY) return { folder: '_inbox', date: null, summary: '' };
+  const Anthropic = (await import('@anthropic-ai/sdk')).default;
+  const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  const sys = `You classify Murali's handwritten paper diary pages.
+
+Folders: ${KNOWN_PROJECTS.join(' | ')}
+
+From the extracted text, determine:
+- "folder": single best-match project folder, or "_inbox" if unclear
+- "date": YYYY-MM-DD if a date is written on the page, else null
+- "summary": one factual line (8-14 words) capturing what's on the page
+
+Output ONLY JSON: {"folder": "<name>", "date": "YYYY-MM-DD" or null, "summary": "<line>"}`;
+  try {
+    const res = await anthropic.messages.create({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 200,
+      system: sys,
+      messages: [{ role: 'user', content: ocrText.slice(0, 2000) }],
+    });
+    const m = res.content[0].text.match(/\{[\s\S]*\}/);
+    return m ? JSON.parse(m[0]) : { folder: '_inbox', date: null, summary: '' };
+  } catch (e) {
+    return { folder: '_inbox', date: null, summary: '' };
+  }
+}
+
+async function ocrDiaryPage(base64, mimetype) {
+  const Anthropic = (await import('@anthropic-ai/sdk')).default;
+  const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  const res = await anthropic.messages.create({
+    model: 'claude-sonnet-4-6',  // Sonnet handles handwriting much better than Haiku
+    max_tokens: 4096,
+    messages: [{
+      role: 'user',
+      content: [
+        { type: 'image', source: { type: 'base64', media_type: mimetype, data: base64 } },
+        { type: 'text', text: `This is a photo of Murali's handwritten paper diary or notebook page. Extract ALL text faithfully — including dates, names, lists, tables, marginalia, scribbles.
+
+Preserve structure:
+- Headers and sub-headers
+- Bullet lists / numbered lists
+- Crossed-out items (mark as ~~text~~)
+- Boxes / check marks → use [ ] and [x]
+- Tables as markdown tables
+- Dates exactly as written
+
+If text is illegible, write [illegible]. Output ONLY the extracted markdown — no preamble.` }
+      ]
+    }]
+  });
+  return res.content[0].text;
+}
+
+function safeSlug(s) { return (s || 'page').replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').slice(0, 40); }
+
+app.event('message', async ({ event, client }) => {
   if (event.channel !== BRAIN_INBOX || event.bot_id || event.subtype) return;
 
   const text = event.text ?? '';
   const prefixMatch = text.match(/^\[([^\]]+)\]/);
-  const project_tag = prefixMatch ? prefixMatch[1] : '_inbox';
+  const userTag = prefixMatch ? prefixMatch[1] : null;
   const content = prefixMatch ? text.slice(prefixMatch[0].length).trim() : text;
 
-  // Handle image attachments (diary photos) — download + OCR via Claude Vision
+  // Handle image attachments (diary photos)
   if (event.files?.length) {
     for (const file of event.files) {
       if (!file.mimetype?.startsWith('image/')) continue;
       try {
+        // Quick ack so user knows we're working
+        const ack = await client.chat.postMessage({
+          channel: event.channel, thread_ts: event.ts,
+          text: `📖 Reading diary page...`,
+        });
+
         const imgRes = await fetch(file.url_private, {
           headers: { Authorization: `Bearer ${process.env.SLACK_BOT_TOKEN}` }
         });
         const buffer = await imgRes.arrayBuffer();
         const base64 = Buffer.from(buffer).toString('base64');
 
-        const { default: Anthropic } = await import('@anthropic-ai/sdk');
-        const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-        const ocr = await anthropic.messages.create({
-          model: 'claude-haiku-4-5-20251001',
-          max_tokens: 2048,
-          messages: [{
-            role: 'user',
-            content: [
-              { type: 'image', source: { type: 'base64', media_type: file.mimetype, data: base64 } },
-              { type: 'text', text: 'Extract all text from this image exactly as written. Output only the extracted text.' }
-            ]
-          }]
-        });
-        const ocrText = ocr.content[0].text;
-        if (ocrText.length > 20) {
-          await ingestText({ text: ocrText, project_tag, source_type: 'diary', source_ref: file.permalink ?? file.id, metadata: { date: new Date().toISOString() } });
+        const ocrText = await ocrDiaryPage(base64, file.mimetype);
+        if (ocrText.length < 20) {
+          await client.chat.update({ channel: ack.channel, ts: ack.ts, text: '⚠ Could not read text from this image.' });
+          continue;
         }
+
+        // Classify: user prefix wins; otherwise auto-classify
+        let project_tag = userTag, dateStr = null, summary = '';
+        if (!project_tag) {
+          const cls = await classifyDiaryPage(ocrText);
+          project_tag = KNOWN_PROJECTS.includes(cls.folder) ? cls.folder : '_inbox';
+          dateStr = cls.date;
+          summary = cls.summary;
+        }
+        if (!dateStr) dateStr = new Date().toISOString().slice(0, 10);
+
+        // Write .md file to vault folder (visible in Obsidian immediately)
+        const diaryDir = pathJoin(VAULT_PATH, project_tag, 'diary');
+        await mkdir(diaryDir, { recursive: true });
+        const fileName = `${dateStr} - diary-${safeSlug(summary || file.id.slice(-6))}.md`;
+        const filePath = pathJoin(diaryDir, fileName);
+        const slackPermalink = file.permalink ?? `slack://${event.channel}/${event.ts}`;
+        const md = [
+          '---',
+          `date: ${dateStr}`,
+          `source: diary`,
+          `slack_message: ${slackPermalink}`,
+          summary ? `summary: ${JSON.stringify(summary)}` : null,
+          `project: ${project_tag}`,
+          `captured_at: ${new Date().toISOString()}`,
+          '---',
+          '',
+          `# Diary — ${dateStr}`,
+          summary ? `\n*${summary}*\n` : '',
+          ocrText,
+          '',
+        ].filter(Boolean).join('\n');
+        await writeFile(filePath, md);
+
+        // Ingest into brain immediately (don't wait for obsidian-sync cron)
+        const relPath = filePath.replace(VAULT_PATH + '/', '');
+        await ingestText({
+          text: ocrText,
+          project_tag: project_tag.toLowerCase().replace(/\s+/g, '-'),
+          source_type: 'diary',
+          source_ref: relPath,
+          metadata: { date: dateStr, summary, off_limits: false },
+        });
+
+        // Acknowledge with preview
+        const preview = ocrText.slice(0, 250).replace(/\n+/g, ' ');
+        await client.chat.update({
+          channel: ack.channel, ts: ack.ts,
+          text: `✅ *Diary page filed* → \`${project_tag}/diary/${fileName}\`\n*Date:* ${dateStr}${summary ? `\n*Summary:* ${summary}` : ''}\n*Preview:* _${preview}${ocrText.length > 250 ? '...' : ''}_\n\nReply in this thread with corrections if the OCR or classification is wrong.`,
+        });
       } catch (e) {
-        console.error('OCR failed:', e.message);
+        console.error('Diary OCR failed:', e);
+        await client.chat.postMessage({
+          channel: event.channel, thread_ts: event.ts,
+          text: `❌ Diary OCR failed: ${e.message}`,
+        });
       }
     }
   }
 
-  // Ingest text content
-  if (content.length > 10) {
-    await ingestText({ text: content, project_tag, source_type: 'slack', source_ref: `slack://${event.channel}/${event.ts}`, metadata: { date: new Date().toISOString() } });
+  // Ingest text content (non-image messages)
+  if (!event.files?.length && content.length > 10) {
+    await ingestText({ text: content, project_tag: userTag ?? '_inbox', source_type: 'slack', source_ref: `slack://${event.channel}/${event.ts}`, metadata: { date: new Date().toISOString() } });
   }
 });
 
