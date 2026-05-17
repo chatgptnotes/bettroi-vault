@@ -23,3 +23,8 @@ desktop.ini
 
 # Auto-sync log — local only
 scripts/auto-sync.log
+
+# Environment variables — never commit
+.env
+.env.local
+.env.*
