@@ -11,11 +11,13 @@
     "brain:obsidian": "node --env-file=.env.local _Murali-Second-Brain/obsidian-sync.mjs",
     "brain:ask": "node --env-file=.env.local _Murali-Second-Brain/query.mjs",
     "brain:bot": "node --env-file=.env.local _Murali-Second-Brain/slack-bot.mjs",
-    "brain:fathom-to-md": "node --env-file=.env.local _Murali-Second-Brain/fathom-to-obsidian.mjs"
+    "brain:fathom-review": "node --env-file=.env.local _Murali-Second-Brain/fathom-review.mjs",
+    "brain:fathom-apply": "node --env-file=.env.local _Murali-Second-Brain/fathom-apply.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.96.0",
     "@slack/bolt": "^4.7.2",
+    "@slack/web-api": "^7.16.0",
     "@supabase/supabase-js": "^2.46.1",
     "gray-matter": "^4.0.3",
     "openai": "^4.98.0"
