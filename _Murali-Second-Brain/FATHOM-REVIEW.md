@@ -23,7 +23,7 @@
 - nexaproc.in
 - amprix.in
 - Doctors digital office
-- 
+- Bettroi-HopeTech-project-status
 
 **Common new folders you might want:** `HEADS`, `NeuroQ`, `Linkist`, `BNI-Networking`, `Bajaj-Energy`, `Pune-Metro`, `Maha-Metro`, `Draw2BOQ`, `Decode-My-Brain`, `NexaProc`
 
@@ -68,7 +68,7 @@ folder: bajajenergy.nexaproc.in
 ## [4/41] 2026-05-15 — BT haritha
 ```
 id: 146914967
-folder: decisions
+folder: Bettroi-HopeTech-project-status
 ```
 - url: https://fathom.video/calls/676082187
 - attendees: _(none listed)_
@@ -80,7 +80,7 @@ folder: decisions
 ## [5/41] 2026-05-15 — BT haritha Microsoft Teams
 ```
 id: 146723162
-folder: decisions
+folder: Bettroi-HopeTech-project-status
 ```
 - url: https://fathom.video/calls/675326402
 - attendees: _(none listed)_
