@@ -234,6 +234,104 @@ app.event('message', async ({ event, client }) => {
   }
 });
 
+// ── Smart channel watcher: auto-capture high-value messages from ALL channels ─
+
+// Channels to skip (chatty, low-signal, social)
+const SKIP_CHANNELS = new Set(['general', 'random', 'announcements', 'lounge', 'fun', 'jokes']);
+
+// In-memory cache to avoid re-processing the same message
+const seenMessages = new Set();
+
+async function classifyImportance(text, channelName) {
+  if (!text || text.length < 30) return { score: 0, type: 'too-short' };
+  const cached = await import('node:crypto').then(c => c.createHash('sha1').update(text).digest('hex').slice(0, 12));
+  if (seenMessages.has(cached)) return { score: 0, type: 'duplicate' };
+  seenMessages.add(cached);
+  if (seenMessages.size > 5000) {
+    // Trim cache
+    const arr = [...seenMessages].slice(-2500);
+    seenMessages.clear();
+    arr.forEach(x => seenMessages.add(x));
+  }
+
+  const Anthropic = (await import('@anthropic-ai/sdk')).default;
+  const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+
+  const sys = `Score the importance of this Slack message for capture into a knowledge base. Score 0-1:
+
+1.0 = explicit DECISION ("we'll go with X", "agreed on Y at 7000")
+0.9 = COMMITMENT ("I'll send the proposal Friday", "Sahil to fix bug by EOD")
+0.8 = BLOCKER ("can't proceed until X", "API failing")
+0.7 = KEY STATUS ("demo went well, client signed off", "moving to staging")
+0.5 = GENERAL DISCUSSION or context
+0.3 = QUESTION or clarification
+0.1 = ACK/emoji/social ("ok", "thanks", "good morning")
+
+Channel: ${channelName}
+Output ONLY JSON: {"score": <0-1>, "type": "<decision|commitment|blocker|status|discussion|question|social>"}`;
+
+  try {
+    const res = await anthropic.messages.create({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 80,
+      system: sys,
+      messages: [{ role: 'user', content: text.slice(0, 1000) }],
+    });
+    const m = res.content[0].text.match(/\{[\s\S]*\}/);
+    return m ? JSON.parse(m[0]) : { score: 0, type: 'parse-fail' };
+  } catch (e) {
+    return { score: 0, type: 'error' };
+  }
+}
+
+app.event('message', async ({ event, client }) => {
+  // Smart channel watcher — only for channels (not DMs / #brain-inbox / system messages)
+  if (event.channel_type !== 'channel') return;
+  if (event.channel === BRAIN_INBOX) return; // already handled
+  if (event.bot_id || event.subtype) return;
+  if (!event.text || event.text.length < 30) return;
+
+  // Get channel name + skip noisy channels
+  let channelName = event.channel;
+  try {
+    const info = await client.conversations.info({ channel: event.channel });
+    channelName = info.channel.name ?? event.channel;
+  } catch {}
+  if (SKIP_CHANNELS.has(channelName)) return;
+
+  const cls = await classifyImportance(event.text, channelName);
+  if (cls.score < 0.7) return; // only capture decisions / commitments / blockers / status
+
+  // Get user name + permalink
+  let authorName = event.user;
+  try {
+    const u = await client.users.info({ user: event.user });
+    authorName = u.user.real_name ?? u.user.name ?? event.user;
+  } catch {}
+  let permalink = `slack://${event.channel}/${event.ts}`;
+  try {
+    const p = await client.chat.getPermalink({ channel: event.channel, message_ts: event.ts });
+    permalink = p.permalink ?? permalink;
+  } catch {}
+
+  const ingestPayload = {
+    text: `Slack ${cls.type} in #${channelName} from ${authorName}:\n\n${event.text}\n\nLink: ${permalink}`,
+    project_tag: `slack-${channelName}`,
+    source_type: 'slack-auto',
+    source_ref: permalink,
+    metadata: { date: new Date().toISOString(), score: cls.score, type: cls.type, channel: channelName, author: authorName },
+  };
+
+  try {
+    await ingestText(ingestPayload);
+    // React with brain emoji to signal capture
+    await client.reactions.add({ channel: event.channel, name: 'brain', timestamp: event.ts }).catch(() => {});
+    console.log(`[watcher] captured ${cls.type} (${cls.score}) from #${channelName}/${authorName}`);
+  } catch (e) {
+    console.warn(`[watcher] ingest failed: ${e.message}`);
+  }
+});
+
 // ── #brain-inbox: ingest new messages (diary OCR pipeline + text capture) ───
 
 import { writeFile, mkdir } from 'node:fs/promises';

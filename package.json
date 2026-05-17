@@ -21,7 +21,8 @@
     "brain:nudge-devs": "node --env-file=.env.local _Murali-Second-Brain/nudge-dev-assignments.mjs",
     "brain:sync-bni": "node --env-file=.env.local _Murali-Second-Brain/sync-bni-contacts.mjs",
     "brain:daily-brief": "node --env-file=.env.local _Murali-Second-Brain/daily-brief.mjs",
-    "brain:calendar-watch": "node --env-file=.env.local _Murali-Second-Brain/calendar-prep-watcher.mjs"
+    "brain:calendar-watch": "node --env-file=.env.local _Murali-Second-Brain/calendar-prep-watcher.mjs",
+    "brain:weekly-review": "node --env-file=.env.local _Murali-Second-Brain/weekly-review.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.96.0",
