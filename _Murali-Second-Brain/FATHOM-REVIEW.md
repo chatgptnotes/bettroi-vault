@@ -9,7 +9,7 @@
 6. Then: `npm run brain:obsidian` — that ingests the notes into the brain.
 
 **Existing project folders:**
-- `Adamrit`.com
+- Adamrit.com
 - `Manufacturing Planning and JIT procurement agent`
 - `agents`
 - `corpus`
@@ -20,6 +20,10 @@
 - adnoc.nexaproc.in
 - solaxis.com
 - digitaltwin.nexaproc.in
+- nexaproc.in
+- amprix.in
+- Doctors digital office
+- 
 
 **Common new folders you might want:** `HEADS`, `NeuroQ`, `Linkist`, `BNI-Networking`, `Bajaj-Energy`, `Pune-Metro`, `Maha-Metro`, `Draw2BOQ`, `Decode-My-Brain`, `NexaProc`
 
@@ -28,7 +32,7 @@
 ## [1/41] 2026-05-16 — Bajaj Energy Preparatory Meeting
 ```
 id: 147013100
-folder: decisions
+folder: bajajenergy.nexaproc.in
 ```
 - url: https://fathom.video/calls/676371079
 - attendees: _(none listed)_
@@ -40,7 +44,7 @@ folder: decisions
 ## [2/41] 2026-05-16 —  - Dr Sandeep Neurosurgeon
 ```
 id: 147010899
-folder: agents
+folder: Adamrit.com
 ```
 - url: https://fathom.video/calls/676390433
 - attendees: _(none listed)_
@@ -52,8 +56,8 @@ folder: agents
 ## [3/41] 2026-05-16 — Bajaj Meeting BT
 ```
 id: 147005925
-folder: Manufacturing Planning and JIT procurement agent
-```
+folder: bajajenergy.nexaproc.in
+
 - url: https://fathom.video/calls/676359941
 - attendees: _(none listed)_
 - suggested: **Manufacturing Planning and JIT procurement agent** (confidence 0.70) — _Meeting discusses PLC retrofit with 4-month hardware lead time (procurement risk), production planning goals, and asset management. JIT procurement agent fits the supply chain constraints and manufacturing optimization focus, though it also touches on product strategy (Bajaj pitch) which might warrant agents or decisions folder._
@@ -69,7 +73,7 @@ folder: decisions
 - url: https://fathom.video/calls/676082187
 - attendees: _(none listed)_
 - suggested: **decisions** (confidence 0.60) — _Meeting covers project status updates, pricing decisions (NeuroQ proposal negotiation), and handoff planning (Linkist). Primary content involves business decisions rather than operational planning, though manufacturing/procurement context is absent._
-- summary: ### Pending tasks and Slack review BT and BK discussed pending tasks accumulated while BK was at emergency. Hetzka document sharing done; Linguska payment transfer confirmed. ### NeuroQ proposal NeuroQ requested reverse engineering work. Original quote 9,000 dirham revised down t...
+- summary: ### Pending tasks and Slack review BT and BK discussed pending tasks accumulated while BK was at emergency. Huzaifa document sharing done; Linkist payment transfer confirmed. ### NeuroQ proposal NeuroQ requested reverse engineering work. Original quote 9,000 dirham revised down t...
 
 ---
 
