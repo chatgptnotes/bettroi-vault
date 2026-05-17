@@ -30,8 +30,9 @@
 - Linkist.ai
 - DDO.center
 - aiinmail.com
-- fluxio.workStandupmeeting
-- 
+- fluxio.work Standupmeeting
+- pratyaya.in
+- hrpulse.site
 
 **Common new folders you might want:** `HEADS`, `NeuroQ`, `Linkist`, `BNI-Networking`, `Bajaj-Energy`, `Pune-Metro`, `Maha-Metro`, `Draw2BOQ`, `Decode-My-Brain`, `NexaProc`
 
