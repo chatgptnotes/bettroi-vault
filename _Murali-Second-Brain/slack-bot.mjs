@@ -15,13 +15,21 @@ const supabase = createClient(
 const BRAIN_INBOX = process.env.SLACK_BRAIN_INBOX_CHANNEL_ID;
 const MURALI_ID   = process.env.SLACK_MURALI_USER_ID;
 
-// Role lookup by Slack user ID
-const ROLE_MAP = {
-  [MURALI_ID]: 'murali',
-  // Add COO / Sales Lead Slack user IDs here when ready:
-  // 'UXXXXXXXX': 'coo',
-  // 'UXXXXXXXX': 'sales_lead',
-};
+// Role lookup — checks brain_user_roles table; falls back to 'murali' for the owner,
+// 'public' (no access) for everyone unmapped.
+async function roleFor(slackUserId) {
+  if (slackUserId === MURALI_ID) return 'murali';
+  try {
+    const { data } = await supabase
+      .from('brain_user_roles')
+      .select('role')
+      .eq('slack_user_id', slackUserId)
+      .maybeSingle();
+    return data?.role ?? 'public';
+  } catch {
+    return 'public';
+  }
+}
 
 const app = new App({
   token:     process.env.SLACK_BOT_TOKEN,
@@ -37,7 +45,8 @@ app.event('app_mention', async ({ event, say }) => {
   if (!question) { await say('Ask me anything about your projects!'); return; }
 
   await say({ text: '_Thinking..._', thread_ts: event.ts });
-  const role = ROLE_MAP[event.user] ?? 'murali';
+  const role = await roleFor(event.user);
+  if (role === 'public') { await say({ text: '_You do not have access to the brain. Ask Murali to grant you access._', thread_ts: event.ts }); return; }
 
   try {
     const { answer, sources } = await queryBrain({ question, role });
@@ -57,7 +66,11 @@ app.event('message', async ({ event, client }) => {
   const question = event.text?.trim();
   if (!question) return;
 
-  const role = ROLE_MAP[event.user] ?? 'murali';
+  const role = await roleFor(event.user);
+  if (role === 'public') {
+    await client.chat.postMessage({ channel: event.channel, text: '_You do not have access to the brain. Ask Murali to grant you access._' });
+    return;
+  }
   await client.chat.postMessage({ channel: event.channel, text: '_Thinking..._' });
 
   try {

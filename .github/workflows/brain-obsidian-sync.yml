@@ -1,0 +1,31 @@
+name: Brain — Obsidian Sync
+
+# Ingests new/changed .md files from the vault into brain_chunks
+# whenever a push happens to main.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.md'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Sync vault to brain
+        env:
+          SUPABASE_URL: ${{ secrets.BRAIN_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.BRAIN_SUPABASE_SERVICE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.BRAIN_OPENAI_API_KEY }}
+        run: node _Murali-Second-Brain/obsidian-sync.mjs
