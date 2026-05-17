@@ -33,8 +33,12 @@
 - fluxio.work Standupmeeting
 - pratyaya.in
 - hrpulse.site
+- app.headzhairfixing.com
+- modeaewintrack.com
+- hopetech.me
+- drawtoboq.com
 
-**Common new folders you might want:** `HEADS`, `NeuroQ`, `Linkist`, `BNI-Networking`, `Bajaj-Energy`, `Pune-Metro`, `Maha-Metro`, `Draw2BOQ`, `Decode-My-Brain`, `NexaProc`
+
 
 ---
 
