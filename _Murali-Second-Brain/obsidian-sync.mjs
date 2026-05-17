@@ -98,6 +98,9 @@ async function run() {
 
     if (text.length < 50) { skipped++; continue; }
 
+    // Delete previous chunks for this file so re-ingest is idempotent
+    await supabase.from('brain_chunks').delete().eq('source_ref', relPath);
+
     await ingestText({
       text,
       project_tag,
