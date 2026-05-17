@@ -60,6 +60,42 @@ app.event('app_mention', async ({ event, say }) => {
   }
 });
 
+async function buildMeetingPrep(topic, role) {
+  // 1. Vector search for the topic
+  const { queryBrain } = await import('./query.mjs');
+  const { answer, sources } = await queryBrain({
+    question: `Give a pre-meeting briefing on "${topic}". Cover: (1) key people involved, (2) latest decisions/status, (3) open commitments, (4) anything contradictory or needing follow-up. Be concise — 8-12 bullet points max. Use real names/dates from the sources.`,
+    role,
+  });
+
+  // 2. Look for related action items
+  const { default: Anthropic } = await import('@anthropic-ai/sdk');
+  const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+
+  // Find related action items by keyword match
+  const keywords = topic.toLowerCase().split(/\s+/).filter(w => w.length > 3);
+  let itemsBlock = '';
+  if (keywords.length) {
+    const { data: items } = await supabase
+      .from('brain_action_items')
+      .select('item_text, assignee, due_date, project_tag, status')
+      .eq('status', 'open')
+      .or(keywords.map(k => `item_text.ilike.%${k}%`).join(','))
+      .limit(8);
+    if (items?.length) {
+      const lines = items.map(i => {
+        const who = i.assignee ? `*${i.assignee}*` : '_unassigned_';
+        const due = i.due_date ? ` (due ${i.due_date})` : '';
+        return `• ${who}: ${i.item_text}${due}`;
+      });
+      itemsBlock = `\n\n*🎯 Open action items mentioning "${topic}":*\n${lines.join('\n')}`;
+    }
+  }
+
+  const sourceList = sources.slice(0, 4).map((s, i) => `[${i+1}] ${s}`).join('\n');
+  return `*🧭 Pre-meeting briefing: ${topic}*\n\n${answer}${itemsBlock}\n\n*Sources:*\n${sourceList}`;
+}
+
 async function getOpenItemsFor(userIdent) {
   const today = new Date().toISOString().slice(0, 10);
   // Match assignee by name (case-insensitive contains)
@@ -97,6 +133,20 @@ app.event('message', async ({ event, client }) => {
   }
 
   const lc = question.toLowerCase();
+
+  // prep <topic> — pre-meeting briefing
+  const prepMatch = question.match(/^prep\s+(.+)/i);
+  if (prepMatch) {
+    const topic = prepMatch[1].trim();
+    await client.chat.postMessage({ channel: event.channel, text: `🎯 Preparing briefing on *${topic}*...` });
+    try {
+      const brief = await buildMeetingPrep(topic, role);
+      await client.chat.postMessage({ channel: event.channel, text: brief });
+    } catch (err) {
+      await client.chat.postMessage({ channel: event.channel, text: `Error preparing brief: ${err.message}` });
+    }
+    return;
+  }
 
   // done <N> — mark item N from last DM as complete
   const doneMatch = lc.match(/^done\s+(\d+)\b/);
