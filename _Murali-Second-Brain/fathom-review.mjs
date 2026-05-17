@@ -25,10 +25,16 @@ async function discoverProjectFolders() {
 }
 
 async function classify({ title, attendees, summary, projectFolders }) {
-  const sys = `Classify a meeting into a project folder.
-Available folders: ${projectFolders.join(' | ')}
-You may also suggest a NEW folder name if none fit (capitalize first letter, kebab-case multi-word).
-Output ONLY JSON: {"folder": "<name>", "confidence": 0..1, "reason": "<short>"}`;
+  const sys = `Classify a business meeting AND write a short factual description.
+
+Available project folders: ${projectFolders.join(' | ')}
+
+Rules:
+- Pick the SINGLE most relevant folder name (exact match from the list above).
+- If none fit clearly, output "_Fathom-Inbox" with confidence below 0.6.
+- "description" = 8 to 14 words, capturing what was actually decided or discussed. Be specific (names, decisions, amounts). NOT marketing fluff. NOT a question.
+
+Output ONLY this JSON (no commentary): {"folder": "<name>", "confidence": 0..1, "description": "<8-14 words>", "reason": "<why this folder>"}`;
   const user = `Title: ${title}
 Attendees: ${attendees?.join(', ') || 'unknown'}
 Summary:
@@ -36,15 +42,15 @@ ${(summary || '').slice(0, 800)}`;
   try {
     const res = await anthropic.messages.create({
       model: 'claude-haiku-4-5-20251001',
-      max_tokens: 200,
+      max_tokens: 300,
       system: sys,
       messages: [{ role: 'user', content: user }],
     });
     const text = res.content[0].text.trim();
     const m = text.match(/\{[\s\S]*\}/);
-    return m ? JSON.parse(m[0]) : { folder: '_Fathom-Inbox', confidence: 0, reason: 'parse-fail' };
+    return m ? JSON.parse(m[0]) : { folder: '_Fathom-Inbox', confidence: 0, description: '', reason: 'parse-fail' };
   } catch (e) {
-    return { folder: '_Fathom-Inbox', confidence: 0, reason: e.message };
+    return { folder: '_Fathom-Inbox', confidence: 0, description: '', reason: e.message };
   }
 }
 
