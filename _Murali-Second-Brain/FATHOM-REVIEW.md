@@ -80,19 +80,19 @@ folder: Bettroi-HopeTech-project-status
 ## [5/41] 2026-05-15 — BT haritha Microsoft Teams
 ```
 id: 146723162
-folder: Bettroi-HopeTech-project-status ## BT haritha Microsoft Teams Meeting
+folder: Bettroi-HopeTech-project-status 
 ```
 - url: https://fathom.video/calls/675326402
 - attendees: _(none listed)_
 - suggested: **decisions** (confidence 0.72) — _Meeting documents technical failures (Proposify issues), workaround decisions (edit externally, send to BK), and action items (clarify with Dr. Shweta). Primary focus is decision-making on proposal handling despite system constraints._
-- summary: ### Agreement status Other agreement comments expected by Monday. ### Proposify failures Haritha attempted to upload/edit proposal (5,90,000) in Proposify but encountered repeated technical failures: import failed, exports blank. Decision: edit proposals externally and send direc...
+- summary:## BT haritha Microsoft Teams Meeting Bk left early ### Agreement status Other agreement comments expected by Monday. ### Proposify failures Haritha attempted to upload/edit proposal (5,90,000) in Proposify but encountered repeated technical failures: import failed, exports blank. Decision: edit proposals externally and send direc...
 
 ---
 
 ## [6/41] 2026-05-14 — NeuroQ Proposal Revision
 ```
 id: 146338072
-folder: decisions
+folder: Bettroi-HopeTech-project-status 
 ```
 - url: https://fathom.video/calls/673738479
 - attendees: _(none listed)_
