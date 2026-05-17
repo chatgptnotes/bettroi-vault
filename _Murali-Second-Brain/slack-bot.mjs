@@ -96,8 +96,44 @@ app.event('message', async ({ event, client }) => {
     return;
   }
 
-  // Special command: "my items" / "open items" / "action items"
   const lc = question.toLowerCase();
+
+  // done <N> — mark item N from last DM as complete
+  const doneMatch = lc.match(/^done\s+(\d+)\b/);
+  if (doneMatch) {
+    const n = parseInt(doneMatch[1], 10);
+    const { data: state } = await supabase.from('brain_user_state').select('last_items_dm').eq('slack_user_id', event.user).maybeSingle();
+    const ids = state?.last_items_dm ?? [];
+    if (n < 1 || n > ids.length) {
+      await client.chat.postMessage({ channel: event.channel, text: `_Item ${n} not in your last list. Send \`my items\` to refresh._` });
+      return;
+    }
+    const id = ids[n - 1];
+    const { data: item } = await supabase.from('brain_action_items').select('item_text').eq('id', id).maybeSingle();
+    await supabase.from('brain_action_items').update({ status: 'done', completed_at: new Date().toISOString() }).eq('id', id);
+    await client.chat.postMessage({ channel: event.channel, text: `✅ Marked done: *${item?.item_text ?? '(item)'}*` });
+    return;
+  }
+
+  // snooze <N> <YYYY-MM-DD> — defer item to later date
+  const snoozeMatch = lc.match(/^snooze\s+(\d+)\s+(\d{4}-\d{2}-\d{2})\b/);
+  if (snoozeMatch) {
+    const n = parseInt(snoozeMatch[1], 10);
+    const newDate = snoozeMatch[2];
+    const { data: state } = await supabase.from('brain_user_state').select('last_items_dm').eq('slack_user_id', event.user).maybeSingle();
+    const ids = state?.last_items_dm ?? [];
+    if (n < 1 || n > ids.length) {
+      await client.chat.postMessage({ channel: event.channel, text: `_Item ${n} not in your last list. Send \`my items\` to refresh._` });
+      return;
+    }
+    const id = ids[n - 1];
+    const { data: item } = await supabase.from('brain_action_items').select('item_text').eq('id', id).maybeSingle();
+    await supabase.from('brain_action_items').update({ due_date: newDate }).eq('id', id);
+    await client.chat.postMessage({ channel: event.channel, text: `💤 Snoozed to ${newDate}: *${item?.item_text ?? '(item)'}*` });
+    return;
+  }
+
+  // my items / open items / all items
   if (/^(my|open|all|list)?\s*(action\s+)?items?\b/.test(lc)) {
     // Resolve the user's display name from brain_user_roles
     const { data: profile } = await supabase
@@ -109,16 +145,27 @@ app.event('message', async ({ event, client }) => {
     let items = [];
     if (lc.startsWith('all') || lc.startsWith('open')) {
       const { data } = await supabase.from('brain_action_items')
-        .select('item_text, assignee, due_date, project_tag, priority')
+        .select('id, item_text, assignee, due_date, project_tag, priority')
         .eq('status', 'open').order('due_date', { ascending: true, nullsFirst: false }).limit(20);
       items = data ?? [];
     } else if (firstName) {
-      items = await getOpenItemsFor(firstName);
+      const { data } = await supabase.from('brain_action_items')
+        .select('id, item_text, assignee, due_date, project_tag, priority')
+        .eq('status', 'open').ilike('assignee', `%${firstName}%`)
+        .order('due_date', { ascending: true, nullsFirst: false }).limit(20);
+      items = data ?? [];
     }
+
+    // Persist the order so `done N` resolves to the right item
+    await supabase.from('brain_user_state').upsert({
+      slack_user_id: event.user,
+      last_items_dm: items.map(i => i.id),
+      updated_at: new Date().toISOString(),
+    }, { onConflict: 'slack_user_id' });
 
     await client.chat.postMessage({
       channel: event.channel,
-      text: `*🎯 Open action items${firstName && !lc.startsWith('all') ? ` for ${firstName}` : ''}* (${items.length}):\n\n${formatItemsList(items)}`,
+      text: `*🎯 Open action items${firstName && !lc.startsWith('all') ? ` for ${firstName}` : ''}* (${items.length}):\n\n${formatItemsList(items)}\n\n_Reply \`done N\` to mark complete · \`snooze N YYYY-MM-DD\` to defer_`,
     });
     return;
   }

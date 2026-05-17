@@ -16,7 +16,8 @@
     "brain:digest": "node --env-file=.env.local _Murali-Second-Brain/digest.mjs",
     "brain:repo-overview": "node _Murali-Second-Brain/repo-overview.mjs",
     "brain:extract-actions": "node --env-file=.env.local _Murali-Second-Brain/extract-action-items.mjs",
-    "brain:insights": "node --env-file=.env.local _Murali-Second-Brain/discover-insights.mjs"
+    "brain:insights": "node --env-file=.env.local _Murali-Second-Brain/discover-insights.mjs",
+    "brain:nudge": "node --env-file=.env.local _Murali-Second-Brain/nudge-overdue.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.96.0",
