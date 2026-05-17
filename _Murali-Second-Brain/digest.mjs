@@ -88,13 +88,64 @@ function fmtDateIST() {
   return now.toLocaleString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Kolkata' });
 }
 
+async function topOpenActionItems(limit = 10) {
+  // High-priority + overdue + recent
+  const today = new Date().toISOString().slice(0, 10);
+  const { data: overdue } = await supabase
+    .from('brain_action_items')
+    .select('item_text, assignee, due_date, project_tag, priority')
+    .eq('status', 'open')
+    .not('due_date', 'is', null)
+    .lte('due_date', today)
+    .order('due_date', { ascending: true })
+    .limit(limit);
+
+  const { data: high } = await supabase
+    .from('brain_action_items')
+    .select('item_text, assignee, due_date, project_tag, priority')
+    .eq('status', 'open')
+    .eq('priority', 'high')
+    .order('created_at', { ascending: false })
+    .limit(limit);
+
+  // Dedupe (overdue may overlap with high)
+  const seen = new Set();
+  const items = [];
+  for (const a of [...(overdue ?? []), ...(high ?? [])]) {
+    const key = a.item_text;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    items.push(a);
+    if (items.length >= limit) break;
+  }
+  return items;
+}
+
 async function buildBlocks(projects) {
   const blocks = [
     { type: 'header', text: { type: 'plain_text', text: `🧠 Morning brief — ${fmtDateIST()}` } },
-    { type: 'context', elements: [{ type: 'mrkdwn', text: `Top ${projects.length} active projects in the last ${LOOKBACK_DAYS} days` }] },
+    { type: 'context', elements: [{ type: 'mrkdwn', text: `Top ${projects.length} active projects + open action items` }] },
     { type: 'divider' },
   ];
 
+  // Action items section first — what needs your attention TODAY
+  const items = await topOpenActionItems(8);
+  if (items.length) {
+    const today = new Date().toISOString().slice(0, 10);
+    const lines = items.map(a => {
+      const who = a.assignee ? `*${a.assignee}*` : '_unassigned_';
+      const overdue = a.due_date && a.due_date <= today;
+      const due = a.due_date ? ` _(due ${a.due_date}${overdue ? ' ⚠ OVERDUE' : ''})_` : '';
+      const pri = a.priority === 'high' ? ' 🔥' : '';
+      return `• ${who}${pri}: ${a.item_text.slice(0, 140)}${due}  · _${a.project_tag}_`;
+    });
+    blocks.push(
+      { type: 'section', text: { type: 'mrkdwn', text: `*🎯 Open action items needing attention*\n${lines.join('\n')}` } },
+      { type: 'divider' },
+    );
+  }
+
+  // Project activity section
   for (const p of projects) {
     const chunks = await recentChunksFor(p.tag);
     if (!chunks.length) continue;

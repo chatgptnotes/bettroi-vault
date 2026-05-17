@@ -60,6 +60,30 @@ app.event('app_mention', async ({ event, say }) => {
   }
 });
 
+async function getOpenItemsFor(userIdent) {
+  const today = new Date().toISOString().slice(0, 10);
+  // Match assignee by name (case-insensitive contains)
+  const { data } = await supabase
+    .from('brain_action_items')
+    .select('item_text, assignee, due_date, project_tag, priority, source_ref')
+    .eq('status', 'open')
+    .ilike('assignee', `%${userIdent}%`)
+    .order('due_date', { ascending: true, nullsFirst: false })
+    .limit(20);
+  return data ?? [];
+}
+
+function formatItemsList(items) {
+  if (!items.length) return '_No open action items found._';
+  const today = new Date().toISOString().slice(0, 10);
+  return items.map((a, i) => {
+    const overdue = a.due_date && a.due_date <= today;
+    const due = a.due_date ? `  (due ${a.due_date}${overdue ? ' ⚠ OVERDUE' : ''})` : '';
+    const pri = a.priority === 'high' ? ' 🔥' : '';
+    return `${i+1}. *${a.item_text}*${pri}${due}\n   _${a.project_tag}_`;
+  }).join('\n\n');
+}
+
 app.event('message', async ({ event, client }) => {
   // DM to bot
   if (event.channel_type !== 'im' || event.bot_id) return;
@@ -71,6 +95,34 @@ app.event('message', async ({ event, client }) => {
     await client.chat.postMessage({ channel: event.channel, text: '_You do not have access to the brain. Ask Murali to grant you access._' });
     return;
   }
+
+  // Special command: "my items" / "open items" / "action items"
+  const lc = question.toLowerCase();
+  if (/^(my|open|all|list)?\s*(action\s+)?items?\b/.test(lc)) {
+    // Resolve the user's display name from brain_user_roles
+    const { data: profile } = await supabase
+      .from('brain_user_roles').select('display_name').eq('slack_user_id', event.user).maybeSingle();
+    const name = profile?.display_name ?? '';
+    // Try first-name match — strip "(role)" suffixes etc
+    const firstName = name.split(/[\s(]/)[0];
+
+    let items = [];
+    if (lc.startsWith('all') || lc.startsWith('open')) {
+      const { data } = await supabase.from('brain_action_items')
+        .select('item_text, assignee, due_date, project_tag, priority')
+        .eq('status', 'open').order('due_date', { ascending: true, nullsFirst: false }).limit(20);
+      items = data ?? [];
+    } else if (firstName) {
+      items = await getOpenItemsFor(firstName);
+    }
+
+    await client.chat.postMessage({
+      channel: event.channel,
+      text: `*🎯 Open action items${firstName && !lc.startsWith('all') ? ` for ${firstName}` : ''}* (${items.length}):\n\n${formatItemsList(items)}`,
+    });
+    return;
+  }
+
   await client.chat.postMessage({ channel: event.channel, text: '_Thinking..._' });
 
   try {
