@@ -22,7 +22,8 @@
     "brain:sync-bni": "node --env-file=.env.local _Murali-Second-Brain/sync-bni-contacts.mjs",
     "brain:daily-brief": "node --env-file=.env.local _Murali-Second-Brain/daily-brief.mjs",
     "brain:calendar-watch": "node --env-file=.env.local _Murali-Second-Brain/calendar-prep-watcher.mjs",
-    "brain:weekly-review": "node --env-file=.env.local _Murali-Second-Brain/weekly-review.mjs"
+    "brain:weekly-review": "node --env-file=.env.local _Murali-Second-Brain/weekly-review.mjs",
+    "brain:email": "node --env-file=.env.local _Murali-Second-Brain/email-sync.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.96.0",
@@ -30,6 +31,7 @@
     "@slack/web-api": "^7.16.0",
     "@supabase/supabase-js": "^2.46.1",
     "gray-matter": "^4.0.3",
+    "imapflow": "^1.3.3",
     "node-ical": "^0.26.1",
     "openai": "^4.98.0"
   }

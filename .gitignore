@@ -28,3 +28,6 @@ scripts/auto-sync.log
 .env
 .env.local
 .env.*
+
+# Email content — sensitive, never push to GitHub
+_Email-Inbox/

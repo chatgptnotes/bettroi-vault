@@ -18,7 +18,7 @@ const supabase = createClient(
 // Folders to skip entirely
 const SKIP_FOLDERS = new Set([
   '_Murali-Second-Brain', '.git', 'node_modules', '.obsidian',
-  '_scratch', '.firecrawl', 'supabase'
+  '_scratch', '.firecrawl', 'supabase', '_Email-Inbox'
 ]);
 
 // Off-limits project tags — content ingested with off_limits=true
