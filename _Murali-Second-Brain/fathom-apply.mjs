@@ -46,12 +46,16 @@ async function run() {
       await ensureDir(dir);
       const filepath = join(dir, `${m.date} - ${safeSlug(m.title)}.md`);
 
+      const callIdMatch = (m.url || '').match(/\/calls\/(\d+)/);
+      const callId = callIdMatch ? callIdMatch[1] : null;
+
       const fm = [
         '---',
         `date: ${m.date}`,
         `source: fathom`,
         `url: ${m.url}`,
-        `recording_id: ${m.id}`,
+        callId ? `call_id: ${callId}    # this is the number shown in Fathom's URL bar` : null,
+        `recording_id: ${m.id}    # internal API id, not shown in Fathom UI`,
         m.attendees?.length ? `attendees: [${m.attendees.map(a => `"${a}"`).join(', ')}]` : null,
         `project: ${d.folder}`,
         '---',

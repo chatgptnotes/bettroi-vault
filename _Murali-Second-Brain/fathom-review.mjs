@@ -64,6 +64,9 @@ async function run() {
     const summary = (m.summary || '').replace(/\n+/g, ' ').slice(0, 280);
     const attendees = (m.attendees || []).join(', ') || '_(none listed)_';
 
+    const callIdMatch = (m.url || '').match(/\/calls\/(\d+)/);
+    const callId = callIdMatch ? callIdMatch[1] : '?';
+
     blocks.push(
 `## [${i+1}/${meetings.length}] ${m.date} — ${m.title}
 \`\`\`
@@ -71,6 +74,7 @@ id: ${m.id}
 folder: ${suggested}
 \`\`\`
 - url: ${m.url}
+- call_id (visible in Fathom URL bar): \`${callId}\`
 - attendees: ${attendees}
 - suggested: **${suggested}** (confidence ${conf}) — _${reason}_
 - summary: ${summary}...
