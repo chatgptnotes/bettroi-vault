@@ -24,6 +24,14 @@
 - amprix.in
 - Doctors digital office
 - Bettroi-HopeTech-project-status
+- flowaccel.work
+- limiltlessbrainlab.com
+- 2men.co
+- Linkist.ai
+- DDO.center
+- aiinmail.com
+- fluxio.workStandupmeeting
+- 
 
 **Common new folders you might want:** `HEADS`, `NeuroQ`, `Linkist`, `BNI-Networking`, `Bajaj-Energy`, `Pune-Metro`, `Maha-Metro`, `Draw2BOQ`, `Decode-My-Brain`, `NexaProc`
 
@@ -128,22 +136,22 @@ folder: Bettroi-HopeTech-project-status
 ## [9/41] 2026-05-12 — Impromptu Microsoft Teams - Huzaifa
 ```
 id: 145558509
-folder: 
+folder: flowaccel.work
 ```
 - url: https://fathom.video/calls/670806458
 - attendees: Huzaifa, Saikat, BT, BK, Haritha
 - suggested:  (confidence 0.35) — _Meeting discusses project status, PO, scope, and workflow—typical project management content. However, no clear manufacturing or procurement context. Could fit 'decisions' (project hold/priority basis) or 'agents' (dashboard/workflow automation). Low confidence due to ambiguous fit._
-- summary: ### Project status Huzaifa apologized for rescheduling — director's meeting put all upcoming projects on hold due to crisis. This project received PO already, continues despite hold. All projects now priority basis. ### LPO scope Building dashboard application connected to GDMOS....
+- summary: Demo ### Project status Huzaifa apologized for rescheduling — director's meeting put all upcoming projects on hold due to crisis. This project received PO already, continues despite hold. All projects now priority basis. ### LPO scope Building dashboard application connected to GDMOS....
 
 ---
 
 ## [10/41] 2026-05-11 — Microsoft Teams - Neurosense
 ```
 id: 145260720
-folder: agents
+folder: Bettroi-HopeTech-project-status
 ```
 - url: https://fathom.video/calls/669476011
-- attendees: _(none listed)_
+- attendees: BT, BK, Haritha
 - suggested: **agents** (confidence 0.70) — _Meeting discusses AI agents (NeuroAI Copilot), code components, and integration work. While project-focused, the emphasis on AI copilot development and agent functionality aligns best with agents folder over general project management._
 - summary: ### Project requests Biji outlined three requests: DDO integration into Neurosense, Decode My Brain (retain Laravel code but change WordPress), Neurosense enhancements. Neurosense actions: add Cloud/CLOD report, integrate DDO, add NeuroAI Copilot to explain reports. Clone Neurose...
 
