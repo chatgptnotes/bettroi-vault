@@ -5,17 +5,16 @@
   "description": "Bettroi knowledge vault — SOPs, agent persona packs, glossaries, ADRs.",
   "type": "module",
   "scripts": {
-    "sync": "node scripts/sync-to-supabase.mjs"
-  },
-  "dependencies": {
-    "@supabase/supabase-js": "^2.46.1",
-    "gray-matter": "^4.0.3",
-    "openai": "^4.98.0"
-  },
-  "scripts": {
     "sync": "node scripts/sync-to-supabase.mjs",
     "brain:test": "node --env-file=.env.local _Murali-Second-Brain/ingest.mjs",
     "brain:fathom": "node --env-file=.env.local _Murali-Second-Brain/fathom-sync.mjs",
-    "brain:obsidian": "node --env-file=.env.local _Murali-Second-Brain/obsidian-sync.mjs"
+    "brain:obsidian": "node --env-file=.env.local _Murali-Second-Brain/obsidian-sync.mjs",
+    "brain:ask": "node --env-file=.env.local _Murali-Second-Brain/query.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.96.0",
+    "@supabase/supabase-js": "^2.46.1",
+    "gray-matter": "^4.0.3",
+    "openai": "^4.98.0"
   }
 }
