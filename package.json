@@ -9,6 +9,11 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.46.1",
-    "gray-matter": "^4.0.3"
+    "gray-matter": "^4.0.3",
+    "openai": "^4.98.0"
+  },
+  "scripts": {
+    "sync": "node scripts/sync-to-supabase.mjs",
+    "brain:test": "node --env-file=.env.local _Murali-Second-Brain/ingest.mjs"
   }
 }
