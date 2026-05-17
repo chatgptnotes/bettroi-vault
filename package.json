@@ -19,7 +19,9 @@
     "brain:insights": "node --env-file=.env.local _Murali-Second-Brain/discover-insights.mjs",
     "brain:nudge": "node --env-file=.env.local _Murali-Second-Brain/nudge-overdue.mjs",
     "brain:nudge-devs": "node --env-file=.env.local _Murali-Second-Brain/nudge-dev-assignments.mjs",
-    "brain:sync-bni": "node --env-file=.env.local _Murali-Second-Brain/sync-bni-contacts.mjs"
+    "brain:sync-bni": "node --env-file=.env.local _Murali-Second-Brain/sync-bni-contacts.mjs",
+    "brain:daily-brief": "node --env-file=.env.local _Murali-Second-Brain/daily-brief.mjs",
+    "brain:calendar-watch": "node --env-file=.env.local _Murali-Second-Brain/calendar-prep-watcher.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.96.0",
@@ -27,6 +29,7 @@
     "@slack/web-api": "^7.16.0",
     "@supabase/supabase-js": "^2.46.1",
     "gray-matter": "^4.0.3",
+    "node-ical": "^0.26.1",
     "openai": "^4.98.0"
   }
 }
