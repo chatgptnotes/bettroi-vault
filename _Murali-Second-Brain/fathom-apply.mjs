@@ -22,15 +22,16 @@ async function run() {
   const meetings = JSON.parse(await readFile(DATA_PATH, 'utf8'));
   const meetingById = new Map(meetings.map(m => [String(m.id), m]));
 
-  // Parse each ```...``` code block — each contains `id:` and `folder:`
+  // Parse each ```...``` code block — each contains `id:`, `folder:`, `description:`
   const codeBlockRegex = /```\n([\s\S]*?)\n```/g;
   const decisions = [];
   for (const match of reviewText.matchAll(codeBlockRegex)) {
     const block = match[1];
     const id = block.match(/id:\s*(\d+)/)?.[1];
     const folder = block.match(/folder:\s*(.+)/)?.[1]?.trim();
+    const description = block.match(/description:\s*(.+)/)?.[1]?.trim() ?? '';
     if (!id || !folder) continue;
-    decisions.push({ id, folder });
+    decisions.push({ id, folder, description });
   }
 
   console.log(`Parsed ${decisions.length} decisions from FATHOM-REVIEW.md`);
@@ -58,11 +59,13 @@ async function run() {
         `recording_id: ${m.id}    # internal API id, not shown in Fathom UI`,
         m.attendees?.length ? `attendees: [${m.attendees.map(a => `"${a}"`).join(', ')}]` : null,
         `project: ${d.folder}`,
+        d.description ? `description: ${JSON.stringify(d.description)}` : null,
         '---',
         '',
       ].filter(Boolean).join('\n');
 
-      const body = `# ${m.title}\n\n*${m.date} — [Open in Fathom](${m.url})*\n\n${m.summary || '_(no summary)_'}\n`;
+      const descLine = d.description ? `> ${d.description}\n\n` : '';
+      const body = `# ${m.title}\n\n*${m.date} — [Open in Fathom](${m.url})*\n\n${descLine}${m.summary || '_(no summary)_'}\n`;
       await writeFile(filepath, fm + body);
       routed[d.folder] = (routed[d.folder] || 0) + 1;
     } catch (e) {

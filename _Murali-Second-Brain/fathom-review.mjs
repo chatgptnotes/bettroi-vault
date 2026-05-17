@@ -72,12 +72,14 @@ async function run() {
 
     const callIdMatch = (m.url || '').match(/\/calls\/(\d+)/);
     const callId = callIdMatch ? callIdMatch[1] : '?';
+    const description = (cls.description || '').replace(/\n/g, ' ').replace(/"/g, '');
 
     blocks.push(
 `## [${i+1}/${meetings.length}] ${m.date} — ${m.title}
 \`\`\`
 id: ${m.id}
 folder: ${suggested}
+description: ${description}
 \`\`\`
 - url: ${m.url}
 - call_id (visible in Fathom URL bar): \`${callId}\`
@@ -93,12 +95,13 @@ folder: ${suggested}
   const header = `# Fathom Backfill Review
 
 **Instructions:**
-1. For each meeting, edit the \`folder:\` line inside its \`\`\`...\`\`\` code block.
-2. Set it to one of the **existing folders** below, OR type a NEW folder name (it'll be created).
-3. Set \`folder: SKIP\` to discard the meeting (e.g. for low-value impromptu calls).
-4. Save this file when done.
-5. Run: \`npm run brain:fathom-apply\` — that writes the .md notes into the chosen folders.
-6. Then: \`npm run brain:obsidian\` — that ingests the notes into the brain.
+1. For each meeting, edit BOTH lines inside the \`\`\`...\`\`\` code block:
+   - \`folder:\` — set to an existing folder OR a new folder name (it'll be created).
+   - \`description:\` — short factual line (the AI pre-filled it; edit to match how you'd describe the meeting).
+2. Set \`folder: SKIP\` to discard a meeting entirely.
+3. Save this file when done.
+4. Run: \`npm run brain:fathom-apply\` — writes the .md notes into chosen folders.
+5. Then: \`npm run brain:obsidian\` — ingests notes into the brain.
 
 **Existing project folders:**
 ${folderList}
