@@ -56,49 +56,52 @@ async function run() {
 
   console.log(`${Object.keys(byDev).length} developers have open work items.\n`);
 
-  let dmed = 0, unmatched = 0;
-  for (const { dev, items: theirItems } of Object.values(byDev)) {
-    const slackUser = matchSlack(dev.name, slackUsers ?? []);
+  // Build ONE consolidated brief for all developers — sent to a shared Slack ID
+  // (all developers share chatgptnotes@gmail.com / U0B2NR9MWHZ per Murali's instruction)
+  const SHARED_RECIPIENT = process.env.DEV_TEAM_SLACK_USER_ID ?? 'U0B2NR9MWHZ';
 
-    const sorted = theirItems.sort((a, b) => {
+  const today = new Date().toISOString().slice(0, 10);
+  const sections = [];
+  let totalItems = 0;
+
+  // Sort developers by # of items DESC for top-of-message visibility
+  const sortedDevs = Object.values(byDev).sort((a, b) => b.items.length - a.items.length);
+
+  for (const { dev, items: theirItems } of sortedDevs) {
+    const sortedItems = theirItems.sort((a, b) => {
       const pri = ['Critical','High','Medium','Low'];
       return pri.indexOf(a.priority) - pri.indexOf(b.priority);
     });
 
-    const lines = sorted.map((i, idx) => {
+    const lines = sortedItems.map((i, idx) => {
       const stateIcon = STATE_ICON[i.state] ?? '·';
       const priIcon = PRI_ICON[i.priority] ?? '⚪';
       const project = projById[i.project_id] ?? '?';
       const due = i.due_date ? `  _(due ${i.due_date})_` : '';
-      return `${idx+1}. ${stateIcon} ${priIcon} *${i.title}*  ·  _${project}_${due}`;
+      return `   ${idx+1}. ${stateIcon} ${priIcon} *${i.title}*  ·  _${project}_${due}`;
     });
 
     const cleanName = dev.name.replace(/\(.*?\)/g, '').trim();
-    const text = `Hi ${cleanName} — here's your current work from the Engineering Board:\n\n${lines.join('\n')}\n\n*Total:* ${theirItems.length} open item${theirItems.length === 1 ? '' : 's'}\n\nView the full board: https://hopetech.me/bni/dev-boards.html`;
-
-    if (!slackUser) {
-      unmatched++;
-      console.log(`⚠ No Slack match for *${cleanName}* (${theirItems.length} items)`);
-      continue;
-    }
-
-    if (DRY) {
-      console.log(`\n[DRY] → ${cleanName} (${slackUser.display_name} / ${slackUser.slack_user_id}):`);
-      console.log(text.slice(0, 400) + (text.length > 400 ? '...' : ''));
-    } else {
-      try {
-        const open = await slack.conversations.open({ users: slackUser.slack_user_id });
-        await slack.chat.postMessage({ channel: open.channel.id, text });
-        console.log(`✓ DM'd ${cleanName} via Slack (${theirItems.length} items)`);
-        dmed++;
-      } catch (e) {
-        console.warn(`✗ Failed to DM ${cleanName}: ${e.message}`);
-      }
-    }
+    sections.push(`*${cleanName}* — ${theirItems.length} item${theirItems.length === 1 ? '' : 's'}\n${lines.join('\n')}`);
+    totalItems += theirItems.length;
   }
 
-  const verb = DRY ? 'Would DM' : 'DMd';
-  console.log(`\n${verb} ${dmed} developers · ${unmatched} unmatched (no Slack ID in roster)`);
+  const header = `📋 *Daily Engineering Board — ${today}*\nTotal: *${totalItems}* open items across *${sortedDevs.length}* developers\n\nView the full board: https://hopetech.me/bni/dev-boards.html\n`;
+  const text = header + '\n' + sections.join('\n\n');
+
+  if (DRY) {
+    console.log(`[DRY] Would send to ${SHARED_RECIPIENT}:\n\n${text.slice(0, 1500)}${text.length > 1500 ? '\n\n... (truncated, total ' + text.length + ' chars)' : ''}`);
+    return;
+  }
+
+  try {
+    const open = await slack.conversations.open({ users: SHARED_RECIPIENT });
+    await slack.chat.postMessage({ channel: open.channel.id, text });
+    console.log(`✓ Sent consolidated brief to ${SHARED_RECIPIENT} (${totalItems} items, ${sortedDevs.length} devs)`);
+  } catch (e) {
+    console.warn(`✗ Failed to DM ${SHARED_RECIPIENT}: ${e.message}`);
+    process.exit(1);
+  }
 }
 
 run().catch(e => { console.error(e); process.exit(1); });
