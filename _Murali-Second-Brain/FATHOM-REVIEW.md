@@ -9,12 +9,17 @@
 6. Then: `npm run brain:obsidian` — that ingests the notes into the brain.
 
 **Existing project folders:**
-- `Adamrit`
+- `Adamrit`.com
 - `Manufacturing Planning and JIT procurement agent`
 - `agents`
 - `corpus`
 - `decisions`
 - `glossary`
+- PIMS.nexaproc.in
+- bajajenergy.nexaproc.in
+- adnoc.nexaproc.in
+- solaxis.com
+- digitaltwin.nexaproc.in
 
 **Common new folders you might want:** `HEADS`, `NeuroQ`, `Linkist`, `BNI-Networking`, `Bajaj-Energy`, `Pune-Metro`, `Maha-Metro`, `Draw2BOQ`, `Decode-My-Brain`, `NexaProc`
 
