@@ -80,85 +80,82 @@ async function run() {
   await client.connect();
   await client.mailboxOpen('INBOX');
 
-  // Fetch by date
-  const list = client.fetch({ since }, { envelope: true, bodyStructure: true, uid: true, source: true });
-
-  let processed = 0, ingested = 0, skipped = 0;
-  for await (const msg of list) {
-    processed++;
+  // Phase 1: collect all email metadata + bodies FIRST (fast IMAP work)
+  const emails = [];
+  for await (const msg of client.fetch({ since }, { envelope: true, uid: true, source: true })) {
     const env = msg.envelope;
     const subject = env?.subject ?? '(no subject)';
     const from = (env?.from?.[0]?.address) ?? 'unknown';
     const fromName = env?.from?.[0]?.name ?? '';
     const date = env?.date?.toISOString().slice(0, 10) ?? new Date().toISOString().slice(0, 10);
-
-    // Extract text from body
     let text = '';
     try {
       const src = msg.source?.toString('utf-8') || '';
-      // crude extract: take first 3000 chars after empty line (body start)
       const idx = src.indexOf('\r\n\r\n');
       text = idx >= 0 ? src.slice(idx + 4, idx + 5000) : src.slice(0, 3000);
-      // strip quoted-printable artifacts
       text = text.replace(/=\r?\n/g, '').replace(/=([0-9A-F]{2})/g, (_, h) => String.fromCharCode(parseInt(h, 16)));
     } catch {}
+    emails.push({ uid: msg.uid, subject, from, fromName, date, text });
+  }
+  await client.logout();
+  console.log(`Fetched ${emails.length} emails. Classifying...`);
 
-    const cls = await classifyEmail({ subject, from, snippet: text });
+  // Phase 2: classify + ingest (no IMAP connection needed now)
+  let ingested = 0, skipped = 0;
+  for (const e of emails) {
+    const cls = await classifyEmail({ subject: e.subject, from: e.from, snippet: e.text });
     if (cls.score < 0.6) { skipped++; continue; }
 
-    const project = await inferProject(subject, text);
-    const slug = `${date}-${safeSlug(subject)}`;
+    const project = await inferProject(e.subject, e.text);
+    const slug = `${e.date}-${safeSlug(e.subject)}`;
 
     if (DRY) {
-      console.log(`[DRY] ${cls.score.toFixed(2)} ${cls.type.padEnd(10)} ${project.padEnd(30)} ${from.slice(0,30).padEnd(30)} ${subject.slice(0, 50)}`);
+      console.log(`[DRY] ${cls.score.toFixed(2)} ${cls.type.padEnd(10)} ${project.padEnd(30)} ${e.from.slice(0,30).padEnd(30)} ${e.subject.slice(0, 50)}`);
       ingested++;
       continue;
     }
 
-    // Write .md to vault under _Email-Inbox/ (off_limits via folder name)
-    const dir = join(VAULT_ROOT, '_Email-Inbox', date);
+    const dir = join(VAULT_ROOT, '_Email-Inbox', e.date);
     await mkdir(dir, { recursive: true });
     const filepath = join(dir, `${slug}.md`);
     const md = [
       '---',
-      `date: ${date}`,
+      `date: ${e.date}`,
       `source: email`,
-      `from: ${JSON.stringify(fromName ? `${fromName} <${from}>` : from)}`,
-      `subject: ${JSON.stringify(subject)}`,
+      `from: ${JSON.stringify(e.fromName ? `${e.fromName} <${e.from}>` : e.from)}`,
+      `subject: ${JSON.stringify(e.subject)}`,
       `project: ${JSON.stringify(project)}`,
       `importance: ${cls.score.toFixed(2)}`,
       `email_type: ${cls.type}`,
       `summary: ${JSON.stringify(cls.summary)}`,
       `off_limits: true`,
-      `imap_uid: ${msg.uid}`,
+      `imap_uid: ${e.uid}`,
       '---',
       '',
-      `# ${subject}`,
+      `# ${e.subject}`,
       '',
-      `**From:** ${fromName || from}  ·  **Date:** ${date}`,
+      `**From:** ${e.fromName || e.from}  ·  **Date:** ${e.date}`,
       cls.summary ? `\n> ${cls.summary}\n` : '',
       '',
       '```',
-      text.slice(0, 5000),
+      e.text.slice(0, 5000),
       '```',
     ].join('\n');
     await writeFile(filepath, md);
 
-    // Ingest into brain — off_limits=true means only Murali sees in queries
     const relPath = filepath.replace(VAULT_ROOT, '').replace(/^\//, '');
     await ingestText({
-      text: `Email from ${fromName || from}: ${subject}\n\n${text.slice(0, 3000)}`,
+      text: `Email from ${e.fromName || e.from}: ${e.subject}\n\n${e.text.slice(0, 3000)}`,
       project_tag: project.toLowerCase().replace(/\s+/g, '-'),
       source_type: 'email',
       source_ref: relPath,
-      metadata: { date, off_limits: true, importance: cls.score, type: cls.type, subject, from },
+      metadata: { date: e.date, off_limits: true, importance: cls.score, type: cls.type, subject: e.subject, from: e.from },
     });
     ingested++;
-    console.log(`  ✓ [${cls.type}/${cls.score.toFixed(2)}] ${subject.slice(0, 60)} → ${project}`);
+    console.log(`  ✓ [${cls.type}/${cls.score.toFixed(2)}] ${e.subject.slice(0, 60)} → ${project}`);
   }
 
-  await client.logout();
-  console.log(`\nProcessed ${processed} emails · Ingested ${ingested} · Skipped ${skipped}`);
+  console.log(`\nProcessed ${emails.length} emails · Ingested ${ingested} · Skipped ${skipped}`);
 }
 
 run().catch(e => { console.error(e); process.exit(1); });
