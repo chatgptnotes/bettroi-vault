@@ -59,7 +59,7 @@ id: 147005925
 folder: bajajenergy.nexaproc.in
 
 - url: https://fathom.video/calls/676359941
-- attendees: _(none listed)_
+- attendees: BT, Haritha, BK, Saikat, Swami
 - suggested: **Manufacturing Planning and JIT procurement agent** (confidence 0.70) — _Meeting discusses PLC retrofit with 4-month hardware lead time (procurement risk), production planning goals, and asset management. JIT procurement agent fits the supply chain constraints and manufacturing optimization focus, though it also touches on product strategy (Bajaj pitch) which might warrant agents or decisions folder._
 - summary: ## Meeting Purpose Strategize for Bajaj Power AI pitch and plan Siemens PLC retrofit. ## Key Takeaways - **Bajaj Power Pitch:** Differentiate from Uptime AI by expanding from maintenance-only to holistic production & operational excellence covering all asset types. - **VLCM3 PLC ...
 
@@ -83,7 +83,7 @@ id: 146723162
 folder: Bettroi-HopeTech-project-status 
 ```
 - url: https://fathom.video/calls/675326402
-- attendees: _(none listed)_
+- attendees: BT, Haritha, BK
 - suggested: **decisions** (confidence 0.72) — _Meeting documents technical failures (Proposify issues), workaround decisions (edit externally, send to BK), and action items (clarify with Dr. Shweta). Primary focus is decision-making on proposal handling despite system constraints._
 - summary:## BT haritha Microsoft Teams Meeting Bk left early ### Agreement status Other agreement comments expected by Monday. ### Proposify failures Haritha attempted to upload/edit proposal (5,90,000) in Proposify but encountered repeated technical failures: import failed, exports blank. Decision: edit proposals externally and send direc...
 
@@ -95,7 +95,7 @@ id: 146338072
 folder: Bettroi-HopeTech-project-status 
 ```
 - url: https://fathom.video/calls/673738479
-- attendees: _(none listed)_
+- attendees: BT, Haritha, BK
 - suggested: **decisions** (confidence 0.75) — _Primary focus on strategic proposal revisions (removing details, pricing changes) and scope decisions (removing patient portal). Grant deadline and infrastructure are secondary operational items._
 - summary: ### Proposal revision and pricing Key changes: remove reverse engineering details (PNDA, AI engine, biomarker engine, topo mapping) from proposal, eliminate price breakup to prevent line-item negotiation, remove patient portal from QEEG system. Report format must use doctor's jar...
 
@@ -107,7 +107,7 @@ id: 145975999
 folder: flowaccel.work
 ```
 - url: https://fathom.video/calls/672415633
-- attendees: _(none listed)_
+- attendees: BT, Haritha, Sahil and BK
 - suggested: **decisions** (confidence 0.75) — _Meeting discusses dashboard architecture decisions and explicit decision to remove old dashboard in favor of modern one. Contains role-based filtering and access control decisions._
 - summary: demo to Huzaifa ### Dashboard Architecture Dr. BK presented Flow Excel dashboard with sections: pending, approval, rejected, completed. Multiple view options (grid, list, compact, timeline, calendar, person, split), responsive. Prefetch+cache for performance. Super admins see all requests; regul...
 
@@ -119,7 +119,7 @@ id: 145924655
 folder: Bettroi-HopeTech-project-status
 ```
 - url: https://fathom.video/calls/672097417
-- attendees: _(none listed)_
+- attendees: BT, Haritha and BK
 - suggested: **decisions** (confidence 0.85) — _Meeting covers multiple strategic decisions: budget allocation approval, deal closure terms, pricing strategy, and new business opportunity evaluation - all requiring stakeholder decision-making._
 - summary: stakes ### Budget allocation 83,000 added to budget as third-party charges for cloud services (OpEx). ### Bajaj power plant AI BT introduced significant new opportunity from Bajaj — AI system for five identical power plants. Scoping questionnaire sent. Solving for one plant replicates a...
 
@@ -128,11 +128,11 @@ folder: Bettroi-HopeTech-project-status
 ## [9/41] 2026-05-12 — Impromptu Microsoft Teams - Huzaifa
 ```
 id: 145558509
-folder: Manufacturing Planning and JIT procurement agent
+folder: 
 ```
 - url: https://fathom.video/calls/670806458
-- attendees: _(none listed)_
-- suggested: **Manufacturing Planning and JIT procurement agent** (confidence 0.35) — _Meeting discusses project status, PO, scope, and workflow—typical project management content. However, no clear manufacturing or procurement context. Could fit 'decisions' (project hold/priority basis) or 'agents' (dashboard/workflow automation). Low confidence due to ambiguous fit._
+- attendees: Huzaifa, Saikat, BT, BK, Haritha
+- suggested:  (confidence 0.35) — _Meeting discusses project status, PO, scope, and workflow—typical project management content. However, no clear manufacturing or procurement context. Could fit 'decisions' (project hold/priority basis) or 'agents' (dashboard/workflow automation). Low confidence due to ambiguous fit._
 - summary: ### Project status Huzaifa apologized for rescheduling — director's meeting put all upcoming projects on hold due to crisis. This project received PO already, continues despite hold. All projects now priority basis. ### LPO scope Building dashboard application connected to GDMOS....
 
 ---
