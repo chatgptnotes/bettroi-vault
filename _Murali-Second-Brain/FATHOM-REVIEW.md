@@ -53,7 +53,7 @@ folder: Adamrit.com
 
 ---
 
-## [3/41] 2026-05-16 — Bajaj Meeting BT
+## [3/41] 2026-05-16 — Bajaj Meeting BT, swami, Saikat
 ```
 id: 147005925
 folder: bajajenergy.nexaproc.in
@@ -71,7 +71,7 @@ id: 146914967
 folder: Bettroi-HopeTech-project-status
 ```
 - url: https://fathom.video/calls/676082187
-- attendees: _(none listed)_
+- attendees: BT, Haritha, BK
 - suggested: **decisions** (confidence 0.60) — _Meeting covers project status updates, pricing decisions (NeuroQ proposal negotiation), and handoff planning (Linkist). Primary content involves business decisions rather than operational planning, though manufacturing/procurement context is absent._
 - summary: ### Pending tasks and Slack review BT and BK discussed pending tasks accumulated while BK was at emergency. Huzaifa document sharing done; Linkist payment transfer confirmed. ### NeuroQ proposal NeuroQ requested reverse engineering work. Original quote 9,000 dirham revised down t...
 
@@ -80,7 +80,7 @@ folder: Bettroi-HopeTech-project-status
 ## [5/41] 2026-05-15 — BT haritha Microsoft Teams
 ```
 id: 146723162
-folder: Bettroi-HopeTech-project-status
+folder: Bettroi-HopeTech-project-status ## BT haritha Microsoft Teams Meeting
 ```
 - url: https://fathom.video/calls/675326402
 - attendees: _(none listed)_
