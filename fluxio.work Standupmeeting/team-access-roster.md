@@ -42,7 +42,7 @@ For each row below, fill in the `role` field. Save the file when done, then tell
 | 11 | Jolu | info@hopehospital.com | `U0B2A8KQR03T` | `hr` |
 | 12 | KaushikR | kaushikrk84R12@gmail.com | `U0B2VAT3MIL` | `` |
 | 13 | MD ANAS | md.anas@bettroi.com | `U0B25CY3SD0E` | `` |
-| 14 | Rohu | rgini@hopehospital.com | `U0B2STIK3HD` | `` |
+| 14 | Rohu / Caroline (COO) | rgini@hopehospital.com | `U0B2STIK3HD` | `coo` |
 | 15 | Sahil Jha | sahil@bettroi.com | `U0B25BR9QIL` | `` |
 | 16 | Saikat Dutta | saikat.dutta@bettroi.com | `U0B2N3KW8L` | `` |
 | 17 | josh.dutta | josh.dutta@gmail.com | `U0B23KPXKLM6` | `` |
