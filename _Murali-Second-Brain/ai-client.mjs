@@ -1,34 +1,70 @@
-// ai-client.mjs — Anthropic client with automatic VPS backup
-// Primary: ANTHROPIC_API_KEY (direct Anthropic API)
-// Backup:  ANTHROPIC_BASE_URL_BACKUP + ANTHROPIC_API_KEY_BACKUP (nexaproc-ai-gateway on Hostinger VPS)
-//
-// Set in .env.local:
-//   ANTHROPIC_BASE_URL_BACKUP=https://your-vps-domain/api/anthropic
-//   ANTHROPIC_API_KEY_BACKUP=your-vps-gateway-key   (or same key if gateway forwards it)
+// ai-client.mjs — Anthropic client with automatic VPS fallback
+// Primary:  ANTHROPIC_API_KEY → direct Anthropic API
+// Backup:   nexaproc-ai-gateway on Hostinger VPS (NEXAPROC_VPS_URL + NEXAPROC_VPS_KEY)
+//           POST /api/invoke  taskID=GENERIC_ASK
 
 import Anthropic from '@anthropic-ai/sdk';
 
 const primary = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-
-const backup = (process.env.ANTHROPIC_BASE_URL_BACKUP)
-  ? new Anthropic({
-      baseURL: process.env.ANTHROPIC_BASE_URL_BACKUP,
-      apiKey: process.env.ANTHROPIC_API_KEY_BACKUP || process.env.ANTHROPIC_API_KEY || 'not-needed',
-    })
-  : null;
 
 function isCreditsError(e) {
   return e.status === 402
     || /credit|balance|insufficient|quota|billing/i.test(e.message || '');
 }
 
+// Flatten Anthropic messages.create params into a plain text prompt for GENERIC_ASK
+function toPlainPrompt({ system, messages }) {
+  const parts = [];
+  if (system) parts.push(`[System]\n${system}`);
+  for (const m of (messages || [])) {
+    const role = m.role === 'user' ? 'User' : 'Assistant';
+    const text = Array.isArray(m.content)
+      ? m.content.filter(b => b.type === 'text').map(b => b.text).join('\n')
+      : m.content;
+    parts.push(`[${role}]\n${text}`);
+  }
+  return parts.join('\n\n');
+}
+
+// Call nexaproc-ai-gateway and return an Anthropic-SDK-compatible response shape
+async function callVPS(params) {
+  const url = process.env.NEXAPROC_VPS_URL;
+  const key = process.env.NEXAPROC_VPS_KEY;
+  if (!url || !key) throw new Error('NEXAPROC_VPS_URL / NEXAPROC_VPS_KEY not set in .env.local');
+
+  const prompt = toPlainPrompt(params);
+  const resp = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Nexaproc-Key': key,
+    },
+    body: JSON.stringify({ taskID: 'GENERIC_ASK', payload: prompt, useJson: false }),
+  });
+
+  if (!resp.ok) {
+    const body = await resp.text().catch(() => '');
+    throw new Error(`nexaproc VPS ${resp.status}: ${body}`);
+  }
+
+  const data = await resp.json();
+  if (!data.ok) throw new Error(`nexaproc error: ${data.error || JSON.stringify(data)}`);
+
+  // Return shape compatible with Anthropic SDK so all callers work unchanged
+  return {
+    content: [{ type: 'text', text: data.stdout ?? '' }],
+    model: 'claude-via-vps',
+    usage: { input_tokens: data.tokensIn ?? 0, output_tokens: data.tokensOut ?? 0 },
+  };
+}
+
 export async function callClaude(params) {
   try {
     return await primary.messages.create(params);
   } catch (e) {
-    if (backup && isCreditsError(e)) {
-      console.warn('  [ai-client] primary credits exhausted → VPS backup');
-      return await backup.messages.create(params);
+    if (isCreditsError(e)) {
+      console.warn('  [ai-client] primary credits exhausted → VPS nexaproc fallback');
+      return await callVPS(params);
     }
     throw e;
   }
