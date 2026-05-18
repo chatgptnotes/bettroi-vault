@@ -31,3 +31,4 @@ scripts/auto-sync.log
 
 # Email content — sensitive, never push to GitHub
 _Email-Inbox/
+_Email-Drafts/
