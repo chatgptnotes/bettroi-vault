@@ -26,7 +26,8 @@
     "brain:email": "node --env-file=.env.local _Murali-Second-Brain/email-sync.mjs",
     "brain:extract-proposals": "node --env-file=.env.local _Murali-Second-Brain/extract-proposals.mjs",
     "brain:sync-proposifyai": "node --env-file=.env.local _Murali-Second-Brain/sync-proposifyai.mjs",
-    "brain:email-drafts": "node --env-file=.env.local _Murali-Second-Brain/email-drafts.mjs"
+    "brain:email-drafts": "node --env-file=.env.local _Murali-Second-Brain/email-drafts.mjs",
+    "brain:sync-calendar": "node --env-file=.env.local _Murali-Second-Brain/sync-calendar.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.96.0",
