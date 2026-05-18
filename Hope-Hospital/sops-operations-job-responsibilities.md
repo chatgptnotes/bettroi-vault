@@ -1,12 +1,20 @@
 ---
-title: "Hospital Rooms Rules + NABH Documentation Index"
+title: "SOPs, Operations & Job Responsibilities — Both Hospitals"
 source: google-docs
 project: "Hope-Hospital"
-type: nabh-documentation
+type: hospital-sops
 imported: 2026-05-18
+gdoc_id: "1_aG2jVymyUNa2ZyZuVyR7x-M2Dg-MfsdT9fj0DYrAnY"
+scope: "Standard Operating Procedures · Operations · Job Responsibilities for Hope Hospital + Ayushman Nagpur Hospital, including NABH compliance"
 ---
 
-# Hospital Rooms Rules + NABH Documentation Index
+# SOPs, Operations & Job Responsibilities — Both Hospitals (Hope Hospital + Ayushman)
+
+> Master document covering Standard Operating Procedures, daily operations, and role-based responsibilities across both hospitals. Includes NABH accreditation evidence library, signages, audit prep materials.
+
+---
+
+# SOPs, Operations & Job Responsibilities — Both Hospitals (Hope Hospital + Ayushman)
 
 Scrape ID: 019e39c3-506b-72f8-949e-541a7f64d3f4
 NABH
