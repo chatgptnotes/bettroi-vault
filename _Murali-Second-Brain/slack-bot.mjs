@@ -132,18 +132,17 @@ app.event('message', async ({ event, client }) => {
 
   const lc = question.toLowerCase();
 
-  // wa <target> <message> — send WhatsApp via OpenClaw
+  // wa <target> <message> — send WhatsApp via Twilio Sandbox
   const waMatch = question.match(/^wa\s+(\S+)\s+(.+)/is);
   if (waMatch && role === 'murali') {
     const [, target, message] = waMatch;
-    await client.chat.postMessage({ channel: event.channel, text: `📲 Sending WhatsApp to \`${target}\`...` });
+    await client.chat.postMessage({ channel: event.channel, text: `📲 Sending WhatsApp via Twilio to \`${target}\`...` });
     try {
-      const { sendWhatsApp } = await import('./openclaw-bridge.mjs');
-      const result = await sendWhatsApp(target, message);
-      const ok = result.ok !== false;
+      const { sendWhatsApp } = await import('./twilio-whatsapp.mjs');
+      const r = await sendWhatsApp(target, message);
       await client.chat.postMessage({
         channel: event.channel,
-        text: ok ? `✅ Sent: ${result.stdout?.slice(0, 200) || '(no output)'}` : `❌ ${result.stderr || JSON.stringify(result)}`,
+        text: `✅ Sent (Twilio SID \`${r.sid}\`, status: ${r.status})`,
       });
     } catch (err) {
       await client.chat.postMessage({ channel: event.channel, text: `❌ WhatsApp send failed: ${err.message}` });
