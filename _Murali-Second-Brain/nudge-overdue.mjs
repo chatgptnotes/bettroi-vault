@@ -90,9 +90,14 @@ async function run() {
       console.log(`\n[DRY] Would DM ${user.display_name} (${user.slack_user_id}):\n${text.slice(0, 400)}...`);
     } else {
       try {
+        // Skip deactivated accounts — conversations.open returns cant_dm_deactivated_user
+        const info = await slack.users.info({ user: user.slack_user_id }).catch(() => null);
+        if (info?.user?.deleted) {
+          console.log(`⊘ Skipping ${user.display_name} — Slack account deactivated`);
+          continue;
+        }
         const open = await slack.conversations.open({ users: user.slack_user_id });
         await slack.chat.postMessage({ channel: open.channel.id, text });
-        // Persist the order so done/snooze commands resolve correctly
         await supabase.from('brain_user_state').upsert({
           slack_user_id: user.slack_user_id,
           last_items_dm: sorted.slice(0, 10).map(i => i.id),

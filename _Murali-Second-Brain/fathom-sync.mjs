@@ -10,9 +10,9 @@ const supabase = createClient(
   { auth: { persistSession: false } }
 );
 
-const FATHOM_API = 'https://api.fathom.video/v1';
+const FATHOM_API = 'https://api.fathom.ai/external/v1';
 const headers = {
-  'Authorization': `Bearer ${process.env.FATHOM_API_KEY}`,
+  'X-Api-Key': process.env.FATHOM_API_KEY,
   'Content-Type': 'application/json',
 };
 
@@ -33,22 +33,22 @@ async function setLastSync(ts) {
 }
 
 async function fetchMeetings(since) {
-  // Fathom API: list calls (meetings)
-  const url = `${FATHOM_API}/calls?limit=100`;
+  const url = `${FATHOM_API}/meetings?limit=100`;
   const res = await fetch(url, { headers });
   if (!res.ok) throw new Error(`Fathom API error: ${res.status} ${await res.text()}`);
   const data = await res.json();
 
-  // Filter to meetings newer than last sync
   const sinceDate = new Date(since);
-  return (data.calls ?? data.data ?? []).filter(m => new Date(m.created_at ?? m.started_at) > sinceDate);
+  return (data.meetings ?? data.data ?? data.results ?? []).filter(
+    m => new Date(m.created_at ?? m.started_at ?? m.date) > sinceDate
+  );
 }
 
-async function fetchSummary(callId) {
-  const res = await fetch(`${FATHOM_API}/calls/${callId}/summary`, { headers });
+async function fetchSummary(meetingId) {
+  const res = await fetch(`${FATHOM_API}/recordings/${meetingId}/summary`, { headers });
   if (!res.ok) return null;
   const data = await res.json();
-  return data.summary ?? data.content ?? null;
+  return data.summary ?? data.content ?? data.text ?? null;
 }
 
 async function run() {
@@ -92,7 +92,7 @@ async function run() {
       text,
       project_tag,
       source_type: 'fathom',
-      source_ref: `fathom://calls/${meeting.id}`,
+      source_ref: `fathom://meetings/${meeting.id}`,
       metadata: { title: cleanTitle, date, meeting_id: meeting.id },
     });
     ingested++;

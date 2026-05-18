@@ -26,8 +26,9 @@ function toPlainPrompt({ system, messages }) {
   return parts.join('\n\n');
 }
 
-// Call nexaproc-ai-gateway and return an Anthropic-SDK-compatible response shape
-async function callVPS(params) {
+// Call nexaproc-ai-gateway and return an Anthropic-SDK-compatible response shape.
+// Retries up to 3 times on 429 (bridge busy) with 8s backoff — the VPS is single-flight.
+async function callVPS(params, attempt = 0) {
   const url = process.env.NEXAPROC_VPS_URL;
   const key = process.env.NEXAPROC_VPS_KEY;
   if (!url || !key) throw new Error('NEXAPROC_VPS_URL / NEXAPROC_VPS_KEY not set in .env.local');
@@ -41,6 +42,13 @@ async function callVPS(params) {
     },
     body: JSON.stringify({ taskID: 'GENERIC_ASK', payload: prompt, useJson: false }),
   });
+
+  if (resp.status === 429 && attempt < 3) {
+    const wait = (attempt + 1) * 8000;
+    console.warn(`  [ai-client] VPS busy, retrying in ${wait / 1000}s (attempt ${attempt + 1}/3)`);
+    await new Promise(r => setTimeout(r, wait));
+    return callVPS(params, attempt + 1);
+  }
 
   if (!resp.ok) {
     const body = await resp.text().catch(() => '');
