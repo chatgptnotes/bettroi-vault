@@ -33,18 +33,42 @@ async function saveNotified(set) {
   }, { onConflict: 'slack_user_id' });
 }
 
-async function prepText(meetingTitle) {
-  // Reuse the same brain query pattern as the bot's `prep` command
+async function prepText(meetingTitle, role = 'murali', focusPerson = null) {
   const { queryBrain } = await import('./query.mjs');
+  const personHint = focusPerson
+    ? ` Highlight what specifically concerns ${focusPerson} — their open commitments, what they need to bring, what they should be ready to answer.`
+    : '';
   const { answer, sources } = await queryBrain({
-    question: `Pre-meeting briefing on "${meetingTitle}". Cover: (1) key people, (2) latest decisions/status, (3) open commitments. Concise: 5-8 bullets. Use names/dates from sources.`,
-    role: 'murali',
+    question: `Pre-meeting briefing on "${meetingTitle}". Cover: (1) key people, (2) latest decisions/status, (3) open commitments. Concise: 5-8 bullets. Use names/dates from sources.${personHint}`,
+    role,
   });
   const srcList = sources.slice(0, 3).map((s, i) => `[${i+1}] ${s}`).join('\n');
   return { answer, srcList };
 }
 
-async function processEvent(event, notified) {
+// Match a calendar attendee (name or email) to a brain_user_roles entry
+function matchAttendee(attendeeRaw, slackUsers) {
+  if (!attendeeRaw) return null;
+  const lc = String(attendeeRaw).toLowerCase();
+  // Try name match first (CN field gives display name)
+  for (const u of slackUsers) {
+    const nameNorm = u.display_name.toLowerCase().replace(/\(.*?\)/g, '').trim();
+    if (lc.includes(nameNorm) || nameNorm.split(/\s+/).some(part => part.length > 2 && lc.includes(part))) {
+      return u;
+    }
+  }
+  // Try email local-part match
+  if (lc.includes('@')) {
+    const local = lc.split('@')[0];
+    for (const u of slackUsers) {
+      const firstName = u.display_name.toLowerCase().split(/\s+|[(]/)[0];
+      if (firstName && local.includes(firstName)) return u;
+    }
+  }
+  return null;
+}
+
+async function processEvent(event, notified, slackUsers) {
   const now = new Date();
   const start = new Date(event.start);
   const minutesAhead = (start - now) / 60000;
@@ -54,29 +78,49 @@ async function processEvent(event, notified) {
 
   const title = event.summary || '(untitled meeting)';
   const startStr = start.toLocaleString('en-IN', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'Asia/Kolkata' });
-  const attendees = (event.attendee || []).map(a => {
+  const attendeesRaw = (event.attendee || []).map(a => {
     const cn = a.params?.CN || a.val || a;
     return typeof cn === 'string' ? cn.replace(/^mailto:/, '') : String(cn);
-  }).slice(0, 8);
+  });
 
-  console.log(`📅 ${title} — starts ${startStr} IST (${Math.round(minutesAhead)} min from now)`);
+  console.log(`📅 ${title} — starts ${startStr} IST (${Math.round(minutesAhead)} min from now). ${attendeesRaw.length} attendees.`);
 
-  let brief = '';
-  try {
-    const { answer, srcList } = await prepText(title);
-    brief = `\n\n${answer}${srcList ? '\n\n*Sources:*\n' + srcList : ''}`;
-  } catch (e) {
-    brief = `\n\n_(Brain query failed: ${e.message})_`;
+  // Resolve who on the team will be in this meeting
+  const recipients = new Map();  // slack_user_id → {user, name}
+  // Murali always gets a brief
+  recipients.set(process.env.SLACK_MURALI_USER_ID, { user: { display_name: 'Murali', role: 'murali' }, focusPerson: null });
+
+  for (const att of attendeesRaw.slice(0, 12)) {
+    const matched = matchAttendee(att, slackUsers ?? []);
+    if (matched && !recipients.has(matched.slack_user_id)) {
+      recipients.set(matched.slack_user_id, { user: matched, focusPerson: matched.display_name.replace(/\(.*?\)/g, '').trim() });
+    }
   }
 
-  const text = `🧭 *Pre-meeting briefing*\n*Meeting:* ${title}\n*Starts:* ${startStr} IST (in ${Math.round(minutesAhead)} min)${attendees.length ? `\n*Attendees:* ${attendees.join(', ')}` : ''}\n${event.location ? `*Location:* ${event.location}\n` : ''}${event.description ? `\n*Agenda:*\n${event.description.slice(0, 400)}\n` : ''}${brief}`;
+  const headerCore = `*Meeting:* ${title}\n*Starts:* ${startStr} IST (in ${Math.round(minutesAhead)} min)${attendeesRaw.length ? `\n*Attendees:* ${attendeesRaw.slice(0, 8).join(', ')}` : ''}\n${event.location ? `*Location:* ${event.location}\n` : ''}${event.description ? `\n*Agenda:*\n${event.description.slice(0, 400)}\n` : ''}`;
 
-  if (DRY) {
-    console.log('[DRY]', text.slice(0, 600), '...');
-  } else {
-    const open = await slack.conversations.open({ users: process.env.SLACK_MURALI_USER_ID });
-    await slack.chat.postMessage({ channel: open.channel.id, text });
-    console.log(`  ✓ DM sent`);
+  for (const [slackId, { user, focusPerson }] of recipients.entries()) {
+    let brief = '';
+    try {
+      const { answer, srcList } = await prepText(title, user.role || 'public', user.role === 'murali' ? null : focusPerson);
+      brief = `\n\n${answer}${srcList ? '\n\n*Sources:*\n' + srcList : ''}`;
+    } catch (e) {
+      brief = `\n\n_(Brain query failed: ${e.message})_`;
+    }
+    const greeting = user.role === 'murali' ? '🧭 *Pre-meeting briefing*\n' : `🧭 *Heads-up — meeting in ${Math.round(minutesAhead)} min*\nYou're invited to a meeting Dr. Murali is attending. Here's context relevant to you.\n\n`;
+    const text = `${greeting}${headerCore}${brief}`;
+
+    if (DRY) {
+      console.log(`[DRY] → ${user.display_name || slackId}:`, text.slice(0, 400), '...');
+    } else {
+      try {
+        const open = await slack.conversations.open({ users: slackId });
+        await slack.chat.postMessage({ channel: open.channel.id, text });
+        console.log(`  ✓ DM sent to ${user.display_name || slackId}`);
+      } catch (e) {
+        console.warn(`  ✗ DM failed for ${slackId}: ${e.message}`);
+      }
+    }
   }
 
   notified.add(event.uid);
@@ -91,6 +135,10 @@ async function run() {
 
   const notified = await getNotifiedSet();
 
+  // Pull team roster ONCE per run
+  const { data: slackUsers } = await supabase.from('brain_user_roles').select('slack_user_id, display_name, role');
+  console.log(`Roster: ${slackUsers?.length ?? 0} team members for attendee matching.`);
+
   // Find events starting in our notification window (today + tomorrow)
   const now = new Date();
   const cutoff = new Date(now.getTime() + 48 * 60 * 60 * 1000);
@@ -100,7 +148,7 @@ async function run() {
     if (!event.start) continue;
     const start = new Date(event.start);
     if (start < now || start > cutoff) continue;
-    if (await processEvent(event, notified)) sent++;
+    if (await processEvent(event, notified, slackUsers)) sent++;
   }
 
   if (sent && !DRY) await saveNotified(notified);
