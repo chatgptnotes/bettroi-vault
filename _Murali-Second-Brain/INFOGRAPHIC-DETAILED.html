@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Murali's Second Brain — Detailed Phase Breakdown</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --bg:#0a0e27; --card:#141a3a; --line:#2a3563; --text:#e6e9f5; --muted:#8993b8;
+    --capture:#10b981; --process:#3b82f6; --output:#a855f7; --schedule:#f59e0b;
+    --bonus:#06b6d4; --pink:#ec4899; --orange:#f97316;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #0a0e27; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+    color: var(--text); -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+
+  .page {
+    width: 210mm; min-height: 297mm; padding: 18mm 16mm;
+    page-break-after: always; position: relative;
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1f4a 100%);
+    overflow: hidden;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .page-num {
+    position: absolute; bottom: 8mm; right: 16mm;
+    color: var(--muted); font-size: 9pt; letter-spacing: 0.1em;
+  }
+  .page-brand {
+    position: absolute; bottom: 8mm; left: 16mm;
+    color: var(--muted); font-size: 9pt;
+  }
+
+  /* COVER */
+  .cover { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+  .cover h1 {
+    font-size: 56pt; font-weight: 900; letter-spacing: -0.04em; margin: 0;
+    background: linear-gradient(120deg, #8b5cf6, #ec4899, #f97316);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    line-height: 1;
+  }
+  .cover .tagline { color: #fff; font-size: 18pt; font-weight: 600; margin-top: 16pt; }
+  .cover .sub { color: var(--muted); font-size: 12pt; margin-top: 8pt; max-width: 140mm; line-height: 1.5; }
+  .cover .meta {
+    display: flex; gap: 12pt; margin-top: 28pt; flex-wrap: wrap; justify-content: center;
+  }
+  .cover .badge {
+    padding: 6pt 12pt; background: rgba(255,255,255,0.06); border-radius: 999px;
+    font-size: 9pt; color: #fff;
+  }
+  .cover .figures {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12pt; margin-top: 40pt; width: 100%;
+  }
+  .cover .figure {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--line);
+    border-radius: 8pt; padding: 14pt 8pt; text-align: center;
+  }
+  .cover .fig-num { font-size: 28pt; font-weight: 800; color: #fff; line-height: 1; }
+  .cover .fig-label { font-size: 8pt; color: var(--muted); margin-top: 4pt; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* SECTION HEADER */
+  .sec-header { margin-bottom: 14pt; padding-bottom: 12pt; border-bottom: 2pt solid var(--line); }
+  .sec-eyebrow { font-size: 9pt; color: var(--pink); letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; }
+  .sec-title { font-size: 28pt; font-weight: 800; color: #fff; margin: 4pt 0; letter-spacing: -0.02em; }
+  .sec-subtitle { font-size: 11pt; color: var(--muted); }
+
+  /* PHASE PAGE */
+  .phase-hero {
+    display: flex; align-items: center; gap: 16pt; margin-bottom: 16pt;
+  }
+  .phase-letter-big {
+    width: 56pt; height: 56pt; border-radius: 12pt;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 32pt; color: #fff;
+    background: linear-gradient(135deg, var(--capture), var(--process));
+  }
+  .phase-letter-big.capture  { background: linear-gradient(135deg, var(--capture), #047857); }
+  .phase-letter-big.process  { background: linear-gradient(135deg, var(--process), #1e40af); }
+  .phase-letter-big.output   { background: linear-gradient(135deg, var(--output), #7e22ce); }
+  .phase-letter-big.schedule { background: linear-gradient(135deg, var(--schedule), #c2410c); }
+  .phase-letter-big.bonus    { background: linear-gradient(135deg, var(--bonus), #0e7490); }
+  .phase-titles { flex: 1; }
+  .phase-titles .phase-name { font-size: 24pt; font-weight: 800; color: #fff; margin: 0; line-height: 1.15; }
+  .phase-titles .phase-tagline { font-size: 11pt; color: var(--muted); margin-top: 4pt; }
+  .phase-icon-big { font-size: 36pt; }
+
+  .block { background: var(--card); border: 1px solid var(--line); border-radius: 10pt; padding: 14pt; margin-bottom: 10pt; }
+  .block.left-cap  { border-left: 4pt solid var(--capture); }
+  .block.left-proc { border-left: 4pt solid var(--process); }
+  .block.left-out  { border-left: 4pt solid var(--output); }
+  .block.left-sch  { border-left: 4pt solid var(--schedule); }
+  .block.left-bon  { border-left: 4pt solid var(--bonus); }
+
+  .block-title {
+    font-size: 10pt; color: var(--muted); text-transform: uppercase;
+    letter-spacing: 0.12em; font-weight: 700; margin-bottom: 8pt;
+  }
+  .block p { margin: 0; font-size: 11pt; color: var(--text); line-height: 1.55; }
+  .block ul { margin: 0; padding-left: 16pt; font-size: 10.5pt; color: var(--text); line-height: 1.7; }
+  .block code, .mono { font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 9.5pt; color: #fbbf24; background: rgba(251,191,36,0.08); padding: 1pt 6pt; border-radius: 3pt; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10pt; }
+  .row-tags { display: flex; flex-wrap: wrap; gap: 6pt; margin-top: 8pt; }
+  .chip {
+    font-size: 8.5pt; padding: 3pt 9pt; border-radius: 4pt;
+    background: rgba(255,255,255,0.06); color: var(--muted);
+    font-weight: 600; letter-spacing: 0.04em;
+  }
+  .chip.live { background: rgba(16,185,129,0.18); color: var(--capture); }
+  .chip.cron { background: rgba(245,158,11,0.18); color: var(--schedule); }
+  .chip.realtime { background: rgba(168,85,247,0.18); color: var(--output); }
+
+  .example {
+    background: rgba(168,85,247,0.06); border-left: 3pt solid var(--output);
+    padding: 10pt 14pt; margin-top: 10pt; border-radius: 4pt;
+    font-size: 10pt; color: #ddd; font-style: italic; line-height: 1.55;
+  }
+  .example::before { content: "💡 "; font-style: normal; }
+
+  /* TIMELINE */
+  .timeline-grid {
+    display: grid; grid-template-columns: 80pt 1fr; gap: 8pt 14pt; font-size: 11pt;
+    margin-top: 12pt;
+  }
+  .t-time { color: var(--schedule); font-weight: 700; }
+  .t-event { color: #fff; }
+  .t-event small { color: var(--muted); font-weight: 400; }
+</style>
+</head>
+<body>
+
+<!-- ============== COVER ============== -->
+<section class="page cover">
+  <h1>🧠</h1>
+  <h1>Murali's<br/>Second Brain</h1>
+  <div class="tagline">17 phases · 11 cron jobs · 1 obsessive afternoon</div>
+  <div class="sub">A personal + team RAG knowledge system that captures from meetings, emails, paper diary, Slack threads, BNI CRM, and proposals — then proactively briefs, nudges, and acts.</div>
+  <div class="meta">
+    <span class="badge">Built 2026-05-17 → 2026-05-18</span>
+    <span class="badge">2 sessions</span>
+    <span class="badge">Cost: ~₹2,500 / month to run</span>
+  </div>
+  <div class="figures">
+    <div class="figure"><div class="fig-num">17</div><div class="fig-label">Phases shipped</div></div>
+    <div class="figure"><div class="fig-num">1,500+</div><div class="fig-label">Brain chunks</div></div>
+    <div class="figure"><div class="fig-num">11</div><div class="fig-label">Scheduled jobs</div></div>
+    <div class="figure"><div class="fig-num">18</div><div class="fig-label">Team members</div></div>
+  </div>
+  <div class="page-brand">🧠 Bettroi · 2026</div>
+  <div class="page-num">01</div>
+</section>
+
+<!-- ============== TIMELINE ============== -->
+<section class="page">
+  <div class="sec-header">
+    <div class="sec-eyebrow">DAILY ORCHESTRATION</div>
+    <div class="sec-title">The brain runs itself</div>
+    <div class="sec-subtitle">11 scheduled jobs + 4 real-time listeners. You wake up; everything's already running.</div>
+  </div>
+  <div class="block">
+    <div class="block-title">Scheduled (GitHub Actions + launchd)</div>
+    <div class="timeline-grid">
+      <div class="t-time">06:00 IST</div><div class="t-event">Daily Brief written to vault <small>· _Daily-Briefs/YYYY-MM-DD.md</small></div>
+      <div class="t-time">07:30 IST</div><div class="t-event">Morning Digest → Murali's Slack DM <small>· top projects + overdue items</small></div>
+      <div class="t-time">08:00 IST</div><div class="t-event">Cross-Project Insights → Slack DM <small>· Sonnet detects patterns, contradictions, risks</small></div>
+      <div class="t-time">08:00 Sun</div><div class="t-event">Weekly Review → vault + Slack <small>· executive retrospective + look-ahead</small></div>
+      <div class="t-time">09:00 IST</div><div class="t-event">Overdue Nudges → each team member <small>· personal DM with their items</small></div>
+      <div class="t-time">09:30 IST</div><div class="t-event">Dev Board Brief → @chatgptnotes <small>· consolidated developer assignments</small></div>
+      <div class="t-time">10:30 IST</div><div class="t-event">BNI CRM Sync → 108 contacts <small>· status, segment, chapter, assignee</small></div>
+      <div class="t-time">11:30 IST</div><div class="t-event">Repo Overview Refresh → 5 domains <small>· tech stack + last commits</small></div>
+      <div class="t-time">Every 6h</div><div class="t-event">Email Sync (IMAP) <small>· classifies, ingests important threads off_limits</small></div>
+      <div class="t-time">Every 5 min</div><div class="t-event">Calendar Watcher → pre-meeting briefs <small>· 20 min before each meeting</small></div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="block-title">Real-time (always on)</div>
+    <ul>
+      <li>Slack bot @Bettroi — DM questions, get answers from the brain in 5 sec</li>
+      <li>Channel watcher — auto-captures decisions/commitments from any channel bot is in</li>
+      <li>Fathom webhook — every meeting auto-files within 30 sec of ending</li>
+      <li>WhatsApp send — DM <code>wa +91X &lt;msg&gt;</code> in Slack → Twilio → real WhatsApp</li>
+    </ul>
+  </div>
+  <div class="page-brand">🧠 Bettroi · 2026</div>
+  <div class="page-num">02</div>
+</section>
+
+<!-- ============== B ============== -->
+<section class="page">
+  <div class="sec-header"><div class="sec-eyebrow">PHASE B · CAPTURE + ANSWER</div></div>
+  <div class="phase-hero">
+    <div class="phase-letter-big capture">B</div>
+    <div class="phase-titles">
+      <div class="phase-name">Slack Bot @Bettroi</div>
+      <div class="phase-tagline">DM the brain anywhere. RAG over your entire work history.</div>
+    </div>
+    <div class="phase-icon-big">💬</div>
+  </div>
+  <div class="block left-cap">
+    <div class="block-title">What it does</div>
+    <p>You DM @Bettroi in Slack with any question. Brain vector-searches 1,500+ chunks across your Obsidian vault, 181 Fathom meetings, captured emails, 96 Proposifyai proposals, and 108 BNI CRM contacts — Claude Sonnet synthesizes an answer with citations.</p>
+  </div>
+  <div class="two-col">
+    <div class="block left-cap">
+      <div class="block-title">Architecture</div>
+      <ul>
+        <li>Slack Bolt.js + Socket Mode (no inbound port)</li>
+        <li>OpenAI <code>text-embedding-3-small</code></li>
+        <li>Supabase pgvector for semantic search</li>
+        <li>Claude Sonnet 4.6 for answer synthesis</li>
+        <li>Role-based filter from <code>brain_user_roles</code></li>
+      </ul>
+    </div>
+    <div class="block left-cap">
+      <div class="block-title">Files / scripts</div>
+      <ul>
+        <li><code>slack-bot.mjs</code> — runs on Mac via launchd</li>
+        <li><code>query.mjs</code> — vector search + Sonnet synthesis</li>
+        <li><code>ingest.mjs</code> — chunk + embed + insert</li>
+      </ul>
+    </div>
+  </div>
+  <div class="block left-cap">
+    <div class="block-title">Bot commands you can DM</div>
+    <ul>
+      <li><code>What did we decide about AdamritHMS billing?</code> — any natural-language question</li>
+      <li><code>prep &lt;topic&gt;</code> — pre-meeting briefing</li>
+      <li><code>my items</code> · <code>open items</code> · <code>all items</code> — action items lists</li>
+      <li><code>done N</code> · <code>snooze N YYYY-MM-DD</code> — close or defer items</li>
+      <li><code>wa +91X &lt;message&gt;</code> — send WhatsApp via Twilio</li>
+    </ul>
+  </div>
+  <div class="example">DM: "Why did we revise NeuroQ from 9000 to 7000?" → Bot pulls 5 chunks across Fathom + emails, returns 6-bullet answer with sources, in 7 seconds.</div>
+  <div class="row-tags"><span class="chip realtime">Real-time</span><span class="chip live">Live</span><span class="chip">launchd service</span></div>
+  <div class="page-brand">🧠 Bettroi · Phase B</div>
+  <div class="page-num">03</div>
+</section>
+
+<!-- ============== C ============== -->
+<section class="page">
+  <div class="sec-header"><div class="sec-eyebrow">PHASE C · OUTPUT</div></div>
+  <div class="phase-hero">
+    <div class="phase-letter-big output">C</div>
+    <div class="phase-titles">
+      <div class="phase-name">Morning Digest</div>
+      <div class="phase-tagline">Walk in at 7:30 AM knowing what needs attention today.</div>
+    </div>
+    <div class="phase-icon-big">☕</div>
+  </div>
+  <div class="block left-out">
+    <div class="block-title">What it does</div>
+    <p>Every day at 07:30 IST, a Slack DM lands with: today's top 5 active projects (last 7 days of activity), each with AI-generated summary; overdue + high-priority action items pinned to the top; cross-project insights flagged for action.</p>
+  </div>
+  <div class="two-col">
+    <div class="block left-out">
+      <div class="block-title">Architecture</div>
+      <ul>
+        <li>GitHub Actions cron <code>0 2 * * *</code> UTC = 07:30 IST</li>
+        <li>Picks top 5 projects by recent chunks count</li>
+        <li>Claude Haiku for project-level summaries (cheap)</li>
+        <li>Slack Block Kit for rich formatting</li>
+      </ul>
+    </div>
+    <div class="block left-out">
+      <div class="block-title">Files</div>
+      <ul>
+        <li><code>digest.mjs</code></li>
+        <li><code>.github/workflows/brain-morning-digest.yml</code></li>
+      </ul>
+    </div>
+  </div>
+  <div class="example">First real run flagged 22 overdue items including "Close 14 non-conformities (due 2026-03-18)" and "Prepare Tuesday presentation for Bhavik company (due 2026-04-29)" — items that had been silently overdue for months.</div>
+  <div class="row-tags"><span class="chip cron">07:30 IST daily</span><span class="chip live">Live</span><span class="chip">GitHub Actions</span></div>
+  <div class="page-brand">🧠 Bettroi · Phase C</div>
+  <div class="page-num">04</div>
+</section>
+
+<!-- ============== D ============== -->
+<section class="page">
+  <div class="sec-header"><div class="sec-eyebrow">PHASE D · ACCESS CONTROL</div></div>
+  <div class="phase-hero">
+    <div class="phase-letter-big process">D</div>
+    <div class="phase-titles">
+      <div class="phase-name">Role-Based Access</div>
+      <div class="phase-tagline">Your team uses the brain. HR sees HR, sales sees clients, devs see code.</div>
+    </div>
+    <div class="phase-icon-big">🔐</div>
+  </div>
+  <div class="block left-proc">
+    <div class="block-title">What it does</div>
+    <p>9 roles defined. Each role has <code>allowed_projects</code> (which folders it can see) and <code>blocked_tags</code> (sensitive topics filtered out). 18 team members onboarded with the right role.</p>
+  </div>
+  <div class="block left-proc">
+    <div class="block-title">Roles</div>
+    <ul>
+      <li><code>murali</code> — sees everything (you)</li>
+      <li><code>ceo</code> (Biji Thomas) — all projects, [Private] blocked</li>
+      <li><code>partner</code> (Saikat) — all projects, HR/salary/[Private] blocked</li>
+      <li><code>coo</code> (Ruby/Caroline) — all projects, HR/salary/accounts/payments blocked</li>
+      <li><code>accountant</code> — accounts/payments/finance OK, HR/salary blocked</li>
+      <li><code>hr</code> (Jolu) — HR/salary OK, accounts/payments/strategy blocked</li>
+      <li><code>sales_lead</code> (Haritha) — 28 client projects, HR/finance/internal blocked</li>
+      <li><code>developer</code> (×11) — all tech projects, HR/salary/accounts/sales/strategy blocked</li>
+      <li><code>hospital_staff</code> — Adamrit / Hope / DDO only</li>
+    </ul>
+  </div>
+  <div class="block left-proc">
+    <div class="block-title">Two-layer protection</div>
+    <ul>
+      <li><strong>Layer 1:</strong> Folder names — <code>_private</code>, <code>HR</code>, <code>Accounts</code>, <code>Finance</code>, <code>Salary</code> auto-flag <code>off_limits=true</code> at ingest</li>
+      <li><strong>Layer 2:</strong> Frontmatter <code>off_limits: true</code> on any individual file</li>
+    </ul>
+  </div>
+  <div class="row-tags"><span class="chip live">Live</span><span class="chip">brain_user_roles</span><span class="chip">brain_access_roles</span></div>
+  <div class="page-brand">🧠 Bettroi · Phase D</div>
+  <div class="page-num">05</div>
+</section>
+
+<!-- ============== E ============== -->
+<section class="page">
+  <div class="sec-header"><div class="sec-eyebrow">PHASE E · INTELLIGENCE</div></div>
+  <div class="phase-hero">
+    <div class="phase-letter-big process">E</div>
+    <div class="phase-titles">
+      <div class="phase-name">Action Items Extraction</div>
+      <div class="phase-tagline">Nothing falls through the cracks — even from 6 months ago.</div>
+    </div>
+    <div class="phase-icon-big">🎯</div>
+  </div>
+  <div class="block left-proc">
+    <div class="block-title">What it does</div>
+    <p>Claude Haiku reads every Fathom meeting summary and extracts concrete action items with assignee, due date, priority. 155 items pulled from 179 meetings on the first run.</p>
+  </div>
+  <div class="two-col">
+    <div class="block left-proc">
+      <div class="block-title">Sample extractions</div>
+      <ul style="font-size: 9.5pt;">
+        <li>"Sahil to fix Flowaccel (Critical, due 2026-05-04)"</li>
+        <li>"BT: Approach Abu Dhabi for UAE expansion"</li>
+        <li>"Haritha: Submit 3 advance invoices to Dr Shweta"</li>
+        <li>"Anas: Merge Lingist and DDO into single app"</li>
+      </ul>
+    </div>
+    <div class="block left-proc">
+      <div class="block-title">Bot commands (DM)</div>
+      <ul>
+        <li><code>my items</code> — items assigned to you</li>
+        <li><code>open items</code> — top 20 due soonest</li>
+        <li><code>all items</code> — everyone, every project</li>
+        <li><code>done 3</code> — mark item #3 from last list complete</li>
+        <li><code>snooze 3 2026-05-25</code> — reschedule item</li>
+      </ul>
+    </div>
+  </div>
+  <div class="example">85 of 155 items are flagged <strong>high priority</strong>. Top assignees: BT (8), Murali (7), Sahil (5), Haritha (5), Liju (5). The system surfaces ownership the moment you ask.</div>
+  <div class="row-tags"><span class="chip live">Live</span><span class="chip">brain_action_items</span><span class="chip">Haiku</span></div>
+  <div class="page-brand">🧠 Bettroi · Phase E</div>
+  <div class="page-num">06</div>
+</section>
+
+<!-- ============== F ============== -->
+<section class="page">
+  <div class="sec-header"><div class="sec-eyebrow">PHASE F · INTELLIGENCE</div></div>
+  <div class="phase-hero">
+    <div class="phase-letter-big output">F</div>
+    <div class="phase-titles">
+      <div class="phase-name">Cross-Project Insights</div>
+      <div class="phase-tagline">Detects recurring objections, contradictions, and reuse opportunities across all 30+ projects.</div>
+    </div>
+    <div class="phase-icon-big">🧭</div>
+  </div>
+  <div class="block left-out">
+    <div class="block-title">What it does</div>
+    <p>Daily at 08:00 IST, Claude Sonnet receives a digest of recent activity across all projects and outputs 5–8 strategic insights typed as: <code>recurring · contradiction · reuse · risk · pattern</code>. Each with severity, evidence citations, and recommended action.</p>
+  </div>
+  <div class="block left-out">
+    <div class="block-title">Real insights surfaced on first run</div>
+    <ul style="font-size: 10pt;">
+      <li>🔴 <strong>NeuroQ pricing contradiction</strong> — quoted 9,000 dirham on May 10, then 7,000 on May 15 with no documented rationale. Risk: client references the higher figure.</li>
+      <li>🔴 <strong>Siemens S7-1500 4-month lead time</strong> threatens Bajaj Energy delivery. No owner assigned. Action: line up Schneider/Fuji alternatives within 48h.</li>
+      <li>🟠 <strong>Drawing-compliance AI built twice</strong> — same engine exists in Pratyaya (Pune Metro) AND drawtoboq (Maha Metro). Consolidation opportunity.</li>
+      <li>🟠 <strong>Multiple project handovers overdue since Oct/Nov 2025</strong> — Neuro, DDO, Linkist, HEADS all stalled at sign-off. Systemic gap, not isolated.</li>
+      <li>🟠 <strong>Neurosense fragmented across 3 projects</strong> — DDO + limitlessbrainlab + decodemybrain. No single owner. Suggest weekly Neurosense standup.</li>
+    </ul>
+  </div>
+  <div class="row-tags"><span class="chip cron">08:00 IST daily</span><span class="chip live">Live</span><span class="chip">Sonnet</span></div>
+  <div class="page-brand">🧠 Bettroi · Phase F</div>
+  <div class="page-num">07</div>
+</section>
+
+<!-- ============== G ============== -->
+<section class="page">
+  <div class="sec-header"><div class="sec-eyebrow">PHASE G · ACCOUNTABILITY</div></div>
+  <div class="phase-hero">
+    <div class="phase-letter-big output">G</div>
+    <div class="phase-titles">
+      <div class="phase-name">Overdue Item Nudges</div>
+      <div class="phase-tagline">Brain personally chases each team member. You stop being the chaser-in-chief.</div>
+    </div>
+    <div class="phase-icon-big">⏰</div>
+  </div>
+  <div class="block left-out">
+    <div class="block-title">What it does</div>
+    <p>09:00 IST every day, brain pulls all overdue + high-priority items, matches the assignee name (e.g. "Sahil", "Biji", "BT") to a Slack user via fuzzy + alias rules, and DMs each person their personal list. They can reply <code>done N</code> or <code>snooze N YYYY-MM-DD</code> right in the DM.</p>
+  </div>
+  <div class="block left-out">
+    <div class="block-title">Smart name matching</div>
+    <ul>
+      <li>Display name contains assignee (case-insensitive)</li>
+      <li>First-name match (e.g. "Sahil Jha" matches "Sahil")</li>
+      <li>Known aliases: <code>BT → Biji</code>, <code>BK → Murali</code></li>
+      <li>Auto-skips deactivated Slack accounts (no "user_deactivated" errors)</li>
+    </ul>
+  </div>
+  <div class="example">First dry-run matched 8 team members. Biji had 5 high-priority items (UAE expansion, Abu Dhabi, NeuroQ proposal, etc.). Haritha had 2 (advance invoices for Dr Shweta). Aniruddha had 1 overdue HEADS handover item from 2026-05-08.</div>
+  <div class="row-tags"><span class="chip cron">09:00 IST daily</span><span class="chip live">Live</span></div>
+  <div class="page-brand">🧠 Bettroi · Phase G</div>
+  <div class="page-num">08</div>
+</section>
+
+<!-- ============== H ============== -->
+<section class="page">
+  <div class="sec-header"><div class="sec-eyebrow">PHASE H · ENGINEERING OPS</div></div>
+  <div class="phase-hero">
+    <div class="phase-letter-big output">H</div>
+    <div class="phase-titles">
+      <div class="phase-name">Developer Board Brief</div>
+      <div class="phase-tagline">Every weekday at 09:30, dev team sees their work without anyone asking.</div>
+    </div>
+    <div class="phase-icon-big">📋</div>
+  </div>
+  <div class="block left-out">
+    <div class="block-title">What it does</div>
+    <p>Reads the Kanban at <code>hopetech.me/bni/dev-boards.html</code> (separate Supabase). Pulls open work items for each of 13 active developers, sorts by priority, and sends ONE consolidated message to the shared <code>@chatgptnotes</code> Slack ID (since the dev team shares this account).</p>
+  </div>
+  <div class="block left-out">
+    <div class="block-title">Real assignments captured on first run</div>
+    <ul style="font-size: 10pt;">
+      <li>🔴 <strong>Sahil</strong> — Flowaccel (Critical, In Progress, due 2026-05-04 — overdue)</li>
+      <li>🟡 <strong>Akshay Jaisinghani</strong> — Modae (To Do), aiInMail.com project (In Progress)</li>
+      <li>🟡 <strong>Ashray Salwe</strong> — Industrial automation, DDO for Dr in MP (In Progress)</li>
+      <li>🟡 <strong>Yash Deshmukh</strong> — Pratyaya Pune metro Drawing compliance</li>
+      <li>🟡 <strong>Kaustubh Hadke</strong> — DrawToBOQ.com (In Progress)</li>
+      <li>🟡 <strong>Anas</strong> — Dubai workflow automation</li>
+      <li>+7 more developers</li>
+    </ul>
+  </div>
+  <div class="row-tags"><span class="chip cron">09:30 IST weekdays</span><span class="chip live">Live</span><span class="chip">BNI Supabase</span></div>
+  <div class="page-brand">🧠 Bettroi · Phase H</div>
+  <div class="page-num">09</div>
+</section>
+
+<!-- ============== I ============== -->
+<section class="page">
+  <div class="sec-header"><div class="sec-eyebrow">PHASE I · ON-DEMAND</div></div>
+  <div class="phase-hero">
+    <div class="phase-letter-big capture">I</div>
+    <div class="phase-titles">
+      <div class="phase-name">Pre-Meeting Prep (Manual)</div>
+      <div class="phase-tagline">30 seconds before any call: DM <code>prep &lt;topic&gt;</code>, walk in informed.</div>
+    </div>
+    <div class="phase-icon-big">📚</div>
+  </div>
+  <div class="block left-cap">
+    <div class="block-title">What it does</div>
+    <p>DM @Bettroi with <code>prep &lt;anything&gt;</code> — brain semantic-searches for "anything" across all sources, pulls the top 6 chunks, and Sonnet writes a structured briefing: key people involved, latest decisions, open commitments, anything contradictory.</p>
+  </div>
+  <div class="two-col">
+    <div class="block left-cap">
+      <div class="block-title">Sample queries</div>
+      <ul>
+        <li><code>prep Bajaj Energy</code></li>
+        <li><code>prep Reshma Dave</code></li>
+        <li><code>prep NeuroQ pricing</code></li>
+        <li><code>prep Industrial Automation Dubai</code></li>
+        <li><code>prep BNI Africa contacts</code></li>
+      </ul>
+    </div>
+    <div class="block left-cap">
+      <div class="block-title">Output structure</div>
+      <ul>
+        <li>5–8 bullets of factual context</li>
+        <li>Related open action items mentioning the topic</li>
+        <li>Source citations (file paths or URLs)</li>
+        <li>If user is "murali" → includes off_limits content</li>
+        <li>If team member → filtered per role</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row-tags"><span class="chip realtime">Real-time</span><span class="chip live">Live</span></div>
+  <div class="page-brand">🧠 Bettroi · Phase I</div>
+  <div class="page-num">10</div>
+</section>
+
+<!-- ============== J ============== -->
+<section class="page">
+  <div class="sec-header"><div class="sec-eyebrow">PHASE J · NETWORK</div></div>
+  <div class="phase-hero">
+    <div class="phase-letter-big capture">J</div>
+    <div class="phase-titles">
+      <div class="phase-name">BNI CRM Sync</div>
+      <div class="phase-tagline">108 networking contacts in the brain — categorized, statused, assigned.</div>
+    </div>
+    <div class="phase-icon-big">🤝</div>
+  </div>
+  <div class="block left-cap">
+    <div class="block-title">What it does</div>
+    <p>Pulls every BNI 1-2-1 contact from your BNI 121 CRM (separate Supabase) into the vault as <code>BNI-Networking/contacts/&lt;name&gt;.md</code>, then ingests into the brain. Each contact has: company, city, chapter, sentiment, status, segment, phone, assigned developer.</p>
+  </div>
+  <div class="block left-cap">
+    <div class="block-title">Breakdown of 41 "Met" contacts</div>
+    <ul style="font-size: 10pt;">
+      <li>Healthcare: 13 (Dr Nitin Gupta, Suraj Uttam, Swapnil Likhare, etc.)</li>
+      <li>Industrial Automation: 11 (Ritesh Rastogi, Madhav Sehgal, Sagar Khimsaria, etc.)</li>
+      <li>Other: 13 (Reshma Dave, Abdul Raheem, Akshay Salwe, etc.)</li>
+      <li>AI / Tech: 4 (Mr Patnaik, Emile Botha, Abraham Linde, K Raam)</li>
+    </ul>
+  </div>
+  <div class="example">DM <code>prep Reshma Dave</code> → Brain returns: "Thyrocare krishnamilind laboratory in Surat North BAHUBALI chapter. Status: Met. Assigned to Bhavik Sharma + Reha Kharwade. Met 2026-04-30."</div>
+  <div class="row-tags"><span class="chip cron">10:30 IST daily</span><span class="chip live">Live</span><span class="chip">BNI Supabase</span></div>
+  <div class="page-brand">🧠 Bettroi · Phase J</div>
+  <div class="page-num">11</div>
+</section>
+
+<!-- ============== K ============== -->
+<section class="page">
+  <div class="sec-header"><div class="sec-eyebrow">PHASE K · MEMORY</div></div>
+  <div class="phase-hero">
+    <div class="phase-letter-big output">K</div>
+    <div class="phase-titles">
+      <div class="phase-name">Daily Brief Document</div>
+      <div class="phase-tagline">A permanent .md record of every day — scrollable forever.</div>
+    </div>
+    <div class="phase-icon-big">📰</div>
+  </div>
+  <div class="block left-out">
+    <div class="block-title">What it does</div>
+    <p>06:00 IST, brain assembles a 9KB+ markdown brief: every overdue + due-today action item, today's BNI follow-ups, yesterday's brain activity (new sources), active insights, top 5 active projects. Written to <code>_Daily-Briefs/2026-05-18.md</code> in your vault.</p>
+  </div>
+  <div class="block left-out">
+    <div class="block-title">Why it matters</div>
+    <ul>
+      <li>Over months, you'll have a <strong>day-by-day history</strong> of what was on your plate</li>
+      <li>Search "what was happening 2026-04-15" — instant context</li>
+      <li>Each brief is itself ingested into the brain → meta-memory</li>
+      <li>You can ask "How has the action items count trended?" — brain answers from prior briefs</li>
+    </ul>
+  </div>
+  <div class="row-tags"><span class="chip cron">06:00 IST daily</span><span class="chip live">Live</span><span class="chip">GitHub Actions</span></div>
+  <div class="page-brand">🧠 Bettroi · Phase K</div>
+  <div class="page-num">12</div>
+</section>
+
+<!-- ============== L ============== -->
+<section class="page">
+  <div class="sec-header"><div class="sec-eyebrow">PHASE L · PROACTIVE</div></div>
+  <div class="phase-hero">
+    <div class="phase-letter-big schedule">L</div>
+    <div class="phase-titles">
+      <div class="phase-name">Calendar Auto-Prep</div>
+      <div class="phase-tagline">20 minutes before every meeting, brain DMs you the briefing — and your attendees theirs.</div>
+    </div>
+    <div class="phase-icon-big">📅</div>
+  </div>
+  <div class="block left-sch">
+    <div class="block-title">What it does</div>
+    <p>Polls your Google Calendar (via private ICS URL) every 5 minutes. For each event starting in 15-35 min that hasn't been notified yet: generates a meeting-specific brain query, builds a personalized prep, DMs you. Also matches calendar attendees against <code>brain_user_roles</code> and DMs each one their own role-filtered briefing.</p>
+  </div>
+  <div class="two-col">
+    <div class="block left-sch">
+      <div class="block-title">Architecture</div>
+      <ul>
+        <li><code>node-ical</code> fetches + parses</li>
+        <li>15-35 min window prevents duplicates</li>
+        <li><code>brain_user_state</code> tracks notified UIDs</li>
+        <li>launchd plist runs every 5 min</li>
+      </ul>
+    </div>
+    <div class="block left-sch">
+      <div class="block-title">Personalization</div>
+      <ul>
+        <li>You (Murali) get full context</li>
+        <li>Each attendee gets prep focused on what they'll need to bring</li>
+        <li>Their role determines what they can/can't see</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row-tags"><span class="chip cron">Every 5 min</span><span class="chip live">Live</span><span class="chip">launchd</span></div>
+  <div class="page-brand">🧠 Bettroi · Phase L</div>
+  <div class="page-num">13</div>
+</section>
+
+<!-- ============== M ============== -->
+<section class="page">
+  <div class="sec-header"><div class="sec-eyebrow">PHASE M · STRATEGIC</div></div>
+  <div class="phase-hero">
+    <div class="phase-letter-big output">M</div>
+    <div class="phase-titles">
+      <div class="phase-name">Weekly Review</div>
+      <div class="phase-tagline">Sunday morning executive retrospective. Brutal, honest, useful.</div>
+    </div>
+    <div class="phase-icon-big">📊</div>
+  </div>
+  <div class="block left-out">
+    <div class="block-title">What it does</div>
+    <p>Sunday 08:00 IST, Sonnet writes a candid 250–400 word executive review of the past week: top wins, what slipped, what's trending, strategic flags, look-ahead. Saved to <code>_Weekly-Reviews/YYYY-Www.md</code> + DM'd to you.</p>
+  </div>
+  <div class="block left-out">
+    <div class="block-title">First review (W21) called out:</div>
+    <ul style="font-size: 10pt;">
+      <li>"155 new tasks, zero closed. <strong>That ratio is a crisis signal, not a productivity metric.</strong>"</li>
+      <li>Linkist handoff missed May 16 deadline (Neeraj testing, Liju credit card transfer)</li>
+      <li>Neuro/DDO handovers overdue since Oct/Nov 2025 — 6+ months</li>
+      <li>Casualty unit equipment overdue since February</li>
+      <li>Action: "Force-close the five overdue handovers — assign one owner per project by Monday"</li>
+    </ul>
+  </div>
+  <div class="row-tags"><span class="chip cron">08:00 Sunday</span><span class="chip live">Live</span><span class="chip">Sonnet</span></div>
+  <div class="page-brand">🧠 Bettroi · Phase M</div>
+  <div class="page-num">14</div>
+</section>
+
+<!-- ============== N ============== -->
+<section class="page">
+  <div class="sec-header"><div class="sec-eyebrow">PHASE N · PASSIVE CAPTURE</div></div>
+  <div class="phase-hero">
+    <div class="phase-letter-big capture">N</div>
+    <div class="phase-titles">
+      <div class="phase-name">Slack Channel Watcher</div>
+      <div class="phase-tagline">The brain listens to every channel it's invited to. Decisions auto-captured.</div>
+    </div>
+    <div class="phase-icon-big">👁️</div>
+  </div>
+  <div class="block left-cap">
+    <div class="block-title">What it does</div>
+    <p>Every message in every channel the bot is in gets scored 0–1 by Claude Haiku. Messages scoring 0.7+ are auto-ingested with type tag: <code>decision · commitment · blocker · status</code>. Bot adds 🧠 reaction so you know it captured.</p>
+  </div>
+  <div class="block left-cap">
+    <div class="block-title">Scoring guide</div>
+    <ul>
+      <li><strong>1.0</strong> = explicit decision ("we'll go with X")</li>
+      <li><strong>0.9</strong> = commitment ("I'll send proposal Friday")</li>
+      <li><strong>0.8</strong> = blocker ("can't proceed until X")</li>
+      <li><strong>0.7</strong> = key status ("demo went well, signed off")</li>
+      <li><strong>0.5↓</strong> = general discussion, questions, social — skipped</li>
+    </ul>
+  </div>
+  <div class="example">Channel #general, #random, #announcements, #lounge are automatically skipped (configurable). Cost: ~$0.10/day at 1000 messages — negligible.</div>
+  <div class="row-tags"><span class="chip realtime">Real-time</span><span class="chip live">Live</span><span class="chip">Haiku</span></div>
+  <div class="page-brand">🧠 Bettroi · Phase N</div>
+  <div class="page-num">15</div>
+</section>
+
+<!-- ============== O ============== -->
+<section class="page">
+  <div class="sec-header"><div class="sec-eyebrow">PHASE O · CAPTURE</div></div>
+  <div class="phase-hero">
+    <div class="phase-letter-big capture">O</div>
+    <div class="phase-titles">
+      <div class="phase-name">Email Sync (IMAP)</div>
+      <div class="phase-tagline">Every 6 hours: inbox → AI triage → brain. Newsletters skipped.</div>
+    </div>
+    <div class="phase-icon-big">📨</div>
+  </div>
+  <div class="block left-cap">
+    <div class="block-title">What it does</div>
+    <p>Connects to Gmail IMAP using an app password. Pulls all messages from the last 8 hours, pre-filters obvious noise (no-reply, newsletter, automated), then Claude Haiku scores each remaining email for importance. Score ≥ 0.6 → written to <code>_Email-Inbox/YYYY-MM-DD/&lt;slug&gt;.md</code> with <code>off_limits: true</code>.</p>
+  </div>
+  <div class="block left-cap">
+    <div class="block-title">First sync captured (48h window)</div>
+    <ul style="font-size: 10pt;">
+      <li>🚨 0.95 — "Cease and Desist / File 279996" — legal notice you may have missed</li>
+      <li>🔥 0.90 — "100% Digital MER Process for BAJAJ" — vendor commitment</li>
+      <li>🔥 0.90 — "Neurosense CR-6 Integration scope confirmation"</li>
+      <li>🔥 0.90 — "Form DPT-3 Due Date 30th June 2026" — compliance deadline</li>
+      <li>0.80 — "Updated Betser Life ModeAe proposal" — quote update</li>
+      <li>0.70 — multiple "Bajaj Energy Preparatory Meeting" threads</li>
+    </ul>
+  </div>
+  <div class="row-tags"><span class="chip cron">Every 6h</span><span class="chip live">Live</span><span class="chip">IMAP</span><span class="chip">off_limits</span></div>
+  <div class="page-brand">🧠 Bettroi · Phase O</div>
+  <div class="page-num">16</div>
+</section>
+
+<!-- ============== P ============== -->
+<section class="page">
+  <div class="sec-header"><div class="sec-eyebrow">PHASE P · COMMERCIAL</div></div>
+  <div class="phase-hero">
+    <div class="phase-letter-big process">P</div>
+    <div class="phase-titles">
+      <div class="phase-name">Pricing & Proposal Intelligence</div>
+      <div class="phase-tagline">Track every quote. Surface contradictions. Stop revenue leakage.</div>
+    </div>
+    <div class="phase-icon-big">💰</div>
+  </div>
+  <div class="block left-proc">
+    <div class="block-title">What it does</div>
+    <p>Two-part pipeline: (1) <code>sync-proposifyai</code> pulls all 96 proposals from your Proposifyai.com Supabase as .md files in vault. (2) <code>extract-proposals</code> scans email + meeting chunks for explicit prices and inserts into <code>brain_proposals</code> table with project, client, amount, currency, status, source.</p>
+  </div>
+  <div class="block left-proc">
+    <div class="block-title">First extraction (24 pricing entries)</div>
+    <ul style="font-size: 10pt;">
+      <li>INR revised: ₹12,55,000 (multiple projects)</li>
+      <li>INR agreed: ₹7,22,500</li>
+      <li>INR proposed: ₹7,10,000</li>
+      <li>AED proposed: د.إ 8,000 (NeuroQ)</li>
+      <li>AED revised: د.إ 7,000 (NeuroQ — the contradiction insight surfaced!)</li>
+      <li>USD revised: $7,000</li>
+    </ul>
+  </div>
+  <div class="example">The NeuroQ contradiction that Phase F flagged is now <strong>data</strong> in <code>brain_proposals</code> — you can query "show me all revised quotes" and see exactly where pricing slipped.</div>
+  <div class="row-tags"><span class="chip live">Live</span><span class="chip">brain_proposals</span><span class="chip">Proposifyai sync</span></div>
+  <div class="page-brand">🧠 Bettroi · Phase P</div>
+  <div class="page-num">17</div>
+</section>
+
+<!-- ============== Q ============== -->
+<section class="page">
+  <div class="sec-header"><div class="sec-eyebrow">PHASE Q · ACTION</div></div>
+  <div class="phase-hero">
+    <div class="phase-letter-big output">Q</div>
+    <div class="phase-titles">
+      <div class="phase-name">WhatsApp Send via Twilio</div>
+      <div class="phase-tagline">Brain doesn't just inform — it ACTS. Send WhatsApp from Slack.</div>
+    </div>
+    <div class="phase-icon-big">📲</div>
+  </div>
+  <div class="block left-out">
+    <div class="block-title">What it does</div>
+    <p>DM @Bettroi <code>wa +91X &lt;message&gt;</code> in Slack → bot strips Slack's tel-link auto-formatting → POSTs to Twilio Messages API → message delivered via Twilio WhatsApp Sandbox to recipient's phone in ~2 sec. Slack confirms delivery with Twilio SID.</p>
+  </div>
+  <div class="two-col">
+    <div class="block left-out">
+      <div class="block-title">Stack</div>
+      <ul>
+        <li>Twilio Sandbox (<code>+1 415 523 8886</code>)</li>
+        <li><code>twilio-whatsapp.mjs</code> bridge</li>
+        <li>Recipient joins via <code>join &lt;code&gt;</code> once</li>
+        <li>$55 Twilio balance — ~10,000 messages</li>
+      </ul>
+    </div>
+    <div class="block left-out">
+      <div class="block-title">Upgrade path</div>
+      <ul>
+        <li>Sandbox = testing only</li>
+        <li>For production: Meta WhatsApp Business verification (2-3 days)</li>
+        <li>Branded sender number, no "join" required</li>
+        <li>Only change: <code>TWILIO_WHATSAPP_FROM</code> env var</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row-tags"><span class="chip realtime">Real-time</span><span class="chip live">Live</span><span class="chip">Twilio</span></div>
+  <div class="page-brand">🧠 Bettroi · Phase Q</div>
+  <div class="page-num">18</div>
+</section>
+
+<!-- ============== BONUS ============== -->
+<section class="page">
+  <div class="sec-header"><div class="sec-eyebrow">BONUS · BUILT ALONGSIDE THE PHASES</div></div>
+  <div class="phase-hero">
+    <div class="phase-letter-big bonus">+</div>
+    <div class="phase-titles">
+      <div class="phase-name">7 Bonus Capabilities</div>
+      <div class="phase-tagline">Infrastructure + UX features that came along the way.</div>
+    </div>
+    <div class="phase-icon-big">🎁</div>
+  </div>
+  <div class="block left-bon">
+    <div class="block-title">Paper diary OCR pipeline</div>
+    <p>Photograph any handwritten page → drop in #brain-inbox → Claude Sonnet OCRs preserving structure (lists, dates, crossed-out items) → Haiku auto-classifies into project folder → .md file + brain ingest in 5 sec.</p>
+  </div>
+  <div class="block left-bon">
+    <div class="block-title">Fathom auto-ingest webhook</div>
+    <p>Every Fathom meeting auto-classifies and commits a .md to GitHub repo, which triggers obsidian-sync, which ingests into brain. Zero manual steps from meeting end to brain knowledge.</p>
+  </div>
+  <div class="block left-bon">
+    <div class="block-title">Send-to-Brain Slack message shortcut</div>
+    <p>Right-click any Slack message → "Send to Brain" → entire thread (with user names resolved) gets ingested into the brain with project tag from message prefix.</p>
+  </div>
+  <div class="block left-bon">
+    <div class="block-title">fluxio.work admin page + Anthropic→VPS failover</div>
+    <p>Web UI at <code>fluxio.work/brain-access.html</code> for editing the team roster. Plus: brain auto-fails over to your Hostinger VPS (Claude Max subscription) when primary Anthropic credits run out.</p>
+  </div>
+  <div class="block left-bon">
+    <div class="block-title">Daily repo overview · 6 harvested Ironbark skills</div>
+    <p>5 project domain repos (Adamrit, fluxio, pulseofproject, openclaw, nabh.online) get tech-stack overviews regenerated daily and ingested. <strong>6 reusable patterns harvested</strong> for the Ironbark community repo.</p>
+  </div>
+  <div class="page-brand">🧠 Bettroi · Bonus</div>
+  <div class="page-num">19</div>
+</section>
+
+<!-- ============== STACK ============== -->
+<section class="page">
+  <div class="sec-header">
+    <div class="sec-eyebrow">ARCHITECTURE</div>
+    <div class="sec-title">Stack & data flow</div>
+  </div>
+  <div class="two-col">
+    <div class="block left-cap">
+      <div class="block-title">Brain core</div>
+      <ul>
+        <li>Supabase Postgres + <code>pgvector</code></li>
+        <li>OpenAI <code>text-embedding-3-small</code></li>
+        <li>Claude Sonnet 4.6 (synthesis)</li>
+        <li>Claude Haiku 4.5 (classification)</li>
+        <li>Anthropic API + Hostinger Claude Max fallback</li>
+      </ul>
+    </div>
+    <div class="block left-cap">
+      <div class="block-title">Capture sources</div>
+      <ul>
+        <li>Obsidian vault (auto-sync on git push)</li>
+        <li>Fathom webhook (every meeting)</li>
+        <li>Gmail IMAP (every 6h)</li>
+        <li>Slack channels (real-time bot listener)</li>
+        <li>Google Calendar ICS (every 5 min)</li>
+        <li>BNI CRM Supabase (daily)</li>
+        <li>Proposifyai Supabase (on-demand)</li>
+        <li>Engineering Kanban (daily)</li>
+        <li>Paper diary photos (Slack OCR)</li>
+      </ul>
+    </div>
+    <div class="block left-out">
+      <div class="block-title">Output channels</div>
+      <ul>
+        <li>Slack bot @Bettroi (DM + channels)</li>
+        <li>Vault .md files (visible in Obsidian)</li>
+        <li>Twilio WhatsApp (outbound)</li>
+        <li>Vercel serverless webhooks</li>
+      </ul>
+    </div>
+    <div class="block left-sch">
+      <div class="block-title">Orchestration</div>
+      <ul>
+        <li>GitHub Actions (8 cron jobs)</li>
+        <li>macOS launchd (2 services: bot + tunnel)</li>
+        <li>SSH autossh tunnel to VPS</li>
+        <li>Vercel functions (5 endpoints)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="block">
+    <div class="block-title">Tables in Supabase</div>
+    <ul style="font-size: 10pt;">
+      <li><code>brain_chunks</code> — 1,500+ vector chunks across all sources</li>
+      <li><code>brain_action_items</code> — 155 todos with assignee, due_date, status</li>
+      <li><code>brain_insights</code> — strategic cross-project insights</li>
+      <li><code>brain_proposals</code> — pricing/quotes across projects + currencies</li>
+      <li><code>brain_access_roles</code> · <code>brain_user_roles</code> · <code>brain_user_state</code></li>
+      <li><code>brain_sync_state</code> — per-source last_synced timestamps</li>
+      <li><code>brain_site_snapshots</code> (built but unused — held for future)</li>
+    </ul>
+  </div>
+  <div class="page-brand">🧠 Bettroi · Architecture</div>
+  <div class="page-num">20</div>
+</section>
+
+<!-- ============== CLOSING ============== -->
+<section class="page" style="display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+  <h1 style="font-size: 36pt; color: #fff; margin: 0 0 16pt; letter-spacing: -0.03em;">What this replaces</h1>
+  <p style="color: var(--muted); max-width: 140mm; font-size: 13pt; line-height: 1.6;">
+    Before: 6+ tools (Notion + Asana + ClickUp + Apollo + Pipedrive + Calendly) at ~$200/month per user plus the cognitive overhead of context-switching.
+  </p>
+  <p style="color: #fff; max-width: 140mm; font-size: 15pt; line-height: 1.6; margin-top: 24pt; font-weight: 600;">
+    After: One brain. Slack DM is the interface. ~₹2,500/month total.
+  </p>
+  <div style="margin-top: 40pt; padding: 20pt 30pt; background: var(--card); border-radius: 12pt; border: 1pt solid var(--line);">
+    <p style="margin: 0; color: var(--muted); font-size: 11pt;">Built by Dr. Murali BK + Claude Sonnet 4.6<br/>
+    over 2 sessions on 2026-05-17 → 2026-05-18<br/><br/>
+    The brain runs itself from here.</p>
+  </div>
+  <div class="page-brand">🧠 Bettroi · 2026</div>
+  <div class="page-num">21</div>
+</section>
+
+</body>
+</html>
