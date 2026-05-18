@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-05-16T12:21:38Z
-size_kb: 37270
+last_push: 2026-05-18T06:31:45Z
+size_kb: 37321
 language: TypeScript
 description: ""
-extracted: 2026-05-17T14:19:15.810Z
+extracted: 2026-05-18T07:15:04.178Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-05-16T12:21:38Z
-**Language:** TypeScript  ·  **Repo size:** 37270KB
+**Default branch:** `main`  ·  **Last push:** 2026-05-18T06:31:45Z
+**Language:** TypeScript  ·  **Repo size:** 37321KB
 
 
 
@@ -90,6 +90,9 @@ extracted: 2026-05-17T14:19:15.810Z
 
 ## Recent commits
 
+- `485fd6f` _2026-05-18_ — fix(discharge): richer alias-driven AI surgery description
+- `475d9b3` _2026-05-18_ — Add Treatment Type column to Advance Statement Report
+- `ff69c38` _2026-05-18_ — Correct FIX_DIRECT_SALE_BILLS_RLS.sql: disable RLS, not authenticated policy
 - `3407293` _2026-05-16_ — Merge pull request #297 from chatgptnotes/feat/pharmacy-stock-swap-photo-split
 - `daf6370` _2026-05-16_ — Fix Direct Sales Bill: RLS, cash book, stock traceability
 - `b4a5c74` _2026-05-16_ — Fix Direct Sales Bill: RLS, cash book, stock traceability
@@ -97,9 +100,6 @@ extracted: 2026-05-17T14:19:15.810Z
 - `68bb20e` _2026-05-16_ — feat(pharmacy): stock-aware swap, photo split-view, editable items, dispense bil
 - `a033706` _2026-05-16_ — fix(discharge): make the OT-notes template drive the AI summary prompt
 - `159c2ff` _2026-05-15_ — fix(pharmacy-discount): close all remaining print bypass paths and data leaks
-- `3fd348b` _2026-05-15_ — fix(pharmacy-discount): restore stock on rejection, block print, notify pharmaci
-- `41ec136` _2026-05-15_ — fix(discharge): fail fast when Gemini API key missing in AI Generate
-- `bfb94b2` _2026-05-15_ — feat(pharmacy): block bill printing until admin approves discount
 
 ## README
 

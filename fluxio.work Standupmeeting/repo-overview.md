@@ -2,18 +2,18 @@
 domain: fluxio.work
 repo: chatgptnotes/hopehospital-dashboard
 default_branch: main
-last_push: 2026-05-17T11:34:26Z
-size_kb: 2743
+last_push: 2026-05-17T16:43:26Z
+size_kb: 2772
 language: TypeScript
 description: "Hope Hospital + Ayushman Hospital - operations management dashboard. Live at fluxio.work."
-extracted: 2026-05-17T14:19:11.470Z
+extracted: 2026-05-18T07:15:00.467Z
 ---
 # Hope+Ayushman Operations — `fluxio.work`
 
 **Live URL:** https://fluxio.work/
 **GitHub repo:** https://github.com/chatgptnotes/hopehospital-dashboard
-**Default branch:** `main`  ·  **Last push:** 2026-05-17T11:34:26Z
-**Language:** TypeScript  ·  **Repo size:** 2743KB
+**Default branch:** `main`  ·  **Last push:** 2026-05-17T16:43:26Z
+**Language:** TypeScript  ·  **Repo size:** 2772KB
 
 > Hope Hospital + Ayushman Hospital - operations management dashboard. Live at fluxio.work.
 
@@ -54,14 +54,14 @@ extracted: 2026-05-17T14:19:11.470Z
 - `tsconfig.app.json` (652B)
 - `tsconfig.json` (381B)
 - `tsconfig.node.json` (481B)
-- `vercel.json` (290B)
+- `vercel.json` (304B)
 - `vite.config.ts` (601B)
 
 ## Folder breakdown
 
 - `src/` — 141 files
 - `supabase/` — 11 files
-- `public/` — 6 files
+- `public/` — 7 files
 - `.env/` — 1 file
 - `.gitignore/` — 1 file
 - `CLAUDE.md/` — 1 file
@@ -77,16 +77,16 @@ extracted: 2026-05-17T14:19:11.470Z
 
 ## Recent commits
 
+- `fad301c` _2026-05-17_ — feat(bank-credentials): add editable comments field per card
+- `51f41e4` _2026-05-17_ — feat: add Brain Access link to sidebar (Management section)
+- `985d691` _2026-05-17_ — feat: add Brain Access link to sidebar (Management section)
+- `8673a7f` _2026-05-17_ — chore: remove password prompt, use Referer-based domain check
+- `e48d72b` _2026-05-17_ — feat(bank-credentials): inline edit for OTP mobile per card
+- `aa64e19` _2026-05-17_ — feat(bank-credentials): display OTP mobile on each card
+- `76a77c3` _2026-05-17_ — chore: remove password prompt, use Referer-based domain check
+- `bc7e664` _2026-05-17_ — fix: exclude .html from SPA rewrite
+- `2120f5b` _2026-05-17_ — feat: brain access admin page
 - `8e1a1e1` _2026-05-16_ — feat(org-vault): add View and Download buttons for cancelled cheque
-- `4843e7d` _2026-05-16_ — feat: one-click copy-link button on bank accounts and credentials page
-- `033535a` _2026-05-16_ — feat(org-vault): add per-account balance with as-of date
-- `251b14a` _2026-05-16_ — feat(org-vault): add per-org notes field shown in overview
-- `796795c` _2026-05-16_ — fix: drag-reorder persistence, search guard, and PDF URL handling
-- `03c07f4` _2026-05-16_ — feat(org-vault): drag org cards between group categories to recategorize
-- `050a597` _2026-05-16_ — feat(sections): add drag-to-reorder cases + insert Baba Rao Raut case into Distr
-- `06c5351` _2026-05-16_ — feat(bank-credentials): show owning company on each bank credential card
-- `9dd0c18` _2026-05-16_ — feat(org-vault): group organizations into Hope Hospital / Ayushman / Dr. Murali 
-- `cbb49e0` _2026-05-16_ — feat(bank-credentials): add net banking payment flow chart image
 
 ## README
 
