@@ -69,8 +69,9 @@ async function run() {
       const start = new Date(e.start);
       const end = e.end ? new Date(e.end) : null;
       const time = `${fmtTime(start)}${end ? '–' + fmtTime(end) : ''} IST`;
-      const attendees = (e.attendee || []).map(a => {
-        const cn = a.params?.CN || a.val || a;
+      const attendeesRaw = Array.isArray(e.attendee) ? e.attendee : (e.attendee ? [e.attendee] : []);
+      const attendees = attendeesRaw.map(a => {
+        const cn = a?.params?.CN || a?.val || a;
         return typeof cn === 'string' ? cn.replace(/^mailto:/, '') : String(cn);
       }).slice(0, 12);
       const desc = (e.description || '').toString().slice(0, 800);
