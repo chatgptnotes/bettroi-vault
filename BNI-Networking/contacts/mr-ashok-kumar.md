@@ -1,27 +1,27 @@
 ---
-name: "Mr Ashok Kumar"
+name: "Mr. Ashok Kumar"
 source: bni-crm
-bni_contact_id: c17
+bni_contact_id: c78
 company: "Sukhibhava Healthcare"
 chapter: "Bangalore North East > BNI Champions"
-city: "Bengaluru north east"
+city: "Bengaluru"
 status: "Met"
 segment: "Healthcare"
-assigned_to: "Ashray Salwe"
+assigned_to: "Palak Dongare"
 deal_probability: 50
-phones: "9994810033"
-updated_at: 2026-04-28T06:32:08.601276+00:00
+phones: "9986410033"
+updated_at: 2026-04-25T04:53:20.566891+00:00
 ---
-# Mr Ashok Kumar
+# Mr. Ashok Kumar
 **Company:** Sukhibhava Healthcare
-**Location:** Bengaluru north east
+**Location:** Bengaluru
 **BNI Chapter:** Bangalore North East > BNI Champions
 **Status:** Met
-**Assigned to:** Ashray Salwe
-**Phone:** 9994810033
+**Assigned to:** Palak Dongare
+**Phone:** 9986410033
 ## Notes
 
-Zoom 121 completed 22/04/26 1 PM. Bengaluru's leading provider of long-term home care management for chronic ailments and elderly support.
+BNI 1-2-1 MEETING (22/04/26) 1 pm  (Done)
 
 
 ## CRM record

@@ -18,8 +18,8 @@ async function post(path, body) {
   return data;
 }
 
-export async function sendWhatsApp(phone, message) {
-  return post('/message/send', { phone, message });
+export async function sendWhatsApp(target, message) {
+  return post('/message/send', { target, message });
 }
 
 export async function addToAllowlist(phone) {

@@ -15,21 +15,23 @@ const PRI_ICON   = { Critical: '🔴', High: '🟠', Medium: '🟡', Low: '🟢'
 
 async function run() {
   // BNI Supabase: dev data
-  const { data: projects } = await bni.from('dev_projects').select('id,name');
-  const { data: devs }     = await bni.from('developers').select('id,name,role');
-  const { data: items }    = await bni.from('dev_work_items')
+  const { data: projects, error: projErr } = await bni.from('dev_projects').select('id,name');
+  if (projErr) throw new Error(`dev_projects fetch failed: ${projErr.message}`);
+
+  const { data: devs, error: devsErr }     = await bni.from('developers').select('id,name,role');
+  if (devsErr) throw new Error(`developers fetch failed: ${devsErr.message}`);
+
+  const { data: items, error: itemsErr }   = await bni.from('dev_work_items')
     .select('title, state, assignee_id, priority, type, due_date, project_id, description')
     .neq('state', 'Done');
+  if (itemsErr) throw new Error(`dev_work_items fetch failed: ${itemsErr.message}`);
 
-  // Brain Supabase: Slack users
-  const { data: slackUsers } = await brain.from('brain_user_roles').select('slack_user_id, display_name');
-
-  const projById = Object.fromEntries(projects.map(p => [p.id, p.name]));
-  const devById  = Object.fromEntries(devs.map(d => [d.id, d]));
+  const projById = Object.fromEntries((projects ?? []).map(p => [p.id, p.name]));
+  const devById  = Object.fromEntries((devs ?? []).map(d => [d.id, d]));
 
   // Group items by developer
   const byDev = {};
-  for (const it of items) {
+  for (const it of items ?? []) {
     const dev = devById[it.assignee_id];
     if (!dev) continue;
     (byDev[dev.id] ??= { dev, items: [] }).items.push(it);

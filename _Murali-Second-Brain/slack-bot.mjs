@@ -132,6 +132,25 @@ app.event('message', async ({ event, client }) => {
 
   const lc = question.toLowerCase();
 
+  // wa <target> <message> — send WhatsApp via OpenClaw
+  const waMatch = question.match(/^wa\s+(\S+)\s+(.+)/is);
+  if (waMatch && role === 'murali') {
+    const [, target, message] = waMatch;
+    await client.chat.postMessage({ channel: event.channel, text: `📲 Sending WhatsApp to \`${target}\`...` });
+    try {
+      const { sendWhatsApp } = await import('./openclaw-bridge.mjs');
+      const result = await sendWhatsApp(target, message);
+      const ok = result.ok !== false;
+      await client.chat.postMessage({
+        channel: event.channel,
+        text: ok ? `✅ Sent: ${result.stdout?.slice(0, 200) || '(no output)'}` : `❌ ${result.stderr || JSON.stringify(result)}`,
+      });
+    } catch (err) {
+      await client.chat.postMessage({ channel: event.channel, text: `❌ WhatsApp send failed: ${err.message}` });
+    }
+    return;
+  }
+
   // prep <topic> — pre-meeting briefing
   const prepMatch = question.match(/^prep\s+(.+)/i);
   if (prepMatch) {
