@@ -5,7 +5,7 @@ client_company: "ExxonMobil"
 client_name: "ExxonMobil"
 client_email: "dustin.simpson@exxonmobil.com"
 title: "Regulatory Roadmap for Nigeria"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-02-03T14:09:13.452672+00:00

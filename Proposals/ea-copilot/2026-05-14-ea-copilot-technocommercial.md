@@ -5,7 +5,7 @@ client_company: "EA Copilot"
 client_name: "EA Copilot"
 client_email: ""
 title: "EA Copilot TechnoCommercial"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-14T12:28:12.286088+00:00

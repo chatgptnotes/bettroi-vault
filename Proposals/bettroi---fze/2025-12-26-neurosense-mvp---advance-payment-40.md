@@ -5,7 +5,7 @@ client_company: "BETTROI - FZE"
 client_name: "BETTROI - FZE"
 client_email: "info@bettroi.com"
 title: "Neurosense MVP - Advance Payment (40%)"
-status: "sent"
+proposal_status: "sent"
 template_id: null
 ai_confidence_score: 0
 created_at: 2025-12-26T15:55:07.849844+00:00

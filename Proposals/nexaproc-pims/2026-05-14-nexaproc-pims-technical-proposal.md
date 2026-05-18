@@ -5,7 +5,7 @@ client_company: "NexaProc / PIMS"
 client_name: "NexaProc / PIMS"
 client_email: ""
 title: "NexaProc PIMS Technical Proposal"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-14T12:28:29.687195+00:00

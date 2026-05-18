@@ -5,7 +5,7 @@ client_company: "Brain"
 client_name: "Brain"
 client_email: ""
 title: "Brain Report Design 1 Professional Blue"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-15T10:04:59.259099+00:00

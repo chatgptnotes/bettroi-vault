@@ -5,7 +5,7 @@ client_company: "Dubai Media Office (GDMO)"
 client_name: "Dubai Media Office (GDMO)"
 client_email: ""
 title: "JotFlow Technical Scope"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-14T12:28:23.042217+00:00

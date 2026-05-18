@@ -5,7 +5,7 @@ client_company: "Sunrise Care Group LLC"
 client_name: "Sunrise Care Group LLC"
 client_email: "projects@sunrisecare.ae"
 title: "Hospital Workflow Automation Platform for Sunrise Care Group"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2025-12-09T06:55:23.819741+00:00

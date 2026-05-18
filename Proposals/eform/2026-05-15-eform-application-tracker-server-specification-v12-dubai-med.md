@@ -5,7 +5,7 @@ client_company: "eForm"
 client_name: "eForm"
 client_email: ""
 title: "eForm Application Tracker Server Specification v1.2 Dubai Media Office (GDMO)"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-15T11:43:55.918068+00:00

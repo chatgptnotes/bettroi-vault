@@ -5,7 +5,7 @@ client_company: "ModAE (Win-Track)"
 client_name: "ModAE (Win-Track)"
 client_email: ""
 title: "ModAE ProposifyAI TechnoCommercial"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-14T12:28:25.639509+00:00

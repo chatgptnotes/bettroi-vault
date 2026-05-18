@@ -5,7 +5,7 @@ client_company: "Archana"
 client_name: "Archana"
 client_email: ""
 title: "Archana Sand Brain Type Performance Report"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-15T08:51:52.455002+00:00

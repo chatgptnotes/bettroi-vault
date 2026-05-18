@@ -5,7 +5,7 @@ client_company: "ContractOS"
 client_name: "ContractOS"
 client_email: ""
 title: "ContractOS Scope TechnoCommercial"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-14T12:28:10.109239+00:00

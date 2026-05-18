@@ -5,7 +5,7 @@ client_company: "Headz (HITS)"
 client_name: "Headz (HITS)"
 client_email: ""
 title: "Headz ProjectHandoff"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-14T12:28:19.035568+00:00

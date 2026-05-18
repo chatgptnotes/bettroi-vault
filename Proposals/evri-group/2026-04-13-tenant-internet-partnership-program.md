@@ -5,7 +5,7 @@ client_company: "Evri Group"
 client_name: "Evri Group"
 client_email: "greg.rolls@evri.com.au"
 title: "Tenant Internet Partnership Program"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-04-13T01:08:06.499796+00:00

@@ -5,7 +5,7 @@ client_company: "Dr. Sweta Adatia / NeuroSense360"
 client_name: "Dr. Sweta Adatia / NeuroSense360"
 client_email: ""
 title: "Neurosense Requirements Reference"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-14T12:28:29.11362+00:00

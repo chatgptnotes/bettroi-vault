@@ -5,7 +5,7 @@ client_company: "Salaam Beverages Co Limited"
 client_name: "Salaam Beverages Co Limited"
 client_email: "distribution@salaamcola.com"
 title: "Strategic Market Entry & Partnership for Salaam Cola (Nigeria 2026)"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-01-29T14:22:29.26545+00:00

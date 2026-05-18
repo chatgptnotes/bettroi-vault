@@ -5,7 +5,7 @@ client_company: "CSIRO’S ACDP, GEELONG"
 client_name: "CSIRO’S ACDP, GEELONG"
 client_email: "yusfaith_6@hotmail.com"
 title: "LAUNDRY SERVICES  "
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-03-27T12:02:45.401886+00:00

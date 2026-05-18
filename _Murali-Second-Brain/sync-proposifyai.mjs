@@ -62,7 +62,7 @@ function fmtMd(p) {
     `client_name: ${JSON.stringify(p.client_name ?? '')}`,
     `client_email: ${JSON.stringify(p.client_email ?? '')}`,
     `title: ${JSON.stringify(p.title ?? '')}`,
-    `status: ${JSON.stringify(p.status ?? 'draft')}`,
+    `proposal_status: ${JSON.stringify(p.status ?? 'draft')}`,
     `template_id: ${p.template_id ?? 'null'}`,
     p.ai_confidence_score != null ? `ai_confidence_score: ${p.ai_confidence_score}` : null,
     `created_at: ${p.created_at}`,

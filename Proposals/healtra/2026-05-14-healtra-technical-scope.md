@@ -5,7 +5,7 @@ client_company: "HealTra"
 client_name: "HealTra"
 client_email: ""
 title: "HealTra Technical Scope"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-14T12:28:20.089732+00:00

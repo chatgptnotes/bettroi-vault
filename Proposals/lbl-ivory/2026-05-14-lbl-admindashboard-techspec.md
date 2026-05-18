@@ -5,7 +5,7 @@ client_company: "LBL / Ivory"
 client_name: "LBL / Ivory"
 client_email: ""
 title: "LBL AdminDashboard TechSpec"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-14T12:28:23.5488+00:00

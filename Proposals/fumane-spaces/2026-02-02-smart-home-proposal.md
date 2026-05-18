@@ -5,7 +5,7 @@ client_company: "Fumane Spaces"
 client_name: "Fumane Spaces"
 client_email: "info@fumane.co.za"
 title: "Smart Home Proposal"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-02-02T04:44:41.156137+00:00

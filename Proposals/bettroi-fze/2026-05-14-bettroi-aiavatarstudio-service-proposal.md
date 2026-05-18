@@ -5,7 +5,7 @@ client_company: "Bettroi FZE"
 client_name: "Bettroi FZE"
 client_email: ""
 title: "Bettroi AIAvatarStudio Service Proposal"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-14T12:28:09.063681+00:00

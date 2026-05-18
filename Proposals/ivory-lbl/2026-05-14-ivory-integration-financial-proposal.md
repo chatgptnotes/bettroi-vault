@@ -5,7 +5,7 @@ client_company: "Ivory / LBL"
 client_name: "Ivory / LBL"
 client_email: ""
 title: "Ivory Integration Financial Proposal"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-14T12:28:21.621311+00:00

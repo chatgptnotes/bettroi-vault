@@ -5,7 +5,7 @@ client_company: "Sand Dynamics LLc."
 client_name: "Sand Dynamics LLc."
 client_email: "jijo.dynamics@gmail.com"
 title: "Business Proposal"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-01-28T12:18:12.469032+00:00

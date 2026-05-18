@@ -5,7 +5,7 @@ client_company: "GCCAPP"
 client_name: "GCCAPP"
 client_email: "GCCAPP@gmail.com"
 title: "University Smart System"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-04-13T09:45:33.058839+00:00

@@ -5,7 +5,7 @@ client_company: "Headz (HITS)"
 client_name: "Headz (HITS)"
 client_email: ""
 title: "Headz Project Handoff BTR-2026-HITS-HO-001"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-14T14:31:36.624423+00:00

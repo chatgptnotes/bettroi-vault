@@ -5,7 +5,7 @@ client_company: "PHL"
 client_name: "PHL"
 client_email: "wemsobj@gmail.com"
 title: "Training of Board of directors on corporate governance"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-02-03T13:41:09.012041+00:00

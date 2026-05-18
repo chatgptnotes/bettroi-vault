@@ -5,7 +5,7 @@ client_company: "Firstlab"
 client_name: "Firstlab"
 client_email: "john@unistow.com"
 title: "Laboratory furniture"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-02-10T07:46:47.992292+00:00

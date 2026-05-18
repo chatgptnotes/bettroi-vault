@@ -5,7 +5,7 @@ client_company: "Decode My Brain"
 client_name: "Decode My Brain"
 client_email: ""
 title: "DecodMyBrain CodeReview TechnoCommercial"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-14T12:28:11.798059+00:00

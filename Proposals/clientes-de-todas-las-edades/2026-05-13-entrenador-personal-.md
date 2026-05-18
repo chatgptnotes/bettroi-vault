@@ -5,7 +5,7 @@ client_company: "clientes de todas las edades"
 client_name: "clientes de todas las edades"
 client_email: "jonis7341@gmail.com"
 title: "Entrenador personal "
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-13T19:04:06.916083+00:00

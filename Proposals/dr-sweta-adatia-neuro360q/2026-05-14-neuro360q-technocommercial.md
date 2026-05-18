@@ -5,7 +5,7 @@ client_company: "Dr. Sweta Adatia / Neuro360Q"
 client_name: "Dr. Sweta Adatia / Neuro360Q"
 client_email: ""
 title: "Neuro360Q TechnoCommercial"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-14T12:28:26.954515+00:00

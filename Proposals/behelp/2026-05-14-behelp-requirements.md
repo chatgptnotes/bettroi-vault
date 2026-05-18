@@ -5,7 +5,7 @@ client_company: "BeHelp"
 client_name: "BeHelp"
 client_email: ""
 title: "BeHelp Requirements"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-14T12:28:07.162837+00:00

@@ -5,7 +5,7 @@ client_company: "my home sayunk"
 client_name: "my home sayunk"
 client_email: "vidhigupta01977@gmail.com"
 title: "proposal for 2bhk interior design for client like scope of services, delivery date and payment details"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-02-06T14:03:01.964402+00:00

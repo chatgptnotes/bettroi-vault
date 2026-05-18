@@ -5,7 +5,7 @@ client_company: "Consolidated Edison"
 client_name: "Consolidated Edison"
 client_email: ""
 title: "Proposal For Security Services"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-02-22T04:37:06.704832+00:00

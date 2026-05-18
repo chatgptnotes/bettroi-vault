@@ -5,7 +5,7 @@ client_company: "LimitlessBrainCare"
 client_name: "LimitlessBrainCare"
 client_email: ""
 title: "LimitlessBrainCare TechnoCommercial"
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-05-14T12:28:24.590969+00:00

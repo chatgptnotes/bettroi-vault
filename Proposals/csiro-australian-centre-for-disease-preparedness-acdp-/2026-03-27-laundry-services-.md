@@ -5,7 +5,7 @@ client_company: "CSIRO Australian Centre for Disease Preparedness (ACDP) "
 client_name: "CSIRO Australian Centre for Disease Preparedness (ACDP) "
 client_email: "yusfaith_6@hotmail.com"
 title: "LAUNDRY SERVICES  "
-status: "draft"
+proposal_status: "draft"
 template_id: null
 ai_confidence_score: 0
 created_at: 2026-03-27T12:09:10.846759+00:00
