@@ -7,7 +7,7 @@
 
 import { createClient } from '@supabase/supabase-js';
 import { WebClient } from '@slack/web-api';
-import Anthropic from '@anthropic-ai/sdk';
+import { callClaude } from './ai-client.mjs';
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -15,7 +15,6 @@ const supabase = createClient(
   { auth: { persistSession: false } }
 );
 const slack = new WebClient(process.env.SLACK_BOT_TOKEN);
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 const DRY = process.argv.includes('--dry');
 const LOOKBACK_DAYS = 7;
@@ -62,7 +61,7 @@ async function summarizeProject(projectTag, chunks) {
     `[${i+1}] (${c.source_type} — ${c.created_at.slice(0, 10)})\n${c.content}`
   ).join('\n\n---\n\n');
 
-  const msg = await anthropic.messages.create({
+  const msg = await callClaude({
     model: 'claude-haiku-4-5-20251001',
     max_tokens: 350,
     messages: [{

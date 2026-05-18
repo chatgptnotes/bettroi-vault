@@ -5,6 +5,7 @@ import { App } from '@slack/bolt';
 import { createClient } from '@supabase/supabase-js';
 import { queryBrain } from './query.mjs';
 import { ingestText } from './ingest.mjs';
+import { callClaude } from './ai-client.mjs';
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -69,9 +70,6 @@ async function buildMeetingPrep(topic, role) {
   });
 
   // 2. Look for related action items
-  const { default: Anthropic } = await import('@anthropic-ai/sdk');
-  const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-
   // Find related action items by keyword match
   const keywords = topic.toLowerCase().split(/\s+/).filter(w => w.length > 3);
   let itemsBlock = '';

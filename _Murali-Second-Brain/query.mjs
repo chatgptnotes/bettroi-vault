@@ -3,7 +3,7 @@
 
 import { createClient } from '@supabase/supabase-js';
 import OpenAI from 'openai';
-import Anthropic from '@anthropic-ai/sdk';
+import { callClaude } from './ai-client.mjs';
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -11,7 +11,6 @@ const supabase = createClient(
   { auth: { persistSession: false } }
 );
 const openai   = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 async function getRole(role = 'murali') {
   const { data } = await supabase
@@ -49,7 +48,7 @@ export async function queryBrain({ question, role = 'murali' }) {
   ).join('\n\n---\n\n');
 
   // 5. Synthesize with Claude
-  const msg = await anthropic.messages.create({
+  const msg = await callClaude({
     model: 'claude-sonnet-4-6',
     max_tokens: 1024,
     messages: [{

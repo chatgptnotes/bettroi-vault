@@ -3,13 +3,12 @@
 
 import { ImapFlow } from 'imapflow';
 import { createClient } from '@supabase/supabase-js';
-import Anthropic from '@anthropic-ai/sdk';
+import { callClaude } from './ai-client.mjs';
 import { ingestText } from './ingest.mjs';
 import { writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY, { auth: { persistSession: false } });
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 const VAULT_ROOT = new URL('../', import.meta.url).pathname;
 const DRY = process.argv.includes('--dry');
@@ -41,7 +40,7 @@ async function classifyEmail({ subject, from, snippet }) {
 Output ONLY JSON: {"score": <0-1>, "type": "<decision|commitment|quote|meeting|business|status|newsletter>", "summary": "<5-10 words>"}`;
 
   try {
-    const res = await anthropic.messages.create({
+    const res = await callClaude({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 120,
       system: sys,

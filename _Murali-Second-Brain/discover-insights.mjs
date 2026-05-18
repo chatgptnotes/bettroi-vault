@@ -2,13 +2,12 @@
 // Usage: node --env-file=.env.local _Murali-Second-Brain/discover-insights.mjs [--days N] [--dry]
 
 import { createClient } from '@supabase/supabase-js';
-import Anthropic from '@anthropic-ai/sdk';
+import { callClaude } from './ai-client.mjs';
 import { WebClient } from '@slack/web-api';
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY, {
   auth: { persistSession: false },
 });
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const slack = process.env.SLACK_BOT_TOKEN ? new WebClient(process.env.SLACK_BOT_TOKEN) : null;
 
 const DAYS = parseInt(process.argv.find(a => a.startsWith('--days='))?.split('=')[1] ?? '14', 10);
@@ -95,7 +94,7 @@ async function detect(corpus) {
   const prompt = buildPrompt(corpus);
   console.log(`Sending ${prompt.length.toLocaleString()} chars to Claude Sonnet...`);
 
-  const res = await anthropic.messages.create({
+  const res = await callClaude({
     model: 'claude-sonnet-4-6',
     max_tokens: 4000,
     messages: [{ role: 'user', content: prompt }],

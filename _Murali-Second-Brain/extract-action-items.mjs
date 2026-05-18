@@ -2,12 +2,11 @@
 // Usage: node --env-file=.env.local _Murali-Second-Brain/extract-action-items.mjs
 
 import { createClient } from '@supabase/supabase-js';
-import Anthropic from '@anthropic-ai/sdk';
+import { callClaude } from './ai-client.mjs';
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY, {
   auth: { persistSession: false },
 });
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 async function extractItems({ text, sourceRef, projectTag, meetingDate }) {
   const sys = `Extract action items from the meeting/diary notes below.
@@ -26,7 +25,7 @@ Output ONLY valid JSON in this exact shape — NO commentary:
 If no real action items, output: {"items":[]}`;
 
   try {
-    const res = await anthropic.messages.create({
+    const res = await callClaude({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 1500,
       system: sys,
