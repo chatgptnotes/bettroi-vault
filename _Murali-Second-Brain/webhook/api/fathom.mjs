@@ -9,13 +9,12 @@
 
 import crypto from 'node:crypto';
 import { createClient } from '@supabase/supabase-js';
-import Anthropic from '@anthropic-ai/sdk';
+import { callClaude } from '../../ai-client.mjs';
 import { WebClient } from '@slack/web-api';
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY, {
   auth: { persistSession: false },
 });
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const slack = new WebClient(process.env.SLACK_BOT_TOKEN);
 
 const GH_REPO  = 'chatgptnotes/bettroi-vault';
@@ -53,7 +52,7 @@ Rules:
 
 Output ONLY JSON: {"folder": "<name>", "confidence": 0..1, "description": "<8-14 words>"}`;
 
-  const res = await anthropic.messages.create({
+  const res = await callClaude({
     model: 'claude-haiku-4-5-20251001',
     max_tokens: 300,
     system: sys,

@@ -3,7 +3,7 @@
 
 import { createClient } from '@supabase/supabase-js';
 import { WebClient } from '@slack/web-api';
-import Anthropic from '@anthropic-ai/sdk';
+import { callClaude } from './ai-client.mjs';
 import { writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 
@@ -12,7 +12,6 @@ const bni   = process.env.BNI_SUPABASE_URL
   ? createClient(process.env.BNI_SUPABASE_URL, process.env.BNI_SUPABASE_ANON_KEY)
   : null;
 const slack = process.env.SLACK_BOT_TOKEN ? new WebClient(process.env.SLACK_BOT_TOKEN) : null;
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 const VAULT_ROOT = new URL('../', import.meta.url).pathname;
 const DRY = process.argv.includes('--dry');
@@ -132,7 +131,7 @@ Length: 250-400 words. Use markdown with section headings.`;
     `\n\n**New BNI contacts updated (${bniNew.length}):**\n` +
     bniNew.slice(0, 10).map(c => `- ${c.first} ${c.last||''} (${c.segment||'?'}) — ${c.company||'no co'} ${c.status}`).join('\n');
 
-  const res = await anthropic.messages.create({
+  const res = await callClaude({
     model: 'claude-sonnet-4-6',
     max_tokens: 2000,
     system: sys,

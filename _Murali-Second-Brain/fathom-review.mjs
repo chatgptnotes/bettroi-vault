@@ -2,7 +2,7 @@
 // Generates a single REVIEW.md file with all Fathom meetings + classifier
 // suggestions. You edit the `folder:` line per meeting, then run fathom-apply.
 
-import Anthropic from '@anthropic-ai/sdk';
+import { callClaude } from './ai-client.mjs';
 import { readFile, writeFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 
@@ -10,7 +10,6 @@ const VAULT_ROOT = new URL('../', import.meta.url).pathname;
 const INPUT = process.argv[2] || join(VAULT_ROOT, '_Murali-Second-Brain/fathom-backfill-data.json');
 const REVIEW_PATH = join(VAULT_ROOT, '_Murali-Second-Brain/FATHOM-REVIEW.md');
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 const SKIP_FOLDERS = new Set([
   '_Murali-Second-Brain', '.git', 'node_modules', '.obsidian',
@@ -40,7 +39,7 @@ Attendees: ${attendees?.join(', ') || 'unknown'}
 Summary:
 ${(summary || '').slice(0, 800)}`;
   try {
-    const res = await anthropic.messages.create({
+    const res = await callClaude({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 300,
       system: sys,

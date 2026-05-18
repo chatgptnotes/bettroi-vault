@@ -252,9 +252,6 @@ async function classifyImportance(text, channelName) {
     arr.forEach(x => seenMessages.add(x));
   }
 
-  const Anthropic = (await import('@anthropic-ai/sdk')).default;
-  const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-
   const sys = `Score the importance of this Slack message for capture into a knowledge base. Score 0-1:
 
 1.0 = explicit DECISION ("we'll go with X", "agreed on Y at 7000")
@@ -269,7 +266,7 @@ Channel: ${channelName}
 Output ONLY JSON: {"score": <0-1>, "type": "<decision|commitment|blocker|status|discussion|question|social>"}`;
 
   try {
-    const res = await anthropic.messages.create({
+    const res = await callClaude({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 80,
       system: sys,
@@ -351,9 +348,6 @@ const KNOWN_PROJECTS = [
 ];
 
 async function classifyDiaryPage(ocrText) {
-  if (!process.env.ANTHROPIC_API_KEY) return { folder: '_inbox', date: null, summary: '' };
-  const Anthropic = (await import('@anthropic-ai/sdk')).default;
-  const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
   const sys = `You classify Murali's handwritten paper diary pages.
 
 Folders: ${KNOWN_PROJECTS.join(' | ')}
@@ -365,7 +359,7 @@ From the extracted text, determine:
 
 Output ONLY JSON: {"folder": "<name>", "date": "YYYY-MM-DD" or null, "summary": "<line>"}`;
   try {
-    const res = await anthropic.messages.create({
+    const res = await callClaude({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 200,
       system: sys,
@@ -379,9 +373,7 @@ Output ONLY JSON: {"folder": "<name>", "date": "YYYY-MM-DD" or null, "summary": 
 }
 
 async function ocrDiaryPage(base64, mimetype) {
-  const Anthropic = (await import('@anthropic-ai/sdk')).default;
-  const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-  const res = await anthropic.messages.create({
+  const res = await callClaude({
     model: 'claude-sonnet-4-6',  // Sonnet handles handwriting much better than Haiku
     max_tokens: 4096,
     messages: [{

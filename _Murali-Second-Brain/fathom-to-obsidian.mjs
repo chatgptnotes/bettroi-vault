@@ -7,14 +7,13 @@
 //
 // Input JSON: array of {id, date, title, url, attendees?, summary}
 
-import Anthropic from '@anthropic-ai/sdk';
+import { callClaude } from './ai-client.mjs';
 import { readFile, writeFile, readdir, mkdir, stat } from 'node:fs/promises';
 import { join, dirname, basename } from 'node:path';
 
 const VAULT_ROOT = new URL('../', import.meta.url).pathname;
 const INPUT = process.argv[2] || join(VAULT_ROOT, '_Murali-Second-Brain/fathom-backfill-data.json');
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 const SKIP_FOLDERS = new Set([
   '_Murali-Second-Brain', '.git', 'node_modules', '.obsidian',
@@ -51,7 +50,7 @@ Attendees: ${attendees?.join(', ') || 'unknown'}
 Summary excerpt:
 ${summary.slice(0, 800)}`;
 
-  const res = await anthropic.messages.create({
+  const res = await callClaude({
     model: 'claude-haiku-4-5-20251001',
     max_tokens: 200,
     system: sys,
