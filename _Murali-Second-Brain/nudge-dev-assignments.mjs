@@ -5,7 +5,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { WebClient } from '@slack/web-api';
 
-const brain = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY, { auth: { persistSession: false } });
 const bni   = createClient(process.env.BNI_SUPABASE_URL, process.env.BNI_SUPABASE_ANON_KEY);
 const slack = new WebClient(process.env.SLACK_BOT_TOKEN);
 
@@ -13,24 +12,6 @@ const DRY = process.argv.includes('--dry');
 const STATE_ICON = { 'To Do': '📋', 'In Progress': '⚙️', 'Review': '🔍', 'Done': '✅' };
 const PRI_ICON   = { Critical: '🔴', High: '🟠', Medium: '🟡', Low: '🟢' };
 
-function norm(s) { return (s || '').toLowerCase().replace(/[^a-z0-9]/g, ''); }
-
-function matchSlack(devName, slackUsers) {
-  // Strip parenthetical info like "(Morning Shift...)"
-  const clean = devName.replace(/\(.*?\)/g, '').trim();
-  const cleanNorm = norm(clean);
-  const firstWord = norm(clean.split(/\s+/)[0]);
-
-  // Exact contains (Slack display has parenthetical role suffixes)
-  for (const u of slackUsers) {
-    if (norm(u.display_name).includes(cleanNorm)) return u;
-  }
-  // First-name match
-  for (const u of slackUsers) {
-    if (norm(u.display_name).includes(firstWord)) return u;
-  }
-  return null;
-}
 
 async function run() {
   // BNI Supabase: dev data

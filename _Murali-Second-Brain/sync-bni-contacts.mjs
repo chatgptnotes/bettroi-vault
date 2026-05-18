@@ -54,17 +54,27 @@ function fmtBody(c, developerName) {
 }
 
 async function run() {
-  const { data: contacts } = await bni.from('bni_contacts').select('*').eq('hidden', false);
-  const { data: devs } = await bni.from('developers').select('id,name');
-  const devById = Object.fromEntries(devs.map(d => [d.id, d.name.replace(/\(.*?\)/g, '').trim()]));
+  const { data: contacts, error: contactsErr } = await bni.from('bni_contacts').select('*').eq('hidden', false);
+  if (contactsErr) throw new Error(`bni_contacts fetch failed: ${contactsErr.message}`);
+
+  const { data: devs, error: devsErr } = await bni.from('developers').select('id,name');
+  if (devsErr) throw new Error(`developers fetch failed: ${devsErr.message}`);
+
+  const devById = Object.fromEntries((devs ?? []).map(d => [d.id, d.name.replace(/\(.*?\)/g, '').trim()]));
 
   await mkdir(TARGET_DIR, { recursive: true });
 
   let wrote = 0;
+  const seenSlugs = {};
   for (const c of contacts ?? []) {
     const name = `${c.first ?? ''} ${c.last ?? ''}`.trim();
     if (!name) continue;
-    const slug = safeSlug(name);
+    let slug = safeSlug(name);
+    // Disambiguate duplicate slugs by appending the contact id suffix
+    if (seenSlugs[slug]) {
+      slug = `${slug}-${String(c.id).slice(-6)}`;
+    }
+    seenSlugs[slug] = true;
     const fileName = `${slug}.md`;
     const developerName = c.assignee_id ? devById[c.assignee_id] : null;
     const body = fmtBody(c, developerName);
