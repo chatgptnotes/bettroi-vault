@@ -22,17 +22,32 @@ async function getRole(role = 'murali') {
 }
 
 export async function queryBrain({ question, role = 'murali' }) {
-  // 1. Embed the question
+  // 1. Get role permissions
+  const { allowed_projects, blocked_tags } = await getRole(role);
+
+  // 2. Pre-filter: refuse questions that match blocked_tags before search runs.
+  // Keeps team members from probing salary/HR/accounts/payments even if those
+  // chunks aren't tagged off_limits.
+  if (blocked_tags?.length) {
+    const lc = question.toLowerCase();
+    const hit = blocked_tags.find(tag => lc.includes(tag.toLowerCase()));
+    if (hit) {
+      return {
+        answer: `That topic ("${hit}") is outside what I can share. Ask Murali directly.`,
+        sources: [],
+        refused: true,
+      };
+    }
+  }
+
+  // 3. Embed the question
   const embed = await openai.embeddings.create({
     model: 'text-embedding-3-small',
     input: question,
   });
   const queryEmbedding = embed.data[0].embedding;
 
-  // 2. Get role permissions
-  const { allowed_projects, blocked_tags } = await getRole(role);
-
-  // 3. Vector search via Supabase function
+  // 4. Vector search via Supabase function
   const { data: chunks, error } = await supabase.rpc('brain_search', {
     query_embedding: queryEmbedding,
     project_filter: allowed_projects,
@@ -76,8 +91,15 @@ Answer:`
     }]
   });
 
-  const answer = msg.content[0].text;
+  let answer = msg.content[0].text;
   const sources = chunks.map(c => `${c.source_type}: ${c.source_ref} (${c.project_tag})`);
+
+  // Team members get a confidence footer — Murali's own queries don't need it.
+  if (role !== 'murali') {
+    const avgSim = chunks.reduce((s, c) => s + (c.similarity ?? 0), 0) / chunks.length;
+    const confidence = avgSim > 0.78 ? 'High' : avgSim > 0.65 ? 'Medium' : 'Low';
+    answer += `\n\n_Confidence: ${confidence} — verify with Murali for decisions._`;
+  }
 
   return { answer, sources };
 }

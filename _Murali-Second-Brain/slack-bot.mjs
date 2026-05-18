@@ -50,7 +50,11 @@ app.event('app_mention', async ({ event, say }) => {
   if (role === 'public') { await say({ text: '_You do not have access to the brain. Ask Murali to grant you access._', thread_ts: event.ts }); return; }
 
   try {
-    const { answer, sources } = await queryBrain({ question, role });
+    const { answer, sources, refused } = await queryBrain({ question, role });
+    if (refused || !sources.length) {
+      await say({ text: answer, thread_ts: event.ts });
+      return;
+    }
     const sourceList = sources.slice(0, 3).map((s, i) => `[${i+1}] ${s}`).join('\n');
     await say({
       text: `${answer}\n\n*Sources:*\n${sourceList}`,
@@ -245,7 +249,11 @@ app.event('message', async ({ event, client }) => {
   await client.chat.postMessage({ channel: event.channel, text: '_Thinking..._' });
 
   try {
-    const { answer, sources } = await queryBrain({ question, role });
+    const { answer, sources, refused } = await queryBrain({ question, role });
+    if (refused || !sources.length) {
+      await client.chat.postMessage({ channel: event.channel, text: answer });
+      return;
+    }
     const sourceList = sources.slice(0, 3).map((s, i) => `[${i+1}] ${s}`).join('\n');
     await client.chat.postMessage({
       channel: event.channel,
