@@ -39,13 +39,15 @@ async function fetchMeetings(since) {
   const data = await res.json();
 
   const sinceDate = new Date(since);
-  return (data.meetings ?? data.data ?? data.results ?? []).filter(
+  return (data.items ?? data.meetings ?? data.data ?? data.results ?? []).filter(
     m => new Date(m.created_at ?? m.started_at ?? m.date) > sinceDate
   );
 }
 
-async function fetchSummary(meetingId) {
-  const res = await fetch(`${FATHOM_API}/recordings/${meetingId}/summary`, { headers });
+async function fetchSummary(meeting) {
+  // Fathom returns recording_id on the meeting object; fall back to meeting.id
+  const recordingId = meeting.recording_id ?? meeting.id;
+  const res = await fetch(`${FATHOM_API}/recordings/${recordingId}/summary`, { headers });
   if (!res.ok) return null;
   const data = await res.json();
   return data.summary ?? data.content ?? data.text ?? null;
@@ -80,7 +82,7 @@ async function run() {
     const cleanTitle = prefixMatch ? title.slice(prefixMatch[0].length).trim() : title;
 
     // Get full summary
-    const summary = await fetchSummary(meeting.id);
+    const summary = await fetchSummary(meeting);
     if (!summary) {
       console.log(`  ⚠ No summary for: ${title} — skipping`);
       continue;
