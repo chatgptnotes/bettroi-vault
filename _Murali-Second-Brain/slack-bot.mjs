@@ -135,7 +135,13 @@ app.event('message', async ({ event, client }) => {
   // wa <target> <message> — send WhatsApp via Twilio Sandbox
   const waMatch = question.match(/^wa\s+(\S+)\s+(.+)/is);
   if (waMatch && role === 'murali') {
-    const [, target, message] = waMatch;
+    let [, target, message] = waMatch;
+    // Slack auto-formats phone numbers as <tel:+919...|+919...> — strip the link wrapper
+    const telMatch = target.match(/<tel:(\+?\d+)(?:\|[^>]*)?>/);
+    if (telMatch) target = telMatch[1];
+    // Strip any remaining angle brackets, pipes, mailto:, etc.
+    target = target.replace(/^<|>$/g, '').replace(/\|.*$/, '').replace(/^(tel|mailto):/, '');
+
     await client.chat.postMessage({ channel: event.channel, text: `📲 Sending WhatsApp via Twilio to \`${target}\`...` });
     try {
       const { sendWhatsApp } = await import('./twilio-whatsapp.mjs');
