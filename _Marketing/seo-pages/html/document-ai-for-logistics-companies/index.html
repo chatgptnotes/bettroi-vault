@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Document AI for Logistics Companies | Bettroi</title>
+<meta name="description" content="Bettroi builds Document AI agents for logistics companies that extract, classify, and route freight documents automatically — cutting processing time by 70%+.">
+<link rel="canonical" href="https://hopetech.me/document-ai-for-logistics-companies/">
+<meta property="og:title" content="Document AI for Logistics Companies | Bettroi">
+<meta property="og:description" content="Bettroi builds Document AI agents for logistics companies that extract, classify, and route freight documents automatically — cutting processing time by 70%+.">
+<meta property="og:url" content="https://hopetech.me/document-ai-for-logistics-companies/">
+<meta property="og:type" content="website">
+<meta name="keywords" content="document ai for logistics companies, logistics companies, document ai, Bettroi, HopeTech">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which document types can your agents handle?","acceptedAnswer":{"@type":"Answer","text":"Bills of lading, proof of delivery, carrier invoices, e-way bills, customs declarations (Bill of Entry, Shipping Bill, IGM/EGM), rate confirmation sheets, and packing lists. If you have a proprietary format, we train on your corpus during the Learn stage — typically 200–500 sample documents is enough for 90%+ extraction accuracy."}},{"@type":"Question","name":"How accurate is the extraction? What happens when the agent is wrong?","acceptedAnswer":{"@type":"Answer","text":"On standard printed and digital PDFs, field-level accuracy is typically 94–98% after the 30-day pilot tuning period. Handwritten or heavily degraded scans run lower — we will tell you the realistic number for your specific documents during Discovery. Every low-confidence extraction is flagged to a human queue rather than passed downstream silently."}},{"@type":"Question","name":"We use Logi-Sys / Shipsy / a custom ERP. Can you integrate with that?","acceptedAnswer":{"@type":"Answer","text":"Yes. We integrate via REST API where the system supports it, and via RPA bridge where it does not. We have connected document pipelines to SAP TM, Oracle TMS, Tally, and custom-built ERPs. We document the integration spec during the Wire stage so your internal IT team can maintain it independently."}},{"@type":"Question","name":"How long before we see ROI?","acceptedAnswer":{"@type":"Answer","text":"Most clients recover the pilot fee within 60–90 days of going live, primarily through reduced data-entry headcount redeployment, lower detention charges from faster document turnaround, and fewer invoice disputes. We establish the baseline during Discovery so the ROI calculation is yours to verify — not ours to claim."}},{"@type":"Question","name":"Do we need to change our current document intake process before starting?","acceptedAnswer":{"@type":"Answer","text":"No. We map to your existing intake channels — email, WhatsApp Business, shared drives, or vendor portals — during Discovery and build the agent to match current behaviour. Process improvements come after the pilot proves value, not as a precondition for starting."}}]}</script>
+<style>
+  :root { --c: #1a1a2e; --m: #16213e; --a: #0f3460; --t: #e94560; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 17px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--c); background: #fafafa; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  header { padding: 1.5rem 0 2.5rem; border-bottom: 1px solid #eaeaea; margin-bottom: 2rem; }
+  header a { color: var(--m); text-decoration: none; font-weight: 600; font-size: 18px; }
+  h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 1rem; color: var(--c); }
+  .sub { font-size: 1.15rem; color: #555; margin-bottom: 2rem; }
+  h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--m); }
+  h3 { font-size: 1.15rem; margin: 1.5rem 0 .5rem; }
+  p { margin-bottom: 1rem; }
+  ul { margin: 0 0 1rem 1.5rem; }
+  li { margin-bottom: .35rem; }
+  strong { color: var(--a); }
+  .cta { background: var(--c); color: #fff; padding: 1.75rem; border-radius: 8px; margin: 3rem 0 2rem; text-align: center; }
+  .cta a { background: var(--t); color: #fff; padding: .85rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: .5rem; }
+  details { background: #fff; border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: .75rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--m); }
+  details[open] summary { margin-bottom: .75rem; }
+  footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eaeaea; color: #888; font-size: 14px; text-align: center; }
+  footer a { color: var(--a); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="https://hopetech.me">HopeTech</a></header>
+  <h1>Document AI for Logistics Companies</h1>
+  <h2>Your freight moves fast. Your paperwork does not.</h2>
+<p>Bettroi builds Document AI agents for logistics companies that automatically extract, classify, and route freight documents — so your ops team stops keying data and starts managing exceptions.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>A mid-size logistics company processes hundreds of bills of lading, PODs, invoices, and customs declarations every day — across email inboxes, WhatsApp forwards, and scanned PDFs. Your data-entry team spends 4–6 hours daily on manual extraction, and a single misread HSN code or wrong weight field delays a shipment or triggers a detention charge. ERP systems like SAP or Oracle TMS sit underutilised because clean, structured data never arrives on time.</p>
+<p>---</p>
+<h2>What We Build</h2>
+<ul><li><strong>Freight document ingestion agent</strong> — watches email, WhatsApp Business API, and shared drives; auto-classifies BOLs, PODs, invoices, e-way bills, and customs docs within seconds of receipt</li>
+<li><strong>Data extraction + validation pipeline</strong> — pulls consignee details, weight, commodity, HSN codes, and port fields; cross-validates against your master data and flags mismatches before human review</li>
+<li><strong>POD reconciliation bot</strong> — matches signed PODs against open shipment records in your TMS/ERP and auto-closes delivery legs without manual intervention</li>
+<li><strong>Invoice-to-PO matching agent</strong> — three-way matches carrier invoices against POs and rate cards; queues only genuine exceptions for your finance team</li>
+<li><strong>Customs document packager</strong> — assembles and pre-fills IGM/EGM, Bill of Entry, and SB supporting docs from extracted data, reducing customs desk prep from 45 minutes to under 5</li>
+<li><strong>Audit-ready document store</strong> — every extracted document is archived with a structured JSON record, version history, and source image for GST, DGFT, and client audits</li></ul>
+<p>---</p>
+<h2>How We Do It: The Be AI-First Framework</h2>
+<p>We don't hand you a chatbot and disappear. Every engagement follows five stages designed for operations teams — not IT labs.</p>
+<p><strong>1. Discovery (2 weeks)</strong>
+We audit your current document flows end-to-end: volumes, formats, error rates, ERP touchpoints, and manual handoff steps. You get a prioritised list of the 3 highest-ROI document automation candidates with baseline metrics.</p>
+<p><strong>2. Learn (weeks 3–8)</strong>
+We deploy a pilot agent on your single highest-volume document type — typically BOLs or PODs. For 30 days we run the agent in parallel with your existing process, measure accuracy, cycle time, and exception rate against the baseline, and tune the extraction models on your actual document corpus.</p>
+<p><strong>3. Wire (weeks 9–14)</strong>
+The winning agent is integrated into your live systems — SAP TM, Oracle TMS, Shipsy, Logi-Sys, or custom ERP via API or RPA bridge. Document triggers, webhooks, and exception queues are wired to your existing workflows.</p>
+<p><strong>4. Automate (weeks 15–18)</strong>
+Manual handoffs between document receipt, extraction, validation, and ERP entry are replaced with agent orchestration. Your team receives only flagged exceptions — not routine paperwork.</p>
+<p><strong>5. Scale (ongoing)</strong>
+We roll out the agent stack across document types, branches, and partner lanes. A monitoring dashboard tracks accuracy, throughput, and exception rates. Governance rules ensure compliance with GST, DGFT, and customer SLAs.</p>
+<p>---</p>
+<h2>What We Have Built Before</h2>
+<p>Bettroi has built structured document extraction and automated proposal generation pipelines — including <strong>ModAE ProposifyAI</strong>, an AI-powered proposal automation system deployed for a commercial client — demonstrating our ability to take unstructured inputs and produce validated, structured outputs at scale. We have also built compliance and audit documentation workflows for regulated environments (NABH-accredited hospitals), which require the same field-level accuracy and traceability that freight document AI demands.</p>
+<p>---</p>
+<h2>Pricing</h2>
+<p>| Package | What's included | Indicative fee |
+|---|---|---|
+| <strong>Discovery audit</strong> | 2-week workflow audit, 3 prioritised use cases, baseline metrics | ₹1.5L – ₹2.5L |
+| <strong>Pilot</strong> | Discovery + 6-week live agent pilot on one document type | ₹6L – ₹10L |
+| <strong>Full transformation</strong> | All 5 stages, full ERP integration, 3+ document types automated | ₹18L – ₹35L |
+| <strong>Retained AI ops</strong> | Ongoing monitoring, retraining, new document types, SLA reporting | ₹1.5L – ₹3L / month |</p>
+<p><em>Fees vary by document volume, number of ERP integrations, and site count. All packages are fixed-fee or milestone-billed — no open-ended retainers at pilot stage.</em></p>
+<p>---</p>
+<h2>Book a 30-Minute Discovery Call</h2>
+<p>Tell us your monthly document volume and which document type costs you the most manual hours. We will come back with a specific automation estimate before the call ends.</p>
+<p>[Book your Discovery call → hi@bettroi.com](mailto:hi@bettroi.com)</p>
+  <div class="cta">
+    <h3 style="color:#fff;margin:0 0 .5rem">Ready to talk?</h3>
+    <p style="color:#ddd;margin:0">Book a 30-min Discovery call. We'll show you where AI fits in your operation.</p>
+    <a href="mailto:hi@bettroi.com?subject=Discovery%20call%20%E2%80%94%20Document%20AI%20for%20Logistics%20Companies">Email us</a>
+  </div>
+  <h2>Frequently asked questions</h2>
+  <details><summary>Which document types can your agents handle?</summary><p>Bills of lading, proof of delivery, carrier invoices, e-way bills, customs declarations (Bill of Entry, Shipping Bill, IGM/EGM), rate confirmation sheets, and packing lists. If you have a proprietary format, we train on your corpus during the Learn stage — typically 200–500 sample documents is enough for 90%+ extraction accuracy.</p></details>
+<details><summary>How accurate is the extraction? What happens when the agent is wrong?</summary><p>On standard printed and digital PDFs, field-level accuracy is typically 94–98% after the 30-day pilot tuning period. Handwritten or heavily degraded scans run lower — we will tell you the realistic number for your specific documents during Discovery. Every low-confidence extraction is flagged to a human queue rather than passed downstream silently.</p></details>
+<details><summary>We use Logi-Sys / Shipsy / a custom ERP. Can you integrate with that?</summary><p>Yes. We integrate via REST API where the system supports it, and via RPA bridge where it does not. We have connected document pipelines to SAP TM, Oracle TMS, Tally, and custom-built ERPs. We document the integration spec during the Wire stage so your internal IT team can maintain it independently.</p></details>
+<details><summary>How long before we see ROI?</summary><p>Most clients recover the pilot fee within 60–90 days of going live, primarily through reduced data-entry headcount redeployment, lower detention charges from faster document turnaround, and fewer invoice disputes. We establish the baseline during Discovery so the ROI calculation is yours to verify — not ours to claim.</p></details>
+<details><summary>Do we need to change our current document intake process before starting?</summary><p>No. We map to your existing intake channels — email, WhatsApp Business, shared drives, or vendor portals — during Discovery and build the agent to match current behaviour. Process improvements come after the pilot proves value, not as a precondition for starting.</p></details>
+  <footer>
+    Built by <a href="https://hopetech.me">HopeTech</a> · A Bettroi product · <a href="https://hopetech.me/sitemap.xml">Sitemap</a>
+  </footer>
+</div>
+</body>
+</html>
