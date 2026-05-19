@@ -1,0 +1,42 @@
+name: Brain — LinkedIn Drafter
+
+# Daily 18:30 IST, scan last 48h of brain content and draft 3 LinkedIn posts.
+# Output: _Marketing/linkedin-drafts/YYYY-MM-DD.md + Slack digest.
+
+on:
+  schedule:
+    - cron: '0 13 * * *'  # 13:00 UTC = 18:30 IST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Draft LinkedIn posts
+        env:
+          SUPABASE_URL: ${{ secrets.BRAIN_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.BRAIN_SUPABASE_SERVICE_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.BRAIN_ANTHROPIC_API_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.BRAIN_SLACK_BOT_TOKEN }}
+          SLACK_MURALI_USER_ID: ${{ secrets.BRAIN_SLACK_MURALI_USER_ID }}
+          SLACK_REVIEW_CONTENT_CHANNEL: ${{ secrets.BRAIN_SLACK_REVIEW_CONTENT_CHANNEL }}
+        run: node _Murali-Second-Brain/linkedin-drafter.mjs --hours=48
+      - name: Commit + push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _Marketing/linkedin-drafts/
+          if git diff --staged --quiet; then
+            echo "No new drafts."
+          else
+            git commit -m "chore(brain): linkedin drafts"
+            git push
+          fi
