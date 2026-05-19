@@ -26,12 +26,12 @@
 - **Blocker:** Private App token returns 401. Need to regenerate with these scopes: `crm.objects.contacts.write`, `crm.objects.companies.write`, `crm.objects.deals.write`, `crm.engagements.write`.
 - Verified extraction: Bajaj Energy call → company name, stage=discovery, next-step with owner+date all captured cleanly
 
-### S2 · Proposal auto-generator — 📋
-After a discovery call marked "send proposal", brain drafts a customized Google Doc proposal.
-- Reuses: `extract-proposals.mjs`, `sync-proposifyai.mjs`
-- Extends: pull industry-specific case studies from brain_chunks, pricing logic
-- Effort: ~3 days
-- Output: editable Google Doc in `Proposals/_drafts/`
+### S2 · Proposal auto-generator — ✅ BUILT
+**Target:** proposifyai.com (Murali's own product) instead of Google Docs.
+- Script: `_Murali-Second-Brain/proposify-from-fathom.mjs`
+- Workflow: `.github/workflows/brain-proposify-drafter.yml` (Mon-Fri 16:00 IST)
+- Flow: Fathom call → AI picks best matching Proposify `.claude/skills/generate-*-proposal.md` template → drafts full HTML proposal + pricing via Anthropic tool_use → inserts as `status=draft` into Proposify Supabase → Slack DM to Murali with edit link.
+- Verified: Bajaj Energy call → ai-ml skill picked → proposal id `645e3701-5882-462c-a2f7-1fe9ff27eaaf` created. Editable at `https://proposifyai.com/proposals/645e3701-5882-462c-a2f7-1fe9ff27eaaf`
 
 ### S3 · Meeting prep before every call — ✅ DONE
 `calendar-prep-watcher.mjs` already fires 15-35 min before any external meeting and DMs the prep brief.
