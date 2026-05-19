@@ -2,18 +2,18 @@
 domain: hopetech.me
 repo: chatgptnotes/openclaw-for-hostinger
 default_branch: main
-last_push: 2026-04-17T06:05:30Z
-size_kb: 3215
+last_push: 2026-05-19T06:49:40Z
+size_kb: 3235
 language: TypeScript
 description: ""
-extracted: 2026-05-18T07:14:58.861Z
+extracted: 2026-05-19T07:06:30.672Z
 ---
 # OpenClaw Dashboard — `hopetech.me`
 
 **Live URL:** https://hopetech.me/
 **GitHub repo:** https://github.com/chatgptnotes/openclaw-for-hostinger
-**Default branch:** `main`  ·  **Last push:** 2026-04-17T06:05:30Z
-**Language:** TypeScript  ·  **Repo size:** 3215KB
+**Default branch:** `main`  ·  **Last push:** 2026-05-19T06:49:40Z
+**Language:** TypeScript  ·  **Repo size:** 3235KB
 
 
 
@@ -70,10 +70,10 @@ extracted: 2026-05-18T07:14:58.861Z
 - `generated_sops_backup_20260206_211656/` — 420 files
 - `generated_sops/` — 415 files
 - `src/` — 76 files
+- `public/` — 70 files
 - `skills/` — 36 files
 - `memory/` — 22 files
 - `supabase/` — 22 files
-- `public/` — 10 files
 - `.claude/` — 7 files
 - `scripts/` — 7 files
 - `transcripts/` — 6 files
@@ -85,6 +85,8 @@ extracted: 2026-05-18T07:14:58.861Z
 
 ## Recent commits
 
+- `188656f` _2026-05-19_ — feat(seo): deploy 58 programmatic landing pages
+- `2b53dfc` _2026-05-19_ — feat(seo): deploy 4 programmatic landing pages
 - `45e51ff` _2026-04-17_ — docs: add Karpathy coding guidelines to CLAUDE.md
 - `1f2a38f` _2026-02-20_ — Backup for Hostinger migration - 2026-02-20
 - `18f25c2` _2026-02-07_ — Update dashboard: 6-day countdown, NABH audit protocol, daily reminders
@@ -93,8 +95,6 @@ extracted: 2026-05-18T07:14:58.861Z
 - `e78bbe6` _2026-02-05_ — 🤖 Complete OpenBot Reference Update: Dr. Murali BK Dashboard
 - `51fe1e1` _2026-02-03_ — fix: update build script to skip TypeScript strict checking
 - `0a13434` _2026-02-03_ — fix: resolve TypeScript build errors for Vercel deployment
-- `0e42f4a` _2026-02-03_ — Add simple search page test component
-- `9b7c819` _2026-02-03_ — Fix: Implement working Search functionality with simplified component
 
 ## README
 

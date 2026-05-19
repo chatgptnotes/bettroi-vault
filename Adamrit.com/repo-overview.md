@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-05-18T06:31:45Z
-size_kb: 37321
+last_push: 2026-05-19T06:53:07Z
+size_kb: 37423
 language: TypeScript
 description: ""
-extracted: 2026-05-18T07:15:04.178Z
+extracted: 2026-05-19T07:06:35.182Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-05-18T06:31:45Z
-**Language:** TypeScript  ·  **Repo size:** 37321KB
+**Default branch:** `main`  ·  **Last push:** 2026-05-19T06:53:07Z
+**Language:** TypeScript  ·  **Repo size:** 37423KB
 
 
 
@@ -72,7 +72,7 @@ extracted: 2026-05-18T07:15:04.178Z
 
 ## Folder breakdown
 
-- `src/` — 687 files
+- `src/` — 690 files
 - `supabase/` — 384 files
 - `public/` — 22 files
 - `claude-auto-confirm/` — 19 files
@@ -90,16 +90,16 @@ extracted: 2026-05-18T07:15:04.178Z
 
 ## Recent commits
 
+- `93c56c6` _2026-05-19_ — Merge pull request #302 from chatgptnotes/feat/finalbill-drug-interaction
+- `3744c5d` _2026-05-18_ — feat(finalbill): drug-interaction check in Saved Data → Prescriptions tab
+- `400305e` _2026-05-18_ — Merge pull request #301 from chatgptnotes/fix/pharmacy-cashbook
+- `7f84d54` _2026-05-18_ — Merge pull request #300 from chatgptnotes/fix/director-collection-card
+- `2a8256e` _2026-05-18_ — Fix pharmacy billing: realtime approvals, cash-bill balance, CashBook refunds
+- `e89da62` _2026-05-18_ — Fix Director Dashboard Collection card rendering blank
+- `e7d880e` _2026-05-18_ — Merge pull request #299 from chatgptnotes/feat/dd-kpis-clean
+- `915e399` _2026-05-18_ — Add KPI cards to Director Dashboard
 - `485fd6f` _2026-05-18_ — fix(discharge): richer alias-driven AI surgery description
 - `475d9b3` _2026-05-18_ — Add Treatment Type column to Advance Statement Report
-- `ff69c38` _2026-05-18_ — Correct FIX_DIRECT_SALE_BILLS_RLS.sql: disable RLS, not authenticated policy
-- `3407293` _2026-05-16_ — Merge pull request #297 from chatgptnotes/feat/pharmacy-stock-swap-photo-split
-- `daf6370` _2026-05-16_ — Fix Direct Sales Bill: RLS, cash book, stock traceability
-- `b4a5c74` _2026-05-16_ — Fix Direct Sales Bill: RLS, cash book, stock traceability
-- `ee5695a` _2026-05-16_ — fix(pharmacy): make the drug-interaction AI check reliable
-- `68bb20e` _2026-05-16_ — feat(pharmacy): stock-aware swap, photo split-view, editable items, dispense bil
-- `a033706` _2026-05-16_ — fix(discharge): make the OT-notes template drive the AI summary prompt
-- `159c2ff` _2026-05-15_ — fix(pharmacy-discount): close all remaining print bypass paths and data leaks
 
 ## README
 
