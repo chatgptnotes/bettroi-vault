@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WhatsApp Automation for Cement Plants | Bettroi</title>
+<meta name="description" content="Bettroi builds WhatsApp automation agents for cement plants — dispatch alerts, shift handover, vendor coordination and quality reports, without new software portals.">
+<link rel="canonical" href="https://hopetech.me/whatsapp-automation-for-cement-plants/">
+<meta property="og:title" content="WhatsApp Automation for Cement Plants | Bettroi">
+<meta property="og:description" content="Bettroi builds WhatsApp automation agents for cement plants — dispatch alerts, shift handover, vendor coordination and quality reports, without new software portals.">
+<meta property="og:url" content="https://hopetech.me/whatsapp-automation-for-cement-plants/">
+<meta property="og:type" content="website">
+<meta name="keywords" content="whatsapp automation for cement plants, cement plants, whatsapp automation, Bettroi, HopeTech">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Will this work with WhatsApp Business or do we need WhatsApp API?","acceptedAnswer":{"@type":"Answer","text":"You need the WhatsApp Business API (via an official BSP like Interakt, Gupshup, or Twilio). We handle the BSP selection and onboarding as part of the Wire stage. For a 30-day pilot we can sometimes work with existing WhatsApp Business accounts with limited functionality, but full automation requires API access. We will confirm this in the Discovery audit."}},{"@type":"Question","name":"Our plant uses SAP PM for maintenance — can your agents read from it?","acceptedAnswer":{"@type":"Answer","text":"Yes. We integrate with SAP PM, SAP PP, and most ERP systems that expose an API or allow database-level read access. If your SAP instance is heavily customised, the Wire stage includes a 1-week integration scoping sprint before we commit to a timeline."}},{"@type":"Question","name":"What if our SCADA system is old and does not have an API?","acceptedAnswer":{"@type":"Answer","text":"Most older SCADA historians (Wonderware, iFIX, PI System) have ODBC or OPC-DA access even without a modern REST API. We have worked with industrial data sources that require ODBC polling rather than webhooks. The Discovery audit will identify the exact data extraction method available in your environment."}},{"@type":"Question","name":"How do we handle messages going to wrong groups or wrong people?","acceptedAnswer":{"@type":"Answer","text":"Routing logic — which agent sends to which group or contact — is configured during the Learn stage and tested with real data before go-live. We build an admin control layer where your IT or plant manager can update routing rules without touching code. Mis-routing incidents drop to near-zero within the first two weeks of a pilot based on our industrial client work."}},{"@type":"Question","name":"Is this compliant with WhatsApp's policies for business messaging?","acceptedAnswer":{"@type":"Answer","text":"Yes, provided you use an official WhatsApp Business Solution Provider and follow WhatsApp's messaging policy for transactional and alert messages. Operational alerts (shift reports, dispatch ETAs, quality deviations) qualify as transactional messages and are within policy. We will not build promotional broadcast flows — that is a different use-case with different compliance requirements."}}]}</script>
+<style>
+  :root { --c: #1a1a2e; --m: #16213e; --a: #0f3460; --t: #e94560; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 17px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--c); background: #fafafa; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  header { padding: 1.5rem 0 2.5rem; border-bottom: 1px solid #eaeaea; margin-bottom: 2rem; }
+  header a { color: var(--m); text-decoration: none; font-weight: 600; font-size: 18px; }
+  h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 1rem; color: var(--c); }
+  .sub { font-size: 1.15rem; color: #555; margin-bottom: 2rem; }
+  h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--m); }
+  h3 { font-size: 1.15rem; margin: 1.5rem 0 .5rem; }
+  p { margin-bottom: 1rem; }
+  ul { margin: 0 0 1rem 1.5rem; }
+  li { margin-bottom: .35rem; }
+  strong { color: var(--a); }
+  .cta { background: var(--c); color: #fff; padding: 1.75rem; border-radius: 8px; margin: 3rem 0 2rem; text-align: center; }
+  .cta a { background: var(--t); color: #fff; padding: .85rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: .5rem; }
+  details { background: #fff; border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: .75rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--m); }
+  details[open] summary { margin-bottom: .75rem; }
+  footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eaeaea; color: #888; font-size: 14px; text-align: center; }
+  footer a { color: var(--a); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="https://hopetech.me">HopeTech</a></header>
+  <h1>WhatsApp Automation for Cement Plants</h1>
+  <h2>Your plant runs on WhatsApp. Let's make that work properly.</h2>
+<p>Bettroi builds WhatsApp automation agents for cement plants — so shift alerts, dispatch updates, and vendor confirmations happen in under 60 seconds, not 20 phone calls.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Cement plant operations already live on WhatsApp — but every group is a chaos of screenshots, voice notes, and missed messages. Shift supervisors manually forward kiln readings to the next crew, dispatch coordinators chase truck ETAs on personal numbers, and quality rejections get buried in 200-message threads. When something goes wrong at 2 AM, accountability is a screenshot hunt.</p>
+<p>---</p>
+<h2>What We Build</h2>
+<ul><li><strong>Shift handover bot</strong> — pulls SCADA readings at shift-change time, formats a structured summary, and posts it to the right WhatsApp group automatically</li>
+<li><strong>Dispatch tracking agent</strong> — pings truck drivers at defined intervals, collects ETAs via WhatsApp reply, and updates a live dispatch log without human follow-up</li>
+<li><strong>Vendor coordination workflow</strong> — automated PO confirmations, delivery schedule reminders, and rejection alerts sent directly to supplier contacts over WhatsApp</li>
+<li><strong>Quality deviation alert agent</strong> — triggers an instant WhatsApp message to QC lead + plant manager when any parameter (SO₃, LSF, residue) crosses threshold</li>
+<li><strong>Daily production summary bot</strong> — consolidates kiln output, power consumption, and downtime into a formatted WhatsApp message sent to leadership at 6 AM</li>
+<li><strong>Breakdown escalation agent</strong> — structured incident message (asset, fault code, first response taken) auto-routed to maintenance and HOD WhatsApp within 90 seconds of log entry</li></ul>
+<p>---</p>
+<h2>How We Do It: The Be AI-First Framework</h2>
+<p>We do not hand you a chatbot and disappear. Every engagement runs through five stages:</p>
+<p><strong>1. Discovery (Week 1–2)</strong>
+Two-week audit of your existing WhatsApp groups, SCADA data outputs, ERP touchpoints, and shift SOPs. We identify the three highest-ROI automation candidates — typically dispatch coordination, shift handover, and quality alerts. Fixed-fee, zero commitment beyond this.</p>
+<p><strong>2. Learn (Weeks 3–8)</strong>
+We pilot one agent — usually dispatch tracking or shift handover — and run it live for 30 days alongside your existing process. We measure: messages sent manually vs. automated, average response time before vs. after, escalation lag. Numbers on paper before we go further.</p>
+<p><strong>3. Wire (Weeks 9–12)</strong>
+Winning agents get integrated into your actual systems — SCADA historian, SAP/Oracle plant module, or even a shared Google Sheet if that's what you run. WhatsApp as the front-end, your data sources as the back-end.</p>
+<p><strong>4. Automate</strong>
+Manual handoffs — the "send this to the group" reminders, the daily copy-paste reports — get replaced by agent orchestration. Your team stops being a messaging relay.</p>
+<p><strong>5. Scale</strong>
+Roll out across shifts, units, and sister plants with monitoring dashboards and governance protocols. New plant coming online? Agent deployment takes days, not months.</p>
+<p>---</p>
+<h2>What We've Built Before</h2>
+<p>We scoped and structured an AI system for Bajaj's power plant operations — a heavy industrial environment with similar shift-based workflows, multi-vendor coordination, and real-time parameter monitoring requirements. That engagement was closed at ₹5,78,000 with quarterly payments and one-year support.</p>
+<p>We are also developing a P&ID Extractor product for industrial plants — which means we understand how cement plant technical documentation, equipment hierarchies, and process flow data are structured. We are not starting from zero on plant operations.</p>
+<p>---</p>
+<h2>Pricing</h2>
+<p>| Engagement | What's included | Typical investment |
+|---|---|---|
+| Discovery audit | 2-week workflow audit, 3 automation candidates identified, written report | ₹75,000 |
+| Pilot | Discovery + one live agent for 30 days, baseline vs. AI measurement | ₹2,50,000 |
+| Full transformation | All 5 stages, 3–5 agents, SCADA/ERP integration, 12 weeks | ₹6,00,000–₹9,00,000 |
+| Retained AI ops | Monitoring, updates, new agent deployment | ₹40,000–₹80,000/month |</p>
+<p>All prices exclusive of GST. Cloud/API pass-through costs billed at actuals.</p>
+<p>---</p>
+<h2>Book a Discovery Call</h2>
+<p>If your plant already runs on WhatsApp and your team is drowning in manual forwards, a 30-minute call is enough to tell you whether automation will move the needle.</p>
+<p>[Book a 30-min Discovery Call — hi@bettroi.com](mailto:hi@bettroi.com)</p>
+  <div class="cta">
+    <h3 style="color:#fff;margin:0 0 .5rem">Ready to talk?</h3>
+    <p style="color:#ddd;margin:0">Book a 30-min Discovery call. We'll show you where AI fits in your operation.</p>
+    <a href="mailto:hi@bettroi.com?subject=Discovery%20call%20%E2%80%94%20WhatsApp%20Automation%20for%20Cement%20Plants">Email us</a>
+  </div>
+  <h2>Frequently asked questions</h2>
+  <details><summary>Will this work with WhatsApp Business or do we need WhatsApp API?</summary><p>You need the WhatsApp Business API (via an official BSP like Interakt, Gupshup, or Twilio). We handle the BSP selection and onboarding as part of the Wire stage. For a 30-day pilot we can sometimes work with existing WhatsApp Business accounts with limited functionality, but full automation requires API access. We will confirm this in the Discovery audit.</p></details>
+<details><summary>Our plant uses SAP PM for maintenance — can your agents read from it?</summary><p>Yes. We integrate with SAP PM, SAP PP, and most ERP systems that expose an API or allow database-level read access. If your SAP instance is heavily customised, the Wire stage includes a 1-week integration scoping sprint before we commit to a timeline.</p></details>
+<details><summary>What if our SCADA system is old and does not have an API?</summary><p>Most older SCADA historians (Wonderware, iFIX, PI System) have ODBC or OPC-DA access even without a modern REST API. We have worked with industrial data sources that require ODBC polling rather than webhooks. The Discovery audit will identify the exact data extraction method available in your environment.</p></details>
+<details><summary>How do we handle messages going to wrong groups or wrong people?</summary><p>Routing logic — which agent sends to which group or contact — is configured during the Learn stage and tested with real data before go-live. We build an admin control layer where your IT or plant manager can update routing rules without touching code. Mis-routing incidents drop to near-zero within the first two weeks of a pilot based on our industrial client work.</p></details>
+<details><summary>Is this compliant with WhatsApp's policies for business messaging?</summary><p>Yes, provided you use an official WhatsApp Business Solution Provider and follow WhatsApp's messaging policy for transactional and alert messages. Operational alerts (shift reports, dispatch ETAs, quality deviations) qualify as transactional messages and are within policy. We will not build promotional broadcast flows — that is a different use-case with different compliance requirements.</p></details>
+  <footer>
+    Built by <a href="https://hopetech.me">HopeTech</a> · A Bettroi product · <a href="https://hopetech.me/sitemap.xml">Sitemap</a>
+  </footer>
+</div>
+</body>
+</html>
