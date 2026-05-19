@@ -1,47 +1,42 @@
 ---
 date: 2026-05-19
 source: diary
-slack_message: https://bettroi.slack.com/files/U0B2UB221QA/F0B46NNUR5M/whatsapp_image_2026-03-19_at_18.11.10.jpeg
-summary: "Patient report review workflow and clinic admin portal feature requirements for doctor."
+slack_message: https://bettroi.slack.com/files/U0B2UB221QA/F0B4Q3Z8HCZ/whatsapp_image_2026-03-19_at_18.11.10.jpeg
+summary: "Patient report review workflow and clinic admin portal feature requirements"
 project: Doctors digital office
-captured_at: 2026-05-19T00:38:05.416Z
+captured_at: 2026-05-19T00:49:47.210Z
 ---
 # Diary — 2026-05-19
 
-*Patient report review workflow and clinic admin portal feature requirements for doctor.*
+*Patient report review workflow and clinic admin portal feature requirements*
 
 ```markdown
 M T W T F S S
 Page No.:
 Date:                    YOUVA
 
----
-
 Patient report to be reviewed
-by Doctor/ Pulseruge admits
+by Doctor / Before admito
 for Dr Shweta
-→ Only Δ 8 next steps in summary
+→ Only △ 8 next steps in summary
 
 Ridhima - 1st line before to Shweta
-  24 slots/month - Reschedule
-  M8↑ 3 slots
+  24 slots/month. Reschedule
+  MBT 3 slots
   within 3 mths free
-        >3mths - Paid consultation.
-        • 50% discount after a period
+        |  >3 mths - Paid consultation.
+        |  • 50% discount after a period
+        °
 
----
-
-clinic admin  IB1 payments
+clinic admin IB1 payments
 Create Doctor ←                    14 day trial
-        Patient
+         Patient
 
-        Login as Doctor
+Login as Doctor
 
-        Patient appointment.
+Patient appointment.
 
-        Admin portal.
-
----
+Admin portal
 
 clinic admin should be able to
   upload logos & Brand
