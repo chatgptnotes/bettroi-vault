@@ -18,12 +18,13 @@
 
 ## Sales (revenue-direct)
 
-### S1 · Auto-CRM update from Fathom calls — 📋
-After every Zoom call, brain extracts: company, attendees, deal-stage signal, next-step, decision-maker, blockers → writes to CRM.
-- Today: no CRM is wired. First step is choosing the target (Pipedrive / HubSpot / Notion CRM / Airtable).
-- Reuses: `fathom-sync.mjs`, `extract-action-items.mjs`, brain_chunks
-- Effort: ~2 days
-- Output: one CRM row updated per call, with provenance link to Fathom recording
+### S1 · Auto-CRM update from Fathom calls — ✅ BUILT (token fix needed)
+**CRM:** HubSpot (decided 2026-05-19)
+- Script: `_Murali-Second-Brain/hubspot-from-fathom.mjs`
+- Workflow: `.github/workflows/brain-hubspot-sync.yml` (Mon-Fri 17:30 IST)
+- Flow: Fathom call → AI extracts company/stage/next-step → upsert HubSpot company + contact + call engagement → Slack digest to Murali
+- **Blocker:** Private App token returns 401. Need to regenerate with these scopes: `crm.objects.contacts.write`, `crm.objects.companies.write`, `crm.objects.deals.write`, `crm.engagements.write`.
+- Verified extraction: Bajaj Energy call → company name, stage=discovery, next-step with owner+date all captured cleanly
 
 ### S2 · Proposal auto-generator — 📋
 After a discovery call marked "send proposal", brain drafts a customized Google Doc proposal.
