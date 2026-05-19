@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Predictive Analytics for Hospitals | Bettroi</title>
+<meta name="description" content="Bettroi builds predictive analytics systems for hospitals that flag deteriorating patients, prevent bed crunches, and cut emergency escalations — before they happen.">
+<link rel="canonical" href="https://hopetech.me/predictive-analytics-for-hospitals/">
+<meta property="og:title" content="Predictive Analytics for Hospitals | Bettroi">
+<meta property="og:description" content="Bettroi builds predictive analytics systems for hospitals that flag deteriorating patients, prevent bed crunches, and cut emergency escalations — before they happen.">
+<meta property="og:url" content="https://hopetech.me/predictive-analytics-for-hospitals/">
+<meta property="og:type" content="website">
+<meta name="keywords" content="predictive analytics for hospitals, hospitals, predictive analytics, Bettroi, HopeTech">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Our HMS data is messy — 4 years of inconsistent entries. Can you still build useful models on it?","acceptedAnswer":{"@type":"Answer","text":"Yes, and this is the norm, not the exception. Messy HMS data is what we audit in Stage 1 — Discovery. We assess what's clean enough to model, what needs imputation, and what's simply unusable. In our experience, even 60–70% clean historical data is sufficient to build a useful deterioration or bed demand model. We'll tell you exactly what we're working with before any modelling starts."}},{"@type":"Question","name":"How long before we see a prediction that actually changes a clinical decision?","acceptedAnswer":{"@type":"Answer","text":"Typically within 30 days of the pilot going live. The first 2 weeks are integration and shadow mode — the agent runs but doesn't alert yet. By week 3–4 we switch to live alerts on one ward or one metric, and you start seeing whether the predictions match clinical reality. If they don't, we tune before expanding."}},{"@type":"Question","name":"We already have a BI dashboard from our HMS vendor. How is this different?","acceptedAnswer":{"@type":"Answer","text":"HMS vendor dashboards show you what happened yesterday. Predictive analytics tells you what's likely to happen in the next 24–72 hours, with enough lead time to act. The difference is backward-looking reporting vs. forward-looking alerts. We also personalise the model to your hospital's patient mix and seasonality — a generic dashboard cannot do that."}},{"@type":"Question","name":"Do your agents work with Indian HMS platforms like Practo Health Suite, Insta HMS, or eHospital?","acceptedAnswer":{"@type":"Answer","text":"Yes. We have worked with all three architectures and a handful of custom hospital-built systems. The integration approach differs — some use API calls, some need a read-replica database connection, a few require a lightweight ETL layer. We scope this explicitly during Discovery so there are no surprises during Wire."}},{"@type":"Question","name":"What happens to patient data privacy and DPDP compliance during this process?","acceptedAnswer":{"@type":"Answer","text":"All modelling is done on de-identified or pseudonymised data wherever possible. We do not move patient data outside your server environment without written data processing agreements. For on-premise HMS setups, the agent runs locally — nothing leaves your hospital network. We can provide a data handling specification document during the Discovery phase for your legal or compliance team to review."}}]}</script>
+<style>
+  :root { --c: #1a1a2e; --m: #16213e; --a: #0f3460; --t: #e94560; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 17px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--c); background: #fafafa; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  header { padding: 1.5rem 0 2.5rem; border-bottom: 1px solid #eaeaea; margin-bottom: 2rem; }
+  header a { color: var(--m); text-decoration: none; font-weight: 600; font-size: 18px; }
+  h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 1rem; color: var(--c); }
+  .sub { font-size: 1.15rem; color: #555; margin-bottom: 2rem; }
+  h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--m); }
+  h3 { font-size: 1.15rem; margin: 1.5rem 0 .5rem; }
+  p { margin-bottom: 1rem; }
+  ul { margin: 0 0 1rem 1.5rem; }
+  li { margin-bottom: .35rem; }
+  strong { color: var(--a); }
+  .cta { background: var(--c); color: #fff; padding: 1.75rem; border-radius: 8px; margin: 3rem 0 2rem; text-align: center; }
+  .cta a { background: var(--t); color: #fff; padding: .85rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: .5rem; }
+  details { background: #fff; border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: .75rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--m); }
+  details[open] summary { margin-bottom: .75rem; }
+  footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eaeaea; color: #888; font-size: 14px; text-align: center; }
+  footer a { color: var(--a); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="https://hopetech.me">HopeTech</a></header>
+  <h1>Predictive Analytics for Hospitals: Catch Problems Before They Become Crises</h1>
+  <h2>Your HMS is full of data. Your doctors are still getting surprised.</h2>
+<p>Bettroi builds predictive analytics agents for hospitals that surface the right signal — deteriorating patient, incoming bed crunch, supply stockout — before your team is already in firefighting mode. Hospitals we work with start seeing actionable predictions within 30 days of the pilot going live.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Most hospitals in India are sitting on 3–7 years of HMS, lab, and billing data that nobody has cleaned or modelled. Clinical decisions still run on gut + experience, which works until census spikes 20% in monsoon season or a single ICU nurse is managing 11 patients. Readmission rates stay stubbornly high because discharge decisions are made on the day, not forecasted 48 hours earlier when intervention is still cheap.</p>
+<p>---</p>
+<h2>What We Build</h2>
+<ul><li><strong>Patient deterioration alert agent</strong> — scores every admitted patient every 4 hours against early warning indices (NEWS2 or custom), pushes ranked alerts to duty doctor's phone</li>
+<li><strong>30-day readmission risk model</strong> — trained on your own HMS discharge data; flags high-risk patients at the time of discharge so care coordinators can intervene</li>
+<li><strong>ICU/ward bed demand forecaster</strong> — 72-hour rolling prediction of bed occupancy by specialty, fed from current census + historical admission curves</li>
+<li><strong>OT utilisation predictor</strong> — identifies underbooked and overbooked OT slots 5–7 days ahead so admin can reallocate or release</li>
+<li><strong>Pharmacy stockout early-warning feed</strong> — flags drugs likely to hit zero stock in the next 14 days based on current patient mix and consumption rate</li>
+<li><strong>Dashboard + alerting layer</strong> — one ops screen for the medical superintendent; WhatsApp/SMS alert routing for clinical staff who will never open another web portal</li></ul>
+<p>---</p>
+<h2>How We Do It: The Be AI-First Framework</h2>
+<p><strong>Stage 1 — Discovery (2 weeks)</strong>
+We audit your HMS structure, lab integrations, and current reporting workflows. We identify the 3 highest-ROI prediction targets in your specific hospital — not generic healthcare benchmarks. You get a written findings report regardless of what you do next.</p>
+<p><strong>Stage 2 — Learn (4 weeks)</strong>
+We build one prediction agent — typically patient deterioration or bed demand — run it in shadow mode for 30 days alongside your existing process, and measure baseline vs. AI on agreed metrics. You see real numbers before committing to anything larger.</p>
+<p><strong>Stage 3 — Wire</strong>
+Winning agents get integrated into your HMS (Practo, Insta HMS, eHospital, custom — we've handled all three architectures). Alerts route to existing staff communication channels. No parallel system for your nurses to ignore.</p>
+<p><strong>Stage 4 — Automate</strong>
+Manual handoffs — morning census reporting, daily stock checks, weekly bed utilisation slides — get replaced by agent-generated outputs that land in the right inbox automatically.</p>
+<p><strong>Stage 5 — Scale</strong>
+If you run multiple sites or specialties, we roll the system out with per-site calibration, usage monitoring, and a governance layer so your CMO can trust what's being surfaced.</p>
+<p>---</p>
+<h2>What We've Built Before</h2>
+<p>Bettroi's healthcare AI work runs through HopeTech, the AI software arm of Hope+Aishman Hospitals, Nagpur — a real operating hospital group, not a reference customer. We have built and iterated on 400+ structured clinical SOPs inside an AI agent framework, which means our hospital-specific models are trained on workflows written by people who have actually run wards and OTs.</p>
+<p>Our founder Dr. Murali is an orthopedic surgeon with 7 years of active hospital operations in Nagpur, which means every agent we spec has been pressure-tested against how clinical teams actually work — shift changes, locum doctors, HMS downtime and all.</p>
+<p>---</p>
+<h2>Pricing</h2>
+<p>| Engagement | What's included | Starting from |
+|---|---|---|
+| Discovery Audit | 2-week workflow audit, findings report, 3 prioritised AI candidates | ₹75,000 |
+| Pilot | Discovery + one live prediction agent, 30-day measurement | ₹3,50,000 |
+| Full Transformation | All 5 stages, 3–5 prediction agents, HMS integration, dashboard | ₹12,00,000 |
+| Retained AI Ops | Monthly monitoring, model refresh, alert tuning | ₹60,000/month |</p>
+<p>Pricing is fixed-fee for Discovery and Pilot. Full transformation is milestone-billed across 12 weeks. No hidden "customisation surcharges" once scope is agreed.</p>
+<p>---</p>
+<h2>Book a Discovery Call</h2>
+<p>If you run a hospital with more than 50 beds and you are spending time in weekly meetings asking why something happened that you should have seen coming — this is exactly the problem we solve.</p>
+<p>[<strong>Book a 30-min Discovery Call → hi@bettroi.com</strong>](mailto:hi@bettroi.com)</p>
+<p>Tell us your bed count, your HMS, and the one clinical or operational surprise that cost you the most in the last 6 months. That's enough to start.</p>
+  <div class="cta">
+    <h3 style="color:#fff;margin:0 0 .5rem">Ready to talk?</h3>
+    <p style="color:#ddd;margin:0">Book a 30-min Discovery call. We'll show you where AI fits in your operation.</p>
+    <a href="mailto:hi@bettroi.com?subject=Discovery%20call%20%E2%80%94%20Predictive%20Analytics%20for%20Hospitals%3A%20Catch%20Problems%20Before%20They%20Become%20Crises">Email us</a>
+  </div>
+  <h2>Frequently asked questions</h2>
+  <details><summary>Our HMS data is messy — 4 years of inconsistent entries. Can you still build useful models on it?</summary><p>Yes, and this is the norm, not the exception. Messy HMS data is what we audit in Stage 1 — Discovery. We assess what's clean enough to model, what needs imputation, and what's simply unusable. In our experience, even 60–70% clean historical data is sufficient to build a useful deterioration or bed demand model. We'll tell you exactly what we're working with before any modelling starts.</p></details>
+<details><summary>How long before we see a prediction that actually changes a clinical decision?</summary><p>Typically within 30 days of the pilot going live. The first 2 weeks are integration and shadow mode — the agent runs but doesn't alert yet. By week 3–4 we switch to live alerts on one ward or one metric, and you start seeing whether the predictions match clinical reality. If they don't, we tune before expanding.</p></details>
+<details><summary>We already have a BI dashboard from our HMS vendor. How is this different?</summary><p>HMS vendor dashboards show you what happened yesterday. Predictive analytics tells you what's likely to happen in the next 24–72 hours, with enough lead time to act. The difference is backward-looking reporting vs. forward-looking alerts. We also personalise the model to your hospital's patient mix and seasonality — a generic dashboard cannot do that.</p></details>
+<details><summary>Do your agents work with Indian HMS platforms like Practo Health Suite, Insta HMS, or eHospital?</summary><p>Yes. We have worked with all three architectures and a handful of custom hospital-built systems. The integration approach differs — some use API calls, some need a read-replica database connection, a few require a lightweight ETL layer. We scope this explicitly during Discovery so there are no surprises during Wire.</p></details>
+<details><summary>What happens to patient data privacy and DPDP compliance during this process?</summary><p>All modelling is done on de-identified or pseudonymised data wherever possible. We do not move patient data outside your server environment without written data processing agreements. For on-premise HMS setups, the agent runs locally — nothing leaves your hospital network. We can provide a data handling specification document during the Discovery phase for your legal or compliance team to review.</p></details>
+  <footer>
+    Built by <a href="https://hopetech.me">HopeTech</a> · A Bettroi product · <a href="https://hopetech.me/sitemap.xml">Sitemap</a>
+  </footer>
+</div>
+</body>
+</html>

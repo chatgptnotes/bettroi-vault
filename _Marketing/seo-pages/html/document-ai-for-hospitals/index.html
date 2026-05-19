@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Document AI for Hospitals | Bettroi</title>
+<meta name="description" content="Bettroi builds document AI agents for hospitals that cut discharge summary time, automate MLC paperwork, and reduce billing errors. Fixed-fee pilots from ₹2L.">
+<link rel="canonical" href="https://hopetech.me/document-ai-for-hospitals/">
+<meta property="og:title" content="Document AI for Hospitals | Bettroi">
+<meta property="og:description" content="Bettroi builds document AI agents for hospitals that cut discharge summary time, automate MLC paperwork, and reduce billing errors. Fixed-fee pilots from ₹2L.">
+<meta property="og:url" content="https://hopetech.me/document-ai-for-hospitals/">
+<meta property="og:type" content="website">
+<meta name="keywords" content="document AI for hospitals, hospitals, document ai, Bettroi, HopeTech">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"We already have an HMS. Will your document AI agents work with it?","acceptedAnswer":{"@type":"Answer","text":"Yes, that is the core of the Wire stage. We have integrated with Practo, Insta HMS, eHospital, and custom-built systems. During Discovery we map exactly what data your HMS exposes — via API or database — and build the integration layer accordingly. If your HMS has no API, we use structured data extraction from exports or PDFs. We do not ask you to change your HMS."}},{"@type":"Question","name":"How accurate are AI-generated discharge summaries? Can we trust them without doctor review?","acceptedAnswer":{"@type":"Answer","text":"We design every clinical document agent with a mandatory human-in-the-loop review step. The agent drafts; the doctor reviews and signs. In our pilots, review time drops to under 5 minutes per summary because the structure and content are already 85-90% complete. We do not recommend removing doctor sign-off for clinical documents — and neither should any vendor who tells you otherwise."}},{"@type":"Question","name":"We have handwritten case sheets and mixed-language notes. Can your system handle that?","acceptedAnswer":{"@type":"Answer","text":"Partially, and we will tell you exactly how much during Discovery. Typed or structured EMR data gives the cleanest results. For handwritten notes, we use OCR with a post-processing layer, but accuracy depends on handwriting legibility and whether notes follow any standard format. We will test on a real sample of your documents before quoting a pilot so there are no surprises."}},{"@type":"Question","name":"What does NABH compliance have to do with document AI?","acceptedAnswer":{"@type":"Answer","text":"Quite a lot. NABH standards specify what must appear in discharge summaries, consent records, MLC reports, and nursing notes. Our document QA agent checks every generated document against the relevant NABH standard fields before it is filed. This means audit-readiness is built in, not bolted on at assessment time."}},{"@type":"Question","name":"How long before we see ROI from the pilot?","acceptedAnswer":{"@type":"Answer","text":"The 30-day Learn phase is designed specifically to answer this. We measure document turnaround time, staff hours saved, and insurance rejection rates before and after the agent goes live. For a 150-bed hospital piloting the discharge summary agent on one ward, we typically see 60-70% reduction in summary preparation time within the first 3 weeks. We give you the numbers and you decide whether to proceed."}}]}</script>
+<style>
+  :root { --c: #1a1a2e; --m: #16213e; --a: #0f3460; --t: #e94560; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 17px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--c); background: #fafafa; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  header { padding: 1.5rem 0 2.5rem; border-bottom: 1px solid #eaeaea; margin-bottom: 2rem; }
+  header a { color: var(--m); text-decoration: none; font-weight: 600; font-size: 18px; }
+  h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 1rem; color: var(--c); }
+  .sub { font-size: 1.15rem; color: #555; margin-bottom: 2rem; }
+  h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--m); }
+  h3 { font-size: 1.15rem; margin: 1.5rem 0 .5rem; }
+  p { margin-bottom: 1rem; }
+  ul { margin: 0 0 1rem 1.5rem; }
+  li { margin-bottom: .35rem; }
+  strong { color: var(--a); }
+  .cta { background: var(--c); color: #fff; padding: 1.75rem; border-radius: 8px; margin: 3rem 0 2rem; text-align: center; }
+  .cta a { background: var(--t); color: #fff; padding: .85rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: .5rem; }
+  details { background: #fff; border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: .75rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--m); }
+  details[open] summary { margin-bottom: .75rem; }
+  footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eaeaea; color: #888; font-size: 14px; text-align: center; }
+  footer a { color: var(--a); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="https://hopetech.me">HopeTech</a></header>
+  <h1>Document AI for Hospitals: Automate Clinical and Administrative Paperwork</h1>
+  <h2>Your doctors are spending 2+ hours a day on paperwork that AI can handle in minutes</h2>
+<p>Bettroi builds document AI agents for multi-specialty and standalone hospitals — purpose-built for Indian HMS environments, NABH documentation requirements, and the messy reality of mixed handwriting, regional languages, and fragmented EHRs.</p>
+<p>One outcome: hospitals we work with have reduced discharge summary turnaround from 4 hours to under 30 minutes on piloted wards.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Indian hospital staff generate an enormous volume of documents — discharge summaries, MLC reports, insurance pre-authorizations, consent forms, OT notes — most of it typed manually by overworked residents or admin staff working off handwritten case sheets. A 200-bed hospital can have 3 to 5 FTEs doing nothing but documentation. Errors in insurance claim forms alone cause 15–25% claim rejections at most mid-size hospitals, directly hitting revenue. Meanwhile, NABH audit cycles force a documentation scramble every time because records are inconsistent and scattered across paper files, WhatsApp, and 3 different software systems.</p>
+<p>---</p>
+<h2>What We Build</h2>
+<ul><li><strong>Discharge summary generation agent</strong> — reads structured EMR data + ward notes, drafts a complete discharge summary in the treating doctor's preferred format; doctor reviews and signs in under 5 minutes</li>
+<li><strong>Insurance pre-authorization bot</strong> — extracts ICD codes, procedure codes, and clinical justification from case files; fills TPA-specific forms automatically and flags missing fields before submission</li>
+<li><strong>MLC and medico-legal documentation assistant</strong> — structured intake from nursing notes and doctor dictation; produces court-ready MLC reports with correct timestamps and witness fields</li>
+<li><strong>Consent form auto-population pipeline</strong> — pulls patient demographics and procedure details from HMS; generates filled consent forms in the right language (English/Hindi/Marathi supported)</li>
+<li><strong>Discharge instruction sheet generator</strong> — produces patient-facing post-discharge care instructions from clinical notes, in plain language and local language where required</li>
+<li><strong>Document QA and audit-readiness checker</strong> — scans existing patient files for missing mandatory fields (NABH, NABL compliance), generates a gap report ward-by-ward</li></ul>
+<p>---</p>
+<h2>How We Do It: The Be AI-First Framework</h2>
+<p>We do not drop software and disappear. Every engagement runs through five structured stages.</p>
+<p><strong>1. Discovery (2 weeks)</strong>
+We audit your current documentation workflows end-to-end — what gets generated, who generates it, where it lives, and where the rework happens. You get a prioritized list of the 3 highest-ROI document AI candidates specific to your hospital's volume and specialty mix.</p>
+<p><strong>2. Learn (30-day pilot)</strong>
+We deploy one agent — typically the discharge summary generator or the insurance pre-auth bot — on one ward or one billing team. We measure baseline time-per-document, error rate, and staff effort against AI-assisted numbers. You see real data before committing to the full build.</p>
+<p><strong>3. Wire (HMS and system integration)</strong>
+Winning agents get connected to your live systems — whether that's Practo, Insta HMS, eHospital, or a custom stack. We handle the API work, the data mapping, and the edge cases. No agent goes live without being tested against your actual document templates.</p>
+<p><strong>4. Automate (remove manual handoffs)</strong>
+Once integrated, we replace the manual steps — no more copy-pasting from EMR to Word to email. Agent orchestration handles the full document lifecycle: generation, review routing, approval, storage, and filing.</p>
+<p><strong>5. Scale (governance and rollout)</strong>
+We roll out across wards, departments, and (for hospital chains) multiple sites. We set up monitoring dashboards so your admin team can see document throughput, rejection rates, and agent accuracy in real time.</p>
+<p>---</p>
+<h2>What We Have Built</h2>
+<p>Dr. Murali's Hope+Aishman hospitals in Nagpur are a direct reference point. We have generated over 400 structured clinical SOPs using AI-assisted document pipelines for this hospital group — including department-specific procedure documents, compliance checklists, and training materials. The underlying system is built on the same document AI stack we deploy for clients. This is not a theoretical capability — it is running infrastructure.</p>
+<p>---</p>
+<h2>Pricing</h2>
+<p>| Engagement | Duration | Fee |
+|---|---|---|
+| Discovery audit | 2 weeks | From ₹75,000 |
+| Pilot (Discovery + Learn) | 6 weeks | From ₹2,00,000 |
+| Full transformation (all 5 stages) | 12 weeks | From ₹6,00,000 |
+| Retained AI operations | Monthly | From ₹60,000/month |</p>
+<p>Fees are fixed for Discovery and Pilot stages. Full transformation is milestone-billed. Pricing scales with bed count, HMS complexity, and number of document types in scope.</p>
+<p>---</p>
+<h2>Book a 30-Minute Discovery Call</h2>
+<p>Tell us your bed count, your HMS, and which document bottleneck is costing you the most time right now. We will come back with a specific shortlist of what we would build and what the pilot would cost.</p>
+<p>[Book now — hi@bettroi.com](mailto:hi@bettroi.com)</p>
+  <div class="cta">
+    <h3 style="color:#fff;margin:0 0 .5rem">Ready to talk?</h3>
+    <p style="color:#ddd;margin:0">Book a 30-min Discovery call. We'll show you where AI fits in your operation.</p>
+    <a href="mailto:hi@bettroi.com?subject=Discovery%20call%20%E2%80%94%20Document%20AI%20for%20Hospitals%3A%20Automate%20Clinical%20and%20Administrative%20Paperwork">Email us</a>
+  </div>
+  <h2>Frequently asked questions</h2>
+  <details><summary>We already have an HMS. Will your document AI agents work with it?</summary><p>Yes, that is the core of the Wire stage. We have integrated with Practo, Insta HMS, eHospital, and custom-built systems. During Discovery we map exactly what data your HMS exposes — via API or database — and build the integration layer accordingly. If your HMS has no API, we use structured data extraction from exports or PDFs. We do not ask you to change your HMS.</p></details>
+<details><summary>How accurate are AI-generated discharge summaries? Can we trust them without doctor review?</summary><p>We design every clinical document agent with a mandatory human-in-the-loop review step. The agent drafts; the doctor reviews and signs. In our pilots, review time drops to under 5 minutes per summary because the structure and content are already 85-90% complete. We do not recommend removing doctor sign-off for clinical documents — and neither should any vendor who tells you otherwise.</p></details>
+<details><summary>We have handwritten case sheets and mixed-language notes. Can your system handle that?</summary><p>Partially, and we will tell you exactly how much during Discovery. Typed or structured EMR data gives the cleanest results. For handwritten notes, we use OCR with a post-processing layer, but accuracy depends on handwriting legibility and whether notes follow any standard format. We will test on a real sample of your documents before quoting a pilot so there are no surprises.</p></details>
+<details><summary>What does NABH compliance have to do with document AI?</summary><p>Quite a lot. NABH standards specify what must appear in discharge summaries, consent records, MLC reports, and nursing notes. Our document QA agent checks every generated document against the relevant NABH standard fields before it is filed. This means audit-readiness is built in, not bolted on at assessment time.</p></details>
+<details><summary>How long before we see ROI from the pilot?</summary><p>The 30-day Learn phase is designed specifically to answer this. We measure document turnaround time, staff hours saved, and insurance rejection rates before and after the agent goes live. For a 150-bed hospital piloting the discharge summary agent on one ward, we typically see 60-70% reduction in summary preparation time within the first 3 weeks. We give you the numbers and you decide whether to proceed.</p></details>
+  <footer>
+    Built by <a href="https://hopetech.me">HopeTech</a> · A Bettroi product · <a href="https://hopetech.me/sitemap.xml">Sitemap</a>
+  </footer>
+</div>
+</body>
+</html>

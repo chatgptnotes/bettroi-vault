@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Workflow Automation for Manufacturing Plants</title>
+<meta name="description" content="Bettroi builds AI agents that automate shop-floor and back-office workflows for manufacturing plants. Discovery audit in 2 weeks. Pilots from ₹2.5L.">
+<link rel="canonical" href="https://hopetech.me/ai-workflow-automation-manufacturing-plants/">
+<meta property="og:title" content="AI Workflow Automation for Manufacturing Plants">
+<meta property="og:description" content="Bettroi builds AI agents that automate shop-floor and back-office workflows for manufacturing plants. Discovery audit in 2 weeks. Pilots from ₹2.5L.">
+<meta property="og:url" content="https://hopetech.me/ai-workflow-automation-manufacturing-plants/">
+<meta property="og:type" content="website">
+<meta name="keywords" content="ai workflow automation manufacturing plants, manufacturing plants, workflow automation, Bettroi, HopeTech">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"We already have an ERP and SCADA. Do your agents replace them or work alongside them?","acceptedAnswer":{"@type":"Answer","text":"They work alongside. We integrate agents into whatever systems you already run — SAP, Oracle, Infor, Wonderware, Ignition, or a homegrown stack. The agent sits on top as an orchestration layer, not a replacement. You don't lose your existing data or licences."}},{"@type":"Question","name":"Our plant runs 24/7 across 3 shifts. Can agents handle that without human supervision?","acceptedAnswer":{"@type":"Answer","text":"Yes, that's the exact scenario agents are built for. Shift handover agents, maintenance alert bots, and procurement intake agents run continuously. Exceptions — anything outside defined logic — are escalated to a named human. You define the escalation rules during the Wire stage."}},{"@type":"Question","name":"How long before we see actual ROI, not just a pilot report?","acceptedAnswer":{"@type":"Answer","text":"The Learn stage (weeks 3–6) produces a 30-day baseline vs. AI comparison with real numbers: hours saved per week, reduction in handoff errors, approval turnaround time. Most clients recover the pilot cost within one quarter on a single workflow. Full transformation ROI depends on scope, but we scope conservatively and don't promise outcomes we can't measure."}},{"@type":"Question","name":"What if our plant data is messy — inconsistent formats, paper-based records, no clean API?","acceptedAnswer":{"@type":"Answer","text":"That's the norm, not the exception. Our P&ID Extractor and document parsing pipeline are specifically built to handle unstructured plant data — scanned drawings, PDFs, Excel logs, even WhatsApp message exports. We handle the data normalisation as part of the Discovery and Wire stages."}},{"@type":"Question","name":"Do we need an in-house IT team to maintain this after you hand it over?","acceptedAnswer":{"@type":"Answer","text":"No. We offer retained AI Ops on a monthly subscription — agent monitoring, retraining when accuracy drifts, and new workflow rollouts as your needs change. If you do have an internal team, we document everything so they can take over. Most mid-size plants opt for retained ops for at least the first year."}}]}</script>
+<style>
+  :root { --c: #1a1a2e; --m: #16213e; --a: #0f3460; --t: #e94560; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 17px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--c); background: #fafafa; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  header { padding: 1.5rem 0 2.5rem; border-bottom: 1px solid #eaeaea; margin-bottom: 2rem; }
+  header a { color: var(--m); text-decoration: none; font-weight: 600; font-size: 18px; }
+  h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 1rem; color: var(--c); }
+  .sub { font-size: 1.15rem; color: #555; margin-bottom: 2rem; }
+  h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--m); }
+  h3 { font-size: 1.15rem; margin: 1.5rem 0 .5rem; }
+  p { margin-bottom: 1rem; }
+  ul { margin: 0 0 1rem 1.5rem; }
+  li { margin-bottom: .35rem; }
+  strong { color: var(--a); }
+  .cta { background: var(--c); color: #fff; padding: 1.75rem; border-radius: 8px; margin: 3rem 0 2rem; text-align: center; }
+  .cta a { background: var(--t); color: #fff; padding: .85rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: .5rem; }
+  details { background: #fff; border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: .75rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--m); }
+  details[open] summary { margin-bottom: .75rem; }
+  footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eaeaea; color: #888; font-size: 14px; text-align: center; }
+  footer a { color: var(--a); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="https://hopetech.me">HopeTech</a></header>
+  <h1>AI Workflow Automation for Manufacturing Plants</h1>
+  
+<h2>Most manufacturing plants run on WhatsApp forwards, Excel trackers, and verbal handoffs</h2>
+<p>Your production supervisors are filing shift reports at midnight. Your maintenance team is chasing spare-part approvals on phone calls. Your quality team is transcribing NCRs by hand into a system that nobody checks in real time. None of this is a people problem — it's a workflow architecture problem. Every manual handoff is a delay, a data gap, or a mistake waiting to happen. AI agents can own these handoffs end-to-end, 24/7, without retraining every six months.</p>
+<p>---</p>
+<h2>What We Build for Manufacturing Plants</h2>
+<ul><li><strong>Shift handover agent</strong> — captures end-of-shift data via voice or form, auto-generates structured handover reports pushed to supervisors and plant managers</li>
+<li><strong>Maintenance work-order bot</strong> — reads equipment alerts from SCADA/PLC systems, raises work orders, routes approval, and closes the loop with a timestamped audit trail</li>
+<li><strong>Procurement intake agent</strong> — validates indent requests against inventory thresholds, flags duplicates, and drafts purchase orders for approval — no manual data entry</li>
+<li><strong>Non-conformance (NCR) documentation bot</strong> — converts quality inspection inputs into formatted NCR reports filed directly into your QMS</li>
+<li><strong>P&ID and document extraction pipeline</strong> — parses engineering drawings and plant documents to populate equipment registers, reducing manual digitisation by 80%+</li>
+<li><strong>Production variance alert agent</strong> — monitors line OEE and downtime data, surfaces root-cause summaries to shift leads before the next meeting</li></ul>
+<p>---</p>
+<h2>How We Do It: The Be AI-First Framework</h2>
+<p>We don't arrive with a generic SaaS demo. We run a structured 5-stage engagement calibrated to your plant's actual systems and workflows.</p>
+<h3>Stage 1 — Discovery (2 weeks)</h3>
+We audit your current workflows — shift handovers, maintenance cycles, procurement, quality reporting — and identify the <strong>3 highest-ROI AI candidates</strong> ranked by time saved, error rate, and integration complexity. You get a written report whether or not you proceed further.
+<h3>Stage 2 — Learn (weeks 3–6)</h3>
+We build and deploy a pilot agent on one workflow. We measure baseline (your current process) vs. AI-assisted for 30 days. Numbers on the table: time per task, error rate, staff hours recovered.
+<h3>Stage 3 — Wire (weeks 7–9)</h3>
+Winning agents get integrated into your core systems — SCADA, ERP, CMMS, QMS, or even your existing Excel/WhatsApp stack where that's the reality. No rip-and-replace.
+<h3>Stage 4 — Automate (weeks 9–11)</h3>
+Manual handoffs are replaced with agent orchestration. Approvals, escalations, and exception handling run on defined logic. Your team intervenes only where human judgment is genuinely needed.
+<h3>Stage 5 — Scale (week 12 onwards)</h3>
+Agents roll out across shifts, lines, and sites with usage monitoring, retraining triggers, and governance controls so nothing drifts silently.
+<p>---</p>
+<h2>What We've Built Before</h2>
+<p>We scoped and built a plant AI system for Bajaj Energy — a deal closed at ₹5,78,000 covering workflow automation with quarterly advance payments and one-year support. We've developed a <strong>P&ID Extractor</strong> specifically for industrial plants that parses engineering drawings and populates equipment registers automatically. We've also delivered PIMS and CMMS implementations for power plants and utilities in the GCC region under Bettroi's Dubai DTEC registration (Icon Oasis, DTEC-51432).</p>
+<p>---</p>
+<h2>Pricing</h2>
+<p>| Engagement | Duration | What You Get |
+|---|---|---|
+| <strong>Discovery Audit</strong> | 2 weeks | Workflow audit + 3 prioritised AI candidates + written report |
+| <strong>Pilot</strong> | 6 weeks | Discovery + one live agent + 30-day baseline vs. AI measurement |
+| <strong>Full Transformation</strong> | 12 weeks | All 5 stages, milestone-billed, 3–5 agents live at close |
+| <strong>Retained AI Ops</strong> | Monthly | Agent monitoring, retraining, new workflow rollouts |</p>
+<p><strong>Discovery audit from ₹75,000 | Pilot from ₹2,50,000 | Full transformation from ₹8,00,000</strong></p>
+<p>Prices are fixed-fee for Discovery and Pilot. Full transformation is milestone-billed. No retainer lock-in until Stage 5.</p>
+<p>---</p>
+<h2>Book a 30-Minute Discovery Call</h2>
+<p>Tell us your plant size, the workflow costing you the most hours, and your current systems. We'll come back with a specific scope, not a slide deck full of use-case diagrams.</p>
+<p>[Book a call → hi@bettroi.com](mailto:hi@bettroi.com)</p>
+  <div class="cta">
+    <h3 style="color:#fff;margin:0 0 .5rem">Ready to talk?</h3>
+    <p style="color:#ddd;margin:0">Book a 30-min Discovery call. We'll show you where AI fits in your operation.</p>
+    <a href="mailto:hi@bettroi.com?subject=Discovery%20call%20%E2%80%94%20AI%20Workflow%20Automation%20for%20Manufacturing%20Plants">Email us</a>
+  </div>
+  <h2>Frequently asked questions</h2>
+  <details><summary>We already have an ERP and SCADA. Do your agents replace them or work alongside them?</summary><p>They work alongside. We integrate agents into whatever systems you already run — SAP, Oracle, Infor, Wonderware, Ignition, or a homegrown stack. The agent sits on top as an orchestration layer, not a replacement. You don't lose your existing data or licences.</p></details>
+<details><summary>Our plant runs 24/7 across 3 shifts. Can agents handle that without human supervision?</summary><p>Yes, that's the exact scenario agents are built for. Shift handover agents, maintenance alert bots, and procurement intake agents run continuously. Exceptions — anything outside defined logic — are escalated to a named human. You define the escalation rules during the Wire stage.</p></details>
+<details><summary>How long before we see actual ROI, not just a pilot report?</summary><p>The Learn stage (weeks 3–6) produces a 30-day baseline vs. AI comparison with real numbers: hours saved per week, reduction in handoff errors, approval turnaround time. Most clients recover the pilot cost within one quarter on a single workflow. Full transformation ROI depends on scope, but we scope conservatively and don't promise outcomes we can't measure.</p></details>
+<details><summary>What if our plant data is messy — inconsistent formats, paper-based records, no clean API?</summary><p>That's the norm, not the exception. Our P&ID Extractor and document parsing pipeline are specifically built to handle unstructured plant data — scanned drawings, PDFs, Excel logs, even WhatsApp message exports. We handle the data normalisation as part of the Discovery and Wire stages.</p></details>
+<details><summary>Do we need an in-house IT team to maintain this after you hand it over?</summary><p>No. We offer retained AI Ops on a monthly subscription — agent monitoring, retraining when accuracy drifts, and new workflow rollouts as your needs change. If you do have an internal team, we document everything so they can take over. Most mid-size plants opt for retained ops for at least the first year.</p></details>
+  <footer>
+    Built by <a href="https://hopetech.me">HopeTech</a> · A Bettroi product · <a href="https://hopetech.me/sitemap.xml">Sitemap</a>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,7 +1,7 @@
 ---
-slug: ai-workflow-automation-hospitals
+slug: ai-workflow-automation-for-hospitals
 title: "AI Workflow Automation for Hospitals | Bettroi"
-description: "Bettroi builds AI agents that automate OPD triage, discharge docs, billing queues, and staff handoffs for hospitals. Discovery audit in 2 weeks. Based in India."
+description: "Bettroi builds AI agents that automate hospital workflows — OPD triage, discharge docs, billing follow-ups. Discovery audit in 2 weeks. Pilots from ₹1.5L."
 keyword: "ai workflow automation for hospitals"
 vertical: hospitals
 use_case: workflow-automation
@@ -13,97 +13,97 @@ off_limits: false
 # AI Workflow Automation for Hospitals
 
 
-## AI agents that cut the manual work hospitals run on today
+## Your hospital runs on WhatsApp forwards and manual registers. That ends here.
 
-Bettroi designs and deploys AI agents that replace the copy-paste, phone-tag, and paper-chasing that slow down hospital operations — so your clinical and admin staff spend time on patients, not process.
-
----
-
-## The problem
-
-A 100-bed hospital runs dozens of parallel workflows — OPD registration, IP discharge, billing reconciliation, pharmacy indent, lab report dispatch — and almost all of them depend on a person remembering to do something. When that person is on leave, busy with a patient, or simply missed a step, the workflow stalls. Staff time is the most expensive and most wasted input in hospital operations today. Most HMS platforms record data but automate nothing; the gaps between systems are filled by WhatsApp messages and Excel sheets.
+Bettroi builds AI agents that replace the repetitive, error-prone handoffs inside your hospital — OPD queues, discharge summaries, billing follow-ups, lab result routing — so your clinical and admin staff spend time on work that actually needs a human.
 
 ---
 
-## What we build
+## The Problem
 
-- **OPD triage agent** — collects chief complaint and vitals from the patient-facing kiosk or form, pre-fills the doctor's note template, and flags high-acuity cases before the patient enters the room
-- **IP discharge documentation bot** — drafts the discharge summary from structured EMR fields, routes it for doctor sign-off, and sends the final PDF to the patient's WhatsApp within 15 minutes of discharge order
-- **Billing queue automation** — reads ordered procedures, applies tariff rules, flags missing pre-auth, and pushes the bill draft to the billing desk without a clerk manually pulling the file
-- **Lab and radiology report dispatcher** — monitors result upload in the LIS/RIS, sends the report to the referring doctor via the preferred channel (WhatsApp, email, HMS inbox), and logs delivery confirmation
-- **Duty handoff assistant** — generates a structured shift-handover note from active IP census data, outstanding orders, and nursing notes; delivered to the incoming team 10 minutes before shift change
-- **Pharmacy indent bot** — tracks consumption rates against stock levels, generates daily indent proposals for the pharmacist to approve in one click, and posts approved indents directly to the supplier system
+Multi-specialty hospitals in India run 40–70% of their internal coordination through manual steps: nursing staff physically carrying files, billing clerks chasing insurance pre-auth over phone, doctors dictating notes that nobody types up for 6 hours. Your HMS is underused because nobody trained staff to feed it correctly, and nobody built the bridges between it and how the floor actually works. The result: delays that frustrate patients, discharge bottlenecks that block beds, and revenue leakage from claims that go unfiled.
 
 ---
 
-## How we do it — the Be AI-First framework
+## What We Build for You
 
-We don't do open-ended consulting. Every engagement follows five defined stages:
-
-**1. Discovery (Week 1–2)**
-We audit your current workflows — OPD to discharge, billing, nursing handoffs — and identify the three workflows where AI automation will return the highest measurable value. You get a ranked shortlist with baseline metrics and effort estimates. This stage is fixed-fee and standalone.
-
-**2. Learn (Weeks 3–6)**
-We deploy an AI agent on the single highest-ROI workflow from Discovery. We run it in parallel with your existing process for 30 days, measure the baseline vs. AI on time-per-task, error rate, and staff load. You see hard numbers before committing to full rollout.
-
-**3. Wire (Weeks 7–9)**
-The winning agent is integrated into your live systems — HMS (Practo, eHospital, Medics, or custom), WhatsApp Business API, LIS/RIS, or billing platform. No rip-and-replace; we connect to what you already run.
-
-**4. Automate (Weeks 10–11)**
-Manual handoff points are replaced with agent orchestration. Approvals, escalations, and exceptions are routed automatically. Staff intervene only when the system flags something it cannot resolve.
-
-**5. Scale (Week 12 and beyond)**
-We roll the proven playbook across departments, shifts, or additional hospital sites. Monitoring dashboards, governance rules, and retraining schedules are handed to your team with documentation.
+- **OPD triage agent** — reads incoming appointment requests (WhatsApp, web form, call transcripts) and routes patients to the right department and slot, with pre-visit intake forms auto-sent
+- **Discharge documentation bot** — pulls vitals, lab results, and physician notes from HMS, drafts discharge summaries in under 3 minutes, flags missing fields before the patient leaves
+- **Insurance pre-auth workflow agent** — submits pre-authorization requests, tracks status, and escalates pending cases to the right staff member with a due-date alert
+- **Lab result routing agent** — receives lab reports, matches to the correct inpatient or outpatient record, notifies the treating doctor, and logs acknowledgement
+- **Daily ops briefing bot** — sends department heads a 7 AM summary of bed occupancy, pending discharges, overdue tasks, and flagged billing cases
+- **SOP generation and version control pipeline** — auto-generates department SOPs from observed workflows, versioned and searchable (we have produced 400+ SOP files for a hospital group using this approach)
 
 ---
 
-## What we have built before
+## How We Do It: The Be AI-First Framework
 
-We have active commercial proposals in progress with hospital operators in Bilaspur and Chandigarh, including multi-specialty facilities where the immediate focus is OPD and discharge workflow automation. In parallel, we built **Adamrit** — a production AI admin tool for hospital back-office teams that lets non-technical staff configure and run AI-assisted workflows through a voice and text interface, with a DeepSeek-powered prompt engine and a hospital-safe data pre-flight layer that catches Aadhaar and patient-identifiable data before it leaves the building.
+We do not hand you a software subscription and leave. We embed into your operations for 12 weeks using a five-stage process:
+
+### Stage 1 — Discovery (Weeks 1–2)
+We audit your current workflows: shadow your front desk, interview department heads, map your HMS data flows. We identify the **3 highest-ROI automation candidates** specific to your hospital's size and specialty mix. You get a written report regardless of whether you continue.
+
+### Stage 2 — Learn (Weeks 3–8)
+We build and deploy a pilot AI agent on one workflow. We measure baseline performance (time per task, error rate, staff hours) vs. AI-assisted performance over 30 days. Numbers on the table before any larger commitment.
+
+### Stage 3 — Wire (Weeks 5–10)
+Winning agents get integrated into your actual systems — HMS, billing software, WhatsApp Business API, lab LIS. No rip-and-replace. We build on top of what you have.
+
+### Stage 4 — Automate (Weeks 8–11)
+Manual handoffs are replaced with agent-to-agent orchestration. A discharge trigger in the HMS automatically fires the documentation bot, notifies billing, and updates the bed management board.
+
+### Stage 5 — Scale (Week 12 onward)
+Rollout across departments or secondary sites. Monitoring dashboards. Governance protocols so your team can manage the agents without calling us for every change.
 
 ---
 
-## Pricing anchor
+## What We Have Built Before
 
-| Package | What's included | Typical investment |
+Working with Hope and Aishman Hospitals in Nagpur, we built a system that generated over 420 structured SOP documents from live hospital workflows — automatically versioned and categorised by department. That same engagement informed our OPD triage and discharge automation blueprints, which we now deploy as configurable starting points rather than from scratch. Dr. Murali's team at the Nagpur hospitals has been an active partner in validating these workflows in a real multi-specialty environment.
+
+---
+
+## Pricing
+
+| Engagement | What's included | Typical range |
 |---|---|---|
-| **Discovery audit** | 2-week workflow audit, ranked AI candidate list, baseline metrics | From ₹40,000 |
-| **Pilot** | Discovery + Learn — one live agent, 30-day measurement | From ₹1,20,000 |
-| **Full transformation** | All 5 stages, 12 weeks, milestone-billed | From ₹4,50,000 |
-| **Retained AI operations** | Ongoing agent monitoring, retraining, and support | From ₹35,000/month |
+| **Discovery audit** | 2-week workflow audit, ROI report, 3 automation candidates identified | ₹75,000 – ₹1,00,000 |
+| **Pilot** | Discovery + 6-week agent build and measurement on one workflow | ₹1,50,000 – ₹2,50,000 |
+| **Full transformation** | All 5 stages, 12 weeks, milestone-billed | ₹6,00,000 – ₹12,00,000 |
+| **Retained AI operations** | Ongoing agent monitoring, improvements, new automations | ₹50,000 – ₹1,20,000/month |
 
-Pricing varies by hospital size, number of integrated systems, and agent complexity. We will give you a fixed-fee number after the Discovery call — no open-ended retainers on the first engagement.
+Pricing varies by hospital size (number of beds, departments, integrations required). Discovery fee is credited against the Pilot if you proceed.
 
 ---
 
-## Book a 30-min Discovery call
+## Book a 30-Minute Discovery Call
 
-Tell us your bed count, your HMS platform, and the one workflow that costs you the most time right now. We will come back with a specific shortlist of what AI can automate and a ballpark number.
+Tell us your bed count, your current HMS, and the one workflow that is costing you the most time. We will come prepared.
 
 [Book now — hi@bettroi.com](mailto:hi@bettroi.com)
 
 
 ## Frequently asked questions
 
-**Will this work with our existing HMS — we are on eHospital / Practo / a custom system?**
+**We already have a HMS (like Practo, Insta, or eHospital). Do you replace it?**
 
-Yes. We integrate via API, HL7, or direct database connectors depending on what your HMS exposes. In the Wire stage we map your specific system's data model before building any integration. If your HMS has no API, we have worked around that with RPA-layer connectors — we will tell you upfront what the constraint is and what it costs.
+No. We build AI agents that sit on top of your existing HMS and connect the gaps it was never designed to fill — like auto-drafting discharge summaries or routing lab alerts to the right doctor. We integrate via API or, where APIs are not available, via structured data extraction. Your HMS stays in place.
 
-**How long before we see any actual result, not just a presentation?**
+**Our staff is not very tech-savvy. Will they actually use these agents?**
 
-The Discovery audit takes 2 weeks and ends with a ranked list of automatable workflows with baseline time-and-cost numbers — that is a tangible output, not a slide deck recommendation. If you proceed to the Pilot, you will have a live agent running on a real workflow within 6 weeks of kickoff, with before-and-after metrics after 30 days.
+This is the right question to ask. We specifically design agent interfaces for low-tech-comfort users — WhatsApp-based triggers, one-tap approvals, voice-input options. During the Learn stage, we measure actual staff adoption rate, not just technical uptime. If adoption is low, we redesign before we scale.
 
-**We handle patient data. How do you ensure the AI does not expose PHI or Aadhaar?**
+**What's the minimum hospital size this makes sense for?**
 
-We build a data pre-flight layer into every agent — it checks prompts and inputs for 12-digit numbers (potential Aadhaar), patient names in free-text fields, and other identifiable patterns before anything leaves your network. For highest-sensitivity workflows we deploy models on-premise or in a private cloud within your existing infrastructure. We document the data flow for each agent so your compliance team can review exactly what goes where.
+We have seen clear ROI at hospitals with 50+ beds and at least 3 active departments. Below that, the coordination complexity is usually low enough that automation saves less than it costs to build. If you are smaller, the Discovery audit will tell you honestly whether this is worth it for your situation.
 
-**Our staff are not technical. Who manages these agents after go-live?**
+**How do you handle patient data privacy and compliance?**
 
-We build a monitoring dashboard your admin team can actually read — task volumes, exception rates, escalation queues. Day-to-day, the agents run without IT intervention. For changes — new tariff rules, updated discharge templates, added departments — we handle those under the retained operations plan, or we train one designated person on your team to make them directly.
+All agents are built with data minimisation by design — they process only what is needed for the specific task. We do not store patient records on third-party cloud infrastructure without explicit consent and appropriate agreements. We can work within your on-premise environment or a private cloud if your compliance requirements demand it. We will document the data flows as part of the Discovery audit.
 
-**We are a 30-bed hospital, not a 500-bed corporate chain. Is this relevant for us?**
+**What happens after the 12-week engagement ends? Do the agents stop working?**
 
-Smaller hospitals often have worse workflow problems, not better ones — fewer staff means every manual step is a bigger share of someone's day. The Discovery audit is fixed-fee and sized for smaller facilities. The OPD triage agent and discharge documentation bot in particular deliver strong ROI at 30–80 beds because those hospitals typically have one person doing three jobs at the billing and front-desk counter.
+No. At the end of the full transformation engagement, the agents are handed over to your team with documentation, monitoring dashboards, and a governance protocol so your own staff can manage day-to-day operations. We offer a retained monthly subscription for hospitals that want Bettroi to keep running improvements and handle new automation requests — but it is optional, not a lock-in.
 
 
 ---
