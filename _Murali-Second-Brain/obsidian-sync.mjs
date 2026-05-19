@@ -22,7 +22,7 @@ const SKIP_FOLDERS = new Set([
 ]);
 
 // Off-limits project tags — content ingested with off_limits=true
-const OFF_LIMITS_TAGS = new Set(['hr', 'accounts', 'finance', 'salary', '_private']);
+const OFF_LIMITS_TAGS = new Set(['hr', 'accounts', 'finance', 'salary', '_private', 'nabh-quality-hr']);
 
 async function getLastSync() {
   const { data } = await supabase
