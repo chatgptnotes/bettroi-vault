@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-05-19T06:53:07Z
-size_kb: 37423
+last_push: 2026-05-20T05:04:05Z
+size_kb: 38158
 language: TypeScript
 description: ""
-extracted: 2026-05-19T07:06:35.182Z
+extracted: 2026-05-20T07:06:12.926Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-05-19T06:53:07Z
-**Language:** TypeScript  ·  **Repo size:** 37423KB
+**Default branch:** `main`  ·  **Last push:** 2026-05-20T05:04:05Z
+**Language:** TypeScript  ·  **Repo size:** 38158KB
 
 
 
@@ -72,9 +72,9 @@ extracted: 2026-05-19T07:06:35.182Z
 
 ## Folder breakdown
 
-- `src/` — 690 files
+- `src/` — 746 files
 - `supabase/` — 384 files
-- `public/` — 22 files
+- `public/` — 24 files
 - `claude-auto-confirm/` — 19 files
 - `.claude/` — 17 files
 - `scripts/` — 9 files
@@ -90,16 +90,16 @@ extracted: 2026-05-19T07:06:35.182Z
 
 ## Recent commits
 
+- `abd3cca` _2026-05-19_ — feat(tablet): tablet-native Director view + superadmin access
+- `c6567a3` _2026-05-19_ — Merge feat/device-aware-routing: device-aware routing (one URL, one login, no /t
+- `0fb020d` _2026-05-19_ — style(routing): move desktop "Tablet view" button to the top-right
+- `b93748c` _2026-05-19_ — fix(routing): device toggles and unknown paths land on /
+- `94467f7` _2026-05-19_ — feat(routing): device-aware UI - one URL, one login, no /t
 - `93c56c6` _2026-05-19_ — Merge pull request #302 from chatgptnotes/feat/finalbill-drug-interaction
 - `3744c5d` _2026-05-18_ — feat(finalbill): drug-interaction check in Saved Data → Prescriptions tab
 - `400305e` _2026-05-18_ — Merge pull request #301 from chatgptnotes/fix/pharmacy-cashbook
 - `7f84d54` _2026-05-18_ — Merge pull request #300 from chatgptnotes/fix/director-collection-card
 - `2a8256e` _2026-05-18_ — Fix pharmacy billing: realtime approvals, cash-bill balance, CashBook refunds
-- `e89da62` _2026-05-18_ — Fix Director Dashboard Collection card rendering blank
-- `e7d880e` _2026-05-18_ — Merge pull request #299 from chatgptnotes/feat/dd-kpis-clean
-- `915e399` _2026-05-18_ — Add KPI cards to Director Dashboard
-- `485fd6f` _2026-05-18_ — fix(discharge): richer alias-driven AI surgery description
-- `475d9b3` _2026-05-18_ — Add Treatment Type column to Advance Statement Report
 
 ## README
 
