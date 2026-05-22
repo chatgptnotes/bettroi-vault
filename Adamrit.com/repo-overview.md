@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-05-20T05:04:05Z
-size_kb: 38158
+last_push: 2026-05-22T04:46:33Z
+size_kb: 40435
 language: TypeScript
 description: ""
-extracted: 2026-05-21T07:10:56.355Z
+extracted: 2026-05-22T07:06:52.895Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-05-20T05:04:05Z
-**Language:** TypeScript  ·  **Repo size:** 38158KB
+**Default branch:** `main`  ·  **Last push:** 2026-05-22T04:46:33Z
+**Language:** TypeScript  ·  **Repo size:** 40435KB
 
 
 
@@ -90,6 +90,7 @@ extracted: 2026-05-21T07:10:56.355Z
 
 ## Recent commits
 
+- `5b0a3d8` _2026-05-21_ — fix(tablet): key ipd_discharge_summary on visits.id UUID, not text visit code (#
 - `abd3cca` _2026-05-19_ — feat(tablet): tablet-native Director view + superadmin access
 - `c6567a3` _2026-05-19_ — Merge feat/device-aware-routing: device-aware routing (one URL, one login, no /t
 - `0fb020d` _2026-05-19_ — style(routing): move desktop "Tablet view" button to the top-right
@@ -99,7 +100,6 @@ extracted: 2026-05-21T07:10:56.355Z
 - `3744c5d` _2026-05-18_ — feat(finalbill): drug-interaction check in Saved Data → Prescriptions tab
 - `400305e` _2026-05-18_ — Merge pull request #301 from chatgptnotes/fix/pharmacy-cashbook
 - `7f84d54` _2026-05-18_ — Merge pull request #300 from chatgptnotes/fix/director-collection-card
-- `2a8256e` _2026-05-18_ — Fix pharmacy billing: realtime approvals, cash-bill balance, CashBook refunds
 
 ## README
 
