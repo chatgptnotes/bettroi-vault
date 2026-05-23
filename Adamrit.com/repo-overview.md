@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-05-22T04:46:33Z
-size_kb: 40435
+last_push: 2026-05-23T05:47:59Z
+size_kb: 37223
 language: TypeScript
 description: ""
-extracted: 2026-05-22T07:06:52.895Z
+extracted: 2026-05-23T06:50:43.655Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-05-22T04:46:33Z
-**Language:** TypeScript  ·  **Repo size:** 40435KB
+**Default branch:** `main`  ·  **Last push:** 2026-05-23T05:47:59Z
+**Language:** TypeScript  ·  **Repo size:** 37223KB
 
 
 
@@ -35,7 +35,7 @@ extracted: 2026-05-22T07:06:52.895Z
 
 **Dependencies (68):** @ckeditor/ckeditor5-build-classic, @ckeditor/ckeditor5-react, @dnd-kit/core, @dnd-kit/sortable, @dnd-kit/utilities, @hookform/resolvers, @radix-ui/react-accordion, @radix-ui/react-alert-dialog, @radix-ui/react-aspect-ratio, @radix-ui/react-avatar, @radix-ui/react-checkbox, @radix-ui/react-collapsible, @radix-ui/react-context-menu, @radix-ui/react-dialog, @radix-ui/react-dropdown-menu, @radix-ui/react-hover-card, @radix-ui/react-label, @radix-ui/react-menubar, @radix-ui/react-navigation-menu, @radix-ui/react-popover, @radix-ui/react-progress, @radix-ui/react-radio-group, @radix-ui/react-scroll-area, @radix-ui/react-select, @radix-ui/react-separator, @radix-ui/react-slider, @radix-ui/react-slot, @radix-ui/react-switch, @radix-ui/react-tabs, @radix-ui/react-toast...
 
-**Dev Dependencies (21):** @eslint/js, @playwright/test, @supabase/mcp-server-supabase, @tailwindcss/typography, @types/node, @types/react, @types/react-dom, @vercel/node, @vitejs/plugin-react, @vitejs/plugin-react-swc, autoprefixer, eslint, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, lovable-tagger, postcss, tailwindcss, typescript, typescript-eslint...
+**Dev Dependencies (22):** @eslint/js, @playwright/test, @supabase/mcp-server-supabase, @tailwindcss/typography, @types/node, @types/react, @types/react-dom, @vercel/node, @vitejs/plugin-react, @vitejs/plugin-react-swc, autoprefixer, eslint, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, lovable-tagger, postcss, tailwindcss, typescript, typescript-eslint...
 
 ## Top-level files
 
@@ -72,9 +72,9 @@ extracted: 2026-05-22T07:06:52.895Z
 
 ## Folder breakdown
 
-- `src/` — 746 files
-- `supabase/` — 384 files
-- `public/` — 24 files
+- `src/` — 754 files
+- `supabase/` — 387 files
+- `public/` — 51 files
 - `claude-auto-confirm/` — 19 files
 - `.claude/` — 17 files
 - `scripts/` — 9 files
@@ -90,16 +90,16 @@ extracted: 2026-05-22T07:06:52.895Z
 
 ## Recent commits
 
-- `5b0a3d8` _2026-05-21_ — fix(tablet): key ipd_discharge_summary on visits.id UUID, not text visit code (#
-- `abd3cca` _2026-05-19_ — feat(tablet): tablet-native Director view + superadmin access
-- `c6567a3` _2026-05-19_ — Merge feat/device-aware-routing: device-aware routing (one URL, one login, no /t
-- `0fb020d` _2026-05-19_ — style(routing): move desktop "Tablet view" button to the top-right
-- `b93748c` _2026-05-19_ — fix(routing): device toggles and unknown paths land on /
-- `94467f7` _2026-05-19_ — feat(routing): device-aware UI - one URL, one login, no /t
-- `93c56c6` _2026-05-19_ — Merge pull request #302 from chatgptnotes/feat/finalbill-drug-interaction
-- `3744c5d` _2026-05-18_ — feat(finalbill): drug-interaction check in Saved Data → Prescriptions tab
-- `400305e` _2026-05-18_ — Merge pull request #301 from chatgptnotes/fix/pharmacy-cashbook
-- `7f84d54` _2026-05-18_ — Merge pull request #300 from chatgptnotes/fix/director-collection-card
+- `121c973` _2026-05-23_ — feat(visit): allow typing a new Diagnosis (creatable select) (#311)
+- `ec54322` _2026-05-23_ — feat(ipd-dashboard): show Actions column for receptionist role (#310)
+- `b86c197` _2026-05-23_ — fix(pwa): scope dark base background to installed app only (#309)
+- `25343db` _2026-05-23_ — perf(discharge): eager-load IPD Discharge Summary to fix stale-chunk crash (#308
+- `cb6d3d6` _2026-05-22_ — Merge pull request #306 from chatgptnotes/feat/pwa-installable-fullscreen
+- `9e17bf1` _2026-05-22_ — fix(perf): don't fire sidebar count queries until authenticated
+- `87f9fe6` _2026-05-22_ — Merge pull request #305 from chatgptnotes/feat/pwa-installable-fullscreen
+- `bdb7c20` _2026-05-22_ — Merge remote-tracking branch 'origin/main' into feat/pwa-installable-fullscreen
+- `92e547b` _2026-05-22_ — feat(tablet): living drug chart on Treatment Sheet
+- `c1c318c` _2026-05-22_ — fix(tablet): make doctor-notes saves work — patient_id, real columns, medicine-b
 
 ## README
 
