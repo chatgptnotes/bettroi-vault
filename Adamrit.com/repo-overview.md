@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-05-23T05:47:59Z
-size_kb: 37223
+last_push: 2026-05-23T10:25:12Z
+size_kb: 37259
 language: TypeScript
 description: ""
-extracted: 2026-05-23T06:50:43.655Z
+extracted: 2026-05-24T07:01:05.079Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-05-23T05:47:59Z
-**Language:** TypeScript  ·  **Repo size:** 37223KB
+**Default branch:** `main`  ·  **Last push:** 2026-05-23T10:25:12Z
+**Language:** TypeScript  ·  **Repo size:** 37259KB
 
 
 
@@ -90,6 +90,9 @@ extracted: 2026-05-23T06:50:43.655Z
 
 ## Recent commits
 
+- `b94538a` _2026-05-23_ — feat(discharge): conservative-aware summary + print fixes (#314)
+- `2da764b` _2026-05-23_ — fix(tablet-billing): record collection via advance_payment, not broken RPC (#313
+- `6d26a51` _2026-05-23_ — feat(tablet): admin-only hospital switcher in top bar (#312)
 - `121c973` _2026-05-23_ — feat(visit): allow typing a new Diagnosis (creatable select) (#311)
 - `ec54322` _2026-05-23_ — feat(ipd-dashboard): show Actions column for receptionist role (#310)
 - `b86c197` _2026-05-23_ — fix(pwa): scope dark base background to installed app only (#309)
@@ -97,9 +100,6 @@ extracted: 2026-05-23T06:50:43.655Z
 - `cb6d3d6` _2026-05-22_ — Merge pull request #306 from chatgptnotes/feat/pwa-installable-fullscreen
 - `9e17bf1` _2026-05-22_ — fix(perf): don't fire sidebar count queries until authenticated
 - `87f9fe6` _2026-05-22_ — Merge pull request #305 from chatgptnotes/feat/pwa-installable-fullscreen
-- `bdb7c20` _2026-05-22_ — Merge remote-tracking branch 'origin/main' into feat/pwa-installable-fullscreen
-- `92e547b` _2026-05-22_ — feat(tablet): living drug chart on Treatment Sheet
-- `c1c318c` _2026-05-22_ — fix(tablet): make doctor-notes saves work — patient_id, real columns, medicine-b
 
 ## README
 
