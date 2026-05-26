@@ -1,0 +1,9 @@
+{
+  "remoteURL": "https://github.com/chatgptnotes/bettroi-vault.git",
+  "gitLocation": "",
+  "syncinterval": 0,
+  "isSyncOnLoad": true,
+  "checkStatusOnLoad": true,
+  "noticeLevel": "ALL",
+  "showSyncSuccessNotice": true
+}

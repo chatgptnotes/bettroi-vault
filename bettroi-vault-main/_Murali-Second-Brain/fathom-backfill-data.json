@@ -1,0 +1,1269 @@
+[
+  {
+    "id": 147013100,
+    "date": "2026-05-16",
+    "title": "Bajaj Energy Preparatory Meeting",
+    "url": "https://fathom.video/calls/676371079",
+    "summary": "## Meeting Purpose Finalize strategy for a last-minute Bajaj Energy AI pitch. ## Key Takeaways - **Urgent Pitch:** Bajaj contact Ashish Joshi needs a presentation for his management today (Saturday) on AI possibilities for their Muradabad plant. - **Strategic Pivot:** The team will pivot from a detailed proposal to a high-level 'AI Intervention Possibilities' document. - **Rationale:** Protect proprietary knowledge from competitors (e.g., Uptime AI) while helping the contact prepare for his internal meeting. - **Immediate Action:** Siddharth will call the contact to offer coaching and secure a face-to-face meeting next week. - **Project Lead:** ModAE will lead the project, leveraging its power plant experience. The plant has five units, each with two 45 MW steam turbines and two boilers. Primary competitor is Uptime AI (Infinite Uptime), focus on rotating assets."
+  },
+  {
+    "id": 147010899,
+    "date": "2026-05-16",
+    "title": "Impromptu Zoom Meeting - Dr Sandeep Neurosurgeon",
+    "url": "https://fathom.video/calls/676390433",
+    "summary": "## Meeting Purpose Explore professional collaboration and referral opportunities. ## Key Takeaways - **Dr. Murali (Orthopedic Surgeon)** runs an AI company building AI-native software for large organizations (Dubai gov't, Mahametro). - **Sandeep (Neurosurgeon)** is Director of Neurosurgery at Max Hospital, specializing in complex brain tumors (>1,800 surgeries) using neuro-navigation. - **Referral Needs:** Sandeep seeks referrals for brain tumors and trigeminal neuralgia; Dr. Murali seeks clients for his AI-native hospital management software. - **Action:** Follow-up meeting scheduled for after Sandeep's trip to Bali."
+  },
+  {
+    "id": 147005925,
+    "date": "2026-05-16",
+    "title": "Bajaj Meeting BT",
+    "url": "https://fathom.video/calls/676359941",
+    "summary": "## Meeting Purpose Strategize for Bajaj Power AI pitch and plan Siemens PLC retrofit. ## Key Takeaways - **Bajaj Power Pitch:** Differentiate from Uptime AI by expanding from maintenance-only to holistic production & operational excellence covering all asset types. - **VLCM3 PLC Retrofit:** Siemens S7-1500 upgrade planned. 4-month lead time for hardware is critical risk — check stock and alternatives (Schneider, Fuji). - **Boiler PID AI:** AI-driven tuning for sluggish boiler PID loops is key value-add. Addresses degradation from mechanical wear (valves, actuators) and material aging. - Goal: production & operational excellence platform, not just monitoring. Scope: mechanical, electrical, and static assets (boilers, vessels)."
+  },
+  {
+    "id": 146914967,
+    "date": "2026-05-15",
+    "title": "BT haritha",
+    "url": "https://fathom.video/calls/676082187",
+    "summary": "### Pending tasks and Slack review BT and BK discussed pending tasks accumulated while BK was at emergency. Hetzka document sharing done; Linguska payment transfer confirmed. ### NeuroQ proposal NeuroQ requested reverse engineering work. Original quote 9,000 dirham revised down to 7,000. NeuroQ wants 'Check My Brain' (brainagecheckup.com) functionality. Proposal: keep 7,000 base + two separate 2,000 dirham line items (one for BrainAgeCheckup.com reverse engineering, one for probability calculator). ### Linkist handoff Linkist project nearly ready for handoff. Google and Apple Wallet payment integration complete. Account transferring to Liju, needs credit card details. Testing pending from Neeraj. Goal: complete handoff tomorrow."
+  },
+  {
+    "id": 146723162,
+    "date": "2026-05-15",
+    "title": "BT haritha Microsoft Teams",
+    "url": "https://fathom.video/calls/675326402",
+    "summary": "### Agreement status Other agreement comments expected by Monday. ### Proposify failures Haritha attempted to upload/edit proposal (5,90,000) in Proposify but encountered repeated technical failures: import failed, exports blank. Decision: edit proposals externally and send directly to BK as final, copy to Slack. ### NeuroQ proposal complexity Three advance invoices to be submitted to Dr. Shweta. Initial proposal 7,500 → reverse engineering added → brainagecheckup.com mentioned. Need clarification from Dr. Shweta's email."
+  },
+  {
+    "id": 146338072,
+    "date": "2026-05-14",
+    "title": "NeuroQ Proposal Revision",
+    "url": "https://fathom.video/calls/673738479",
+    "summary": "### Proposal revision and pricing Key changes: remove reverse engineering details (PNDA, AI engine, biomarker engine, topo mapping) from proposal, eliminate price breakup to prevent line-item negotiation, remove patient portal from QEEG system. Report format must use doctor's jargon, not technical language. Original 7,500 (included 2,000 for reverse engineering) reduced to 7,000. Report template creation, design, and deployment included. ### Grant application Upcoming deadline. ### Server infrastructure Client provides VMs via Hyper-V. Aman is hardware engineer."
+  },
+  {
+    "id": 145975999,
+    "date": "2026-05-13",
+    "title": "Huzaifa dubai media",
+    "url": "https://fathom.video/calls/672415633",
+    "summary": "### Dashboard Architecture Dr. BK presented Flow Excel dashboard with sections: pending, approval, rejected, completed. Multiple view options (grid, list, compact, timeline, calendar, person, split), responsive. Prefetch+cache for performance. Super admins see all requests; regular users see assigned tasks. ### Consolidating Views Haritha: users should not navigate multiple pages. Goal: single unified dashboard. Decision: remove old dashboard, keep only modern dashboard. ### Role-Based Filters Three filters: Created by me, Pending with me, all approvals."
+  },
+  {
+    "id": 145924655,
+    "date": "2026-05-13",
+    "title": "stakes",
+    "url": "https://fathom.video/calls/672097417",
+    "summary": "### Budget allocation 83,000 added to budget as third-party charges for cloud services (OpEx). ### Bajaj power plant AI BT introduced significant new opportunity from Bajaj — AI system for five identical power plants. Scoping questionnaire sent. Solving for one plant replicates across other four. ### Mod A deal closure After extensive negotiation: 5,78,000 (plus GST). Quarterly payments in advance (1,44,500 per quarter), one-year support/warranty/maintenance included, multi-year agreement starting year two with AMC charges decided Q4. ### Pricing strategy BT emphasized joint decision-making on pricing."
+  },
+  {
+    "id": 145558509,
+    "date": "2026-05-12",
+    "title": "Impromptu Microsoft Teams - Huzaifa",
+    "url": "https://fathom.video/calls/670806458",
+    "summary": "### Project status Huzaifa apologized for rescheduling — director's meeting put all upcoming projects on hold due to crisis. This project received PO already, continues despite hold. All projects now priority basis. ### LPO scope Building dashboard application connected to GDMOS.form enterprise via API, role-based dashboards, approval workflows, form listing with status tracking, tracking/reporting with filtering/export, sync signatures and workflow status with JotForm, testing/UAT/deployment/GoLive support, end-user guides. ### UI/UX enhancements Critical signature workflow fix — couldn't complete signature when lifting hand."
+  },
+  {
+    "id": 145260720,
+    "date": "2026-05-11",
+    "title": "Microsoft Teams - Neurosense",
+    "url": "https://fathom.video/calls/669476011",
+    "summary": "### Project requests Biji outlined three requests: DDO integration into Neurosense, Decode My Brain (retain Laravel code but change WordPress), Neurosense enhancements. Neurosense actions: add Cloud/CLOD report, integrate DDO, add NeuroAI Copilot to explain reports. Clone Neurosense as Neuro360Q with different branding. ### Code revisions Components needing revised code: Neurosense 360Q, Neurosense Claude Report, AI co-pilot. Dr. Shweta: reverse engineering in Neurosense 360 not needed, remove from scope. ### Neurosense Claude Report pricing Minimum 2,000 rupees, one week of work — pass report through Claude to simplify it. ### Decode My Brain WordPress component needs redo in Laravel or React."
+  },
+  {
+    "id": 145138442,
+    "date": "2026-05-11",
+    "title": "Patient Booking System",
+    "url": "https://fathom.video/calls/669029917",
+    "summary": "### Software integration Direct connection not necessary. Create separate module, manually download reports periodically, upload to new software. ### Patient appointment booking Patient self-service: log in, schedule appointments. Display doctor time slots (10 AM-2 PM OPD). Implement overbooking (3 patients per 1-hour slot) to handle no-shows. ### Chatbot workflow Instead of direct booking, chatbot engages patients conversationally — identify preferred doctors, present available facilities/timings. Either book directly or collect patient info and trigger callback. Hybrid: automation + human verification."
+  },
+  {
+    "id": 145108147,
+    "date": "2026-05-11",
+    "title": "Product Company Pivot",
+    "url": "https://fathom.video/calls/668860168",
+    "summary": "### Strategic pivot to product company Transitioning from services to product company. Six flagship products across three categories: two engineering, two medical, two other. Each must be world-class, enterprise-grade, with marketing materials (demos, videos, evidence). ### P&ID Extractor AI-powered tool for industrial plants — analyzes engineering drawings, identifies/catalogs valves (ball, butterfly), pipelines, chemical treatments using international standardized symbols. Creates inventory, generates maintenance schedules, spare parts lists. ### Pune Metro compliance verification AI verification layer for architectural drawings used in Pune Metro construction. Checks MEP (mechanical, electrical, plumbing) compliance."
+  },
+  {
+    "id": 145095096,
+    "date": "2026-05-11",
+    "title": "PIMS / PNID Extractor Status",
+    "url": "https://fathom.video/calls/668753013",
+    "summary": "### PIMS project status PIMS (Planned Information Management System) in progress with client. PNID extractor feedback requesting presentation format change (not technical). BT reformatted: introduction with pain points, technology description, technical evaluation, business evaluation, risk analysis, trial details. ### Problem statement Asset information management currently dependent on manual workflows, disconnected practices, non-standard document preparation. Solution: centralized platform with standardized workflows, role-based task allocation, progress tracking, automated notifications. ### Maintenance scope Beyond P&ID extraction (feeds data into Excel → Maximo or SAP), must address comprehensive maintenance for all extracted assets."
+  },
+  {
+    "id": 145072556,
+    "date": "2026-05-11",
+    "title": "AI-Native Org Vision",
+    "url": "https://fathom.video/calls/668464258",
+    "summary": "### Obsidian as AI-readable knowledge base Demonstrated Obsidian as markdown-based file system with interlinked documents, tags, labels. Obsidian Web Clipper extracts video transcripts (Google Gemini Plus Notebook LM). Git integration for version control. Connects to Slack for real-time notifications. ### AI agent pharmacy demo Practical automation: AI agent accessed hospital management software DB and Obsidian vault containing SOPs. Compared critical drug inventory (adrenaline, atropine) against SOP minimum 500 units, found zero stock, automatically ordered from suppliers. Slack notifications confirmed. ### AI-native company principles Use only Obsidian (markdown), Slack (messaging with full history), Zoom (with note-taking). Eliminate WhatsApp, email, phone calls."
+  },
+  {
+    "id": 144991319,
+    "date": "2026-05-09",
+    "title": "AI-Native OS Three-Step Framework",
+    "url": "https://fathom.video/calls/667786856",
+    "summary": "### Production hardening Sahil noted test cases failed, PDA kept local. ### AI-native operating system vision Dr. Murali BK: transform company to AI-native organization where 60-80% workflows are automated by AI agents. Three-step framework: (1) Learn — build management conviction and understand AI capabilities; (2) Build Business Brain — document all organizational knowledge in queryable markdown; (3) Automate — create AI agents with specific skills per department. Goal: 80% automation within one year. ### Step 2 deep dive Critical step — create business brain through documentation of all org knowledge in markdown."
+  },
+  {
+    "id": 144719310,
+    "date": "2026-05-08",
+    "title": "HEADS Handover Prep",
+    "url": "https://fathom.video/calls/666869060",
+    "summary": "### HEADS handover meeting Haritha calling about handover meeting in 1 hour. Aniruddha present, Anas in another meeting, Sahil available. ### OPEX document review Per-image cost fixed at $0.04 regardless of user scale (10 or 10,000 users). ### Presentation strategy Present documents during meeting first, gather feedback, share amended versions afterward (not before). ### Sahil presenting Sahil presents OPEX and technical documentation during HEADS report handover. Dr. Murali instructed Aniruddha to ensure Sahil studies both."
+  },
+  {
+    "id": 144686468,
+    "date": "2026-05-08",
+    "title": "HEADS Documentation Requirements",
+    "url": "https://fathom.video/calls/666614502",
+    "summary": "### HEADS Project Handover Documentation Two critical documents: (1) handover document (drafted, needs verification of completeness), (2) OPEX documentation detailing API costs. OPEX must specify ongoing cost per image using Gemini 2.5 Flash API, monthly costs based on daily image generation. ### Infrastructure costs Supabase $20/month, Vercel $25/month, Render $7-10/month. OPEX presents both per-image and per-month. ### Handoff meeting structure 4 PM same day. Format: introduction framing as handoff, presentation of two docs (technical + OPEX), Q&A, transfer to client tech team."
+  },
+  {
+    "id": 144670116,
+    "date": "2026-05-08",
+    "title": "Linkist Feature Development",
+    "url": "https://fathom.video/calls/666353481",
+    "summary": "### Feature development Sahil reported: converted partner credits from hardcoded to dynamic, added job completion profile options, implemented coupon for stripe payments. ### Testing Subscription display issue identified and resolved. ### Fathom integration setup Install Fathom desktop app, paste meeting invite link into 'Record future meeting' feature for automatic recording/transcription of calendar-invited meetings. ### Linkist testing report Team created loca... [details about Neurosense and Linkist testing]"
+  },
+  {
+    "id": 144334216,
+    "date": "2026-05-07",
+    "title": "Draw2BOQ Application Demo",
+    "url": "https://fathom.video/calls/665301340",
+    "summary": "### Meeting setup Haritha shared Dr. Murali's meeting link with Vinod and George. ### Draw2BOQ application Dr. Murali presented AI-powered system for architectural information: receives emails with file types (DWG, drawings), opens emails, identifies drawings, extracts architectural data (floor heights, floor plans, drawing scales), measures room dimensions (MDB rooms, ground floor, first floor plans), extracts info from reports, verifies drawings systematically."
+  },
+  {
+    "id": 144266833,
+    "date": "2026-05-07",
+    "title": "Product Marketing & Project Crisis",
+    "url": "https://fathom.video/calls/664827943",
+    "summary": "### Product Marketing Strategy Need compelling marketing materials for hospital management system product. Produce professional two-minute screen recording with narration showcasing functionalities/USPs. Include client success story — real hospital client explaining problems and how software solved them. ### Project Delivery Crisis Caroline frustrated that multiple projects (Neuro, DDO, Linkist) have been in development 7 months since October/November 2025 with no completed handovers. Without delivering phase one to..."
+  },
+  {
+    "id": 143924598,
+    "date": "2026-05-06",
+    "title": "Pricing Structure Revision",
+    "url": "https://fathom.video/calls/663728888",
+    "summary": "### Client meeting rescheduled For tomorrow same time. ### Pricing structure revised Phase 1 (₹2 lakhs), Phase 2 (₹3 lakhs), total ₹5 lakhs + ₹90,000 GST + recurring monthly. Revisions: (1) removed Power Automate (building custom); (2) reduced AMC from 18% to 15% of base CapEx (₹90,000 → ₹75,000 annually); (3) adjusted quotation volume from 500-1000 to 100-500 per month; (4) made terminology generic (replaced Azure OpenAI with generic API/token language); (5) simplified CapEx to single line ₹5,90,000. ### Product collaterals One-pa..."
+  },
+  {
+    "id": 143894114,
+    "date": "2026-05-06",
+    "title": "Decode My Brain CAPEX/OPEX",
+    "url": "https://fathom.video/calls/663569236",
+    "summary": "### Decode My Brain access restored Access issues resolved. Updated credentials shared, main application accessible without OTP. Source code available. ### Client awaiting CAPEX/OPEX estimation Client submitted workflow for management approval, requesting estimation. Engagement sequence: (1) send MoM from kick-off, (2) receive client's approved workflow, (3) provide detailed project plan (modules, timeline, milestone payments), (4) obtain approval before design/development. Current process manual — digitize with critical human checkpoints. ### CAPEX/OPEX details..."
+  },
+  {
+    "id": 143857706,
+    "date": "2026-05-06",
+    "title": "Draw2Vyoki MEP Estimator",
+    "url": "https://fathom.video/calls/663175350",
+    "summary": "### MEP Estimator workflow Draw to Vyoki AI app for MEP contractors automating proposal generation. Client forwards proposal request email to chargegptnotes.gmail.com — system automatically: reads email, registers inquiry, opens tender, downloads attachments, extracts archives, lists documents, lists drawings. Pauses at human decision points where estimator verifies documents. All 8 initial steps fully automated, human intervention only at critical decision gates. Demo 4 PM IST. ### Electrical drawing analysis Specific electrical extraction workflow per customer requirements."
+  },
+  {
+    "id": 143522378,
+    "date": "2026-05-05",
+    "title": "Electrical Workflow Confirmation",
+    "url": "https://fathom.video/calls/662108977",
+    "summary": "### Process workflow Read electrical drawing → extract assets → prepare BOQ → prepare quotation. Electrical structure unchanged from original design. ### Output deliverables Website display + Excel file with max detail (pipe types, sizes, widths). Dubai standard rates for pricing. Screenshot of quotation showing items/prices. ### Accuracy verification Haritha to verify accuracy by reviewing electrical diagram and extracted assets."
+  },
+  {
+    "id": 143446261,
+    "date": "2026-05-05",
+    "title": "Martis Hospital - Vishesh Bhuptani",
+    "url": "https://fathom.video/calls/661567993",
+    "summary": "### Vishesh Bhuptani Director of Martis Hospital (NABH accredited), not a doctor — runs multi-specialty hospital with 25+ core doctors, 100+ associated. Coverage: neurosurgery, cardiac, orthopedics, critical care, gynecology, urology, general surgery. Also runs Maharani Medicare (40-year implant manufacturing). Hospital ~3 years old. ### Implant Portfolio Orthopedic and neurosurgical implants: trauma, spine, cranial, maxillofacial, hip joint. Knee and shoulder in R&D. Neurosurgical: aneurysm clips, hydrocephalus shunts. First channel partner for Johnson & Johnson in Gujarat."
+  },
+  {
+    "id": 143260501,
+    "date": "2026-05-04",
+    "title": "AI Models for Drawing Analysis",
+    "url": "https://fathom.video/calls/660830322",
+    "summary": "### Specialized AI models Tarun and Saikat discussed limitations of general vision models (Claude) for technical drawings. Specialized alternatives: Nomic, Togal, domain-specific AI engines. Claude good for general vision; specialized models better for technical/architectural drawings. No single engine for all tasks — mix-and-match for Pune Metro compliance. ### Image-to-JSON pipeline Convert architectural drawings to JSON using specialized vision engines, apply Claude Opus 4.7 for reasoning and compliance checking. Extract features and technical details into structured JSON."
+  },
+  {
+    "id": 143161224,
+    "date": "2026-05-04",
+    "title": "Pratyana Pune Metro Pitch",
+    "url": "https://fathom.video/calls/660571485",
+    "summary": "### Pratyana platform Drawing verification system for Pune Metro — layer between architects and CDE platform. Automatically checks uploaded architectural drawings against standards (IS, IEC, fire safety, railway) and compares with gold standard drawings (Delhi Metro, Calcutta Metro). Provides architects immediate compliance feedback before formal submission, reducing 2-week review cycle. ### Team prep Meeting director of Pune Metro coming days. Tarun joins to answer technical questions."
+  },
+  {
+    "id": 143113204,
+    "date": "2026-05-04",
+    "title": "Solar SCADA Pricing",
+    "url": "https://fathom.video/calls/660275166",
+    "summary": "### Pricing One-time installation fee with lifetime license, optional AMC. Server costs ~10-15,000 rupees/year, basic dashboard 15,000/year. Competitors charge recurring annual fees; offering one-time installation with negotiation flexibility for volume. ### Dashboard capabilities Multiple dashboards with AI analytics, forecasting. Meets SLDC (State Load Dispatch Center) requirements — transmits generation data on 5-minute cycle. Displays total solar generation, inverter-wise generation, forecasting."
+  },
+  {
+    "id": 143096359,
+    "date": "2026-05-04",
+    "title": "Card Mockup Admin Panel",
+    "url": "https://fathom.video/calls/660186380",
+    "summary": "### Document clarification Verify points in original PO and add-on PO, address WhatsApp-only change requests from Anas. ### Card mockup admin Replace old card mockup images with new uploadable ones managed from admin panel. BK emphasized previous effort on layered designs. Liju clarified original intent: flexibility for uploading different card designs. Admin panel now enables upload/customization without code changes."
+  },
+  {
+    "id": 143083924,
+    "date": "2026-05-04",
+    "title": "BNI 121 - Adarsh Garg Surgicals",
+    "url": "https://fathom.video/calls/658123407",
+    "summary": "### Dr. Murali intro Orthopedic surgeon, owns Hope Hospital (100 beds) and Aishman Hospital (50 beds) in Nagpur. ### Adarsh Garg Surgicals 36-year-old company founded by Sanjay Garg, second generation (Adarsh + brother). Supplies: surgical medical disposables, consumables, critical care, ortho-rehab equipment, life-saving machines (BiPAP, CPAP, oxygen concentrators, multi-parameter monitors, syringe pumps, infusion pumps), hospital furniture. BNI member 3 years in Game Changers East Delhi. 5,000+ customers including Rajiv Gandhi Cancer Institute, PSRI."
+  },
+  {
+    "id": 143065053,
+    "date": "2026-05-04",
+    "title": "BNI 121 - Albin Phinex",
+    "url": "https://fathom.video/calls/657922960",
+    "summary": "### Dr. Murali intro Orthopedic surgeon, 2 NABH hospitals in Nagpur. AI consulting in partnership with BNI member Biji Thomas from Dubai Energizers. ### Albin Phinex 21 years in UAE — hospital administration across MediClinic, Burjil, Cleveland Clinic Abu Dhabi. Finance, operations, revenue management. MBA finance + certifications in financial analytics and BI analytics from HFMA (US). Medical coding and case management for doctors on insurance/claims. ### Phinex Management Consulta..."
+  },
+  {
+    "id": 143041596,
+    "date": "2026-05-03",
+    "title": "NexaProc RAM Optimization",
+    "url": "https://fathom.video/calls/659526307",
+    "summary": "### Root cause Python worker killed by kernel — RAM constraints. Service call-out consuming excessive memory. ### RAM audit Nexa Pulse consuming 15.62 GB (largest, no active work — created for tender review not in use). Disabled Nexa Pulse → 15 GB RAM freed. ### Multi-page PDF batch processing Large PDFs (400-500 pages, investment guidelines, banking norms): chunked upload, batch processing approach."
+  },
+  {
+    "id": 143028172,
+    "date": "2026-05-03",
+    "title": "NexaProc SCADA Platform Demo",
+    "url": "https://fathom.video/calls/659416995",
+    "summary": "### Nexa Proc AI-Integrated SCADA Differs from traditional SCADA (Schneider EcoStruxure, Intouch, Aviva, Plant SCADA) by integrating AI models and PIMS directly. Capabilities: AI analytics for predictive maintenance, anomaly detection, process optimization, energy management, digital twins for what-if scenarios, AI operations center for visibility, maintenance section (work orders, spare parts, preventive maintenance). ### Maintenance Management Work order creation for spare parts ordering and scheduled maintenance. Preventive maintenance scheduling."
+  },
+  {
+    "id": 143025853,
+    "date": "2026-05-03",
+    "title": "Jaipur Metro Reference Design",
+    "url": "https://fathom.video/calls/659400217",
+    "summary": "### Jaipur Metro reference Tarun discovered Jaipur Metro Complete Architecture Design — best available approved reference online. Used as standard. System successfully reads architectural drawings. ### Compliance scoring Jaipur Metro analysis achieved 60% compliance score with 3.8% similarity to golden source. Categories: pass, fail, warning, skip. Most items 'complied'. Identified one non-compliance: staircase width not meeting specs for assembly industrial occupancies."
+  },
+  {
+    "id": 143019609,
+    "date": "2026-05-03",
+    "title": "Pratyaya Code Review",
+    "url": "https://fathom.video/calls/659357907",
+    "summary": "### Project progress Significant work on Pratyaya project, recent code pushes. Reports upload and admin dashboard features. ### Testing strategy Scraping drawings from internet to test against system, identify problems. Critical because working demo in 1-2 days where clients dynamically share their own drawings."
+  },
+  {
+    "id": 142994312,
+    "date": "2026-05-02",
+    "title": "BNI 121 - Manika Gupta Chemistry",
+    "url": "https://fathom.video/calls/659154420",
+    "summary": "### Chemistry exam content Substance reacts with analyst region to produce pink/reddish color (portfolio region reaction). Para-methyl-amino-benzaldehyde — frequently tested. ### Lab procedure Heat and cool sample, mix 5 ml urine + 5 ml reagent, sit 3 minutes. Add 2 ml saturated sodium acid for extraction, pH adjust to 6-6. Equal amounts urine and reagent, 2 ml sodium acetate, 4 ml chloroform sequentially."
+  },
+  {
+    "id": 142989850,
+    "date": "2026-05-02",
+    "title": "BNI 121 - Rama Krishna Optima Structures",
+    "url": "https://fathom.video/calls/659170368",
+    "summary": "### Rama Krishna B.Tech Civil NIT Calicut, M.Tech Structures JMI Karkinada. Founded Optima Structures Private Limited (structural engineering). COVID pivot. ### Dr. Murali Orthopedic surgeon, 2 Nagpur hospitals, 7-year BNI member. Parallel AI automation business with Saikat Dutta — AI adoption for businesses/manufacturing."
+  },
+  {
+    "id": 142983243,
+    "date": "2026-05-02",
+    "title": "BNI 121 - Chetan Aggrwal Electrical",
+    "url": "https://fathom.video/calls/659129571",
+    "summary": "### Dr. Murali team intro Saikat (business partner), Biji Thomas (Dubai partner). AI automation/adoption for businesses, 3 years. Chetan Aggrwal manufactures electrical components — switch sockets, switch gears, wire accessories. Plant in Noida. ### AI-SCADA presentation Saikat (automation engineer, 11 years exp) presented AI-agentic SCADA gathering data from manufacturing machines for preventive maintenance. Chetan declined — machine manufacturers already provide such solutions, his company is assembly-focused not machine operation."
+  },
+  {
+    "id": 142790727,
+    "date": "2026-05-01",
+    "title": "BNI - Dr. Naga Physiotherapy",
+    "url": "https://fathom.video/calls/658509825",
+    "summary": "### Dr. Murali intro Orthopedic surgeon owning Hope Hospital and Aishman Hospital in Nagpur, 7-year BNI Diorite chapter member. Contacted Dr. Naga seeking physiotherapists for expansion of Betroy (AI adoption for doctors/paramedics, co-founded with BG Thomas Dubai). ### Dr. Naga First master's in physiotherapy from his state. PhD 2016, guiding 3 PhD scholars. Team doctor Ranji Trophy cricket Anthropocene Association (2006-2010). Own clinic, attached to 3 orthopedic hospitals (IP and OPD)."
+  },
+  {
+    "id": 142777001,
+    "date": "2026-05-01",
+    "title": "Maha Metro AI Drawing Verification",
+    "url": "https://fathom.video/calls/658381140",
+    "summary": "### Maha Metro AI drawing verification Cloud-based AI layer on existing CDE software intercepts and verifies architectural drawings before upload. Compares against digital library of safety regulations, IEC standards, metro best practices. Components: IEC standards engine, AI reading all CAD drawing types, historical database of approved drawings, automated pass-fail reporting. 100% compliance → automatically pushed to client's system via API. Self-learning from human feedback."
+  },
+  {
+    "id": 142774853,
+    "date": "2026-05-01",
+    "title": "Enterprise Project Planning",
+    "url": "https://fathom.video/calls/658351536",
+    "summary": "### Project scope Reading emails, transcribing into proposals. Need structured proposals with clear sections so clients understand scope and value. ### Enterprise project planning Detailed project plan (not just proposal): requirements gathering (data formats, timelines, delivery dates), module definition, workflow/SoW, client approval processes. Identify sections requiring client approval, data input formats and output requi..."
+  },
+  {
+    "id": 142766904,
+    "date": "2026-05-01",
+    "title": "BNI 121 MEETING",
+    "url": "https://fathom.video/calls/658048986",
+    "summary": "### Task delegation Sabi on leave 2 days, work delegated to Anirut. Board AE kick-off was introductory; need minutes from Aritha. BNI 121 meeting with Ruchika Zade and Gourav Doshi."
+  },
+  {
+    "id": 142756709,
+    "date": "2026-05-01",
+    "title": "BNI - Saikat partner intro",
+    "url": "https://fathom.video/calls/658188699",
+    "summary": "Dr Murali (7-year BNI Diorite, Hope+Aishman hospitals Nagpur) introduced partner Saikat Dutta (Automation Engineer). Established context for partnership presentations."
+  },
+  {
+    "id": 142751976,
+    "date": "2026-05-01",
+    "title": "BNI - Pradeep concept-to-market",
+    "url": "https://fathom.video/calls/658099817",
+    "summary": "Pradeep explained concept-to-market commercialization: identify gaps via market surveys, develop differentiated products, commercialize via B2B."
+  },
+  {
+    "id": 142742959,
+    "date": "2026-05-01",
+    "title": "BNI - family meeting check",
+    "url": "https://fathom.video/calls/657895016",
+    "summary": "Dr Murali inquired about Naurav's absence. Connection issues. Family discussion."
+  },
+  {
+    "id": 142480337,
+    "date": "2026-04-30",
+    "title": "Tarun Cloud Code setup",
+    "url": "https://fathom.video/calls/657148642",
+    "summary": "Tarun confirmed Cloud Code installed with GitHub + virtual setup. Researching Nexaproc and AI-as-a-service. Plans to enhance service repository for efficiency."
+  },
+  {
+    "id": 142428227,
+    "date": "2026-04-30",
+    "title": "Product portfolio review",
+    "url": "https://fathom.video/calls/656956578",
+    "summary": "Three ready products: intelligent hospital management with AI modules, doctor's digital office for clinics, and AI-based diagnostics. Goal: humanity-focused projects."
+  },
+  {
+    "id": 142391937,
+    "date": "2026-04-30",
+    "title": "BNI 1-2-1 Sunsteri Lab - Homyar Dotiwala",
+    "url": "https://fathom.video/calls/654766112",
+    "summary": "Dr Murali + BT (Dubai) intro as BNI members with AI adoption business. Official partners for Dubai and Sharjah governments. Homyar Dotiwala from Sunsteri Lab."
+  },
+  {
+    "id": 142370966,
+    "date": "2026-04-30",
+    "title": "DecodeMyBrain Meeting",
+    "url": "https://fathom.video/calls/654766120",
+    "summary": "Participants: Haritha, Dr Sweta Adatia (Komal), Virul, Dr Murali. Neominds team (Sri Lanka). Waited 2 mins for Saifur. Recording confirmed."
+  },
+  {
+    "id": 142356505,
+    "date": "2026-04-30",
+    "title": "Z.A.A presentation prep",
+    "url": "https://fathom.video/calls/656513189",
+    "summary": "Major contractor materials prep. Revise Z.A.A presentation, send technical proposals. Tinder Review Project PPT also needs work."
+  },
+  {
+    "id": 142116493,
+    "date": "2026-04-29",
+    "title": "Linkist NFC pricing + regional",
+    "url": "https://fathom.video/calls/655853010",
+    "summary": "Liju: Linkist pricing changes — remove one plan, adjust another, text corrections. Implement geolocation-based pricing (India vs UAE detection)."
+  },
+  {
+    "id": 142046315,
+    "date": "2026-04-29",
+    "title": "CRM FARM Demo - Foyertech",
+    "url": "https://fathom.video/calls/655526011",
+    "summary": "Palaniappan (GM Foyertech) + Tamil Selvan introduced CRM FARM — CRM for educational institutions. Lead generation, management, follow-up reminders."
+  },
+  {
+    "id": 142029341,
+    "date": "2026-04-29",
+    "title": "BNI 121 - Sagar Khimsaria",
+    "url": "https://fathom.video/calls/655392768",
+    "summary": "Dr Murali (7-year BNI Deorite Nagpur, orthopedic surgeon, 2 hospitals, AI software co-venture with Dubai partner). Sagar Khimsaria intro."
+  },
+  {
+    "id": 142016879,
+    "date": "2026-04-29",
+    "title": "BNI 1-2-1 MV Diabetes - Dr Vijay",
+    "url": "https://fathom.video/calls/653262071",
+    "summary": "Dr Murali (orthopedic, 7yr BNI). CEO MVH: MV Diabetes founded 1954, India's first specialized diabetes hospital. Legacy in diabetes treatment."
+  },
+  {
+    "id": 141977580,
+    "date": "2026-04-29",
+    "title": "BNI - Abraham (South Africa)",
+    "url": "https://fathom.video/calls/655235630",
+    "summary": "Dr Murali (7yr BNI orthopedic, 2 hospitals, AI for healthcare/automation). Abraham — South African appliance/professional services."
+  },
+  {
+    "id": 141971184,
+    "date": "2026-04-29",
+    "title": "BNI - Michelle Norman",
+    "url": "https://fathom.video/calls/655179419",
+    "summary": "Michelle Norman + Dr Murali via BNI International. Dr Murali helps BNI members adopt AI. Connection via BNI Nagpur."
+  },
+  {
+    "id": 141957203,
+    "date": "2026-04-29",
+    "title": "DecodeMyBrain project handover",
+    "url": "https://fathom.video/calls/654985460",
+    "summary": "DecodeMyBrain: WordPress-based brain assessment platform, originally Sri Lankan company, support stopped. Need code review, bug fixes, enhancements."
+  },
+  {
+    "id": 141603760,
+    "date": "2026-04-28",
+    "title": "angelique - industrial automation",
+    "url": "https://fathom.video/calls/653781937",
+    "summary": "Dr Murali (7yr BNI Nagpur, hospital owner + AI/industrial automation business). Discussion of BNI member collaboration on industrial automation and AI adoption."
+  },
+  {
+    "id": 141555230,
+    "date": "2026-04-28",
+    "title": "BNI 121 - Dr Shivam gentle dental",
+    "url": "https://fathom.video/calls/653428345",
+    "summary": "Dr Murali (7-8yr BNI, twice chapter president, 2 Nagpur hospitals, parallel AI biz helping medical pros). Dr Shivam intro - gentle dental Gurugram."
+  },
+  {
+    "id": 141546289,
+    "date": "2026-04-28",
+    "title": "Yogesh Waghmare",
+    "url": "https://fathom.video/calls/653355787",
+    "summary": "BNI 1-2-1. Dr Murali (7yr BNI Nagpur, 2 hospitals, AI biz). Yogesh Waghmare BNI member, similar background."
+  },
+  {
+    "id": 141178165,
+    "date": "2026-04-27",
+    "title": "BNI 1-2-1 Senthil Kumar",
+    "url": "https://fathom.video/calls/650930062",
+    "summary": "Senthil Kumar + BT via Zoom. BT from BNI Energizer Dubai (AI). Partnering with Dr BK Murali (orthopedic, Nagpur BNI Diorite)."
+  },
+  {
+    "id": 141166881,
+    "date": "2026-04-27",
+    "title": "BNI Maggie Kenya",
+    "url": "https://fathom.video/calls/651832544",
+    "summary": "Dr Murali (Nagpur BNI Durite, 7yr). Maggie (Amos Gitao) from Kenya BNI Mavuno chapter. Discussion of cross-region AI adoption."
+  },
+  {
+    "id": 141160477,
+    "date": "2026-04-27",
+    "title": "BNI - Emile impromptu",
+    "url": "https://fathom.video/calls/651750517",
+    "summary": "Emile surprised by impromptu meeting. Dr Murali intro (BNI Nagpur, orthopedic, 2 hospitals)."
+  },
+  {
+    "id": 141155341,
+    "date": "2026-04-27",
+    "title": "BNI 121 - Nadeem CounselHelp",
+    "url": "https://fathom.video/calls/651222458",
+    "summary": "Dr Murali intro (orthopedic, Nagpur hospitals, AI biz). Nadeem graduated Nagpur University, previously lived near Poonam M. CounselHelp Legal."
+  },
+  {
+    "id": 141146422,
+    "date": "2026-04-27",
+    "title": "RB Diagnostics Calcutta - hospital legacy software",
+    "url": "https://fathom.video/calls/651539291",
+    "summary": "Dr Murali visited RB Diagnostics Calcutta — observed hospitals on outdated legacy software with poor UI/UX. Old frameworks, lacking modern features. Modernization opportunity."
+  },
+  {
+    "id": 141072348,
+    "date": "2026-04-25",
+    "title": "BNI 121 Aarthy B&A Jewels",
+    "url": "https://fathom.video/calls/650930561",
+    "summary": "BNI 1-2-1: Aarthy (Chennai CBDB chapter, B&A Jewels), Dr Murali (Nagpur), BT (Biji Taragan Thomas, Dubai). South Indian shared connection."
+  },
+  {
+    "id": 141070161,
+    "date": "2026-04-25",
+    "title": "BNI 121 Swapnil Lokare",
+    "url": "https://fathom.video/calls/650907092",
+    "summary": "Roma Gehi + Dr Murali. Screen sharing setup. Swapnil Lokare BNI 1-2-1."
+  },
+  {
+    "id": 141066955,
+    "date": "2026-04-25",
+    "title": "Daily schedule - Sahil + Baskaram",
+    "url": "https://fathom.video/calls/650890087",
+    "summary": "Dr Murali + Sahil discussed day's meetings: Baskaram + other clients. Coordinated around Dr Murali's flight. LPL feedback discussed."
+  },
+  {
+    "id": 140839841,
+    "date": "2026-04-24",
+    "title": "Pangong preventive healthcare",
+    "url": "https://fathom.video/calls/650224393",
+    "summary": "Azhar Ali Sayed, founder Pangong (Mumbai, 20yr healthcare). Preventive healthcare + post-treatment care, lifestyle intervention as core offering."
+  },
+  {
+    "id": 140826181,
+    "date": "2026-04-24",
+    "title": "Bhavik company presentation prep",
+    "url": "https://fathom.video/calls/650142694",
+    "summary": "Dr Murali planning Tuesday presentation to Bhavik's company. First needs to understand actual problem from stakeholders. Tailor based on requirements."
+  },
+  {
+    "id": 140821180,
+    "date": "2026-04-24",
+    "title": "Mobile phone parts manufacturer - predictive maintenance",
+    "url": "https://fathom.video/calls/650100418",
+    "summary": "Client manufactures mobile phone parts using robots + conveyors with motor gearboxes. Items shift position during processing affecting accuracy. Needs predictive maintenance for enclosed systems."
+  },
+  {
+    "id": 140760942,
+    "date": "2026-04-24",
+    "title": "BNI 121 - eksmktg",
+    "url": "https://fathom.video/calls/649576654",
+    "summary": "Dr Murali (orthopedic, 7yr BNI Nagpur Maharashtra, 2 hospitals + AI automation for manufacturing). Currently traveling."
+  },
+  {
+    "id": 140758199,
+    "date": "2026-04-24",
+    "title": "UAE Govt expansion strategy",
+    "url": "https://fathom.video/calls/649572635",
+    "summary": "BT proposed rapid campaign using Flow, Axel, JotForm to expand across UAE emirates. Leverage Dubai+Sharjah govt letters as proof of credibility. Approach Abu Dhabi."
+  },
+  {
+    "id": 140441753,
+    "date": "2026-04-23",
+    "title": "Dr Rakesh Dakaha BDS - Rashi Dental",
+    "url": "https://fathom.video/calls/648527085",
+    "summary": "Dr Rakesh Dakaha BDS, 7yr BNA member, Rashi Dental + Implant Smilist Center Sardar Nagpur. Dr Murali intro - dental practice and clinic software demo."
+  },
+  {
+    "id": 140430690,
+    "date": "2026-04-23",
+    "title": "Deepak Shembeke - Rising Electricals",
+    "url": "https://fathom.video/calls/648479572",
+    "summary": "Deepak Shembeke from Rising Electricals. Dr Murali (orthopedic, Hope + Aishman hospitals Nagpur). Both long-standing BNI — Deepak 7yr, served as chapter president."
+  },
+  {
+    "id": 140408945,
+    "date": "2026-04-23",
+    "title": "BNI 121 Patnaik Chennai",
+    "url": "https://fathom.video/calls/648289190",
+    "summary": "Dr Murali (Tamilian settled Nagpur 32yr) + Patnaik (Odia settled Tamil Nadu 32yr). Complementary migration patterns. Family discussion."
+  },
+  {
+    "id": 140377119,
+    "date": "2026-04-23",
+    "title": "Robotics meeting w/ Pranil Pune",
+    "url": "https://fathom.video/calls/648120022",
+    "summary": "Dr Murali scheduled meeting with Pranil (Robotics Automation Manager, Pune) at 4-5 PM. Pune-based company representative."
+  },
+  {
+    "id": 140368733,
+    "date": "2026-04-23",
+    "title": "Contact scraping strategy",
+    "url": "https://fathom.video/calls/648002158",
+    "summary": "Team plans for scraping contact info from various sources: cloud services, company websites. Using Python for automation. Multiple channels: cloud, KVA, direct contact."
+  },
+  {
+    "id": 140040182,
+    "date": "2026-04-22",
+    "title": "Varadarajan - Betroy CTO intro",
+    "url": "https://fathom.video/calls/646931961",
+    "summary": "Initial mic issues resolved. Dr Murali (orthopedic, 2 hospitals, CTO of Betroy — helping doctors adopt AI). 3-way intro."
+  },
+  {
+    "id": 140032206,
+    "date": "2026-04-22",
+    "title": "P&ID Extractor demo - Nexa Proc",
+    "url": "https://fathom.video/calls/646889283",
+    "summary": "Dr Murali demoed P&ID extraction tool in Nexa Proc family. Workflow: sign in, select engineering module, upload P&ID PDF, AI extracts data, download."
+  },
+  {
+    "id": 140026852,
+    "date": "2026-04-22",
+    "title": "NexaProc production access",
+    "url": "https://fathom.video/calls/646855217",
+    "summary": "Saikat provided login credentials (saikat.datta@gmail.com). Server unavailability issues during login. Multiple refresh cycles to access nexaproc.in production site."
+  },
+  {
+    "id": 140001152,
+    "date": "2026-04-22",
+    "title": "BNI 121 Ashok Kumar",
+    "url": "https://fathom.video/calls/645185495",
+    "summary": "Dr Murali (orthopedic, BNI Nagpur, owner Hope + Aishman, 20yr healthcare ops). Ashok Kumar intro - business representative."
+  },
+  {
+    "id": 139991851,
+    "date": "2026-04-22",
+    "title": "Gautham Goswami - Avenue Traders",
+    "url": "https://fathom.video/calls/646588393",
+    "summary": "Dr Murali introduced Betroy (Dubai-based AI/digital transformation co). Yousuf runs Avenue Traders — industrial automation components supplier."
+  },
+  {
+    "id": 139979302,
+    "date": "2026-04-22",
+    "title": "Physio Satish Kumar",
+    "url": "https://fathom.video/calls/646406615",
+    "summary": "Dr Murali BK (orthopedic + tech entrepreneur, 2 Nagpur hospitals, multi-location). BT — AI consultancy specialist Dubai BNI, helps healthcare providers."
+  },
+  {
+    "id": 139977868,
+    "date": "2026-04-22",
+    "title": "Project management system review",
+    "url": "https://fathom.video/calls/646387354",
+    "summary": "Team reviewed new PMS — blue button to create projects. Requires: name, description, category, deployment info, URL, login creds. Tech stack."
+  },
+  {
+    "id": 139714187,
+    "date": "2026-04-21",
+    "title": "Vijaymahantesh Pujari Neurosurgeon",
+    "url": "https://fathom.video/calls/645594719",
+    "summary": "Dr Murali (Hope + Aishwil Akur, BNI Diorite 7yr, MS JSS Medical College 1994-1997). Vijaymahantesh Pujari — neurosurgeon, intro for collaboration."
+  },
+  {
+    "id": 139703150,
+    "date": "2026-04-21",
+    "title": "ClawedCode + HermesClaw tool selection",
+    "url": "https://fathom.video/calls/645550894",
+    "summary": "Vinod asked about Claude as sidekick operator. Dr Murali: primarily uses ClawedCode for coding, HermesClaw for agentic work. OpenClaw abandoned."
+  },
+  {
+    "id": 139639723,
+    "date": "2026-04-21",
+    "title": "Heads project handoff document",
+    "url": "https://fathom.video/calls/645236037",
+    "summary": "Dr Murali to share PDF with Claude to update Heads project handoff doc. Multiple inaccuracies needed correction including critical error — styles listed as 6-7."
+  },
+  {
+    "id": 139629520,
+    "date": "2026-04-21",
+    "title": "Headz Project Sign-Off with Client",
+    "url": "https://fathom.video/calls/642872898",
+    "summary": "Client team no-show. Vinod attempted to reach client members in lobby. Client not picking up. Multiple contact attempts."
+  },
+  {
+    "id": 139600595,
+    "date": "2026-04-21",
+    "title": "BNI N R Patnaik Galaxy Chennai",
+    "url": "https://fathom.video/calls/644940110",
+    "summary": "N R Patnaik (business process automation, Galaxy chapter Chennai, 7 months) + Dr Murali (orthopedic, Diorite Chapter Nagpur). BNI shared connection."
+  },
+  {
+    "id": 139597939,
+    "date": "2026-04-21",
+    "title": "Raushan Patel Rockwell Florida",
+    "url": "https://fathom.video/calls/643629022",
+    "summary": "Raushan Patel from Rockwell Automation (Florida Sector 64). Saikat + Abhishek joined. Discussion on automation collaboration."
+  },
+  {
+    "id": 139590198,
+    "date": "2026-04-21",
+    "title": "Web scraping + contact enrichment",
+    "url": "https://fathom.video/calls/644769534",
+    "summary": "Sahil technical presentation: web scraping + contact enrichment. Uses DuckDuckGo (free, no API key) to scrape company sites, extract names/phones/emails."
+  },
+  {
+    "id": 139286787,
+    "date": "2026-04-20",
+    "title": "Clinic Labs meeting Apr 21",
+    "url": "https://fathom.video/calls/643743846",
+    "summary": "Dr Murali scheduled meeting Apr 21 11:30 AM with Clinic Labs. WhatsApp group setup. Some confusion about timing — 4 PM Ashayeka Sir."
+  },
+  {
+    "id": 139272805,
+    "date": "2026-04-20",
+    "title": "BNI 1-2-1 Dr Prakruti Verma IVF",
+    "url": "https://fathom.video/calls/643655025",
+    "summary": "Dr Prakruti Verma IVF (husband in critical care). BETSER: 2 proposals incomplete, 1 finished, 70% remaining is cloning code."
+  },
+  {
+    "id": 139263677,
+    "date": "2026-04-20",
+    "title": "Roma - meeting review via Fathom",
+    "url": "https://fathom.video/calls/643617623",
+    "summary": "Roma confirmed recent meeting went well. Dr Murali + Roma accessing recording via Fathom for review. Software dev from transcript requirements."
+  },
+  {
+    "id": 139231050,
+    "date": "2026-04-20",
+    "title": "Dr Ashok Kumar urologist AI proposal",
+    "url": "https://fathom.video/calls/642542841",
+    "summary": "Attempted meeting with Ashok Kumar (urologist) for AI proposal. Delays — decided to reschedule. BT to send message asking when."
+  },
+  {
+    "id": 139222016,
+    "date": "2026-04-20",
+    "title": "Fathom recording + cloud move",
+    "url": "https://fathom.video/calls/643295550",
+    "summary": "Sahil confirmed Fathom recording and taking notes. Request to move meeting record to cloud. Recording available and showing on website."
+  },
+  {
+    "id": 139208645,
+    "date": "2026-04-20",
+    "title": "Roma training - Anjana Modi Suraj",
+    "url": "https://fathom.video/calls/643089697",
+    "summary": "Roma reported Anjana Modi from Suraj is good potential contact, expressed interest, no meeting scheduled yet. Roma to follow up."
+  },
+  {
+    "id": 139139575,
+    "date": "2026-04-18",
+    "title": "BNI - Rajani Thanissery vet",
+    "url": "https://fathom.video/calls/642520525",
+    "summary": "Dr Murali (orthopedic, 2 hospitals + polyclinic Nagpur, Tamilian settled). Rajani Thanissery - veterinary doctor, MS+PhD US, Pondicherry."
+  },
+  {
+    "id": 139134759,
+    "date": "2026-04-18",
+    "title": "HARITHA NEURO meeting",
+    "url": "https://fathom.video/calls/642492719",
+    "summary": "Haritha + Dr Murali. Attempted to reach Biji (other commitments — meeting Dr Shweta re linguistic marketing)."
+  },
+  {
+    "id": 139133131,
+    "date": "2026-04-18",
+    "title": "BNI Ateem Gupta Batinda",
+    "url": "https://fathom.video/calls/642480705",
+    "summary": "Dr Murali (orthopedic, 2 Nagpur hospitals + AI software company for healthcare/clinics/labs/engineering). Ateem Gupta from BNI Batinda."
+  },
+  {
+    "id": 139129719,
+    "date": "2026-04-18",
+    "title": "GOPAL AGRAWAL BNI LAB",
+    "url": "https://fathom.video/calls/642448912",
+    "summary": "Dr Murali intro: WhatsApp integration using Python backend for automated contact scraping + syncing to Supabase. Auto-sync button for contact management."
+  },
+  {
+    "id": 139014918,
+    "date": "2026-04-17",
+    "title": "Automation Engineering Akshay",
+    "url": "https://fathom.video/calls/642123188",
+    "summary": "Dr Murali introduced partners: BT (AI consultant Dubai, helps biz adopt AI), Saikat (automation engineer 20+ years, agentic solutions for manufacturing)."
+  },
+  {
+    "id": 138924247,
+    "date": "2026-04-17",
+    "title": "Dr Reshman Dave Pathologist - ThyroCare Surat",
+    "url": "https://fathom.video/calls/641836155",
+    "summary": "Dr Murali + BETSER (Biji Thomas) intro to Dr Reshma Dhavay, owner ThyroCare franchisee lab Surat. BNI connections — Dr Murali member."
+  },
+  {
+    "id": 138908942,
+    "date": "2026-04-17",
+    "title": "Saikat Meeting - pharmacy",
+    "url": "https://fathom.video/calls/641770999",
+    "summary": "Dr Murali expected automation engineer but clarified discussion involves pharmacy-related matters. Initial purpose confusion resolved."
+  },
+  {
+    "id": 138893205,
+    "date": "2026-04-17",
+    "title": "Haritha plan - Neurosense 3rd party",
+    "url": "https://fathom.video/calls/641673459",
+    "summary": "Haritha received docs via WhatsApp re Neurosense third-party services + payment stages. Dr Murali recently hired bright software devs assisting with proposals."
+  },
+  {
+    "id": 138840522,
+    "date": "2026-04-17",
+    "title": "BT voice message - Automation Engineering",
+    "url": "https://fathom.video/calls/641294607",
+    "summary": "Dr Murali confirmed 2 meetings for Automation Engineering contacts Apr 17 2026. First 6:30 PM IST with BNI member. Second 10 PM IST with pharma plant designer."
+  },
+  {
+    "id": 138823837,
+    "date": "2026-04-17",
+    "title": "morning huddle - Supabase intro",
+    "url": "https://fathom.video/calls/641044556",
+    "summary": "Dr Murali introduced Supabase: backend-as-a-service combining DB, user auth, file storage (buckets), APIs. Most popular DB solution currently."
+  },
+  {
+    "id": 138445704,
+    "date": "2026-04-16",
+    "title": "AI + Cloud SQL training session",
+    "url": "https://fathom.video/calls/639529484",
+    "summary": "Dr Murali outlined training: AI, Cloud SQL, LLM concepts, tokens, context windows, system prompts, model comparisons. Morning theory + hands-on tasks divided among team."
+  },
+  {
+    "id": 138185991,
+    "date": "2026-04-15",
+    "title": "Render token expired + Dr Shweta",
+    "url": "https://fathom.video/calls/638711810",
+    "summary": "Critical pending: (1) Dr Shweta not informed about render app expired free tokens — blocking support generation; (2) third-party disclosure pending."
+  },
+  {
+    "id": 138148336,
+    "date": "2026-04-15",
+    "title": "Email uniqueness + multi-entity",
+    "url": "https://fathom.video/calls/638550027",
+    "summary": "Haritha + Sahil: each email ID must be unique. Super admin with sahil@gmail.com can create only 1 clinic OR 1 partner, not multiple entities of same type."
+  },
+  {
+    "id": 138084770,
+    "date": "2026-04-15",
+    "title": "Algorithm review w/ Haritha + Sahil",
+    "url": "https://fathom.video/calls/638143512",
+    "summary": "BK at Ayushman in another meeting, unavailable. Haritha + Sahil proceeded to discuss pending technical matters around algorithm."
+  },
+  {
+    "id": 138064970,
+    "date": "2026-04-15",
+    "title": "AI coding project explain",
+    "url": "https://fathom.video/calls/637879118",
+    "summary": "Dr Murali introduced focus on explaining project to AI coding systems: project file structure, Git workflow, .env environment configuration."
+  },
+  {
+    "id": 137886629,
+    "date": "2026-04-14",
+    "title": "BT response to ILA letter feedback",
+    "url": "https://fathom.video/calls/637279068",
+    "summary": "BT prepared response to ILA feedback. Maintained Aishriya letter structure, modified content. Team extracting ILA's specific questions from Zoom recording."
+  },
+  {
+    "id": 137754071,
+    "date": "2026-04-14",
+    "title": "BETSER multi-device echo",
+    "url": "https://fathom.video/calls/636902520",
+    "summary": "Audio echo issues — BETSER joined from multiple devices. Multiple resolution attempts."
+  },
+  {
+    "id": 137733669,
+    "date": "2026-04-14",
+    "title": "DDO Digital Doctor's Office demo",
+    "url": "https://fathom.video/calls/636799192",
+    "summary": "Setup + recording. DDO system demo. Dr Murali created clinical admin user from super admin account. Email uniqueness discussed."
+  },
+  {
+    "id": 137676878,
+    "date": "2026-04-14",
+    "title": "Nivroga doc update strategy",
+    "url": "https://fathom.video/calls/636382381",
+    "summary": "Sahil + Haritha discussed updates for Nivroga project. Haritha referenced prior Dr Shweta meeting where doc updates completed. Pattern for marking items needing clarification."
+  },
+  {
+    "id": 137664425,
+    "date": "2026-04-14",
+    "title": "BCA student intros",
+    "url": "https://fathom.video/calls/636202891",
+    "summary": "Multiple BCA final-year students intro: Ravik Sharma, Jaisingh Gani, Utshika, Ashri Salve. Shared yesterday's training was valuable."
+  },
+  {
+    "id": 137289430,
+    "date": "2026-04-13",
+    "title": "BNI 121 - Dr Gunjan Bhatia AI",
+    "url": "https://fathom.video/calls/634662806",
+    "summary": "Dr Gunjan Bhatia + Dr Murali discussed collaboration: Dr Gunjan's team takes smaller projects Dr Murali doesn't have capacity for; integrate AI expertise."
+  },
+  {
+    "id": 137279604,
+    "date": "2026-04-13",
+    "title": "Morning huddle - company history + Raftar",
+    "url": "https://fathom.video/calls/634507583",
+    "summary": "Dr Murali overview: company started with hospital management software, expanded to ambulance aggregator Raftar, now multiple verticals."
+  },
+  {
+    "id": 137198570,
+    "date": "2026-04-11",
+    "title": "Neurosense + DDO integration architecture",
+    "url": "https://fathom.video/calls/633855969",
+    "summary": "Neurosense project topics: technical architecture, data backup/redundancy. Integration with Dr Shweta's DDO platform."
+  },
+  {
+    "id": 136936771,
+    "date": "2026-04-10",
+    "title": "Ila Colombo pop - Google DeepMind",
+    "url": "https://fathom.video/calls/632918183",
+    "summary": "Ila Colombo: diverse design/architecture/IT/gaming/AI experience including Google DeepMind + Dubai Future Foundation. Betroy team (BT + Dr Murali)."
+  },
+  {
+    "id": 136894396,
+    "date": "2026-04-10",
+    "title": "Billing discharged patients",
+    "url": "https://fathom.video/calls/632449583",
+    "summary": "Dr Murali: process for bills for patients discharged previous day. Emphasized same-day completion + filing. Include names of discharged patients."
+  },
+  {
+    "id": 136703562,
+    "date": "2026-04-09",
+    "title": "Tarun + Saikat Claude in VSCode",
+    "url": "https://fathom.video/calls/631824584",
+    "summary": "Saikat guided Tarun installing Claude AI in VS Code: new terminal, claude command, troubleshooting installation issues, cloning Git repo."
+  },
+  {
+    "id": 136535373,
+    "date": "2026-04-09",
+    "title": "MODae - CRM + Accounting integration",
+    "url": "https://fathom.video/calls/631184350",
+    "summary": "BT explained: integrate CRM + accounting so customers selected from CRM passed to accounting. Import existing customer records to CRM."
+  },
+  {
+    "id": 136515439,
+    "date": "2026-04-09",
+    "title": "Morning huddle - billing + discharge issues",
+    "url": "https://fathom.video/calls/630950721",
+    "summary": "Ongoing billing/discharge issues. Delays in discharge summaries + files from doctors causing bill delays. Agreed on clear comm channel."
+  },
+  {
+    "id": 136376622,
+    "date": "2026-04-08",
+    "title": "BT haritha - Neurosense dial logic",
+    "url": "https://fathom.video/calls/630457357",
+    "summary": "BK explained Neurosense dial + number display: 0-1 normal, 1-2 medium, 2-3 high. Number (e.g. 22%) calculated by wellness algorithm formula."
+  },
+  {
+    "id": 136193796,
+    "date": "2026-04-08",
+    "title": "Neuro - page layout restructure",
+    "url": "https://fathom.video/calls/629865706",
+    "summary": "Sahil + Haritha: restructure page into 3 sections — Neuro-breathing, Neuro-exercise, Neuro-chants. 'Breath Reset Protocol' heading."
+  },
+  {
+    "id": 136134357,
+    "date": "2026-04-08",
+    "title": "Billing + Pending Files ESIC",
+    "url": "https://fathom.video/calls/629342784",
+    "summary": "Billing/pending files status. Many pending especially ESIC + corporate patients due to complex documentation. Target: 10 files per day."
+  },
+  {
+    "id": 135799931,
+    "date": "2026-04-07",
+    "title": "Neuro project status - nootropics + meditation",
+    "url": "https://fathom.video/calls/628209040",
+    "summary": "Haritha + Sahil on Neuro progress. Sahil: coding update — fixed nootropics + meditation features, other improvements."
+  },
+  {
+    "id": 135739236,
+    "date": "2026-04-07",
+    "title": "Streamline hospital processes",
+    "url": "https://fathom.video/calls/627671321",
+    "summary": "Improving efficiency: admissions, billing, pharmacy, patient discharge. Need consistent, disciplined approach where everyone takes ownership."
+  },
+  {
+    "id": 135500137,
+    "date": "2026-04-06",
+    "title": "Headz - photo upload issues",
+    "url": "https://fathom.video/calls/626829588",
+    "summary": "Haritha: 'change photo' button not working, can't proceed after taking photo. Discussed solutions — move preview before submit."
+  },
+  {
+    "id": 135473737,
+    "date": "2026-04-06",
+    "title": "drawtoboq HVAC estimation review",
+    "url": "https://fathom.video/calls/626602434",
+    "summary": "HVAC estimation process review. Flowchart steps: identify HVAC drawings, extract thermal load + equipment schedules, apply formulas."
+  },
+  {
+    "id": 135467470,
+    "date": "2026-04-06",
+    "title": "neuro sahil - email env update",
+    "url": "https://fathom.video/calls/626547031",
+    "summary": "Sahil updated env on inbound/outbound mail + credentials. Wants to confirm changes work. Haritha + Sahil discussed email functionality testing."
+  },
+  {
+    "id": 135433605,
+    "date": "2026-04-06",
+    "title": "morning huddle - Neurosense360 email integration",
+    "url": "https://fathom.video/calls/626113863",
+    "summary": "Neurosense 360 email integration status. Issues with inbound/outbound config — incorrect passwords + addresses. Identified + corrected."
+  },
+  {
+    "id": 135379543,
+    "date": "2026-04-04",
+    "title": "Neurosense + drawtoboq - DDO integration",
+    "url": "https://fathom.video/calls/625590451",
+    "summary": "Haritha Neurosense overview: Deployment Plan, need to integrate Neurosense + DDO. Warned integrating DDO may delay project."
+  },
+  {
+    "id": 135375018,
+    "date": "2026-04-04",
+    "title": "Heads handover prep",
+    "url": "https://fathom.video/calls/625564060",
+    "summary": "Upcoming handover call with customer. Confirm meeting time, ensure handover docs ready, determine creds + info to provide during handover."
+  },
+  {
+    "id": 135372643,
+    "date": "2026-04-04",
+    "title": "morning huddle - Dubai bank + AI agent",
+    "url": "https://fathom.video/calls/625540725",
+    "summary": "Two projects: (1) Dubai bank mortgage process — collect client data Excel, populate PDFs, ready for testing. (2) AI agent project."
+  },
+  {
+    "id": 135210102,
+    "date": "2026-04-03",
+    "title": "LBL anas haritha - Pulsor credentials",
+    "url": "https://fathom.video/calls/624947778",
+    "summary": "Dr Murali shared Pulsor Project credentials in DDO group — Haritha not in group. Discussed access. Pulsor Project dashboard."
+  },
+  {
+    "id": 135171628,
+    "date": "2026-04-03",
+    "title": "morning huddle - Neurosense/Lingist/DDO status",
+    "url": "https://fathom.video/calls/624450442",
+    "summary": "Ongoing projects: Neurosense — Sahil working on super admin fixes; Lingist + DDO — Anas merging into single app."
+  },
+  {
+    "id": 134881936,
+    "date": "2026-04-02",
+    "title": "Neura Dr Shweta - Poonam leave + password",
+    "url": "https://fathom.video/calls/623617974",
+    "summary": "Haritha: Poonam needed break for personal issues. Email password previously changed needs reset. Agreed to reset + provide latest creds."
+  },
+  {
+    "id": 134847550,
+    "date": "2026-04-02",
+    "title": "Haritha sahil - workflow approval",
+    "url": "https://fathom.video/calls/623422703",
+    "summary": "Workflow approval working correctly, data dynamically pulled from JotForm via APIs. Issues identified to address."
+  },
+  {
+    "id": 134834793,
+    "date": "2026-04-02",
+    "title": "Private tariff structure review",
+    "url": "https://fathom.video/calls/623280884",
+    "summary": "Group reviewing previous private tariff structure. Dr Murali asked to pull Google Sheet for private consultation fees to review + confirm."
+  },
+  {
+    "id": 134519659,
+    "date": "2026-04-01",
+    "title": "Neurosense360.site Protect/Treat My Brain CTAs",
+    "url": "https://fathom.video/calls/622254716",
+    "summary": "Sahil + Haritha reviewed Neurosense360.site. Explored 'Protect My Brain' + 'Treat My Brain' CTAs — Calendly + forms to capture patient/coach inquiries."
+  },
+  {
+    "id": 134471637,
+    "date": "2026-04-01",
+    "title": "Aishman Bharat billing concerns",
+    "url": "https://fathom.video/calls/621806816",
+    "summary": "Patient treatment + billing concerns re Aishman Bharat health insurance. Issues: patients admitted directly as Aishman Bharat patients."
+  },
+  {
+    "id": 134470510,
+    "date": "2026-04-01",
+    "title": "Caroline - staffing changes + knowledge transfer",
+    "url": "https://fathom.video/calls/621793474",
+    "summary": "Caroline: 2 devs left (Aman + unnamed). 3 new hires (Sahil, Anas, +3 more). Importance of knowledge transfer when people leave."
+  },
+  {
+    "id": 134093238,
+    "date": "2026-03-31",
+    "title": "Staffing updates - NS rejoining",
+    "url": "https://fathom.video/calls/620305846",
+    "summary": "Dr Murali team status: 2 of 4 appointed previously likely not continuing. Anushri + Jeet not responding. NS rejoining tomorrow."
+  },
+  {
+    "id": 134084080,
+    "date": "2026-03-31",
+    "title": "NABH data requirements review",
+    "url": "https://fathom.video/calls/620165206",
+    "summary": "NABH (National Accreditation Board for Hospitals) data requirements. Sahil prepared scope of services, manpower details."
+  },
+  {
+    "id": 133880453,
+    "date": "2026-03-30",
+    "title": "Neurosense LBL update",
+    "url": "https://fathom.video/calls/619498216",
+    "summary": "BT + Dr Murali on Neurosense LBL: knowledge transfer from Poonam, need extensive testing. Connecting to client AI accounts to resolve Gemini API issue."
+  },
+  {
+    "id": 133742264,
+    "date": "2026-03-30",
+    "title": "Neuro - partner/clinic onboarding flow",
+    "url": "https://fathom.video/calls/618937680",
+    "summary": "New onboarding process: dropdown in Add Clinic to identify partner vs clinic. Partners: collect partner name + city (publicly visible)."
+  },
+  {
+    "id": 133708857,
+    "date": "2026-03-30",
+    "title": "Adamrit dashboard - patient docs",
+    "url": "https://fathom.video/calls/618581534",
+    "summary": "New dashboard feature allows uploading patient documents directly vs separate folders. Dashboard displays patient list, users upload relevant docs."
+  },
+  {
+    "id": 133704967,
+    "date": "2026-03-30",
+    "title": "Pulse of Persia AI project overview",
+    "url": "https://fathom.video/calls/618528341",
+    "summary": "Sahil: Pulse of Persia project — 3 AI-powered software apps with server/DB/storage. Goal: gather data, AI analyze + quantify stress."
+  },
+  {
+    "id": 133624546,
+    "date": "2026-03-28",
+    "title": "Jotform integration troubleshooting",
+    "url": "https://fathom.video/calls/617891202",
+    "summary": "Sahil: previously unable to fetch data from Hosea Basar-created Jotform with pre-filled feature. Now implemented Jotform API to retrieve + display form data."
+  },
+  {
+    "id": 133331812,
+    "date": "2026-03-27",
+    "title": "Jotflow dashboard features review",
+    "url": "https://fathom.video/calls/616628759",
+    "summary": "Sahil demoed Jotflow dashboard: filters by level/department/status/person + export to Excel. Discussed file naming convention improvements."
+  },
+  {
+    "id": 133324268,
+    "date": "2026-03-27",
+    "title": "Onboarding Sahil + Anirudh",
+    "url": "https://fathom.video/calls/616489950",
+    "summary": "Onboarding new software team members Sahil + Anirudh. Sahil to familiarize with Adam Ritz hospital software, understand departments + workflows."
+  },
+  {
+    "id": 133019364,
+    "date": "2026-03-26",
+    "title": "Lingist NFC card journey w/ Neeraj",
+    "url": "https://fathom.video/calls/615515925",
+    "summary": "Lingist NFC card journey discussion to address outstanding issues + gaps. Participants: Haritha, Neeraj, Dr Murali BK, Kostub."
+  },
+  {
+    "id": 132996102,
+    "date": "2026-03-26",
+    "title": "Adnok presentation optimization",
+    "url": "https://fathom.video/calls/615391955",
+    "summary": "Saikat + BT clarified reviewing Adnok presentation client requesting updates. Optimizing existing slide-by-slide."
+  },
+  {
+    "id": 132957020,
+    "date": "2026-03-26",
+    "title": "WhatsApp Business + OpenClaw integration",
+    "url": "https://fathom.video/calls/614990602",
+    "summary": "Dr Murali: integrating WhatsApp Business with OpenClaw for AI chatbot responses vs basic forwarding. Webhooks to connect systems."
+  },
+  {
+    "id": 132581749,
+    "date": "2026-03-25",
+    "title": "Caroline + Roma - meeting attendance issues",
+    "url": "https://fathom.video/calls/613370270",
+    "summary": "Caroline + Roma intro small talk. Discussed poor meeting attendance + lack of engagement from key stakeholders."
+  },
+  {
+    "id": 132330902,
+    "date": "2026-03-24",
+    "title": "AI email management auth troubleshoot",
+    "url": "https://fathom.video/calls/612610247",
+    "summary": "Dr Murali + Haritha troubleshooting login/access to AI email management system. Multiple email accounts tested. Auth + verification challenges. Pricing discussion."
+  },
+  {
+    "id": 132203911,
+    "date": "2026-03-24",
+    "title": "Neuro - patient onboarding + EDF upload",
+    "url": "https://fathom.video/calls/611832988",
+    "summary": "Technical issues with patient onboarding: delays adding new patients, challenges uploading EDF files. Plan to investigate + improve."
+  },
+  {
+    "id": 132197060,
+    "date": "2026-03-24",
+    "title": "Hospital occupancy + NABH update",
+    "url": "https://fathom.video/calls/611718427",
+    "summary": "Occupancy: 20 total, 5 Ayushman + 4 Hope admissions, 1 discharge. NABH application submission plan, expect early."
+  },
+  {
+    "id": 131841454,
+    "date": "2026-03-23",
+    "title": "Hope x Linkist Daily Sync - Aramex",
+    "url": "https://fathom.video/calls/607769143",
+    "summary": "Operational flow: printing + shipping labels through Aramex. Printer logs into Aramex software, prints labels + airway bills, places parcels in Aramex parcels."
+  },
+  {
+    "id": 131838893,
+    "date": "2026-03-23",
+    "title": "Financial records frustration",
+    "url": "https://fathom.video/calls/610259740",
+    "summary": "Dr Murali frustrated — financial records + payment processes not properly maintained. Need clear register tracking income, expenses, payments to vendors + employees."
+  },
+  {
+    "id": 131829863,
+    "date": "2026-03-23",
+    "title": "SCADA dev knowledge - sensors + protocols",
+    "url": "https://fathom.video/calls/610111053",
+    "summary": "Sahil: developers need general overview + basic knowledge of instrumentation + automation: sensor types, integration, protocols. Watch relevant videos."
+  },
+  {
+    "id": 131759976,
+    "date": "2026-03-21",
+    "title": "Neurosense project transfer to limitlessbrainlab",
+    "url": "https://fathom.video/calls/609515146",
+    "summary": "Transferring Neurosense project to new email. Dedicated Gmail (limitlessbrainlab@gmail.com) for hosting Vercel, Supabase, Git repo."
+  },
+  {
+    "id": 131756373,
+    "date": "2026-03-21",
+    "title": "Dr Shweta document changes",
+    "url": "https://fathom.video/calls/609482024",
+    "summary": "Reviewed Dr Shweta requested doc changes vs previous change doc. Updates: Google review count + attribution, content revisions."
+  },
+  {
+    "id": 131518558,
+    "date": "2026-03-20",
+    "title": "JotFlow workflow implementation",
+    "url": "https://fathom.video/calls/608665807",
+    "summary": "Dr Murali BK JotFlow workflow implementation overview. Biryani small talk: green chili + black pepper ingredients."
+  },
+  {
+    "id": 131478938,
+    "date": "2026-03-20",
+    "title": "Neurosense pending tech requirements",
+    "url": "https://fathom.video/calls/608144691",
+    "summary": "Neurosense pending: add clinic vs partner option with different attributes/charges. Complete email flow + payment gateway."
+  },
+  {
+    "id": 131161831,
+    "date": "2026-03-19",
+    "title": "JJ Shweta DDO demo",
+    "url": "https://fathom.video/calls/607090322",
+    "summary": "Technical issues — one participant kicked out, confusion about livestream. Discussed recording status."
+  },
+  {
+    "id": 130814555,
+    "date": "2026-03-18",
+    "title": "Kaushik's academy - live + recorded",
+    "url": "https://fathom.video/calls/605679316",
+    "summary": "Koushik explained scheduling live webinars + recorded sessions: reminders, scheduling rules, Zoom integration. Recorded sessions on fixed schedule."
+  },
+  {
+    "id": 130760361,
+    "date": "2026-03-18",
+    "title": "Morning huddle - 14 NCs closing",
+    "url": "https://fathom.video/calls/605159339",
+    "summary": "Team uploaded report for 14 basic NCs (non-conformities), planning to close today. Caroline suggested sending report to Isaac first for feedback. HIV-positive patient case."
+  },
+  {
+    "id": 130633710,
+    "date": "2026-03-17",
+    "title": "aiinmail demo OpenClaw with BT",
+    "url": "https://fathom.video/calls/604698328",
+    "summary": "AI-powered email + calendar mgmt assistant integrating WhatsApp, Telegram, web. Simple way to automate email processing."
+  },
+  {
+    "id": 130379813,
+    "date": "2026-03-17",
+    "title": "huddle - admissions + billing challenges",
+    "url": "https://fathom.video/calls/603546862",
+    "summary": "Patient admissions + billing issues: delays in approvals — patients treated without payment. Lack of visibility into actual expenses per patient."
+  },
+  {
+    "id": 130020160,
+    "date": "2026-03-16",
+    "title": "Shweta movers workflow - patient journey",
+    "url": "https://fathom.video/calls/602067620",
+    "summary": "Patient journey + dashboard: full dashboard access whether via clinic or direct user. Patients without Neurosense brain scan see pop-up notification."
+  },
+  {
+    "id": 130009179,
+    "date": "2026-03-16",
+    "title": "huddle - Everything Clot Code project",
+    "url": "https://fathom.video/calls/601901304",
+    "summary": "Dr Murali new project 'Everything Clot Code' — 12 built-in agents + many features. Shared repo, team to study docs, set up domain."
+  },
+  {
+    "id": 129935134,
+    "date": "2026-03-14",
+    "title": "Mr Huzaifa - Jotflow progress + path forward",
+    "url": "https://fathom.video/calls/601309331",
+    "summary": "Critical workflow misunderstanding: team using Jotflow UI to complete tasks, but JotForm requires clicking unique link in notification email to register task."
+  },
+  {
+    "id": 125510321,
+    "date": "2026-02-26",
+    "title": "JotForm POC scope - eforms.mediaoffice.ae",
+    "url": "https://fathom.video/calls/581944188",
+    "summary": "JotForm POC scope: live dashboard showing form status (Total, Complete, In Progress) + breakdowns by approver. Clicking approver count must drill down."
+  },
+  {
+    "id": 125496840,
+    "date": "2026-02-26",
+    "title": "eforms.mediaoffice.ae access fix",
+    "url": "https://fathom.video/calls/581812639",
+    "summary": "Haritha's access to eforms.mediaoffice.ae fixed by creating new user account, resolved persistent email delivery failure. POC strategy aligned."
+  },
+  {
+    "id": 120654456,
+    "date": "2026-02-09",
+    "title": "HIC + quality audit EOD",
+    "url": "https://fathom.video/calls/560821790",
+    "summary": "Final push for HIC + quality audit by EOD. HIC nurse found Casualty unprepared. Must fully equip unit by EOD, source monitors from Ayushman, purchase new suction."
+  },
+  {
+    "id": 120628904,
+    "date": "2021-09-16",
+    "title": "Fathom Demo - Susannah DuRant",
+    "url": "https://fathom.video/calls/560543117",
+    "summary": "Initial Fathom demo with Susannah DuRant. Historical recording."
+  }
+]

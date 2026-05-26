@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WhatsApp Automation for Power Plants | Bettroi</title>
+<meta name="description" content="Bettroi builds WhatsApp automation agents for power plants — shift alerts, permit-to-work flows, and SCADA incident dispatch. Discovery audit from ₹80,000.">
+<link rel="canonical" href="https://hopetech.me/whatsapp-automation-for-power-plants/">
+<meta property="og:title" content="WhatsApp Automation for Power Plants | Bettroi">
+<meta property="og:description" content="Bettroi builds WhatsApp automation agents for power plants — shift alerts, permit-to-work flows, and SCADA incident dispatch. Discovery audit from ₹80,000.">
+<meta property="og:url" content="https://hopetech.me/whatsapp-automation-for-power-plants/">
+<meta property="og:type" content="website">
+<meta name="keywords" content="whatsapp automation for power plants, power plants, whatsapp automation, Bettroi, HopeTech">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Will this work with our existing SCADA system or do we need to replace anything?","acceptedAnswer":{"@type":"Answer","text":"No replacement needed. We connect to your SCADA historian via scheduled data exports, OData services, or direct API depending on what your IT team allows. We have worked with locked-down industrial environments where direct API access was not possible and have designed around it using polling and scheduled CSV exports. Your SCADA setup stays exactly as-is."}},{"@type":"Question","name":"Is a WhatsApp Business API account required, or can we use the existing plant WhatsApp groups?","acceptedAnswer":{"@type":"Answer","text":"You will need a WhatsApp Business API account (via a BSP like Interakt, Gupshup, or Twilio) to send automated structured messages and capture replies programmatically. The cost is typically ₹3,000–8,000 per month depending on message volume. Your engineers continue using the same WhatsApp app on their phones — nothing changes on their end."}},{"@type":"Question","name":"How do audit logs work? We have CEA and internal compliance requirements.","acceptedAnswer":{"@type":"Answer","text":"Every message sent, every response received, every escalation triggered, and every PTW approval is logged to a central database with timestamps and user IDs. We can expose this as a dashboard or push it to your existing compliance system. The WhatsApp conversation itself is not the record of truth — our backend database is, and it is exportable."}},{"@type":"Question","name":"Our plant operators are not tech-savvy. How hard is this to adopt?","acceptedAnswer":{"@type":"Answer","text":"That is exactly why WhatsApp is the right channel. There is no new app to install, no login to remember. The operator receives a message, replies with a number or a short text, done. In our experience, adoption on WhatsApp-based tools in industrial settings is significantly faster than any browser or app-based alternative."}},{"@type":"Question","name":"How long before we see actual results from the pilot?","acceptedAnswer":{"@type":"Answer","text":"The pilot runs for 30 days on one live workflow. By day 15 you will have baseline vs. agent data on response time and missed escalations. By day 30 you will have enough to make a build/expand decision with real numbers, not a vendor's projected ROI estimate."}}]}</script>
+<style>
+  :root { --c: #1a1a2e; --m: #16213e; --a: #0f3460; --t: #e94560; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 17px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--c); background: #fafafa; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  header { padding: 1.5rem 0 2.5rem; border-bottom: 1px solid #eaeaea; margin-bottom: 2rem; }
+  header a { color: var(--m); text-decoration: none; font-weight: 600; font-size: 18px; }
+  h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 1rem; color: var(--c); }
+  .sub { font-size: 1.15rem; color: #555; margin-bottom: 2rem; }
+  h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--m); }
+  h3 { font-size: 1.15rem; margin: 1.5rem 0 .5rem; }
+  p { margin-bottom: 1rem; }
+  ul { margin: 0 0 1rem 1.5rem; }
+  li { margin-bottom: .35rem; }
+  strong { color: var(--a); }
+  .cta { background: var(--c); color: #fff; padding: 1.75rem; border-radius: 8px; margin: 3rem 0 2rem; text-align: center; }
+  .cta a { background: var(--t); color: #fff; padding: .85rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: .5rem; }
+  details { background: #fff; border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: .75rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--m); }
+  details[open] summary { margin-bottom: .75rem; }
+  footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eaeaea; color: #888; font-size: 14px; text-align: center; }
+  footer a { color: var(--a); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="https://hopetech.me">HopeTech</a></header>
+  <h1>WhatsApp Automation for Power Plants</h1>
+  <h2>Your control-room runs on WhatsApp groups. That's the problem — and the opportunity.</h2>
+<p>Bettroi builds WhatsApp automation agents for thermal, hydro, and solar power plants that turn informal group chats into structured, logged, auditable workflows — without replacing the phones your operators already use.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Shift handovers in most plants happen over WhatsApp voice notes and screenshots of analog meters — nothing is logged, nothing is searchable, and when an incident happens at 2 AM the duty manager is spending 20 minutes finding out who last checked the DG. Permit-to-work approvals sit unread in a group of 47 people while a contractor waits at the gate. Equipment fault alerts from SCADA reach the right engineer only after someone manually forwards a screenshot — if they remember to.</p>
+<p>---</p>
+<h2>What We Build</h2>
+<ul><li><strong>Shift handover bot</strong> — structured end-of-shift checklist sent via WhatsApp, responses logged to a central dashboard; no more voice-note archaeology</li>
+<li><strong>Permit-to-work (PTW) approval agent</strong> — contractor requests a permit on WhatsApp, the agent routes it to the right authority, captures approval with timestamp, closes the loop automatically</li>
+<li><strong>SCADA fault-to-engineer dispatcher</strong> — alarm fires in SCADA, agent identifies on-call engineer by role and shift schedule, sends alert on WhatsApp with asset ID and last reading, escalates if unacknowledged in 5 minutes</li>
+<li><strong>Daily generation report bot</strong> — pulls unit-wise generation, auxiliary consumption, and PLF from your historian or SCADA export, formats a readable summary, and pushes it to plant head and cluster manager every morning at 06:00</li>
+<li><strong>Breakdown escalation chain</strong> — unresolved fault triggers automatic escalation up the org chart (technician → supervisor → plant manager → O&M head) with full message trail preserved</li>
+<li><strong>Compliance checklist dispatcher</strong> — statutory daily/weekly inspection checklists pushed to responsible individuals; completion tracked, non-responses flagged before the shift ends</li></ul>
+<p>---</p>
+<h2>How We Do It: The Be AI-First Framework</h2>
+<p>We do not arrive with a pre-built product and ask you to fit your plant around it. We follow five stages:</p>
+<p><strong>1. Discovery (Week 1–2)</strong>
+We audit your current WhatsApp groups, SCADA setup, shift registers, and PTW process. We identify the 3 workflows where automation delivers the fastest ROI — typically fault dispatch, shift handover, and PTW. Fixed-fee, output is a prioritised build plan.</p>
+<p><strong>2. Learn (Weeks 3–8)</strong>
+We deploy a pilot agent on one workflow — usually the SCADA fault dispatcher — and run it in parallel with your existing process for 30 days. We measure response time, missed escalations, and engineer acknowledgement rate before vs. after.</p>
+<p><strong>3. Wire (Weeks 9–14)</strong>
+Winning agents are integrated into your core systems — SCADA historian, SAP PM or equivalent CMMS, HR shift roster. Where APIs are unavailable, we use scheduled data exports (CSV/OData) as the integration layer; we have done this on live industrial deployments.</p>
+<p><strong>4. Automate (Weeks 15–18)</strong>
+Manual handoffs are replaced with agent orchestration. Shift handover, PTW, fault dispatch, and reporting run end-to-end without a human forwarding a message.</p>
+<p><strong>5. Scale (Week 19+)</strong>
+Agents roll out across multiple units or plant sites with monitoring dashboards, audit logs, and governance controls that satisfy your ISO 55001 or CEA compliance requirements.</p>
+<p>---</p>
+<h2>What We Have Built Before</h2>
+<p>Our manufacturing planning agent work involved integrating with SAP production orders, stock levels, and BOM data via OData services and scheduled exports — the same integration pattern that applies to SCADA historians and plant ERP systems in the power sector. We have built orchestration layers where real-time API access was unavailable and customer IT teams were resistant to opening direct connections — we know how to get data out of locked-down industrial environments. Our agent frameworks handle multi-step escalation logic, structured data capture over chat, and role-based routing out of the box.</p>
+<p>---</p>
+<h2>Pricing</h2>
+<p>| Package | What's included | Starting from |
+|---|---|---|
+| Discovery audit | 2-week workflow audit, prioritised AI build plan | ₹80,000 |
+| Pilot | Discovery + 1 live agent (e.g. fault dispatcher) for 30 days | ₹2,50,000 |
+| Full transformation | All 5 stages, 3–5 agents, SCADA/ERP integration | ₹8,00,000 |
+| Retained AI ops | Monitoring, improvements, new agent builds | From ₹60,000/month |</p>
+<p>Prices are fixed-fee or milestone-billed — no surprise invoices mid-project.</p>
+<p>---</p>
+<h2>Book a Discovery Call</h2>
+<p>If you run one or more power plants and your team is doing shift handovers on WhatsApp groups, we can show you exactly what to automate and what it will cost — in 30 minutes.</p>
+<p>[Book a 30-min Discovery call → hi@bettroi.com](mailto:hi@bettroi.com)</p>
+  <div class="cta">
+    <h3 style="color:#fff;margin:0 0 .5rem">Ready to talk?</h3>
+    <p style="color:#ddd;margin:0">Book a 30-min Discovery call. We'll show you where AI fits in your operation.</p>
+    <a href="mailto:hi@bettroi.com?subject=Discovery%20call%20%E2%80%94%20WhatsApp%20Automation%20for%20Power%20Plants">Email us</a>
+  </div>
+  <h2>Frequently asked questions</h2>
+  <details><summary>Will this work with our existing SCADA system or do we need to replace anything?</summary><p>No replacement needed. We connect to your SCADA historian via scheduled data exports, OData services, or direct API depending on what your IT team allows. We have worked with locked-down industrial environments where direct API access was not possible and have designed around it using polling and scheduled CSV exports. Your SCADA setup stays exactly as-is.</p></details>
+<details><summary>Is a WhatsApp Business API account required, or can we use the existing plant WhatsApp groups?</summary><p>You will need a WhatsApp Business API account (via a BSP like Interakt, Gupshup, or Twilio) to send automated structured messages and capture replies programmatically. The cost is typically ₹3,000–8,000 per month depending on message volume. Your engineers continue using the same WhatsApp app on their phones — nothing changes on their end.</p></details>
+<details><summary>How do audit logs work? We have CEA and internal compliance requirements.</summary><p>Every message sent, every response received, every escalation triggered, and every PTW approval is logged to a central database with timestamps and user IDs. We can expose this as a dashboard or push it to your existing compliance system. The WhatsApp conversation itself is not the record of truth — our backend database is, and it is exportable.</p></details>
+<details><summary>Our plant operators are not tech-savvy. How hard is this to adopt?</summary><p>That is exactly why WhatsApp is the right channel. There is no new app to install, no login to remember. The operator receives a message, replies with a number or a short text, done. In our experience, adoption on WhatsApp-based tools in industrial settings is significantly faster than any browser or app-based alternative.</p></details>
+<details><summary>How long before we see actual results from the pilot?</summary><p>The pilot runs for 30 days on one live workflow. By day 15 you will have baseline vs. agent data on response time and missed escalations. By day 30 you will have enough to make a build/expand decision with real numbers, not a vendor's projected ROI estimate.</p></details>
+  <footer>
+    Built by <a href="https://hopetech.me">HopeTech</a> · A Bettroi product · <a href="https://hopetech.me/sitemap.xml">Sitemap</a>
+  </footer>
+</div>
+</body>
+</html>

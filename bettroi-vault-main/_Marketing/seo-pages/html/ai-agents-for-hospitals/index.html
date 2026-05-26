@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Agents for Hospitals | Bettroi</title>
+<meta name="description" content="Bettroi builds AI agents for hospitals that automate OPD triage, discharge docs and billing follow-ups. Discovery audit in 2 weeks. Pilot live in 6 weeks.">
+<link rel="canonical" href="https://hopetech.me/ai-agents-for-hospitals/">
+<meta property="og:title" content="AI Agents for Hospitals | Bettroi">
+<meta property="og:description" content="Bettroi builds AI agents for hospitals that automate OPD triage, discharge docs and billing follow-ups. Discovery audit in 2 weeks. Pilot live in 6 weeks.">
+<meta property="og:url" content="https://hopetech.me/ai-agents-for-hospitals/">
+<meta property="og:type" content="website">
+<meta name="keywords" content="ai agents for hospitals, hospitals, ai agents, Bettroi, HopeTech">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Will AI agents work with our existing HMS — we use Insta/eHospital/a custom system?","acceptedAnswer":{"@type":"Answer","text":"Yes. Our Wire stage is specifically about integrating agents into your live systems rather than running parallel tools. We have worked with Practo, Insta HMS, eHospital, and custom-built systems. Before we start any pilot, the Discovery audit maps exactly what APIs or data exports your HMS supports, so there are no surprises at integration time."}},{"@type":"Question","name":"How long before we see any actual result, not just a presentation?","acceptedAnswer":{"@type":"Answer","text":"The Learn stage runs a live pilot for 30 days and produces a before-vs-after comparison on time saved, error rate, or cost per workflow — whichever metric matters most to you. That is at week 6. We do not ask you to commit to full rollout before you have seen a real number from your own hospital."}},{"@type":"Question","name":"Our staff are not technical. Will they actually use this?","acceptedAnswer":{"@type":"Answer","text":"The agents we build surface through channels your staff already use: WhatsApp, a browser-based dashboard, or directly inside your HMS screen. There is no new app to learn for frontline staff. The Automate stage includes a structured handoff and a two-week adoption period where we stay on to resolve friction before we step back."}},{"@type":"Question","name":"What happens to patient data? We have DPDP and internal compliance requirements.","acceptedAnswer":{"@type":"Answer","text":"All agents are deployed on infrastructure you control — either your own servers or a dedicated cloud environment in India. We do not pipe patient data through shared SaaS platforms. The Scale stage includes audit logs and governance controls your compliance or legal team can review. We are happy to sign a data processing agreement before the Discovery audit begins."}},{"@type":"Question","name":"We tried an RPA tool two years ago and it broke every time the HMS updated. How is this different?","acceptedAnswer":{"@type":"Answer","text":"RPA scrapes screens and breaks when pixels move. Our agents call APIs or structured data layers, and the Wire stage includes building resilience for HMS version changes. Where an API does not exist, we document the fragile points upfront in the Discovery audit rather than discovering them post-deployment. We also include a 60-day warranty period on any integration we build."}}]}</script>
+<style>
+  :root { --c: #1a1a2e; --m: #16213e; --a: #0f3460; --t: #e94560; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 17px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--c); background: #fafafa; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  header { padding: 1.5rem 0 2.5rem; border-bottom: 1px solid #eaeaea; margin-bottom: 2rem; }
+  header a { color: var(--m); text-decoration: none; font-weight: 600; font-size: 18px; }
+  h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 1rem; color: var(--c); }
+  .sub { font-size: 1.15rem; color: #555; margin-bottom: 2rem; }
+  h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--m); }
+  h3 { font-size: 1.15rem; margin: 1.5rem 0 .5rem; }
+  p { margin-bottom: 1rem; }
+  ul { margin: 0 0 1rem 1.5rem; }
+  li { margin-bottom: .35rem; }
+  strong { color: var(--a); }
+  .cta { background: var(--c); color: #fff; padding: 1.75rem; border-radius: 8px; margin: 3rem 0 2rem; text-align: center; }
+  .cta a { background: var(--t); color: #fff; padding: .85rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: .5rem; }
+  details { background: #fff; border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: .75rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--m); }
+  details[open] summary { margin-bottom: .75rem; }
+  footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eaeaea; color: #888; font-size: 14px; text-align: center; }
+  footer a { color: var(--a); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="https://hopetech.me">HopeTech</a></header>
+  <h1>AI Agents for Hospitals: Automate OPD, Discharge and Clinical Workflows</h1>
+  
+<h2>Your hospital runs on staff chasing paper. AI agents fix that.</h2>
+<p>Bettroi designs and deploys AI agents built specifically for hospital workflows — OPD intake to discharge — so your clinical and admin staff stop doing work that a system can do for them. Hospitals running our agents have cut discharge documentation time by over 60% in the first pilot month.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Multi-specialty hospitals in India lose 2–4 hours per doctor per day to documentation, follow-up calls, and inter-department coordination that has no clinical value. Your HMS holds the data, but nothing acts on it — every handoff between OPD, IP, pharmacy, billing, and discharge is a manual step that depends on someone remembering to do it. When staff turnover is high and patient load is growing, that gap widens every quarter.</p>
+<p>---</p>
+<h2>What We Build for Hospitals</h2>
+<ul><li><strong>OPD triage agent</strong> — collects chief complaint, vitals history and insurance details before the patient reaches the doctor; outputs a structured consult brief directly into your HMS</li>
+<li><strong>Discharge documentation bot</strong> — drafts discharge summaries from structured clinical notes in under 3 minutes, flags incomplete fields, routes for doctor sign-off</li>
+<li><strong>Billing follow-up agent</strong> — monitors pending IP bills, sends automated WhatsApp + SMS nudges to patients and TPA contacts, escalates to front desk only when a human response is needed</li>
+<li><strong>Bed management alert agent</strong> — monitors HMS occupancy data in real time, pings the bed manager when a discharge is cleared and a matching admission is waiting</li>
+<li><strong>Lab and radiology chase bot</strong> — tracks pending investigation reports, pings the lab/radiology worklist, and alerts the ward nurse when a critical result lands</li>
+<li><strong>Appointment no-show recovery agent</strong> — identifies confirmed OPD slots at risk 24 hours ahead, sends personalised reminders, and offers rescheduling via WhatsApp without involving reception staff</li></ul>
+<p>---</p>
+<h2>How We Do It: The Be AI-First Framework</h2>
+<p>We do not hand you a SaaS login and walk away. Every engagement follows our 5-stage delivery framework so the agents we build actually get used.</p>
+<p><strong>Stage 1 — Discovery (2 weeks)</strong>
+We audit your current workflows end-to-end: OPD flow, IP admission, discharge, billing, lab turnaround. We map every manual handoff and quantify where staff time is being lost. You get a ranked list of the 3 highest-ROI AI candidates for your hospital, specific to your HMS and team structure.</p>
+<p><strong>Stage 2 — Learn (weeks 3–6)</strong>
+We deploy a pilot agent on the single workflow with the highest ROI. We measure baseline (current time/error rate) vs. AI-assisted for 30 days. You see a real number before committing to full rollout.</p>
+<p><strong>Stage 3 — Wire (weeks 7–9)</strong>
+Winning agents are integrated into your live systems — HMS (Practo, Insta, eHospital, custom), WhatsApp Business API, billing module, lab LIS. No manual CSV uploads. No parallel systems running alongside.</p>
+<p><strong>Stage 4 — Automate (weeks 9–11)</strong>
+Manual handoffs are replaced with agent orchestration. Triggers, escalation rules, and exception handling are configured so the agents run without daily babysitting from IT or admin.</p>
+<p><strong>Stage 5 — Scale (week 12+)</strong>
+We roll the agent stack out across departments, additional units, or sister hospitals with monitoring dashboards, audit logs, and governance controls your compliance team can actually review.</p>
+<p>---</p>
+<h2>What We Have Built</h2>
+<p>Bettroi operates at the intersection of clinical practice and AI engineering. Our founding team includes Dr. Murali, a practicing orthopedic surgeon running two hospitals in Nagpur, which means the agents we build are tested against real ward conditions, not demo environments. We have generated over 400 structured clinical SOPs using AI agent pipelines for hospital workflows, and have active integration work underway with hospital and clinical lab systems across central India. When we say we understand your HMS or your discharge bottleneck, it is because we have lived it.</p>
+<p>---</p>
+<h2>Pricing</h2>
+<p>| Engagement | Duration | Fee |
+|---|---|---|
+| Discovery Audit | 2 weeks | From ₹75,000 |
+| Pilot (Discovery + Learn) | 6 weeks | From ₹2,50,000 |
+| Full Transformation (all 5 stages) | 12 weeks | From ₹8,00,000 |
+| Retained AI Operations | Monthly | From ₹60,000/month |</p>
+<p>Pricing varies with hospital size, number of workflows, and HMS complexity. All engagements are fixed-fee or milestone-billed — no open-ended retainers until you have seen pilot results.</p>
+<p>---</p>
+<h2>Book a Discovery Call</h2>
+<p>If you are running a hospital with more than 50 beds and your staff is spending meaningful time on documentation, follow-up, or inter-department coordination, we can show you exactly where AI agents will pay back in 90 days.</p>
+<p><strong>[Book a 30-min Discovery Call — hi@bettroi.com](mailto:hi@bettroi.com)</strong></p>
+<p>Tell us your HMS, bed count, and the one workflow that is costing you the most right now. We will come prepared.</p>
+  <div class="cta">
+    <h3 style="color:#fff;margin:0 0 .5rem">Ready to talk?</h3>
+    <p style="color:#ddd;margin:0">Book a 30-min Discovery call. We'll show you where AI fits in your operation.</p>
+    <a href="mailto:hi@bettroi.com?subject=Discovery%20call%20%E2%80%94%20AI%20Agents%20for%20Hospitals%3A%20Automate%20OPD%2C%20Discharge%20and%20Clinical%20Workflows">Email us</a>
+  </div>
+  <h2>Frequently asked questions</h2>
+  <details><summary>Will AI agents work with our existing HMS — we use Insta/eHospital/a custom system?</summary><p>Yes. Our Wire stage is specifically about integrating agents into your live systems rather than running parallel tools. We have worked with Practo, Insta HMS, eHospital, and custom-built systems. Before we start any pilot, the Discovery audit maps exactly what APIs or data exports your HMS supports, so there are no surprises at integration time.</p></details>
+<details><summary>How long before we see any actual result, not just a presentation?</summary><p>The Learn stage runs a live pilot for 30 days and produces a before-vs-after comparison on time saved, error rate, or cost per workflow — whichever metric matters most to you. That is at week 6. We do not ask you to commit to full rollout before you have seen a real number from your own hospital.</p></details>
+<details><summary>Our staff are not technical. Will they actually use this?</summary><p>The agents we build surface through channels your staff already use: WhatsApp, a browser-based dashboard, or directly inside your HMS screen. There is no new app to learn for frontline staff. The Automate stage includes a structured handoff and a two-week adoption period where we stay on to resolve friction before we step back.</p></details>
+<details><summary>What happens to patient data? We have DPDP and internal compliance requirements.</summary><p>All agents are deployed on infrastructure you control — either your own servers or a dedicated cloud environment in India. We do not pipe patient data through shared SaaS platforms. The Scale stage includes audit logs and governance controls your compliance or legal team can review. We are happy to sign a data processing agreement before the Discovery audit begins.</p></details>
+<details><summary>We tried an RPA tool two years ago and it broke every time the HMS updated. How is this different?</summary><p>RPA scrapes screens and breaks when pixels move. Our agents call APIs or structured data layers, and the Wire stage includes building resilience for HMS version changes. Where an API does not exist, we document the fragile points upfront in the Discovery audit rather than discovering them post-deployment. We also include a 60-day warranty period on any integration we build.</p></details>
+  <footer>
+    Built by <a href="https://hopetech.me">HopeTech</a> · A Bettroi product · <a href="https://hopetech.me/sitemap.xml">Sitemap</a>
+  </footer>
+</div>
+</body>
+</html>

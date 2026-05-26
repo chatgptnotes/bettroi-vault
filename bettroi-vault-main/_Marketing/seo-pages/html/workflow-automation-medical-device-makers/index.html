@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workflow Automation for Medical Device Makers</title>
+<meta name="description" content="Bettroi builds AI agents that automate QC, compliance, and production workflows for medical device manufacturers. Discovery audit in 2 weeks.">
+<link rel="canonical" href="https://hopetech.me/workflow-automation-medical-device-makers/">
+<meta property="og:title" content="Workflow Automation for Medical Device Makers">
+<meta property="og:description" content="Bettroi builds AI agents that automate QC, compliance, and production workflows for medical device manufacturers. Discovery audit in 2 weeks.">
+<meta property="og:url" content="https://hopetech.me/workflow-automation-medical-device-makers/">
+<meta property="og:type" content="website">
+<meta name="keywords" content="workflow automation for medical device makers, medical device makers, workflow automation, Bettroi, HopeTech">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"We already have an ERP (SAP / Tally). Will your agents work on top of it or replace it?","acceptedAnswer":{"@type":"Answer","text":"On top of it, always. We wire agents to your existing ERP, MES, or LIMS via API or RPA connectors. We are not selling you a new system — we are automating the manual work that falls between your existing systems. Your ERP stays as the record of truth."}},{"@type":"Question","name":"How do you handle 21 CFR Part 11 / CDSCO audit-trail requirements for AI-generated records?","acceptedAnswer":{"@type":"Answer","text":"Every agent action is logged with a timestamp, the input data it acted on, and the SOP version it was grounded against. We design the audit trail into the architecture from Day 1, not as an afterthought. During Discovery we map your specific regulatory obligations and build the logging schema to match them."}},{"@type":"Question","name":"Our SOPs change frequently as we update validations. How do agents stay current?","acceptedAnswer":{"@type":"Answer","text":"We use a structured SOP vault (Obsidian-based, version-controlled) as the agent's grounding corpus. When a SOP is updated and approved, the vault is updated and agents pull the new version automatically on their next run. No retraining required for most procedural changes."}},{"@type":"Question","name":"What is the realistic time-to-value for a pilot?","acceptedAnswer":{"@type":"Answer","text":"The Learn phase runs 30 days of live measurement after a roughly 2-week setup. Most clients see a documentable cycle-time reduction or error-rate delta within that 30-day window. We do not claim ROI before measurement — that is literally what the pilot is for."}},{"@type":"Question","name":"Do you sign NDAs and handle our production data securely?","acceptedAnswer":{"@type":"Answer","text":"Yes. We sign an NDA before Discovery begins. Data processed during pilots is handled under a data-processing agreement; we do not use client production data to train models for other clients. Architecture and hosting options (on-prem, private cloud, SaaS) are agreed during Discovery based on your data-residency requirements."}}]}</script>
+<style>
+  :root { --c: #1a1a2e; --m: #16213e; --a: #0f3460; --t: #e94560; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 17px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--c); background: #fafafa; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  header { padding: 1.5rem 0 2.5rem; border-bottom: 1px solid #eaeaea; margin-bottom: 2rem; }
+  header a { color: var(--m); text-decoration: none; font-weight: 600; font-size: 18px; }
+  h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 1rem; color: var(--c); }
+  .sub { font-size: 1.15rem; color: #555; margin-bottom: 2rem; }
+  h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--m); }
+  h3 { font-size: 1.15rem; margin: 1.5rem 0 .5rem; }
+  p { margin-bottom: 1rem; }
+  ul { margin: 0 0 1rem 1.5rem; }
+  li { margin-bottom: .35rem; }
+  strong { color: var(--a); }
+  .cta { background: var(--c); color: #fff; padding: 1.75rem; border-radius: 8px; margin: 3rem 0 2rem; text-align: center; }
+  .cta a { background: var(--t); color: #fff; padding: .85rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: .5rem; }
+  details { background: #fff; border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: .75rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--m); }
+  details[open] summary { margin-bottom: .75rem; }
+  footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eaeaea; color: #888; font-size: 14px; text-align: center; }
+  footer a { color: var(--a); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="https://hopetech.me">HopeTech</a></header>
+  <h1>Workflow Automation for Medical Device Makers</h1>
+  <h2>Your production floor runs on spreadsheets, WhatsApp threads, and tribal knowledge — and regulators are about to notice.</h2>
+<p>Bettroi builds AI workflow agents for medical device manufacturers: from instrument-set documentation to sterilization compliance tracking, we automate the manual handoffs that slow production and expose you to audit risk.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Medical device manufacturers carry a regulatory burden that most software tools were not designed for — every batch record, every sterilization cycle log, and every device traveller needs to be traceable end-to-end. Most QA teams are still reconciling paper checklists against ERP entries by hand, which means a single misfiled record can stall a CE or CDSCO submission by weeks. Meanwhile, production supervisors spend 30–40% of their shift on status-chasing across procurement, sterilization, and dispatch — work that adds zero value to the device leaving the floor.</p>
+<p>---</p>
+<h2>What We Build for Medical Device Makers</h2>
+<ul><li><strong>Device Traveller Automation Agent</strong> — auto-generates and updates the digital traveller document as a device moves through production stages, pulling data directly from your ERP or MES</li>
+<li><strong>Sterilization Cycle Compliance Bot</strong> — logs every cycle parameter, flags deviations against your validated SOP limits, and drafts the corrective-action record before your QA manager even opens their inbox</li>
+<li><strong>Instrument-Set Documentation Agent</strong> — captures and version-controls instrument/implant set photos and readiness checklists (pacemakers, stents, orthopaedic sets) so training records and audit trails are always current</li>
+<li><strong>Regulatory Submission Drafting Agent</strong> — ingests batch records and test reports and produces first-draft DHF/DMR sections formatted for CDSCO or CE Technical File requirements</li>
+<li><strong>Production Status Orchestrator</strong> — replaces the WhatsApp status-chase with an agent that polls procurement, QC hold queues, and dispatch, then pushes a single shift-start briefing to each supervisor</li>
+<li><strong>Non-Conformance (NC) Triage Agent</strong> — classifies incoming NC reports by severity and product line, routes them to the right engineer, and tracks closure against your CAPA timelines</li></ul>
+<p>---</p>
+<h2>How We Do It: The Be AI-First Framework</h2>
+<p><strong>1. Discovery (Week 1–2)</strong>
+We audit your current workflows — production, QA, sterilization, regulatory — and identify the 3 highest-ROI automation candidates ranked by time saved, error-reduction potential, and compliance risk. You get a written report regardless of whether we proceed.</p>
+<p><strong>2. Learn (Weeks 3–8)</strong>
+We deploy a pilot agent on one workflow and run a 30-day baseline-vs-AI measurement. Typical output: documented cycle-time reduction and error-rate delta your CFO can put in a business case.</p>
+<p><strong>3. Wire (Weeks 9–12)</strong>
+Winning agents are integrated into your core systems — SAP, Tally, MES, LIMS, or whatever stack you actually run — so data flows without manual re-entry.</p>
+<p><strong>4. Automate</strong>
+Manual handoffs between QC, production, and regulatory teams are replaced with agent orchestration. Escalations and exceptions still reach humans — but only the exceptions.</p>
+<p><strong>5. Scale</strong>
+Roll out across product lines, manufacturing sites, or geographies with centralised monitoring, role-based access, and audit-ready governance logs.</p>
+<p>---</p>
+<h2>What We Have Built Before</h2>
+<p>Working inside Hope Hospital's surgical operations, Bettroi built documentation and compliance agents that handle instrument-set readiness checks, implant usage logging (pacemakers, stents, orthopaedic implants), and surgical-drug storage tracking — the same categories of traceability that medical device QA teams need on the manufacturing side. Our network includes sterilization-services operators in the pharma and medical-device space (Ahmedabad cluster), giving us direct domain context on cycle-validation workflows. Our agent architecture uses Obsidian-backed SOP vaults as the grounding corpus, so your existing SOPs become the agent's operating manual — not a PDF it ignores.</p>
+<p>---</p>
+<h2>Pricing</h2>
+<p>| Engagement | Duration | Fee |
+|---|---|---|
+| Discovery Audit | 2 weeks | From ₹1,20,000 |
+| Pilot (Discovery + Learn) | 6 weeks | From ₹3,50,000 |
+| Full Transformation (all 5 stages) | 12 weeks | From ₹9,00,000 (milestone-billed) |
+| Retained AI Operations | Monthly | From ₹75,000/month |</p>
+<p>Pricing varies by number of workflows in scope, system integrations required, and site count. Discovery fee is credited toward the Pilot if you proceed.</p>
+<p>---</p>
+<h2>Book a 30-Min Discovery Call</h2>
+<p>Tell us one workflow that's costing you the most time or audit risk. We'll tell you whether an AI agent can close that gap — and roughly what it would take.</p>
+<p>[<strong>Book now → hi@bettroi.com</strong>](mailto:hi@bettroi.com)</p>
+  <div class="cta">
+    <h3 style="color:#fff;margin:0 0 .5rem">Ready to talk?</h3>
+    <p style="color:#ddd;margin:0">Book a 30-min Discovery call. We'll show you where AI fits in your operation.</p>
+    <a href="mailto:hi@bettroi.com?subject=Discovery%20call%20%E2%80%94%20Workflow%20Automation%20for%20Medical%20Device%20Makers">Email us</a>
+  </div>
+  <h2>Frequently asked questions</h2>
+  <details><summary>We already have an ERP (SAP / Tally). Will your agents work on top of it or replace it?</summary><p>On top of it, always. We wire agents to your existing ERP, MES, or LIMS via API or RPA connectors. We are not selling you a new system — we are automating the manual work that falls between your existing systems. Your ERP stays as the record of truth.</p></details>
+<details><summary>How do you handle 21 CFR Part 11 / CDSCO audit-trail requirements for AI-generated records?</summary><p>Every agent action is logged with a timestamp, the input data it acted on, and the SOP version it was grounded against. We design the audit trail into the architecture from Day 1, not as an afterthought. During Discovery we map your specific regulatory obligations and build the logging schema to match them.</p></details>
+<details><summary>Our SOPs change frequently as we update validations. How do agents stay current?</summary><p>We use a structured SOP vault (Obsidian-based, version-controlled) as the agent's grounding corpus. When a SOP is updated and approved, the vault is updated and agents pull the new version automatically on their next run. No retraining required for most procedural changes.</p></details>
+<details><summary>What is the realistic time-to-value for a pilot?</summary><p>The Learn phase runs 30 days of live measurement after a roughly 2-week setup. Most clients see a documentable cycle-time reduction or error-rate delta within that 30-day window. We do not claim ROI before measurement — that is literally what the pilot is for.</p></details>
+<details><summary>Do you sign NDAs and handle our production data securely?</summary><p>Yes. We sign an NDA before Discovery begins. Data processed during pilots is handled under a data-processing agreement; we do not use client production data to train models for other clients. Architecture and hosting options (on-prem, private cloud, SaaS) are agreed during Discovery based on your data-residency requirements.</p></details>
+  <footer>
+    Built by <a href="https://hopetech.me">HopeTech</a> · A Bettroi product · <a href="https://hopetech.me/sitemap.xml">Sitemap</a>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Agents for Power Plants | Bettroi</title>
+<meta name="description" content="Bettroi builds AI agents for power plants — from SCADA anomaly detection to shift handover automation. Discovery audit from ₹40,000. Book a call.">
+<link rel="canonical" href="https://hopetech.me/ai-agents-for-power-plants/">
+<meta property="og:title" content="AI Agents for Power Plants | Bettroi">
+<meta property="og:description" content="Bettroi builds AI agents for power plants — from SCADA anomaly detection to shift handover automation. Discovery audit from ₹40,000. Book a call.">
+<meta property="og:url" content="https://hopetech.me/ai-agents-for-power-plants/">
+<meta property="og:type" content="website">
+<meta name="keywords" content="ai agents for power plants, power plants, ai agents, Bettroi, HopeTech">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Our SCADA system is from a legacy vendor. Can you still build agents on top of it?","acceptedAnswer":{"@type":"Answer","text":"Yes. Most legacy SCADA systems expose historian data via OPC-DA, OPC-UA, or flat CSV/database exports. We connect to the data layer — we don't require you to replace your SCADA. The Discovery audit specifically maps what data is available and in what format, so there are no surprises at the Wire stage."}},{"@type":"Question","name":"How is this different from the analytics module our SCADA vendor already offers?","acceptedAnswer":{"@type":"Answer","text":"SCADA analytics modules show you dashboards — they don't act, draft, route, or answer questions. An AI agent can read a fault pattern, look up the relevant SOP, draft a work order, and notify the right engineer in a single automated flow. That's a fundamentally different capability from a chart that requires a human to interpret and then do five things manually."}},{"@type":"Question","name":"What happens to the agent after the 12-week engagement ends?","acceptedAnswer":{"@type":"Answer","text":"You own the deployed agents and the integration code. We offer a retained AI operations subscription from ₹45,000/month for monitoring, retraining on new data, adding new agents, and on-call support. If you prefer to hand it to your internal IT team, we document everything and do a structured handover in the final week."}},{"@type":"Question","name":"How do you handle sensitive plant data and cybersecurity requirements?","acceptedAnswer":{"@type":"Answer","text":"We deploy on your cloud account or on-premise infrastructure — your data doesn't leave your environment unless you explicitly choose a cloud-hosted model. For regulated or grid-connected plants, we scope the architecture in the Discovery audit to meet CEA cybersecurity guidelines and your own IT security policy before a single line of code is written."}},{"@type":"Question","name":"We have 4 units across 2 sites. Do we start with one unit or the whole plant?","acceptedAnswer":{"@type":"Answer","text":"Always start with one unit — that's the Learn stage. You get a controlled environment to measure results and iron out integration issues. Scale across units and sites happens in Stage 5, informed by what actually worked in the pilot, not what looked good in a slide deck."}}]}</script>
+<style>
+  :root { --c: #1a1a2e; --m: #16213e; --a: #0f3460; --t: #e94560; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 17px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--c); background: #fafafa; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  header { padding: 1.5rem 0 2.5rem; border-bottom: 1px solid #eaeaea; margin-bottom: 2rem; }
+  header a { color: var(--m); text-decoration: none; font-weight: 600; font-size: 18px; }
+  h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 1rem; color: var(--c); }
+  .sub { font-size: 1.15rem; color: #555; margin-bottom: 2rem; }
+  h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--m); }
+  h3 { font-size: 1.15rem; margin: 1.5rem 0 .5rem; }
+  p { margin-bottom: 1rem; }
+  ul { margin: 0 0 1rem 1.5rem; }
+  li { margin-bottom: .35rem; }
+  strong { color: var(--a); }
+  .cta { background: var(--c); color: #fff; padding: 1.75rem; border-radius: 8px; margin: 3rem 0 2rem; text-align: center; }
+  .cta a { background: var(--t); color: #fff; padding: .85rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: .5rem; }
+  details { background: #fff; border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: .75rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--m); }
+  details[open] summary { margin-bottom: .75rem; }
+  footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eaeaea; color: #888; font-size: 14px; text-align: center; }
+  footer a { color: var(--a); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="https://hopetech.me">HopeTech</a></header>
+  <h1>AI Agents for Power Plants</h1>
+  
+<h2>Operations at a power plant don't fail loudly — they erode quietly</h2>
+<p>AI agents built for plant workflows catch that erosion before it becomes a shutdown.</p>
+<p>---</p>
+<h3>The Problem</h3>
+<p>Plant operations run on tribal knowledge locked inside shift logs, operator experience, and manual checklists that nobody has time to standardise. A SCADA system tells you a value is out of range — it doesn't tell you what that pattern meant the last 11 times it appeared, or who you should call at 2 AM. Permit-to-work processes, daily generation reports, and equipment history are all tracked across disconnected tools — Word files, WhatsApp threads, and Excel sheets — which means every shift handover is a 20-minute information recovery exercise.</p>
+<p>---</p>
+<h3>What We Build</h3>
+<p>Specific agents and automations we deliver for power plant clients:</p>
+<ul><li><strong>Shift handover agent</strong> — ingests SCADA logs, maintenance tickets, and operator notes; generates a structured handover brief in under 2 minutes</li>
+<li><strong>Anomaly pattern agent</strong> — monitors live sensor feeds and flags deviations against historical fault patterns, with contextual notes for the duty engineer</li>
+<li><strong>Permit-to-work (PTW) intake bot</strong> — converts PTW requests into structured workflows, auto-checks isolation requirements, and routes for approval</li>
+<li><strong>Daily generation report bot</strong> — pulls PLF, auxiliary consumption, and downtime data from multiple sources; drafts the daily MIS report automatically</li>
+<li><strong>Maintenance work-order triage agent</strong> — classifies incoming breakdown tickets by criticality, assigns to the right team, and logs against equipment history</li>
+<li><strong>Compliance document retrieval agent</strong> — answers questions against CEA regulations, OEM manuals, and internal SOPs in plain language, with source citations</li></ul>
+<p>---</p>
+<h3>How We Do It — The Be AI-First Framework</h3>
+<p>We don't drop software and leave. We work through five stages that de-risk the build at every step:</p>
+<p><strong>1. Discovery (2 weeks)</strong>
+We audit your current control room, maintenance, and reporting workflows. We interview shift engineers, O&M leads, and plant managers. Output: a ranked list of the 3 highest-ROI AI agent candidates with effort and savings estimates — fixed deliverable, fixed fee.</p>
+<p><strong>2. Learn (Weeks 3–6)</strong>
+We pilot one agent — typically the shift handover agent or the anomaly pattern agent — on live plant data. We measure baseline time and error rate against the AI output for 30 days. You see real numbers before committing to anything larger.</p>
+<p><strong>3. Wire (Weeks 7–9)</strong>
+Winning agents get integrated into your actual systems — SCADA historian, CMMS, your existing MIS tools, or a document repository. No parallel workflows. Real connectors.</p>
+<p><strong>4. Automate (Weeks 10–11)</strong>
+Manual handoffs between agents, teams, and systems are replaced with orchestrated pipelines. A fault flag in SCADA can trigger a maintenance work-order, an SME alert, and a shift log entry — without a human copying data between three screens.</p>
+<p><strong>5. Scale (Week 12 onward)</strong>
+We roll out across units or sister plants with monitoring dashboards, governance policies, and model performance tracking. Optionally retained as your ongoing AI operations partner.</p>
+<p>---</p>
+<h3>What We've Already Built</h3>
+<p>Bettroi scoped and engaged on an AI system opportunity for Bajaj's power plant operations — a deal structured at ₹5,78,000 with quarterly advance payments and one-year support included. Separately, through our NexaProc product line, we are building a P&ID Extractor specifically for industrial plants — an AI tool that reads piping and instrumentation diagrams and extracts structured equipment and flow data, removing one of the most manual tasks in plant documentation. This is production-grade industrial AI, not a demo.</p>
+<p>---</p>
+<h3>Pricing</h3>
+<p>| Engagement | Duration | Starts at |
+|---|---|---|
+| Discovery audit | 2 weeks | ₹40,000 |
+| Pilot (Discovery + Learn) | 6 weeks | ₹1,20,000 |
+| Full transformation (all 5 stages) | 12 weeks | ₹3,50,000 |
+| Retained AI operations | Monthly | ₹45,000/month |</p>
+<p>Prices are fixed-fee or milestone-billed — no open-ended retainers in the early stages. Cloud and third-party API costs are scoped separately as pass-through OpEx.</p>
+<p>---</p>
+<h3>Book a 30-Minute Discovery Call</h3>
+<p>If you're an O&M head, plant GM, or IT lead at a thermal, hydro, or renewable plant and you're tired of answering the same questions your data should already be answering — let's talk.</p>
+<p>[Book a 30-min Discovery call → hi@bettroi.com](mailto:hi@bettroi.com)</p>
+  <div class="cta">
+    <h3 style="color:#fff;margin:0 0 .5rem">Ready to talk?</h3>
+    <p style="color:#ddd;margin:0">Book a 30-min Discovery call. We'll show you where AI fits in your operation.</p>
+    <a href="mailto:hi@bettroi.com?subject=Discovery%20call%20%E2%80%94%20AI%20Agents%20for%20Power%20Plants">Email us</a>
+  </div>
+  <h2>Frequently asked questions</h2>
+  <details><summary>Our SCADA system is from a legacy vendor. Can you still build agents on top of it?</summary><p>Yes. Most legacy SCADA systems expose historian data via OPC-DA, OPC-UA, or flat CSV/database exports. We connect to the data layer — we don't require you to replace your SCADA. The Discovery audit specifically maps what data is available and in what format, so there are no surprises at the Wire stage.</p></details>
+<details><summary>How is this different from the analytics module our SCADA vendor already offers?</summary><p>SCADA analytics modules show you dashboards — they don't act, draft, route, or answer questions. An AI agent can read a fault pattern, look up the relevant SOP, draft a work order, and notify the right engineer in a single automated flow. That's a fundamentally different capability from a chart that requires a human to interpret and then do five things manually.</p></details>
+<details><summary>What happens to the agent after the 12-week engagement ends?</summary><p>You own the deployed agents and the integration code. We offer a retained AI operations subscription from ₹45,000/month for monitoring, retraining on new data, adding new agents, and on-call support. If you prefer to hand it to your internal IT team, we document everything and do a structured handover in the final week.</p></details>
+<details><summary>How do you handle sensitive plant data and cybersecurity requirements?</summary><p>We deploy on your cloud account or on-premise infrastructure — your data doesn't leave your environment unless you explicitly choose a cloud-hosted model. For regulated or grid-connected plants, we scope the architecture in the Discovery audit to meet CEA cybersecurity guidelines and your own IT security policy before a single line of code is written.</p></details>
+<details><summary>We have 4 units across 2 sites. Do we start with one unit or the whole plant?</summary><p>Always start with one unit — that's the Learn stage. You get a controlled environment to measure results and iron out integration issues. Scale across units and sites happens in Stage 5, informed by what actually worked in the pilot, not what looked good in a slide deck.</p></details>
+  <footer>
+    Built by <a href="https://hopetech.me">HopeTech</a> · A Bettroi product · <a href="https://hopetech.me/sitemap.xml">Sitemap</a>
+  </footer>
+</div>
+</body>
+</html>

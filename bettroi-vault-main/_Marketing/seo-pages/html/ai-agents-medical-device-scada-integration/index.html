@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Agents for Medical Device SCADA Integration</title>
+<meta name="description" content="Bettroi builds AI agents that connect SCADA systems to QMS, ERP, and compliance workflows for medical device makers. Pilot in 6 weeks. Discovery from ₹40,000.">
+<link rel="canonical" href="https://hopetech.me/ai-agents-medical-device-scada-integration/">
+<meta property="og:title" content="AI Agents for Medical Device SCADA Integration">
+<meta property="og:description" content="Bettroi builds AI agents that connect SCADA systems to QMS, ERP, and compliance workflows for medical device makers. Pilot in 6 weeks. Discovery from ₹40,000.">
+<meta property="og:url" content="https://hopetech.me/ai-agents-medical-device-scada-integration/">
+<meta property="og:type" content="website">
+<meta name="keywords" content="ai agents medical device scada integration, medical device makers, scada integration, Bettroi, HopeTech">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Our SCADA system is validated under 21 CFR Part 11 / IEC 62443. Will your agents break that validation?","acceptedAnswer":{"@type":"Answer","text":"No. We integrate at the historian or data-export layer, not inside the validated SCADA control logic. The agents read data out of your historian (OSIsoft PI, Ignition, Wonderware, etc.) and write into your QMS or ERP via their own validated APIs. Your SCADA validation perimeter stays intact. We document the integration architecture so your QA team can include it in the next audit."}},{"@type":"Question","name":"We already have a QMS (MasterControl / Greenlight Guru / custom). Do you replace it?","acceptedAnswer":{"@type":"Answer","text":"No. We connect to it. The deviation logger and batch release agents push structured data into your existing QMS forms via API or webhook. You keep your current QMS workflows; we just eliminate the manual data-entry step between SCADA and the form."}},{"@type":"Question","name":"How long before we see a measurable reduction in deviation cycle time?","acceptedAnswer":{"@type":"Answer","text":"In the 30-day Learn stage, you run the AI agent in parallel with your current process. Most manufacturers see deviation report cycle time drop by 60–75% in that period simply because the agent drafts the report at the moment of the trigger rather than waiting for a human to pull the historian data. We give you a before/after report at the end of week 6."}},{"@type":"Question","name":"Do we need a data scientist or ML engineer on our team to maintain this?","acceptedAnswer":{"@type":"Answer","text":"No. The agents are configured against your validated process limits and SOPs, which live in a structured knowledge base your QA manager can edit. Bettroi handles model updates and integration maintenance under the retained operations subscription. Your team interacts with dashboards and alert thresholds, not code."}},{"@type":"Question","name":"What SCADA protocols and historians do you support?","acceptedAnswer":{"@type":"Answer","text":"We have worked with OPC-UA, Modbus TCP, and MQTT at the protocol layer, and with Ignition (Inductive Automation), OSIsoft PI, and Wonderware as historian targets. If you are running a proprietary historian, the Discovery audit will confirm whether a CSV/API export path is available. Most modern SCADA historians expose at least one of these."}}]}</script>
+<style>
+  :root { --c: #1a1a2e; --m: #16213e; --a: #0f3460; --t: #e94560; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 17px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--c); background: #fafafa; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  header { padding: 1.5rem 0 2.5rem; border-bottom: 1px solid #eaeaea; margin-bottom: 2rem; }
+  header a { color: var(--m); text-decoration: none; font-weight: 600; font-size: 18px; }
+  h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 1rem; color: var(--c); }
+  .sub { font-size: 1.15rem; color: #555; margin-bottom: 2rem; }
+  h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--m); }
+  h3 { font-size: 1.15rem; margin: 1.5rem 0 .5rem; }
+  p { margin-bottom: 1rem; }
+  ul { margin: 0 0 1rem 1.5rem; }
+  li { margin-bottom: .35rem; }
+  strong { color: var(--a); }
+  .cta { background: var(--c); color: #fff; padding: 1.75rem; border-radius: 8px; margin: 3rem 0 2rem; text-align: center; }
+  .cta a { background: var(--t); color: #fff; padding: .85rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: .5rem; }
+  details { background: #fff; border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: .75rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--m); }
+  details[open] summary { margin-bottom: .75rem; }
+  footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eaeaea; color: #888; font-size: 14px; text-align: center; }
+  footer a { color: var(--a); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="https://hopetech.me">HopeTech</a></header>
+  <h1>AI Agents for SCADA Integration in Medical Device Manufacturing</h1>
+  <h2>Your SCADA data is live. Your decisions still aren't.</h2>
+<p>Bettroi builds AI agents that sit on top of your SCADA layer, surface anomalies before they become NCRs, and push structured data into your QMS and ERP without a human in the middle.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Medical device manufacturers run SCADA systems that generate thousands of sensor events per shift, but the operators who need to act on that data are reading dashboards manually and logging deviations into spreadsheets hours after the fact. By the time a process drift reaches a CAPA form, you've already built non-conforming product. Sterilisation cycle deviations, implant component tolerances, cleanroom particle counts — none of these wait for your next morning meeting.</p>
+<p>---</p>
+<h2>What We Build</h2>
+<ul><li><strong>SCADA anomaly detection agent</strong> — monitors OPC-UA or Modbus streams in real time, flags statistically significant drift against your validated process limits, and raises an alert with context before the batch is closed</li>
+<li><strong>Automated deviation logger</strong> — captures SCADA event data and drafts a structured deviation report in your QMS (Greenlight Guru, MasterControl, or custom) within minutes of a trigger, not the next working day</li>
+<li><strong>Batch release readiness bot</strong> — cross-checks SCADA run data against the batch record checklist and surfaces any open items to the QA reviewer as a pre-populated summary</li>
+<li><strong>Sterilisation cycle compliance agent</strong> — maps EO, gamma, or autoclave cycle parameters from SCADA output to your ISO 11135 / ISO 17665 documentation requirements and flags gaps automatically</li>
+<li><strong>Predictive maintenance alert agent</strong> — tracks equipment run-hours, vibration signatures, and cycle counts from SCADA telemetry and schedules service tickets in your CMMS before failure</li>
+<li><strong>SCADA-to-ERP material consumption bridge</strong> — reads actual consumption from the production line and posts it to your ERP inventory, eliminating the end-of-shift manual count</li></ul>
+<p>---</p>
+<h2>How We Do It: The Be AI-First Framework</h2>
+<p><strong>Stage 1 — Discovery (2 weeks)</strong>
+We audit your SCADA architecture, historian setup, QMS structure, and current manual handoffs. We identify the 3 highest-ROI integration points — typically the deviation-to-CAPA loop, batch record closure, and predictive maintenance.</p>
+<p><strong>Stage 2 — Learn (weeks 3–6)</strong>
+We deploy an AI agent on one workflow — usually the anomaly detection + deviation logging loop — and run it in parallel with your current process for 30 days. We measure baseline cycle time and error rate against the AI-assisted baseline.</p>
+<p><strong>Stage 3 — Wire (weeks 7–9)</strong>
+We integrate the winning agent into your live SCADA historian, QMS, and ERP. This is where OPC-UA connectors, API bridges, and authentication are hardened for your validated environment.</p>
+<p><strong>Stage 4 — Automate (weeks 9–11)</strong>
+Manual handoffs between SCADA, QA, and ERP are replaced with agent orchestration. Humans stay in the loop for disposition decisions; the paperwork and data movement happen automatically.</p>
+<p><strong>Stage 5 — Scale (week 12 onward)</strong>
+We roll the agent stack out across additional production lines or manufacturing sites, with monitoring dashboards and governance rules your QA head can own.</p>
+<p>---</p>
+<h2>What We Have Built Before</h2>
+<p>Bettroi's work with Hope Hospital includes AI-assisted surgical implant documentation — ensuring pacemakers, stents, and other implants used in procedures are correctly identified and logged at the point of use, which is structurally the same last-metre traceability problem medical device makers face on the production floor. Through our BNI network, we have a direct working relationship with Sun Sterifaab Pvt. Ltd. (Ahmedabad), a sterilisation services and equipment company serving pharma and medical device manufacturers — which informs how we approach sterilisation cycle compliance agents. Our Obsidian-based Business Brain platform, already deployed for SOPs and agent grounding at Hope Hospital, is the same knowledge backbone we use to encode your validated process parameters and escalation rules into agent personas.</p>
+<p>---</p>
+<h2>Pricing</h2>
+<p>| Engagement | What's included | Typical fee |
+|---|---|---|
+| Discovery audit | 2-week SCADA + QMS workflow audit, 3-priority report | ₹40,000 – ₹60,000 |
+| Pilot | Discovery + 6-week agent pilot on one integration point | ₹1,80,000 – ₹2,50,000 |
+| Full transformation | All 5 stages across 2–3 integration points, 12 weeks | ₹6,00,000 – ₹9,00,000 |
+| Retained AI operations | Monthly agent monitoring, updates, and QMS sync | ₹50,000 – ₹80,000/month |</p>
+<p>Fees are fixed per stage, milestone-billed. No retainer required until Stage 5.</p>
+<p>---</p>
+<h2>Book a 30-Min Discovery Call</h2>
+<p>Tell us your SCADA stack and your biggest compliance bottleneck. We'll come with specific questions, not a slide deck.</p>
+<p>[hi@bettroi.com](mailto:hi@bettroi.com)</p>
+  <div class="cta">
+    <h3 style="color:#fff;margin:0 0 .5rem">Ready to talk?</h3>
+    <p style="color:#ddd;margin:0">Book a 30-min Discovery call. We'll show you where AI fits in your operation.</p>
+    <a href="mailto:hi@bettroi.com?subject=Discovery%20call%20%E2%80%94%20AI%20Agents%20for%20SCADA%20Integration%20in%20Medical%20Device%20Manufacturing">Email us</a>
+  </div>
+  <h2>Frequently asked questions</h2>
+  <details><summary>Our SCADA system is validated under 21 CFR Part 11 / IEC 62443. Will your agents break that validation?</summary><p>No. We integrate at the historian or data-export layer, not inside the validated SCADA control logic. The agents read data out of your historian (OSIsoft PI, Ignition, Wonderware, etc.) and write into your QMS or ERP via their own validated APIs. Your SCADA validation perimeter stays intact. We document the integration architecture so your QA team can include it in the next audit.</p></details>
+<details><summary>We already have a QMS (MasterControl / Greenlight Guru / custom). Do you replace it?</summary><p>No. We connect to it. The deviation logger and batch release agents push structured data into your existing QMS forms via API or webhook. You keep your current QMS workflows; we just eliminate the manual data-entry step between SCADA and the form.</p></details>
+<details><summary>How long before we see a measurable reduction in deviation cycle time?</summary><p>In the 30-day Learn stage, you run the AI agent in parallel with your current process. Most manufacturers see deviation report cycle time drop by 60–75% in that period simply because the agent drafts the report at the moment of the trigger rather than waiting for a human to pull the historian data. We give you a before/after report at the end of week 6.</p></details>
+<details><summary>Do we need a data scientist or ML engineer on our team to maintain this?</summary><p>No. The agents are configured against your validated process limits and SOPs, which live in a structured knowledge base your QA manager can edit. Bettroi handles model updates and integration maintenance under the retained operations subscription. Your team interacts with dashboards and alert thresholds, not code.</p></details>
+<details><summary>What SCADA protocols and historians do you support?</summary><p>We have worked with OPC-UA, Modbus TCP, and MQTT at the protocol layer, and with Ignition (Inductive Automation), OSIsoft PI, and Wonderware as historian targets. If you are running a proprietary historian, the Discovery audit will confirm whether a CSV/API export path is available. Most modern SCADA historians expose at least one of these.</p></details>
+  <footer>
+    Built by <a href="https://hopetech.me">HopeTech</a> · A Bettroi product · <a href="https://hopetech.me/sitemap.xml">Sitemap</a>
+  </footer>
+</div>
+</body>
+</html>

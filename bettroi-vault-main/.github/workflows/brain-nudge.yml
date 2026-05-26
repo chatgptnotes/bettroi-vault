@@ -1,0 +1,25 @@
+name: Brain — Daily Action Item Nudges
+
+# DMs each team member their overdue + high-priority items.
+# Runs at 09:00 IST so it lands after the morning digest + insights.
+
+on:
+  schedule:
+    - cron: '30 3 * * *'  # 03:30 UTC = 09:00 IST
+  workflow_dispatch:
+
+jobs:
+  nudge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Send nudges
+        env:
+          SUPABASE_URL: ${{ secrets.BRAIN_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.BRAIN_SUPABASE_SERVICE_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.BRAIN_SLACK_BOT_TOKEN }}
+        run: node _Murali-Second-Brain/nudge-overdue.mjs

@@ -1,0 +1,54 @@
+name: Brain — Programmatic SEO Generator
+
+# Manual trigger (or 1st of every month) — generate any missing (vertical × use-case)
+# SEO landing pages. Idempotent: skips combos already present in _Marketing/seo-pages/
+
+on:
+  schedule:
+    - cron: '0 5 1 * *'  # 05:00 UTC 1st of month = 10:30 IST
+  workflow_dispatch:
+    inputs:
+      max:
+        description: 'Max pages to generate (default 20)'
+        required: false
+        default: '20'
+      verticals:
+        description: 'Comma-separated verticals (blank = all)'
+        required: false
+      usecases:
+        description: 'Comma-separated use-cases (blank = all)'
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Generate SEO pages
+        env:
+          SUPABASE_URL: ${{ secrets.BRAIN_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.BRAIN_SUPABASE_SERVICE_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.BRAIN_ANTHROPIC_API_KEY }}
+        run: |
+          ARGS="--max=${{ inputs.max || '20' }}"
+          [ -n "${{ inputs.verticals }}" ] && ARGS="$ARGS --verticals=${{ inputs.verticals }}"
+          [ -n "${{ inputs.usecases }}"  ] && ARGS="$ARGS --usecases=${{ inputs.usecases }}"
+          node _Murali-Second-Brain/programmatic-seo-generator.mjs $ARGS
+      - name: Commit + push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _Marketing/seo-pages/
+          if git diff --staged --quiet; then
+            echo "No new SEO pages."
+          else
+            git commit -m "chore(brain): programmatic SEO pages"
+            git push
+          fi

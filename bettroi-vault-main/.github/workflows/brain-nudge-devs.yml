@@ -1,0 +1,28 @@
+name: Brain — Daily Developer Assignment Nudges
+
+# Reads dev_work_items from the BNI Engineering Board (https://hopetech.me/bni/dev-boards.html)
+# and DMs each developer their current open work via Slack.
+# Runs at 09:30 IST (Mon-Fri only).
+
+on:
+  schedule:
+    - cron: '0 4 * * 1-5'  # 04:00 UTC = 09:30 IST, weekdays only
+  workflow_dispatch:
+
+jobs:
+  nudge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Nudge developers
+        env:
+          SUPABASE_URL: ${{ secrets.BRAIN_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.BRAIN_SUPABASE_SERVICE_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.BRAIN_SLACK_BOT_TOKEN }}
+          BNI_SUPABASE_URL: ${{ secrets.BNI_SUPABASE_URL }}
+          BNI_SUPABASE_ANON_KEY: ${{ secrets.BNI_SUPABASE_ANON_KEY }}
+        run: node _Murali-Second-Brain/nudge-dev-assignments.mjs

@@ -1,0 +1,47 @@
+name: Brain — Calendar Sync
+
+# Pulls Google Calendar ICS into _Calendar/*.md so the brain can answer
+# "what's on my calendar today/tomorrow/this week" questions.
+#
+# Runs every morning + before evening planning. The follow-up obsidian-sync
+# workflow ingests the resulting .md files into brain_chunks.
+
+on:
+  schedule:
+    # 02:00 UTC = 07:30 IST  (morning brief)
+    # 11:30 UTC = 17:00 IST  (afternoon refresh)
+    - cron: '0 2 * * *'
+    - cron: '30 11 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.BRAIN_GITHUB_PAT }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Sync calendar
+        env:
+          GOOGLE_CAL_ICS_URL: ${{ secrets.GOOGLE_CAL_ICS_URL }}
+        run: node _Murali-Second-Brain/sync-calendar.mjs
+
+      - name: Commit + push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _Calendar/
+          if git diff --staged --quiet; then
+            echo "no calendar changes"
+          else
+            git commit -m "_Calendar: auto-sync $(date -u +%Y-%m-%d\ %H:%M:%S)"
+            git push
+          fi

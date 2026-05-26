@@ -1,0 +1,11 @@
+{
+  "name": "brain-webhook",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.96.0",
+    "@slack/web-api": "^7.16.0",
+    "@supabase/supabase-js": "^2.46.1"
+  }
+}

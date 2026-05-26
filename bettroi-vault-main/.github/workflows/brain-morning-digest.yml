@@ -1,0 +1,31 @@
+name: Brain — Morning Digest
+
+# Posts a daily project-context digest to Murali's Slack DM at 07:30 IST.
+# Cron is in UTC: 07:30 IST = 02:00 UTC.
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:  # allow manual trigger from GitHub UI
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Run digest
+        env:
+          SUPABASE_URL: ${{ secrets.BRAIN_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.BRAIN_SUPABASE_SERVICE_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.BRAIN_SLACK_BOT_TOKEN }}
+          SLACK_MURALI_USER_ID: ${{ secrets.BRAIN_SLACK_MURALI_USER_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.BRAIN_ANTHROPIC_API_KEY }}
+        run: node _Murali-Second-Brain/digest.mjs

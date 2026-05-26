@@ -1,0 +1,42 @@
+{
+  "name": "bettroi-vault",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Bettroi knowledge vault — SOPs, agent persona packs, glossaries, ADRs.",
+  "type": "module",
+  "scripts": {
+    "sync": "node scripts/sync-to-supabase.mjs",
+    "brain:test": "node --env-file=.env.local _Murali-Second-Brain/ingest.mjs",
+    "brain:fathom": "node --env-file=.env.local _Murali-Second-Brain/fathom-sync.mjs",
+    "brain:obsidian": "node --env-file=.env.local _Murali-Second-Brain/obsidian-sync.mjs",
+    "brain:ask": "node --env-file=.env.local _Murali-Second-Brain/query.mjs",
+    "brain:bot": "node --env-file=.env.local _Murali-Second-Brain/slack-bot.mjs",
+    "brain:fathom-review": "node --env-file=.env.local _Murali-Second-Brain/fathom-review.mjs",
+    "brain:fathom-apply": "node --env-file=.env.local _Murali-Second-Brain/fathom-apply.mjs",
+    "brain:digest": "node --env-file=.env.local _Murali-Second-Brain/digest.mjs",
+    "brain:repo-overview": "node _Murali-Second-Brain/repo-overview.mjs",
+    "brain:extract-actions": "node --env-file=.env.local _Murali-Second-Brain/extract-action-items.mjs",
+    "brain:insights": "node --env-file=.env.local _Murali-Second-Brain/discover-insights.mjs",
+    "brain:nudge": "node --env-file=.env.local _Murali-Second-Brain/nudge-overdue.mjs",
+    "brain:nudge-devs": "node --env-file=.env.local _Murali-Second-Brain/nudge-dev-assignments.mjs",
+    "brain:sync-bni": "node --env-file=.env.local _Murali-Second-Brain/sync-bni-contacts.mjs",
+    "brain:daily-brief": "node --env-file=.env.local _Murali-Second-Brain/daily-brief.mjs",
+    "brain:calendar-watch": "node --env-file=.env.local _Murali-Second-Brain/calendar-prep-watcher.mjs",
+    "brain:weekly-review": "node --env-file=.env.local _Murali-Second-Brain/weekly-review.mjs",
+    "brain:email": "node --env-file=.env.local _Murali-Second-Brain/email-sync.mjs",
+    "brain:extract-proposals": "node --env-file=.env.local _Murali-Second-Brain/extract-proposals.mjs",
+    "brain:sync-proposifyai": "node --env-file=.env.local _Murali-Second-Brain/sync-proposifyai.mjs",
+    "brain:email-drafts": "node --env-file=.env.local _Murali-Second-Brain/email-drafts.mjs",
+    "brain:sync-calendar": "node --env-file=.env.local _Murali-Second-Brain/sync-calendar.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.96.0",
+    "@slack/bolt": "^4.7.2",
+    "@slack/web-api": "^7.16.0",
+    "@supabase/supabase-js": "^2.46.1",
+    "gray-matter": "^4.0.3",
+    "imapflow": "^1.3.3",
+    "node-ical": "^0.26.1",
+    "openai": "^4.98.0"
+  }
+}

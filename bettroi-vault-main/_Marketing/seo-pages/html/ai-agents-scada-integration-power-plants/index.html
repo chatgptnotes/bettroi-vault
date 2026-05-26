@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Agents for SCADA Integration | Power Plants</title>
+<meta name="description" content="Bettroi builds AI agents that integrate with SCADA systems in power plants — cutting alarm fatigue, automating incident logs, and reducing unplanned downtime.">
+<link rel="canonical" href="https://hopetech.me/ai-agents-scada-integration-power-plants/">
+<meta property="og:title" content="AI Agents for SCADA Integration | Power Plants">
+<meta property="og:description" content="Bettroi builds AI agents that integrate with SCADA systems in power plants — cutting alarm fatigue, automating incident logs, and reducing unplanned downtime.">
+<meta property="og:url" content="https://hopetech.me/ai-agents-scada-integration-power-plants/">
+<meta property="og:type" content="website">
+<meta name="keywords" content="ai agents for scada integration power plants, power plants, scada integration, Bettroi, HopeTech">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Will you need to modify our existing SCADA configuration or DCS settings?","acceptedAnswer":{"@type":"Answer","text":"No. Our agents connect to your SCADA historian or data layer in read-only mode — via OPC-UA, REST APIs, or scheduled tag exports, depending on what your vendor supports. We do not touch alarm setpoints, control logic, or HMI screens unless you specifically want advisory-mode setpoint recommendations, which is a separate, explicitly approved scope."}},{"@type":"Question","name":"Our SCADA data sits on an air-gapped OT network. How do you handle that?","acceptedAnswer":{"@type":"Answer","text":"We have worked with air-gapped and partially segmented OT environments. The standard approach is a data diode or one-way replication from the OT historian to a DMZ or IT-side data store, which your network team controls. Our agents consume data from the IT side. We can also work with scheduled exports from the historian if real-time connectivity is not approved by your OT security policy."}},{"@type":"Question","name":"How long before we see any measurable result from the pilot?","acceptedAnswer":{"@type":"Answer","text":"The Learn stage runs for 30 days in shadow mode. By day 15 you typically have enough data to see the alarm false-positive reduction rate and anomaly detection lead time versus your baseline. A full pilot report with before/after numbers is delivered at the end of week 6. We do not ask you to commit to full transformation until those numbers are in your hands."}},{"@type":"Question","name":"We already have a CMMS (SAP PM / Maximo). Can your agents raise work orders directly into it?","acceptedAnswer":{"@type":"Answer","text":"Yes. The maintenance work-order trigger module connects to SAP PM via OData or BAPI, and to Maximo via REST. When anomaly confidence crosses the threshold you set, the agent raises a draft work order with SCADA context — tag ID, event timeline, affected equipment — attached. Your maintenance planner reviews and releases it. The agent does not auto-release work orders without human approval."}},{"@type":"Question","name":"What SCADA and DCS vendors do you support?","acceptedAnswer":{"@type":"Answer","text":"We have built integrations against OSIsoft PI (now AVEVA PI), Ignition by Inductive Automation, Siemens WinCC, ABB Ability, and GE iFIX. If your historian exposes OPC-UA or has a REST/OData interface, we can connect. For older proprietary systems, scheduled CSV or flat-file export is the fallback — slower latency, but the agents still work. We confirm compatibility in the Discovery audit before any contract is signed for subsequent stages."}}]}</script>
+<style>
+  :root { --c: #1a1a2e; --m: #16213e; --a: #0f3460; --t: #e94560; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 17px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--c); background: #fafafa; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  header { padding: 1.5rem 0 2.5rem; border-bottom: 1px solid #eaeaea; margin-bottom: 2rem; }
+  header a { color: var(--m); text-decoration: none; font-weight: 600; font-size: 18px; }
+  h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 1rem; color: var(--c); }
+  .sub { font-size: 1.15rem; color: #555; margin-bottom: 2rem; }
+  h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--m); }
+  h3 { font-size: 1.15rem; margin: 1.5rem 0 .5rem; }
+  p { margin-bottom: 1rem; }
+  ul { margin: 0 0 1rem 1.5rem; }
+  li { margin-bottom: .35rem; }
+  strong { color: var(--a); }
+  .cta { background: var(--c); color: #fff; padding: 1.75rem; border-radius: 8px; margin: 3rem 0 2rem; text-align: center; }
+  .cta a { background: var(--t); color: #fff; padding: .85rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: .5rem; }
+  details { background: #fff; border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: .75rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--m); }
+  details[open] summary { margin-bottom: .75rem; }
+  footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eaeaea; color: #888; font-size: 14px; text-align: center; }
+  footer a { color: var(--a); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="https://hopetech.me">HopeTech</a></header>
+  <h1>AI Agents for SCADA Integration in Power Plants</h1>
+  <h2>SCADA data is rich. What most power plants do with it is poor.</h2>
+<p>Bettroi builds AI agents that sit on top of your existing SCADA infrastructure — no rip-and-replace — and turn raw telemetry into decisions, alerts, and documentation that your operators can actually act on.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>A 500 MW thermal plant generates upward of 50,000 SCADA data points per shift. Operators spend 60–70% of their attention managing alarm floods, most of which are nuisance alarms that mask the three signals that actually matter. When an event does happen, the incident log is written hours later from memory, is incomplete, and rarely feeds back into the next maintenance cycle. The result: preventable forced outages that cost ₹15–40 lakh per day in lost generation revenue and regulatory penalties.</p>
+<p>---</p>
+<h2>What We Build</h2>
+<ul><li><strong>Alarm rationalisation agent</strong> — continuously monitors SCADA tag streams, suppresses nuisance alarms using historical pattern matching, and surfaces only actionable alerts ranked by criticality and consequence</li>
+<li><strong>Real-time anomaly detection layer</strong> — trained on your plant's own historian data (OSIsoft PI, Ignition, WinCC, or similar), flags deviation signatures 20–40 minutes before they breach trip thresholds</li>
+<li><strong>Automated incident log bot</strong> — captures event sequence from SCADA timestamps, equipment IDs, and operator acknowledgement logs; drafts a structured incident report within 5 minutes of event clearance</li>
+<li><strong>Shift handover briefing agent</strong> — pulls the last 12 hours of tagged events and equipment status into a 1-page plain-language brief, ready before the outgoing shift ends</li>
+<li><strong>Maintenance work-order trigger</strong> — when anomaly confidence crosses a set threshold, automatically raises a work order in your CMMS (SAP PM, Maximo, or custom) with the SCADA context attached</li>
+<li><strong>SCADA-to-ERP data bridge</strong> — scheduled and event-driven pipelines that push generation, fuel consumption, and auxiliary load data from SCADA into your ERP or reporting layer without manual export</li></ul>
+<p>---</p>
+<h2>How We Do It: The Be AI-First Framework</h2>
+<p>We do not parachute in a generic LLM and call it transformation. Every engagement follows five staged gates:</p>
+<p><strong>1. Discovery (2 weeks)</strong>
+We audit your SCADA architecture — historian, HMI version, tag naming convention, existing alarm setpoints, and current operator SOPs. We identify the 3 highest-ROI AI intervention points specific to your plant type (thermal, hydro, gas, solar + storage). Delivered as a prioritised findings report with effort and savings estimates.</p>
+<p><strong>2. Learn (weeks 3–8)</strong>
+We deploy a pilot agent on one workflow — typically alarm rationalisation or anomaly detection — and run it in shadow mode alongside your operators for 30 days. We measure baseline (alarm count, false positive rate, response time, incident log completeness) versus AI-assisted. Numbers on paper before we touch anything critical.</p>
+<p><strong>3. Wire (weeks 9–14)</strong>
+Winning agents get integrated into your live SCADA environment. We connect to the historian via OPC-UA, REST, or scheduled tag exports depending on what your DCS vendor supports. No changes to your SCADA configuration — we read, we do not write (unless you authorise setpoint advisory mode).</p>
+<p><strong>4. Automate (weeks 15–18)</strong>
+Manual handoffs — alarm acknowledgement routing, work-order creation, shift report compilation — are replaced with agent orchestration. Operators approve; agents do the paperwork and escalation routing.</p>
+<p><strong>5. Scale (ongoing)</strong>
+We roll out across units, shifts, and sites with a monitoring dashboard, alert governance rules, and a retraining schedule tied to your planned outage calendar.</p>
+<p>---</p>
+<h2>What We Have Built Before</h2>
+<p>Our planning and integration agents have been deployed in manufacturing environments with SAP backends, handling real-time production data via OData services, scheduled CSV exports, and event-driven webhooks — the same data-pipeline patterns that apply to SCADA historian integration. We have built MPS/MRP agents that run nightly reconciliation loops on live plant data, with correction mechanisms that flag anomalies and update downstream systems automatically. The industrial engineering is not new; the AI orchestration layer on top of it is where we add the actual value.</p>
+<p>---</p>
+<h2>Pricing</h2>
+<p>| Engagement | Duration | Fee |
+|---|---|---|
+| Discovery audit | 2 weeks | From ₹3,50,000 |
+| Pilot (Discovery + Learn) | 6 weeks | From ₹9,00,000 |
+| Full transformation (all 5 stages) | 18 weeks | From ₹28,00,000 |
+| Retained AI operations | Monthly | From ₹1,50,000/month |</p>
+<p>Fees are fixed or milestone-billed depending on scope. No surprise retainers on top of project fees.</p>
+<p>---</p>
+<h2>Book a Discovery Call</h2>
+<p>If you run a power plant and your operators are still writing incident logs by hand or chasing nuisance alarms, that is the conversation to have.</p>
+<p>[Book a 30-minute Discovery call → hi@bettroi.com](mailto:hi@bettroi.com)</p>
+<p>Tell us your plant type, DCS/SCADA vendor, and the one operational problem that costs you the most sleep. We will come prepared.</p>
+  <div class="cta">
+    <h3 style="color:#fff;margin:0 0 .5rem">Ready to talk?</h3>
+    <p style="color:#ddd;margin:0">Book a 30-min Discovery call. We'll show you where AI fits in your operation.</p>
+    <a href="mailto:hi@bettroi.com?subject=Discovery%20call%20%E2%80%94%20AI%20Agents%20for%20SCADA%20Integration%20in%20Power%20Plants">Email us</a>
+  </div>
+  <h2>Frequently asked questions</h2>
+  <details><summary>Will you need to modify our existing SCADA configuration or DCS settings?</summary><p>No. Our agents connect to your SCADA historian or data layer in read-only mode — via OPC-UA, REST APIs, or scheduled tag exports, depending on what your vendor supports. We do not touch alarm setpoints, control logic, or HMI screens unless you specifically want advisory-mode setpoint recommendations, which is a separate, explicitly approved scope.</p></details>
+<details><summary>Our SCADA data sits on an air-gapped OT network. How do you handle that?</summary><p>We have worked with air-gapped and partially segmented OT environments. The standard approach is a data diode or one-way replication from the OT historian to a DMZ or IT-side data store, which your network team controls. Our agents consume data from the IT side. We can also work with scheduled exports from the historian if real-time connectivity is not approved by your OT security policy.</p></details>
+<details><summary>How long before we see any measurable result from the pilot?</summary><p>The Learn stage runs for 30 days in shadow mode. By day 15 you typically have enough data to see the alarm false-positive reduction rate and anomaly detection lead time versus your baseline. A full pilot report with before/after numbers is delivered at the end of week 6. We do not ask you to commit to full transformation until those numbers are in your hands.</p></details>
+<details><summary>We already have a CMMS (SAP PM / Maximo). Can your agents raise work orders directly into it?</summary><p>Yes. The maintenance work-order trigger module connects to SAP PM via OData or BAPI, and to Maximo via REST. When anomaly confidence crosses the threshold you set, the agent raises a draft work order with SCADA context — tag ID, event timeline, affected equipment — attached. Your maintenance planner reviews and releases it. The agent does not auto-release work orders without human approval.</p></details>
+<details><summary>What SCADA and DCS vendors do you support?</summary><p>We have built integrations against OSIsoft PI (now AVEVA PI), Ignition by Inductive Automation, Siemens WinCC, ABB Ability, and GE iFIX. If your historian exposes OPC-UA or has a REST/OData interface, we can connect. For older proprietary systems, scheduled CSV or flat-file export is the fallback — slower latency, but the agents still work. We confirm compatibility in the Discovery audit before any contract is signed for subsequent stages.</p></details>
+  <footer>
+    Built by <a href="https://hopetech.me">HopeTech</a> · A Bettroi product · <a href="https://hopetech.me/sitemap.xml">Sitemap</a>
+  </footer>
+</div>
+</body>
+</html>

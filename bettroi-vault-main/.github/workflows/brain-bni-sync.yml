@@ -1,0 +1,39 @@
+name: Brain — BNI CRM Sync
+
+# Pulls all BNI 1-2-1 contacts from the BNI Supabase, writes one .md per contact
+# under BNI-Networking/contacts/, commits + pushes. The obsidian-sync workflow
+# then ingests the changes into the brain.
+
+on:
+  schedule:
+    - cron: '0 5 * * *'  # 05:00 UTC = 10:30 IST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Sync BNI contacts
+        env:
+          BNI_SUPABASE_URL: ${{ secrets.BNI_SUPABASE_URL }}
+          BNI_SUPABASE_ANON_KEY: ${{ secrets.BNI_SUPABASE_ANON_KEY }}
+        run: node _Murali-Second-Brain/sync-bni-contacts.mjs
+      - name: Commit + push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "BNI-Networking/contacts/*.md"
+          if git diff --staged --quiet; then
+            echo "No CRM changes."
+          else
+            git commit -m "chore(brain): daily BNI CRM sync"
+            git push
+          fi
