@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI HMS Modernization for Dental Chains | Bettroi</title>
+<meta name="description" content="Bettroi modernizes dental chain HMS with AI agents that automate appointment scheduling, billing reconciliation, and chair utilization — across every branch.">
+<link rel="canonical" href="https://hopetech.me/ai-hms-modernization-dental-chains/">
+<meta property="og:title" content="AI HMS Modernization for Dental Chains | Bettroi">
+<meta property="og:description" content="Bettroi modernizes dental chain HMS with AI agents that automate appointment scheduling, billing reconciliation, and chair utilization — across every branch.">
+<meta property="og:url" content="https://hopetech.me/ai-hms-modernization-dental-chains/">
+<meta property="og:type" content="website">
+<meta name="keywords" content="hms modernization for dental chains, dental chains, hms modernization, Bettroi, HopeTech">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"We already have an HMS. Do we need to replace it to work with Bettroi?","acceptedAnswer":{"@type":"Answer","text":"No. We build AI agents on top of your existing HMS — whether that is Carestream, Dental Master, a custom system, or anything with an API or data export. Our Wire stage is specifically about integrating agents into your current stack, not replacing it. If your HMS has no API, we use an RPA layer to bridge it."}},{"@type":"Question","name":"How long before we see measurable results?","acceptedAnswer":{"@type":"Answer","text":"The Learn stage runs for 30 days on one live workflow at one branch. By the end of week 6, you will have hard numbers: baseline no-show rate vs. agent-managed no-show rate, or baseline claim rejection rate vs. post-bot rate. We do not ask you to commit to full rollout until those numbers are in."}},{"@type":"Question","name":"We have 8 branches on different HMS versions. Can agents work across all of them?","acceptedAnswer":{"@type":"Answer","text":"Yes, but the Wire stage scope will reflect the complexity. Branches on the same HMS version can be connected with one integration. Branches on different systems need separate connectors. We surface this in the Discovery audit so you know the effort before committing to full scale."}},{"@type":"Question","name":"What does the appointment confirmation agent actually do — is it just sending WhatsApp blasts?","acceptedAnswer":{"@type":"Answer","text":"No. It is a multi-turn agent. It sends a confirmation request, waits for a response, interprets the reply (confirm, reschedule, cancel), updates the HMS slot accordingly, and — if the patient wants to reschedule — offers available slots from the live calendar and books directly. It escalates to the front desk only when it cannot resolve the conversation on its own."}},{"@type":"Question","name":"How do you handle patient data privacy under Indian regulations?","acceptedAnswer":{"@type":"Answer","text":"All patient data processed by our agents stays within your infrastructure or a private cloud instance you control. We do not route identifiable patient data through shared third-party LLM APIs. For WhatsApp-based agents, we work with your existing WhatsApp Business API account. We build with DPDP Act compliance requirements in mind and can provide a data flow map as part of the Discovery deliverables."}}]}</script>
+<style>
+  :root { --c: #1a1a2e; --m: #16213e; --a: #0f3460; --t: #e94560; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 17px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--c); background: #fafafa; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  header { padding: 1.5rem 0 2.5rem; border-bottom: 1px solid #eaeaea; margin-bottom: 2rem; }
+  header a { color: var(--m); text-decoration: none; font-weight: 600; font-size: 18px; }
+  h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 1rem; color: var(--c); }
+  .sub { font-size: 1.15rem; color: #555; margin-bottom: 2rem; }
+  h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--m); }
+  h3 { font-size: 1.15rem; margin: 1.5rem 0 .5rem; }
+  p { margin-bottom: 1rem; }
+  ul { margin: 0 0 1rem 1.5rem; }
+  li { margin-bottom: .35rem; }
+  strong { color: var(--a); }
+  .cta { background: var(--c); color: #fff; padding: 1.75rem; border-radius: 8px; margin: 3rem 0 2rem; text-align: center; }
+  .cta a { background: var(--t); color: #fff; padding: .85rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: .5rem; }
+  details { background: #fff; border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: .75rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--m); }
+  details[open] summary { margin-bottom: .75rem; }
+  footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eaeaea; color: #888; font-size: 14px; text-align: center; }
+  footer a { color: var(--a); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="https://hopetech.me">HopeTech</a></header>
+  <h1>HMS Modernization for Dental Chains Using AI Agents</h1>
+  
+<h2>Your HMS was built to record. Not to run the clinic.</h2>
+<p>Bettroi deploys AI agents on top of your existing dental HMS so your front desk stops chasing confirmations, your billing team stops reconciling manually, and your ops head can see chair utilization across all branches in one place — without replacing the software your team already knows.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Most dental chains running 5 to 50+ branches are on HMS platforms like Carestream, Dental Master, or custom-built tools that do a decent job storing patient records but contribute nothing to throughput. Front-desk staff manually call appointment no-shows, billing coordinators reconcile insurance claims line by line, and the ops team gets branch-level MIS reports three days after the fact — too late to act. The HMS captures the data. Nobody's using it to make decisions.</p>
+<p>---</p>
+<h2>What We Build</h2>
+<ul><li><strong>Appointment confirmation and no-show recovery agent</strong> — calls, WhatsApps, and reschedules patients automatically 48 hrs and 6 hrs before chair time; recovers 15–25% of would-be gaps</li>
+<li><strong>Chair utilization dashboard agent</strong> — pulls live HMS slot data across branches, surfaces underbooked chairs by 9 AM daily, pushes alerts to branch managers</li>
+<li><strong>Insurance and TPA claim pre-check bot</strong> — validates claim fields against payer rules before submission, flags rejectable claims in the queue before they go out</li>
+<li><strong>Billing reconciliation agent</strong> — matches HMS billing entries against bank settlement data; exceptions flagged to accounts team, not the full ledger</li>
+<li><strong>Patient recall and treatment-plan follow-up agent</strong> — identifies patients overdue for phase-2 work (implant abutments, aligner changes, deep cleaning cycles) and triggers follow-up sequences</li>
+<li><strong>Branch ops MIS bot</strong> — generates a daily one-page ops summary per branch (chairs filled, revenue billed, pending lab work, open follow-ups) and pushes it to the right WhatsApp group or email by 8 AM</li></ul>
+<p>---</p>
+<h2>How We Do It: The Be AI-First Framework</h2>
+<p>We do not start with software. We start with your actual workflows.</p>
+<p><strong>Stage 1 — Discovery (2 weeks)</strong>
+We audit your current HMS usage, front-desk SOPs, billing flow, and lab coordination process. We map where staff time is going versus where patient revenue is leaking. Output: a ranked list of the 3 highest-ROI AI candidates specific to your chain's size and stack.</p>
+<p><strong>Stage 2 — Learn (weeks 3–6)</strong>
+We run a pilot agent on one workflow — usually appointment management or billing pre-check — at one branch. We measure the baseline (no-show rate, claim rejection rate, time per task) versus the AI-assisted version over 30 days. Numbers first, commitment after.</p>
+<p><strong>Stage 3 — Wire (weeks 7–9)</strong>
+Winning agents get integrated into your HMS, WhatsApp Business API, and any CRM or finance tool your chain uses. No rip-and-replace. API connectors and webhook bridges where native integration exists; RPA-layer where it does not.</p>
+<p><strong>Stage 4 — Automate (weeks 10–11)</strong>
+Manual handoffs between front desk, billing, and ops get replaced with agent-orchestrated workflows. A confirmed appointment triggers the pre-visit intake form. A completed procedure triggers the claim pre-check. No one has to remember to do the next step.</p>
+<p><strong>Stage 5 — Scale (week 12 and ongoing)</strong>
+Agents roll out across branches with monitoring dashboards, anomaly alerts, and a governance layer so your ops head can see what the agents are doing — and override when needed.</p>
+<p>---</p>
+<h2>What We Have Built Before</h2>
+<p>Bettroi's agent architecture — built on LangGraph state machines with structured approval flows and correction loops — has been deployed in manufacturing planning environments where agents handle procurement recommendations, schedule approvals, and supplier performance tracking across multi-site operations. The same core: retrieval, reasoning, recommendation, human-in-the-loop approval. The dental chain context changes the skill layer, not the engine. We have also worked on hospital supply chain and regulatory compliance workflows in the Indian healthcare context, including supplier audit tracking and compliance monitoring for multi-location health facilities.</p>
+<p>---</p>
+<h2>Pricing</h2>
+<p>| Engagement | What's included | Typical investment |
+|---|---|---|
+| Discovery audit | 2-week workflow audit, ROI map, 3 prioritized AI candidates | From ₹1,20,000 |
+| Pilot (Discovery + Learn) | Discovery + one live agent at one branch, 30-day measurement | From ₹3,50,000 |
+| Full transformation | All 5 stages, agents across workflows and branches | From ₹12,00,000 |
+| Retained AI operations | Monthly monitoring, model updates, new agent rollouts | From ₹80,000/month |</p>
+<p>Prices are fixed-fee for Discovery and Pilot. Full transformation is milestone-billed. No surprise invoices.</p>
+<p>---</p>
+<h2>Book a 30-Min Discovery Call</h2>
+<p>Tell us how many branches you run, which HMS you are on, and where the biggest operational leak is right now. We will tell you in 30 minutes whether AI agents can fix it and what it would take.</p>
+<p>[Book via email: hi@bettroi.com](mailto:hi@bettroi.com)</p>
+  <div class="cta">
+    <h3 style="color:#fff;margin:0 0 .5rem">Ready to talk?</h3>
+    <p style="color:#ddd;margin:0">Book a 30-min Discovery call. We'll show you where AI fits in your operation.</p>
+    <a href="mailto:hi@bettroi.com?subject=Discovery%20call%20%E2%80%94%20HMS%20Modernization%20for%20Dental%20Chains%20Using%20AI%20Agents">Email us</a>
+  </div>
+  <h2>Frequently asked questions</h2>
+  <details><summary>We already have an HMS. Do we need to replace it to work with Bettroi?</summary><p>No. We build AI agents on top of your existing HMS — whether that is Carestream, Dental Master, a custom system, or anything with an API or data export. Our Wire stage is specifically about integrating agents into your current stack, not replacing it. If your HMS has no API, we use an RPA layer to bridge it.</p></details>
+<details><summary>How long before we see measurable results?</summary><p>The Learn stage runs for 30 days on one live workflow at one branch. By the end of week 6, you will have hard numbers: baseline no-show rate vs. agent-managed no-show rate, or baseline claim rejection rate vs. post-bot rate. We do not ask you to commit to full rollout until those numbers are in.</p></details>
+<details><summary>We have 8 branches on different HMS versions. Can agents work across all of them?</summary><p>Yes, but the Wire stage scope will reflect the complexity. Branches on the same HMS version can be connected with one integration. Branches on different systems need separate connectors. We surface this in the Discovery audit so you know the effort before committing to full scale.</p></details>
+<details><summary>What does the appointment confirmation agent actually do — is it just sending WhatsApp blasts?</summary><p>No. It is a multi-turn agent. It sends a confirmation request, waits for a response, interprets the reply (confirm, reschedule, cancel), updates the HMS slot accordingly, and — if the patient wants to reschedule — offers available slots from the live calendar and books directly. It escalates to the front desk only when it cannot resolve the conversation on its own.</p></details>
+<details><summary>How do you handle patient data privacy under Indian regulations?</summary><p>All patient data processed by our agents stays within your infrastructure or a private cloud instance you control. We do not route identifiable patient data through shared third-party LLM APIs. For WhatsApp-based agents, we work with your existing WhatsApp Business API account. We build with DPDP Act compliance requirements in mind and can provide a data flow map as part of the Discovery deliverables.</p></details>
+  <footer>
+    Built by <a href="https://hopetech.me">HopeTech</a> · A Bettroi product · <a href="https://hopetech.me/sitemap.xml">Sitemap</a>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Murali's Second Brain — Phases A→Q</title>
+<style>
+  :root {
+    --bg:#0a0e27; --card:#141a3a; --line:#2a3563; --text:#e6e9f5; --muted:#8993b8;
+    --capture:#10b981; --process:#3b82f6; --output:#a855f7; --schedule:#f59e0b;
+    --critical:#ef4444; --bonus:#06b6d4;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 40px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1f4a 100%);
+    color: var(--text); min-height: 100vh;
+  }
+  .container { max-width: 1400px; margin: 0 auto; }
+  header { text-align: center; margin-bottom: 48px; }
+  h1 {
+    font-size: 48px; font-weight: 800; letter-spacing: -0.03em; margin: 0 0 8px;
+    background: linear-gradient(120deg, #8b5cf6, #ec4899, #f97316);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .subtitle { color: var(--muted); font-size: 18px; font-weight: 400; }
+  .meta {
+    display: inline-flex; gap: 24px; margin-top: 16px; padding: 12px 24px;
+    background: rgba(255,255,255,0.04); border-radius: 999px; font-size: 14px;
+  }
+  .meta strong { color: #fff; }
+
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px;
+  }
+  .stat {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px; text-align: center;
+  }
+  .stat-num { font-size: 36px; font-weight: 800; color: #fff; line-height: 1; }
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .phases {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px;
+  }
+  .phase {
+    background: var(--card); border: 1px solid var(--line); border-left-width: 4px;
+    border-radius: 12px; padding: 20px;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .phase:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  .phase.capture  { border-left-color: var(--capture); }
+  .phase.process  { border-left-color: var(--process); }
+  .phase.output   { border-left-color: var(--output); }
+  .phase.schedule { border-left-color: var(--schedule); }
+  .phase.bonus    { border-left-color: var(--bonus); }
+
+  .phase-head {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+  }
+  .phase-letter {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 18px; color: #fff;
+  }
+  .phase-title { flex: 1; }
+  .phase-name { font-size: 16px; font-weight: 700; color: #fff; }
+  .phase-icon { font-size: 22px; }
+
+  .phase-desc { font-size: 13px; color: var(--text); line-height: 1.5; margin: 8px 0 12px; }
+  .phase-meta {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .tag {
+    font-size: 11px; padding: 3px 10px; border-radius: 4px;
+    background: rgba(255,255,255,0.06); color: var(--muted);
+    font-weight: 600; letter-spacing: 0.02em;
+  }
+  .tag.live { background: rgba(16,185,129,0.15); color: var(--capture); }
+  .tag.cron { background: rgba(245,158,11,0.15); color: var(--schedule); }
+  .tag.realtime { background: rgba(168,85,247,0.15); color: var(--output); }
+
+  .schedule-section {
+    margin-top: 56px; padding: 28px; background: var(--card);
+    border: 1px solid var(--line); border-radius: 16px;
+  }
+  .schedule-section h2 {
+    margin: 0 0 20px; font-size: 22px; color: #fff;
+  }
+  .timeline {
+    display: grid; grid-template-columns: 90px 1fr; gap: 12px; font-size: 14px;
+  }
+  .timeline-time { color: var(--schedule); font-weight: 700; }
+  .timeline-event { color: var(--text); }
+
+  .stack-section { margin-top: 56px; }
+  .stack-section h2 { font-size: 22px; color: #fff; margin: 0 0 20px; }
+  .stack-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;
+  }
+  .stack-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 16px;
+  }
+  .stack-card h3 { margin: 0 0 8px; font-size: 14px; color: #fff; }
+  .stack-card ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+
+  footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>🧠 Murali's Second Brain</h1>
+    <div class="subtitle">17 phases shipped — capture, intelligence, action, all autonomous</div>
+    <div class="meta">
+      <span><strong>Built:</strong> 2026-05-17 → 2026-05-18</span>
+      <span><strong>Sessions:</strong> 2</span>
+      <span><strong>Stack:</strong> Supabase + Vercel + GitHub Actions + Slack + Twilio</span>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num">17</div><div class="stat-label">Phases live</div></div>
+    <div class="stat"><div class="stat-num">1,500+</div><div class="stat-label">Brain chunks</div></div>
+    <div class="stat"><div class="stat-num">11</div><div class="stat-label">Daily/weekly cron jobs</div></div>
+    <div class="stat"><div class="stat-num">18</div><div class="stat-label">Team members onboarded</div></div>
+  </div>
+
+  <div class="phases">
+
+    <div class="phase capture">
+      <div class="phase-head">
+        <div class="phase-letter">B</div>
+        <div class="phase-title"><div class="phase-name">Slack Bot @Bettroi</div></div>
+        <div class="phase-icon">💬</div>
+      </div>
+      <div class="phase-desc">DM the brain anywhere. Vector-search across Obsidian + Fathom + emails + proposals + BNI, with Claude Sonnet synthesizing answers + citations.</div>
+      <div class="phase-meta"><span class="tag realtime">Real-time</span><span class="tag live">Live</span><span class="tag">RAG</span></div>
+    </div>
+
+    <div class="phase output">
+      <div class="phase-head">
+        <div class="phase-letter">C</div>
+        <div class="phase-title"><div class="phase-name">Morning Digest</div></div>
+        <div class="phase-icon">☕</div>
+      </div>
+      <div class="phase-desc">Project summaries + open action items + cross-project insights, posted to your Slack DM daily.</div>
+      <div class="phase-meta"><span class="tag cron">07:30 IST daily</span><span class="tag">GitHub Actions</span></div>
+    </div>
+
+    <div class="phase process">
+      <div class="phase-head">
+        <div class="phase-letter">D</div>
+        <div class="phase-title"><div class="phase-name">Role-based Access</div></div>
+        <div class="phase-icon">🔐</div>
+      </div>
+      <div class="phase-desc">9 roles (murali · ceo · partner · coo · accountant · hr · sales_lead · developer · hospital_staff). HR/salary/finance blocked per role. 18 team members onboarded.</div>
+      <div class="phase-meta"><span class="tag live">Live</span><span class="tag">brain_user_roles</span></div>
+    </div>
+
+    <div class="phase process">
+      <div class="phase-head">
+        <div class="phase-letter">E</div>
+        <div class="phase-title"><div class="phase-name">Action Items</div></div>
+        <div class="phase-icon">🎯</div>
+      </div>
+      <div class="phase-desc">155 todos auto-extracted from 179 Fathom meetings. DM <code>my items</code> / <code>done N</code> / <code>snooze N</code>.</div>
+      <div class="phase-meta"><span class="tag live">Live</span><span class="tag">Haiku extract</span></div>
+    </div>
+
+    <div class="phase output">
+      <div class="phase-head">
+        <div class="phase-letter">F</div>
+        <div class="phase-title"><div class="phase-name">Cross-Project Insights</div></div>
+        <div class="phase-icon">🧭</div>
+      </div>
+      <div class="phase-desc">Sonnet detects recurring objections, contradictions, reuse opportunities, risks across 30+ projects. Posts to Slack DM.</div>
+      <div class="phase-meta"><span class="tag cron">08:00 IST daily</span><span class="tag">Sonnet</span></div>
+    </div>
+
+    <div class="phase output">
+      <div class="phase-head">
+        <div class="phase-letter">G</div>
+        <div class="phase-title"><div class="phase-name">Overdue Nudges</div></div>
+        <div class="phase-icon">⏰</div>
+      </div>
+      <div class="phase-desc">Each team member DM'd their personal overdue items. Fuzzy name → Slack ID matcher. Auto-skips deactivated accounts.</div>
+      <div class="phase-meta"><span class="tag cron">09:00 IST daily</span></div>
+    </div>
+
+    <div class="phase output">
+      <div class="phase-head">
+        <div class="phase-letter">H</div>
+        <div class="phase-title"><div class="phase-name">Dev Board Brief</div></div>
+        <div class="phase-icon">📋</div>
+      </div>
+      <div class="phase-desc">Reads Engineering Kanban (hopetech.me/bni/dev-boards.html) — sends consolidated developer assignment digest to shared @chatgptnotes Slack.</div>
+      <div class="phase-meta"><span class="tag cron">09:30 IST weekdays</span></div>
+    </div>
+
+    <div class="phase capture">
+      <div class="phase-head">
+        <div class="phase-letter">I</div>
+        <div class="phase-title"><div class="phase-name">Pre-Meeting Prep</div></div>
+        <div class="phase-icon">📚</div>
+      </div>
+      <div class="phase-desc">DM <code>prep &lt;topic&gt;</code> → instant briefing with people, decisions, open items, contradictions, source citations.</div>
+      <div class="phase-meta"><span class="tag realtime">On-demand</span></div>
+    </div>
+
+    <div class="phase capture">
+      <div class="phase-head">
+        <div class="phase-letter">J</div>
+        <div class="phase-title"><div class="phase-name">BNI CRM Sync</div></div>
+        <div class="phase-icon">🤝</div>
+      </div>
+      <div class="phase-desc">108 BNI contacts pulled from the BNI CRM into the brain. Brain knows every networking conversation, sentiment, follow-up status.</div>
+      <div class="phase-meta"><span class="tag cron">10:30 IST daily</span></div>
+    </div>
+
+    <div class="phase output">
+      <div class="phase-head">
+        <div class="phase-letter">K</div>
+        <div class="phase-title"><div class="phase-name">Daily Brief Document</div></div>
+        <div class="phase-icon">📰</div>
+      </div>
+      <div class="phase-desc">Comprehensive _Daily-Briefs/YYYY-MM-DD.md written to vault every morning. Permanent searchable history.</div>
+      <div class="phase-meta"><span class="tag cron">06:00 IST daily</span></div>
+    </div>
+
+    <div class="phase schedule">
+      <div class="phase-head">
+        <div class="phase-letter">L</div>
+        <div class="phase-title"><div class="phase-name">Calendar Auto-Prep</div></div>
+        <div class="phase-icon">📅</div>
+      </div>
+      <div class="phase-desc">Watches Google Calendar ICS. 20 min before any meeting, DMs you + all team-member attendees personalized briefings.</div>
+      <div class="phase-meta"><span class="tag cron">Every 5 min</span><span class="tag">launchd</span></div>
+    </div>
+
+    <div class="phase output">
+      <div class="phase-head">
+        <div class="phase-letter">M</div>
+        <div class="phase-title"><div class="phase-name">Weekly Review</div></div>
+        <div class="phase-icon">📊</div>
+      </div>
+      <div class="phase-desc">Sunday executive review — wins, slippage, trending topics, strategic flags, look-ahead. Written to vault + DM'd.</div>
+      <div class="phase-meta"><span class="tag cron">08:00 IST Sundays</span></div>
+    </div>
+
+    <div class="phase capture">
+      <div class="phase-head">
+        <div class="phase-letter">N</div>
+        <div class="phase-title"><div class="phase-name">Slack Channel Watcher</div></div>
+        <div class="phase-icon">👁️</div>
+      </div>
+      <div class="phase-desc">Listens in every channel the bot is in. AI rates each message 0–1. Decisions / commitments / blockers auto-ingest + 🧠 reaction.</div>
+      <div class="phase-meta"><span class="tag realtime">Real-time</span></div>
+    </div>
+
+    <div class="phase capture">
+      <div class="phase-head">
+        <div class="phase-letter">O</div>
+        <div class="phase-title"><div class="phase-name">Email Sync (IMAP)</div></div>
+        <div class="phase-icon">📨</div>
+      </div>
+      <div class="phase-desc">Pulls inbox via IMAP, AI-classifies importance, ingests only decisions/commitments/quotes. <strong>off_limits=true</strong> — only you see them.</div>
+      <div class="phase-meta"><span class="tag cron">Every 6h</span></div>
+    </div>
+
+    <div class="phase process">
+      <div class="phase-head">
+        <div class="phase-letter">P</div>
+        <div class="phase-title"><div class="phase-name">Pricing Intelligence</div></div>
+        <div class="phase-icon">💰</div>
+      </div>
+      <div class="phase-desc">96 proposals from Proposifyai.com + extraction from emails/meetings. Tracks INR/AED/USD prices, revisions, contradictions.</div>
+      <div class="phase-meta"><span class="tag live">Live</span><span class="tag">brain_proposals</span></div>
+    </div>
+
+    <div class="phase output">
+      <div class="phase-head">
+        <div class="phase-letter">Q</div>
+        <div class="phase-title"><div class="phase-name">WhatsApp Send</div></div>
+        <div class="phase-icon">📲</div>
+      </div>
+      <div class="phase-desc">DM <code>wa +91X &lt;message&gt;</code> in Slack → Twilio WhatsApp → real delivery. Sandbox now, upgradeable to branded WhatsApp Business sender.</div>
+      <div class="phase-meta"><span class="tag realtime">Real-time</span><span class="tag">Twilio</span></div>
+    </div>
+
+    <div class="phase bonus">
+      <div class="phase-head">
+        <div class="phase-letter">+</div>
+        <div class="phase-title"><div class="phase-name">Bonus Capabilities</div></div>
+        <div class="phase-icon">🎁</div>
+      </div>
+      <div class="phase-desc">Paper diary OCR (Claude Sonnet on handwriting) · Fathom auto-ingest webhook · Send-to-Brain Slack shortcut · fluxio.work admin UI · Repo overview daily refresh · Anthropic→VPS failover · 6 harvested Ironbark skills</div>
+      <div class="phase-meta"><span class="tag live">All live</span></div>
+    </div>
+
+  </div>
+
+  <div class="schedule-section">
+    <h2>🕐 Daily orchestration</h2>
+    <div class="timeline">
+      <div class="timeline-time">06:00 IST</div><div class="timeline-event">Daily Brief written to vault</div>
+      <div class="timeline-time">07:30 IST</div><div class="timeline-event">Morning Digest → Slack DM</div>
+      <div class="timeline-time">08:00 IST</div><div class="timeline-event">Cross-Project Insights → Slack</div>
+      <div class="timeline-time">08:00 Sun</div><div class="timeline-event">Weekly Review → vault + Slack</div>
+      <div class="timeline-time">09:00 IST</div><div class="timeline-event">Overdue Nudges → each assignee</div>
+      <div class="timeline-time">09:30 IST</div><div class="timeline-event">Dev Board Brief → @chatgptnotes</div>
+      <div class="timeline-time">10:30 IST</div><div class="timeline-event">BNI CRM Sync → vault + brain</div>
+      <div class="timeline-time">11:30 IST</div><div class="timeline-event">Repo Overview Refresh → vault</div>
+      <div class="timeline-time">Every 5 min</div><div class="timeline-event">Calendar Watcher → pre-meeting briefs</div>
+      <div class="timeline-time">Every 6h</div><div class="timeline-event">Email Sync (IMAP) → brain</div>
+      <div class="timeline-time">Real-time</div><div class="timeline-event">Slack bot · Channel watcher · Fathom webhook · WhatsApp send</div>
+    </div>
+  </div>
+
+  <div class="stack-section">
+    <h2>🏗️ Stack</h2>
+    <div class="stack-grid">
+      <div class="stack-card">
+        <h3>Brain core</h3>
+        <ul>
+          <li>Supabase (pgvector)</li>
+          <li>OpenAI text-embedding-3-small</li>
+          <li>Claude Sonnet (synthesis)</li>
+          <li>Claude Haiku (classification)</li>
+        </ul>
+      </div>
+      <div class="stack-card">
+        <h3>Capture</h3>
+        <ul>
+          <li>Obsidian vault → GitHub</li>
+          <li>Fathom webhook</li>
+          <li>IMAP (Gmail)</li>
+          <li>Slack channel watcher</li>
+          <li>Google Calendar ICS</li>
+          <li>BNI CRM (Supabase)</li>
+        </ul>
+      </div>
+      <div class="stack-card">
+        <h3>Output</h3>
+        <ul>
+          <li>Slack bot (Bolt.js Socket Mode)</li>
+          <li>Vercel serverless webhooks</li>
+          <li>Vault .md files</li>
+          <li>Twilio WhatsApp</li>
+        </ul>
+      </div>
+      <div class="stack-card">
+        <h3>Orchestration</h3>
+        <ul>
+          <li>GitHub Actions (cron)</li>
+          <li>macOS launchd (Mac local)</li>
+          <li>SSH autossh tunnel</li>
+          <li>Vercel functions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Built in 2 sessions · Murali (CEO) + Claude Sonnet 4.6 · 2026-05-17 → 2026-05-18<br>
+    1,500+ chunks · 181 Fathom meetings · 108 BNI contacts · 155 action items · 11 cron jobs · 18 team members · 6 harvested skills
+  </footer>
+
+</div>
+</body>
+</html>

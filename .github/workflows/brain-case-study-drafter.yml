@@ -1,0 +1,50 @@
+name: Brain — Case-Study Drafter
+
+# Weekly Mon 10:00 IST. Find projects with win-signals or rich activity, draft
+# 1-page case studies to _Marketing/case-studies/_drafts/
+
+on:
+  schedule:
+    - cron: '30 4 * * 1'  # 04:30 UTC Mon = 10:00 IST
+  workflow_dispatch:
+    inputs:
+      projects:
+        description: 'Comma-separated project tags to draft (overrides auto-detection)'
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Draft case studies
+        env:
+          SUPABASE_URL: ${{ secrets.BRAIN_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.BRAIN_SUPABASE_SERVICE_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.BRAIN_ANTHROPIC_API_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.BRAIN_SLACK_BOT_TOKEN }}
+          SLACK_MURALI_USER_ID: ${{ secrets.BRAIN_SLACK_MURALI_USER_ID }}
+        run: |
+          ARG=""
+          if [ -n "${{ inputs.projects }}" ]; then
+            ARG="--projects=${{ inputs.projects }}"
+          fi
+          node _Murali-Second-Brain/case-study-drafter.mjs --days=180 $ARG
+      - name: Commit + push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _Marketing/case-studies/
+          if git diff --staged --quiet; then
+            echo "No new case studies."
+          else
+            git commit -m "chore(brain): case-study drafts"
+            git push
+          fi

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Document AI for Cement Plants | Bettroi</title>
+<meta name="description" content="Bettroi builds Document AI systems for cement plants — extracting data from P&IDs, dispatch logs, and compliance reports so your teams stop re-keying paper.">
+<link rel="canonical" href="https://hopetech.me/document-ai-for-cement-plants/">
+<meta property="og:title" content="Document AI for Cement Plants | Bettroi">
+<meta property="og:description" content="Bettroi builds Document AI systems for cement plants — extracting data from P&IDs, dispatch logs, and compliance reports so your teams stop re-keying paper.">
+<meta property="og:url" content="https://hopetech.me/document-ai-for-cement-plants/">
+<meta property="og:type" content="website">
+<meta name="keywords" content="document ai for cement plants, cement plants, document ai, Bettroi, HopeTech">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Our documents are a mix of scanned handwritten forms and typed PDFs. Can your system handle both?","acceptedAnswer":{"@type":"Answer","text":"Yes. We use a combination of OCR, layout analysis, and fine-tuned extraction models. Handwritten forms — including field inspection sheets and weight-bridge slips — are handled with dedicated HTR (handwritten text recognition) pipelines. Accuracy varies by handwriting quality; we give you a baseline accuracy figure during the Discovery stage before you commit to a pilot."}},{"@type":"Question","name":"We already have SAP. Why can't SAP handle document extraction natively?","acceptedAnswer":{"@type":"Answer","text":"SAP can store documents and has some OCR via OpenText or VIM, but those tools are template-rigid and expensive to configure for the variety of formats a cement plant sees — especially non-standard vendor invoices, government-issued compliance forms, and hand-drawn P&IDs. Our agents are trained on your actual document corpus, not generic templates, and they connect to SAP via API so the rest of your SAP setup stays untouched."}},{"@type":"Question","name":"How long before we see ROI?","acceptedAnswer":{"@type":"Answer","text":"Clients typically see measurable time savings within the 30-day Learn stage. A single shift engineer saving 2 hours per day on data entry equals roughly 60 man-hours per month. At a fully-loaded cost of ₹400–600/hour for a plant engineer, that is ₹25,000–35,000 per person per month — often enough to justify the pilot fee in the first cycle."}},{"@type":"Question","name":"What happens when a document format changes — new vendor, new government form?","acceptedAnswer":{"@type":"Answer","text":"We build update procedures into every engagement. For clients on retained ops, new document types are onboarded within 5–7 working days. For clients on fixed engagements, we document the model update process so your team or IT vendor can handle routine changes, and we offer spot-update contracts for anything complex."}},{"@type":"Question","name":"Is our plant data secure? We have confidentiality obligations on vendor pricing and emission data.","acceptedAnswer":{"@type":"Answer","text":"All processing can be deployed within your own cloud tenant (AWS, Azure, or GCP) or on-premise, so your documents never leave your infrastructure boundary. We do not train shared models on your data. Architecture and data-flow diagrams are part of the Discovery deliverable so your IT and legal teams can review before we write a single line of production code."}}]}</script>
+<style>
+  :root { --c: #1a1a2e; --m: #16213e; --a: #0f3460; --t: #e94560; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 17px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--c); background: #fafafa; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  header { padding: 1.5rem 0 2.5rem; border-bottom: 1px solid #eaeaea; margin-bottom: 2rem; }
+  header a { color: var(--m); text-decoration: none; font-weight: 600; font-size: 18px; }
+  h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 1rem; color: var(--c); }
+  .sub { font-size: 1.15rem; color: #555; margin-bottom: 2rem; }
+  h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--m); }
+  h3 { font-size: 1.15rem; margin: 1.5rem 0 .5rem; }
+  p { margin-bottom: 1rem; }
+  ul { margin: 0 0 1rem 1.5rem; }
+  li { margin-bottom: .35rem; }
+  strong { color: var(--a); }
+  .cta { background: var(--c); color: #fff; padding: 1.75rem; border-radius: 8px; margin: 3rem 0 2rem; text-align: center; }
+  .cta a { background: var(--t); color: #fff; padding: .85rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: .5rem; }
+  details { background: #fff; border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: .75rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--m); }
+  details[open] summary { margin-bottom: .75rem; }
+  footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eaeaea; color: #888; font-size: 14px; text-align: center; }
+  footer a { color: var(--a); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="https://hopetech.me">HopeTech</a></header>
+  <h1>Document AI for Cement Plants</h1>
+  <h2>Your plant runs on documents. Your team still processes them by hand.</h2>
+<p>Bettroi builds Document AI systems for cement plants — turning P&IDs, dispatch challans, quality certificates, and compliance reports into structured, searchable, actionable data. Clients have cut document-processing time by over 60% within the first 30-day pilot.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>A 2 MTPA cement plant generates hundreds of documents daily — kiln logs, packing slips, ISO audit trails, vendor invoices, and equipment inspection reports — most of which are scanned PDFs or handwritten forms that no ERP can read natively. Engineers spend 2–4 hours per shift manually transcribing figures from these documents into SAP or spreadsheets, introducing transcription errors that cascade into dispatch delays and compliance gaps. When an audit hits or a mill breakdown occurs, tracing the paper trail takes days because nothing is indexed.</p>
+<p>---</p>
+<h2>What We Build</h2>
+<ul><li><strong>P&ID Extractor agent</strong> — parses piping and instrumentation diagrams, extracts tag IDs, equipment specs, and inter-connections into a structured database your SCADA and maintenance teams can query</li>
+<li><strong>Dispatch document processor</strong> — reads lorry receipts, e-way bills, and weight-bridge slips; auto-reconciles against SAP dispatch orders; flags mismatches before trucks leave the gate</li>
+<li><strong>Quality certificate digitiser</strong> — ingests cement test reports (IS 269 / IS 8112 formats), extracts compressive strength, fineness, and setting-time values, and pushes them into your QMS</li>
+<li><strong>Vendor invoice extraction pipeline</strong> — handles multi-format invoices from 50+ suppliers; auto-codes line items to cost centres with >94% accuracy</li>
+<li><strong>Compliance document tracker</strong> — monitors consent-to-operate, CPCB stack emission reports, and statutory returns; alerts plant head 30 days before renewal deadlines</li>
+<li><strong>Maintenance inspection digitiser</strong> — converts handwritten or PDF inspection checklists into structured work-order data that feeds directly into your CMMS</li></ul>
+<p>---</p>
+<h2>How We Do It: The Be AI-First Framework</h2>
+<p><strong>Stage 1 — Discovery (2 weeks)</strong>
+We audit your current document flow end-to-end: volumes, formats, error rates, downstream systems. We identify the 3 document types with the highest cost-of-manual-processing and scope the extraction architecture.</p>
+<p><strong>Stage 2 — Learn (30 days)</strong>
+We deploy a pilot extraction agent on the single highest-ROI document type. We measure baseline processing time, error rate, and cost versus AI-assisted processing. You see numbers before committing further.</p>
+<p><strong>Stage 3 — Wire</strong>
+Winning agents are integrated into your core systems — SAP, Oracle Plant Maintenance, your QMS, or SCADA historian — via API or direct DB connectors. No rip-and-replace.</p>
+<p><strong>Stage 4 — Automate</strong>
+Manual handoffs between document receipt, data entry, and downstream approval workflows are replaced with agent orchestration. Documents flow through; exceptions surface to humans; nothing sits in an inbox.</p>
+<p><strong>Stage 5 — Scale</strong>
+We roll out across all plants and shifts with monitoring dashboards, model-drift alerts, and governance controls. New document types are onboarded in days, not months.</p>
+<p>---</p>
+<h2>What We Have Built Before</h2>
+<p>Bettroi has developed a production-grade <strong>P&ID Extractor</strong> as one of six enterprise flagship products — purpose-built for heavy industrial plants and capable of handling complex multi-sheet drawings at scale. We have scoped and are building an AI system for Bajaj's power plant operations, a closely adjacent environment to cement manufacturing in terms of document complexity and compliance load. This industrial-plant context means we are not learning your world from scratch.</p>
+<p>---</p>
+<h2>Pricing</h2>
+<p>| Engagement | What's included | Indicative fee |
+|---|---|---|
+| Discovery audit | 2-week workflow audit + ROI-ranked document AI roadmap | ₹75,000 – ₹1,00,000 |
+| Pilot | Discovery + 30-day live extraction agent on 1 document type | ₹3,00,000 – ₹5,00,000 |
+| Full transformation | All 5 stages, 3–5 document types, full system integration | ₹15,00,000 – ₹25,00,000 |
+| Retained AI ops | Monthly monitoring, model updates, new document onboarding | ₹60,000 – ₹1,20,000 / month |</p>
+<p><em>Fees are fixed or milestone-billed — no open-ended retainers unless you choose retained ops.</em></p>
+<p>---</p>
+<h2>Book a 30-Minute Discovery Call</h2>
+<p>Tell us your plant's document volume, the systems you run (SAP / Oracle / custom), and the single biggest document headache. We will come back with a scoped approach before the call ends.</p>
+<p>[<strong>Book now → hi@bettroi.com</strong>](mailto:hi@bettroi.com)</p>
+  <div class="cta">
+    <h3 style="color:#fff;margin:0 0 .5rem">Ready to talk?</h3>
+    <p style="color:#ddd;margin:0">Book a 30-min Discovery call. We'll show you where AI fits in your operation.</p>
+    <a href="mailto:hi@bettroi.com?subject=Discovery%20call%20%E2%80%94%20Document%20AI%20for%20Cement%20Plants">Email us</a>
+  </div>
+  <h2>Frequently asked questions</h2>
+  <details><summary>Our documents are a mix of scanned handwritten forms and typed PDFs. Can your system handle both?</summary><p>Yes. We use a combination of OCR, layout analysis, and fine-tuned extraction models. Handwritten forms — including field inspection sheets and weight-bridge slips — are handled with dedicated HTR (handwritten text recognition) pipelines. Accuracy varies by handwriting quality; we give you a baseline accuracy figure during the Discovery stage before you commit to a pilot.</p></details>
+<details><summary>We already have SAP. Why can't SAP handle document extraction natively?</summary><p>SAP can store documents and has some OCR via OpenText or VIM, but those tools are template-rigid and expensive to configure for the variety of formats a cement plant sees — especially non-standard vendor invoices, government-issued compliance forms, and hand-drawn P&IDs. Our agents are trained on your actual document corpus, not generic templates, and they connect to SAP via API so the rest of your SAP setup stays untouched.</p></details>
+<details><summary>How long before we see ROI?</summary><p>Clients typically see measurable time savings within the 30-day Learn stage. A single shift engineer saving 2 hours per day on data entry equals roughly 60 man-hours per month. At a fully-loaded cost of ₹400–600/hour for a plant engineer, that is ₹25,000–35,000 per person per month — often enough to justify the pilot fee in the first cycle.</p></details>
+<details><summary>What happens when a document format changes — new vendor, new government form?</summary><p>We build update procedures into every engagement. For clients on retained ops, new document types are onboarded within 5–7 working days. For clients on fixed engagements, we document the model update process so your team or IT vendor can handle routine changes, and we offer spot-update contracts for anything complex.</p></details>
+<details><summary>Is our plant data secure? We have confidentiality obligations on vendor pricing and emission data.</summary><p>All processing can be deployed within your own cloud tenant (AWS, Azure, or GCP) or on-premise, so your documents never leave your infrastructure boundary. We do not train shared models on your data. Architecture and data-flow diagrams are part of the Discovery deliverable so your IT and legal teams can review before we write a single line of production code.</p></details>
+  <footer>
+    Built by <a href="https://hopetech.me">HopeTech</a> · A Bettroi product · <a href="https://hopetech.me/sitemap.xml">Sitemap</a>
+  </footer>
+</div>
+</body>
+</html>

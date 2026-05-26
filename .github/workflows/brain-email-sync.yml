@@ -1,0 +1,29 @@
+name: Brain — Email Sync
+
+# Pulls important emails (decisions, commitments, quotes) from Gmail IMAP,
+# AI-classifies, ingests into brain as off_limits content (only Murali sees them).
+# Runs every 6 hours.
+
+on:
+  schedule:
+    - cron: '15 */6 * * *'  # every 6 hours at :15
+  workflow_dispatch:
+
+jobs:
+  email:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Sync emails
+        env:
+          SUPABASE_URL: ${{ secrets.BRAIN_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.BRAIN_SUPABASE_SERVICE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.BRAIN_OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.BRAIN_ANTHROPIC_API_KEY }}
+          EMAIL_USER: ${{ secrets.BRAIN_EMAIL_USER }}
+          EMAIL_PASSWORD: ${{ secrets.BRAIN_EMAIL_PASSWORD }}
+        run: node _Murali-Second-Brain/email-sync.mjs --hours=8

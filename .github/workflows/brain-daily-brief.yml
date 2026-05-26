@@ -1,0 +1,42 @@
+name: Brain — Daily Brief
+
+# Writes a comprehensive _Daily-Briefs/YYYY-MM-DD.md to the vault every morning.
+# Single document covering: overdue items, due-today items, insights, BNI follow-ups,
+# project activity, ingest pipeline status.
+# Runs at 06:00 IST (30 min before the Slack morning digest).
+
+on:
+  schedule:
+    - cron: '30 0 * * *'  # 00:30 UTC = 06:00 IST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  brief:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Generate daily brief
+        env:
+          SUPABASE_URL: ${{ secrets.BRAIN_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.BRAIN_SUPABASE_SERVICE_KEY }}
+          BNI_SUPABASE_URL: ${{ secrets.BNI_SUPABASE_URL }}
+          BNI_SUPABASE_ANON_KEY: ${{ secrets.BNI_SUPABASE_ANON_KEY }}
+        run: node _Murali-Second-Brain/daily-brief.mjs
+      - name: Commit + push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "_Daily-Briefs/*.md"
+          if git diff --staged --quiet; then
+            echo "No brief to commit."
+          else
+            git commit -m "chore(brain): daily brief"
+            git push
+          fi

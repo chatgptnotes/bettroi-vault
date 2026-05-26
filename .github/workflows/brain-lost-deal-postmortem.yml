@@ -1,0 +1,41 @@
+name: Brain — Lost-Deal Post-Mortem
+
+# 1st of every month, 09:30 IST. Scan the last 90 days for deal-loss signals,
+# write _Marketing/lost-deal-postmortems/YYYY-MM.md, DM Murali the summary.
+
+on:
+  schedule:
+    - cron: '0 4 1 * *'  # 04:00 UTC on the 1st = 09:30 IST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Run post-mortem
+        env:
+          SUPABASE_URL: ${{ secrets.BRAIN_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.BRAIN_SUPABASE_SERVICE_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.BRAIN_ANTHROPIC_API_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.BRAIN_SLACK_BOT_TOKEN }}
+          SLACK_MURALI_USER_ID: ${{ secrets.BRAIN_SLACK_MURALI_USER_ID }}
+        run: node _Murali-Second-Brain/lost-deal-postmortem.mjs --days=90
+      - name: Commit + push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _Marketing/lost-deal-postmortems/
+          if git diff --staged --quiet; then
+            echo "No new post-mortem."
+          else
+            git commit -m "chore(brain): monthly lost-deal post-mortem"
+            git push
+          fi

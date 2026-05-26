@@ -1,0 +1,43 @@
+name: Brain — Fathom Follow-up Drafter
+
+# Every weekday evening (17:00 IST), draft follow-up emails for Fathom calls
+# that finished in the last 2 days where there's at least one external attendee.
+# Drafts land in _Email-Drafts/ + Slack digest to Murali.
+
+on:
+  schedule:
+    - cron: '30 11 * * 1-5'  # 11:30 UTC = 17:00 IST, Mon-Fri
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Draft Fathom follow-ups
+        env:
+          SUPABASE_URL: ${{ secrets.BRAIN_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.BRAIN_SUPABASE_SERVICE_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.BRAIN_ANTHROPIC_API_KEY }}
+          FATHOM_API_KEY: ${{ secrets.BRAIN_FATHOM_API_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.BRAIN_SLACK_BOT_TOKEN }}
+          SLACK_MURALI_USER_ID: ${{ secrets.BRAIN_SLACK_MURALI_USER_ID }}
+        run: node _Murali-Second-Brain/fathom-followup-drafter.mjs --days=2
+      - name: Commit + push drafts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _Email-Drafts/
+          if git diff --staged --quiet; then
+            echo "No new follow-up drafts."
+          else
+            git commit -m "chore(brain): fathom follow-up drafts"
+            git push
+          fi

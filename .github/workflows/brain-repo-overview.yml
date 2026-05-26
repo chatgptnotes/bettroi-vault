@@ -1,0 +1,43 @@
+name: Brain — Daily Repo Overview Refresh
+
+# Re-extracts repo-overview.md for each tracked domain (live URL → GitHub repo).
+# Runs daily at 06:00 UTC (~11:30 IST). On change, commits + pushes — which
+# triggers the obsidian-sync workflow that re-ingests into the brain.
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Refresh repo overviews
+        env:
+          GH_TOKEN: ${{ secrets.BRAIN_GH_PAT }}
+        run: node _Murali-Second-Brain/repo-overview.mjs
+
+      - name: Commit + push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "**/repo-overview.md"
+          if git diff --staged --quiet; then
+            echo "No changes."
+          else
+            git commit -m "chore(brain): daily repo overview refresh"
+            git push
+          fi

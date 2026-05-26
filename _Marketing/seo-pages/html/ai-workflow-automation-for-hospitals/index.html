@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Workflow Automation for Hospitals | Bettroi</title>
+<meta name="description" content="Bettroi builds AI agents that automate hospital workflows — OPD triage, discharge docs, billing follow-ups. Discovery audit in 2 weeks. Pilots from ₹1.5L.">
+<link rel="canonical" href="https://hopetech.me/ai-workflow-automation-for-hospitals/">
+<meta property="og:title" content="AI Workflow Automation for Hospitals | Bettroi">
+<meta property="og:description" content="Bettroi builds AI agents that automate hospital workflows — OPD triage, discharge docs, billing follow-ups. Discovery audit in 2 weeks. Pilots from ₹1.5L.">
+<meta property="og:url" content="https://hopetech.me/ai-workflow-automation-for-hospitals/">
+<meta property="og:type" content="website">
+<meta name="keywords" content="ai workflow automation for hospitals, hospitals, workflow automation, Bettroi, HopeTech">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"We already have a HMS (like Practo, Insta, or eHospital). Do you replace it?","acceptedAnswer":{"@type":"Answer","text":"No. We build AI agents that sit on top of your existing HMS and connect the gaps it was never designed to fill — like auto-drafting discharge summaries or routing lab alerts to the right doctor. We integrate via API or, where APIs are not available, via structured data extraction. Your HMS stays in place."}},{"@type":"Question","name":"Our staff is not very tech-savvy. Will they actually use these agents?","acceptedAnswer":{"@type":"Answer","text":"This is the right question to ask. We specifically design agent interfaces for low-tech-comfort users — WhatsApp-based triggers, one-tap approvals, voice-input options. During the Learn stage, we measure actual staff adoption rate, not just technical uptime. If adoption is low, we redesign before we scale."}},{"@type":"Question","name":"What's the minimum hospital size this makes sense for?","acceptedAnswer":{"@type":"Answer","text":"We have seen clear ROI at hospitals with 50+ beds and at least 3 active departments. Below that, the coordination complexity is usually low enough that automation saves less than it costs to build. If you are smaller, the Discovery audit will tell you honestly whether this is worth it for your situation."}},{"@type":"Question","name":"How do you handle patient data privacy and compliance?","acceptedAnswer":{"@type":"Answer","text":"All agents are built with data minimisation by design — they process only what is needed for the specific task. We do not store patient records on third-party cloud infrastructure without explicit consent and appropriate agreements. We can work within your on-premise environment or a private cloud if your compliance requirements demand it. We will document the data flows as part of the Discovery audit."}},{"@type":"Question","name":"What happens after the 12-week engagement ends? Do the agents stop working?","acceptedAnswer":{"@type":"Answer","text":"No. At the end of the full transformation engagement, the agents are handed over to your team with documentation, monitoring dashboards, and a governance protocol so your own staff can manage day-to-day operations. We offer a retained monthly subscription for hospitals that want Bettroi to keep running improvements and handle new automation requests — but it is optional, not a lock-in."}}]}</script>
+<style>
+  :root { --c: #1a1a2e; --m: #16213e; --a: #0f3460; --t: #e94560; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 17px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--c); background: #fafafa; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  header { padding: 1.5rem 0 2.5rem; border-bottom: 1px solid #eaeaea; margin-bottom: 2rem; }
+  header a { color: var(--m); text-decoration: none; font-weight: 600; font-size: 18px; }
+  h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 1rem; color: var(--c); }
+  .sub { font-size: 1.15rem; color: #555; margin-bottom: 2rem; }
+  h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--m); }
+  h3 { font-size: 1.15rem; margin: 1.5rem 0 .5rem; }
+  p { margin-bottom: 1rem; }
+  ul { margin: 0 0 1rem 1.5rem; }
+  li { margin-bottom: .35rem; }
+  strong { color: var(--a); }
+  .cta { background: var(--c); color: #fff; padding: 1.75rem; border-radius: 8px; margin: 3rem 0 2rem; text-align: center; }
+  .cta a { background: var(--t); color: #fff; padding: .85rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: .5rem; }
+  details { background: #fff; border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: .75rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--m); }
+  details[open] summary { margin-bottom: .75rem; }
+  footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eaeaea; color: #888; font-size: 14px; text-align: center; }
+  footer a { color: var(--a); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="https://hopetech.me">HopeTech</a></header>
+  <h1>AI Workflow Automation for Hospitals</h1>
+  
+<h2>Your hospital runs on WhatsApp forwards and manual registers. That ends here.</h2>
+<p>Bettroi builds AI agents that replace the repetitive, error-prone handoffs inside your hospital — OPD queues, discharge summaries, billing follow-ups, lab result routing — so your clinical and admin staff spend time on work that actually needs a human.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Multi-specialty hospitals in India run 40–70% of their internal coordination through manual steps: nursing staff physically carrying files, billing clerks chasing insurance pre-auth over phone, doctors dictating notes that nobody types up for 6 hours. Your HMS is underused because nobody trained staff to feed it correctly, and nobody built the bridges between it and how the floor actually works. The result: delays that frustrate patients, discharge bottlenecks that block beds, and revenue leakage from claims that go unfiled.</p>
+<p>---</p>
+<h2>What We Build for You</h2>
+<ul><li><strong>OPD triage agent</strong> — reads incoming appointment requests (WhatsApp, web form, call transcripts) and routes patients to the right department and slot, with pre-visit intake forms auto-sent</li>
+<li><strong>Discharge documentation bot</strong> — pulls vitals, lab results, and physician notes from HMS, drafts discharge summaries in under 3 minutes, flags missing fields before the patient leaves</li>
+<li><strong>Insurance pre-auth workflow agent</strong> — submits pre-authorization requests, tracks status, and escalates pending cases to the right staff member with a due-date alert</li>
+<li><strong>Lab result routing agent</strong> — receives lab reports, matches to the correct inpatient or outpatient record, notifies the treating doctor, and logs acknowledgement</li>
+<li><strong>Daily ops briefing bot</strong> — sends department heads a 7 AM summary of bed occupancy, pending discharges, overdue tasks, and flagged billing cases</li>
+<li><strong>SOP generation and version control pipeline</strong> — auto-generates department SOPs from observed workflows, versioned and searchable (we have produced 400+ SOP files for a hospital group using this approach)</li></ul>
+<p>---</p>
+<h2>How We Do It: The Be AI-First Framework</h2>
+<p>We do not hand you a software subscription and leave. We embed into your operations for 12 weeks using a five-stage process:</p>
+<h3>Stage 1 — Discovery (Weeks 1–2)</h3>
+We audit your current workflows: shadow your front desk, interview department heads, map your HMS data flows. We identify the <strong>3 highest-ROI automation candidates</strong> specific to your hospital's size and specialty mix. You get a written report regardless of whether you continue.
+<h3>Stage 2 — Learn (Weeks 3–8)</h3>
+We build and deploy a pilot AI agent on one workflow. We measure baseline performance (time per task, error rate, staff hours) vs. AI-assisted performance over 30 days. Numbers on the table before any larger commitment.
+<h3>Stage 3 — Wire (Weeks 5–10)</h3>
+Winning agents get integrated into your actual systems — HMS, billing software, WhatsApp Business API, lab LIS. No rip-and-replace. We build on top of what you have.
+<h3>Stage 4 — Automate (Weeks 8–11)</h3>
+Manual handoffs are replaced with agent-to-agent orchestration. A discharge trigger in the HMS automatically fires the documentation bot, notifies billing, and updates the bed management board.
+<h3>Stage 5 — Scale (Week 12 onward)</h3>
+Rollout across departments or secondary sites. Monitoring dashboards. Governance protocols so your team can manage the agents without calling us for every change.
+<p>---</p>
+<h2>What We Have Built Before</h2>
+<p>Working with Hope and Aishman Hospitals in Nagpur, we built a system that generated over 420 structured SOP documents from live hospital workflows — automatically versioned and categorised by department. That same engagement informed our OPD triage and discharge automation blueprints, which we now deploy as configurable starting points rather than from scratch. Dr. Murali's team at the Nagpur hospitals has been an active partner in validating these workflows in a real multi-specialty environment.</p>
+<p>---</p>
+<h2>Pricing</h2>
+<p>| Engagement | What's included | Typical range |
+|---|---|---|
+| <strong>Discovery audit</strong> | 2-week workflow audit, ROI report, 3 automation candidates identified | ₹75,000 – ₹1,00,000 |
+| <strong>Pilot</strong> | Discovery + 6-week agent build and measurement on one workflow | ₹1,50,000 – ₹2,50,000 |
+| <strong>Full transformation</strong> | All 5 stages, 12 weeks, milestone-billed | ₹6,00,000 – ₹12,00,000 |
+| <strong>Retained AI operations</strong> | Ongoing agent monitoring, improvements, new automations | ₹50,000 – ₹1,20,000/month |</p>
+<p>Pricing varies by hospital size (number of beds, departments, integrations required). Discovery fee is credited against the Pilot if you proceed.</p>
+<p>---</p>
+<h2>Book a 30-Minute Discovery Call</h2>
+<p>Tell us your bed count, your current HMS, and the one workflow that is costing you the most time. We will come prepared.</p>
+<p>[Book now — hi@bettroi.com](mailto:hi@bettroi.com)</p>
+  <div class="cta">
+    <h3 style="color:#fff;margin:0 0 .5rem">Ready to talk?</h3>
+    <p style="color:#ddd;margin:0">Book a 30-min Discovery call. We'll show you where AI fits in your operation.</p>
+    <a href="mailto:hi@bettroi.com?subject=Discovery%20call%20%E2%80%94%20AI%20Workflow%20Automation%20for%20Hospitals">Email us</a>
+  </div>
+  <h2>Frequently asked questions</h2>
+  <details><summary>We already have a HMS (like Practo, Insta, or eHospital). Do you replace it?</summary><p>No. We build AI agents that sit on top of your existing HMS and connect the gaps it was never designed to fill — like auto-drafting discharge summaries or routing lab alerts to the right doctor. We integrate via API or, where APIs are not available, via structured data extraction. Your HMS stays in place.</p></details>
+<details><summary>Our staff is not very tech-savvy. Will they actually use these agents?</summary><p>This is the right question to ask. We specifically design agent interfaces for low-tech-comfort users — WhatsApp-based triggers, one-tap approvals, voice-input options. During the Learn stage, we measure actual staff adoption rate, not just technical uptime. If adoption is low, we redesign before we scale.</p></details>
+<details><summary>What's the minimum hospital size this makes sense for?</summary><p>We have seen clear ROI at hospitals with 50+ beds and at least 3 active departments. Below that, the coordination complexity is usually low enough that automation saves less than it costs to build. If you are smaller, the Discovery audit will tell you honestly whether this is worth it for your situation.</p></details>
+<details><summary>How do you handle patient data privacy and compliance?</summary><p>All agents are built with data minimisation by design — they process only what is needed for the specific task. We do not store patient records on third-party cloud infrastructure without explicit consent and appropriate agreements. We can work within your on-premise environment or a private cloud if your compliance requirements demand it. We will document the data flows as part of the Discovery audit.</p></details>
+<details><summary>What happens after the 12-week engagement ends? Do the agents stop working?</summary><p>No. At the end of the full transformation engagement, the agents are handed over to your team with documentation, monitoring dashboards, and a governance protocol so your own staff can manage day-to-day operations. We offer a retained monthly subscription for hospitals that want Bettroi to keep running improvements and handle new automation requests — but it is optional, not a lock-in.</p></details>
+  <footer>
+    Built by <a href="https://hopetech.me">HopeTech</a> · A Bettroi product · <a href="https://hopetech.me/sitemap.xml">Sitemap</a>
+  </footer>
+</div>
+</body>
+</html>

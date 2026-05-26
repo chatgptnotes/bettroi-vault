@@ -1,0 +1,46 @@
+name: Brain — Proposify Proposal Drafter
+
+# Daily 16:00 IST — for Fathom calls in the last 2 days with an external attendee,
+# AI picks a Proposify skill template, drafts proposal HTML + pricing, inserts
+# into proposifyai.com as status='draft'. Murali edits/sends from the web app.
+
+on:
+  schedule:
+    - cron: '30 10 * * 1-5'  # 10:30 UTC = 16:00 IST, Mon-Fri
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkout proposifyai.com (skill templates)
+        uses: actions/checkout@v4
+        with:
+          repository: chatgptnotes/proposifyai.com
+          path: proposifyai-com
+          token: ${{ secrets.BRAIN_GITHUB_PAT }}
+      - name: Symlink skills directory
+        run: |
+          mkdir -p /tmp/proposifyai
+          ln -sf "${{ github.workspace }}/proposifyai-com/proposifyai" /tmp/proposifyai/proposifyai
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Draft proposals
+        env:
+          SUPABASE_URL: ${{ secrets.BRAIN_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.BRAIN_SUPABASE_SERVICE_KEY }}
+          PROPOSIFY_SUPABASE_URL: ${{ secrets.PROPOSIFY_SUPABASE_URL }}
+          PROPOSIFY_SUPABASE_SERVICE_KEY: ${{ secrets.PROPOSIFY_SUPABASE_SERVICE_KEY }}
+          PROPOSIFY_USER_ID: ${{ secrets.PROPOSIFY_USER_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.BRAIN_ANTHROPIC_API_KEY }}
+          FATHOM_API_KEY: ${{ secrets.BRAIN_FATHOM_API_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.BRAIN_SLACK_BOT_TOKEN }}
+          SLACK_MURALI_USER_ID: ${{ secrets.BRAIN_SLACK_MURALI_USER_ID }}
+          PROPOSIFY_REPO: /tmp/proposifyai/proposifyai
+        run: node _Murali-Second-Brain/proposify-from-fathom.mjs --days=2

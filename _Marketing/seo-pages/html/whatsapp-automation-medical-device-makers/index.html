@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WhatsApp Automation for Medical Device Makers</title>
+<meta name="description" content="Bettroi builds WhatsApp AI agents for medical device companies — automate dealer queries, service calls, and compliance follow-ups. Discovery audit from ₹40,000.">
+<link rel="canonical" href="https://hopetech.me/whatsapp-automation-medical-device-makers/">
+<meta property="og:title" content="WhatsApp Automation for Medical Device Makers">
+<meta property="og:description" content="Bettroi builds WhatsApp AI agents for medical device companies — automate dealer queries, service calls, and compliance follow-ups. Discovery audit from ₹40,000.">
+<meta property="og:url" content="https://hopetech.me/whatsapp-automation-medical-device-makers/">
+<meta property="og:type" content="website">
+<meta name="keywords" content="whatsapp automation for medical device makers, medical device makers, whatsapp automation, Bettroi, HopeTech">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do we need the WhatsApp Business API, or can this work on our existing business number?","acceptedAnswer":{"@type":"Answer","text":"You need the official WhatsApp Business API (Meta-approved) for any automation at scale — bulk outbound messages, chatbot flows, and CRM integration all require it. We handle the API setup and BSP (Business Solution Provider) onboarding as part of the Discovery or Pilot engagement. If you already have a BSP, we connect to your existing account."}},{"@type":"Question","name":"How does the complaint intake bot hold up under CDSCO MDR complaint-handling requirements?","acceptedAnswer":{"@type":"Answer","text":"The bot captures structured fields — device serial number, site, date of occurrence, nature of fault, reporter name — and writes them directly into your QMS or a dedicated complaints register with a timestamp and WhatsApp message ID for audit trail. It does not replace your MDR review process, but it eliminates the gap between a complaint being reported on WhatsApp and it being formally logged. We configure mandatory fields and escalation triggers per your SOP."}},{"@type":"Question","name":"Our distributors are in Tier 2 and Tier 3 cities. Will they actually use a WhatsApp bot?","acceptedAnswer":{"@type":"Answer","text":"WhatsApp penetration in Tier 2 and Tier 3 India is near-universal among trade contacts. The dealer query agent works in plain conversational Hindi or English — no app download, no login, no training required. In our experience, adoption resistance is lower here than with any other digital channel because distributors are already on WhatsApp all day."}},{"@type":"Question","name":"How long before the first agent is live?","acceptedAnswer":{"@type":"Answer","text":"If your WhatsApp Business API account is already active, the dealer query agent or complaint intake bot can be live in 3–4 weeks from the start of the Pilot engagement. API setup adds roughly 1–2 weeks. The 6-week Pilot timeline accounts for both."}},{"@type":"Question","name":"Can the agents handle multi-language inputs — Hindi, Gujarati, regional languages?","acceptedAnswer":{"@type":"Answer","text":"Yes. The underlying LLMs handle Hindi and Hinglish well out of the box. Gujarati and other regional languages are supported with slightly more prompt engineering and testing. We benchmark language accuracy during the Learn stage and only wire the agent into production systems once accuracy meets your defined threshold."}}]}</script>
+<style>
+  :root { --c: #1a1a2e; --m: #16213e; --a: #0f3460; --t: #e94560; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 17px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--c); background: #fafafa; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  header { padding: 1.5rem 0 2.5rem; border-bottom: 1px solid #eaeaea; margin-bottom: 2rem; }
+  header a { color: var(--m); text-decoration: none; font-weight: 600; font-size: 18px; }
+  h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 1rem; color: var(--c); }
+  .sub { font-size: 1.15rem; color: #555; margin-bottom: 2rem; }
+  h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--m); }
+  h3 { font-size: 1.15rem; margin: 1.5rem 0 .5rem; }
+  p { margin-bottom: 1rem; }
+  ul { margin: 0 0 1rem 1.5rem; }
+  li { margin-bottom: .35rem; }
+  strong { color: var(--a); }
+  .cta { background: var(--c); color: #fff; padding: 1.75rem; border-radius: 8px; margin: 3rem 0 2rem; text-align: center; }
+  .cta a { background: var(--t); color: #fff; padding: .85rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: .5rem; }
+  details { background: #fff; border: 1px solid #eaeaea; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: .75rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--m); }
+  details[open] summary { margin-bottom: .75rem; }
+  footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eaeaea; color: #888; font-size: 14px; text-align: center; }
+  footer a { color: var(--a); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="https://hopetech.me">HopeTech</a></header>
+  <h1>WhatsApp Automation for Medical Device Makers</h1>
+  <h2>Your dealers are WhatsApp-first. Your backend isn't.</h2>
+<p>Bettroi builds WhatsApp AI agents for medical device companies that handle dealer queries, service escalations, and post-sale compliance follow-ups — without adding headcount. Clients cut first-response time from 6+ hours to under 3 minutes.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Medical device sales run on WhatsApp — distributors, hospital biomedical teams, and field engineers all default to it — but your CRM, service ticketing, and compliance logs are completely disconnected from that channel. Your inside sales team is copy-pasting order status into group chats all day, while critical device-complaint messages get buried in personal phones and never make it into your QMS. When a CDSCO field audit lands, you're reconstructing timelines from screenshots.</p>
+<p>---</p>
+<h2>What We Build</h2>
+<ul><li><strong>Dealer query agent</strong> — handles stock availability, order status, and invoice requests over WhatsApp, connected live to your ERP or inventory system</li>
+<li><strong>Device complaint intake bot</strong> — captures complaint details (device serial, site, nature of fault), logs them into your QMS or CRM, and triggers a service ticket automatically</li>
+<li><strong>Post-installation follow-up agent</strong> — sends structured WhatsApp check-ins at Day 7, Day 30, and Day 90 post-installation; escalates unresolved issues to your service team</li>
+<li><strong>Regulatory document dispatch bot</strong> — sends IFUs, CE/MDR certificates, and calibration records on request, with a delivery audit trail</li>
+<li><strong>Service engineer dispatch flow</strong> — field engineer receives job card over WhatsApp, confirms attendance, and closes the ticket with photo proof — all without logging into a desktop app</li>
+<li><strong>Sterilization and maintenance reminder agent</strong> — for devices requiring periodic servicing (relevant for device-adjacent sterilization service partners like those in pharma and medtech), sends scheduled reminders with compliance checklist links</li></ul>
+<p>---</p>
+<h2>How We Do It: The Be AI-First Framework</h2>
+<p>We don't drop a chatbot and disappear. Every engagement runs through five stages:</p>
+<p><strong>1. Discovery (Week 1–2)</strong>
+We audit your current WhatsApp usage, CRM/ERP data flows, and complaint-handling process. We identify the 3 highest-ROI automation candidates — typically dealer queries, complaint intake, and post-sale follow-ups.</p>
+<p><strong>2. Learn (Weeks 3–8)</strong>
+We pilot one agent on a live WhatsApp number. For 30 days we measure baseline (manual) vs. agent performance: response time, complaint capture rate, dealer satisfaction. You see exact numbers before committing further.</p>
+<p><strong>3. Wire (Weeks 6–10)</strong>
+Winning agents get integrated into your core systems — your ERP for order data, your QMS for complaint logs, your CRM for dealer records. We use WhatsApp Business API (Meta-approved) throughout.</p>
+<p><strong>4. Automate (Weeks 9–11)</strong>
+Manual handoffs — forwarding messages, updating sheets, creating tickets by hand — get replaced by agent orchestration. Your team handles only exceptions.</p>
+<p><strong>5. Scale (Week 12+)</strong>
+We roll out across product lines, geographies, or distributor tiers, with monitoring dashboards and governance rules so nothing slips through.</p>
+<p>---</p>
+<h2>What We've Built Before</h2>
+<p>Bettroi's work with Hope Hospital covers surgical implant documentation workflows — ensuring pacemakers, stents, and other devices are correctly logged at point-of-use, with photographic records of instrument sets and equipment status posted through structured digital flows. That same documentation-and-dispatch logic applies directly to medical device field operations.</p>
+<p>Through our network, we've worked with sterilization equipment suppliers serving medical device makers and pharma — including tracking compliance documentation and service records across multiple hospital and pharma clients in Ahmedabad.</p>
+<p>Our agent knowledge base runs on Obsidian vault-sourced SOPs and persona packs (ADR 0001, accepted May 2026), which means your QMS documents and escalation rules become the grounding layer for every agent we deploy — not generic prompts.</p>
+<p>---</p>
+<h2>Pricing</h2>
+<p>| Engagement | What's included | Indicative fee |
+|---|---|---|
+| Discovery audit | 2-week workflow audit, 3 ROI-ranked automation candidates, written report | From ₹40,000 |
+| Pilot | Discovery + 6-week live agent on one WhatsApp flow, baseline vs. AI report | From ₹1,20,000 |
+| Full transformation | All 5 stages, 12 weeks, 3–5 agents live, system integrations | From ₹4,50,000 |
+| Retained AI ops | Monthly agent monitoring, updates, new flow additions | From ₹35,000/month |</p>
+<p>Prices above are for single-entity Indian operations. Multi-site or export-market engagements are quoted separately.</p>
+<p>---</p>
+<h2>Book a 30-Minute Discovery Call</h2>
+<p>Tell us your biggest WhatsApp pain point — dealer noise, complaint black holes, or post-sale follow-up gaps. We'll come back with a specific automation hypothesis before the call ends.</p>
+<p>[Email us at hi@bettroi.com](mailto:hi@bettroi.com)</p>
+  <div class="cta">
+    <h3 style="color:#fff;margin:0 0 .5rem">Ready to talk?</h3>
+    <p style="color:#ddd;margin:0">Book a 30-min Discovery call. We'll show you where AI fits in your operation.</p>
+    <a href="mailto:hi@bettroi.com?subject=Discovery%20call%20%E2%80%94%20WhatsApp%20Automation%20for%20Medical%20Device%20Makers">Email us</a>
+  </div>
+  <h2>Frequently asked questions</h2>
+  <details><summary>Do we need the WhatsApp Business API, or can this work on our existing business number?</summary><p>You need the official WhatsApp Business API (Meta-approved) for any automation at scale — bulk outbound messages, chatbot flows, and CRM integration all require it. We handle the API setup and BSP (Business Solution Provider) onboarding as part of the Discovery or Pilot engagement. If you already have a BSP, we connect to your existing account.</p></details>
+<details><summary>How does the complaint intake bot hold up under CDSCO MDR complaint-handling requirements?</summary><p>The bot captures structured fields — device serial number, site, date of occurrence, nature of fault, reporter name — and writes them directly into your QMS or a dedicated complaints register with a timestamp and WhatsApp message ID for audit trail. It does not replace your MDR review process, but it eliminates the gap between a complaint being reported on WhatsApp and it being formally logged. We configure mandatory fields and escalation triggers per your SOP.</p></details>
+<details><summary>Our distributors are in Tier 2 and Tier 3 cities. Will they actually use a WhatsApp bot?</summary><p>WhatsApp penetration in Tier 2 and Tier 3 India is near-universal among trade contacts. The dealer query agent works in plain conversational Hindi or English — no app download, no login, no training required. In our experience, adoption resistance is lower here than with any other digital channel because distributors are already on WhatsApp all day.</p></details>
+<details><summary>How long before the first agent is live?</summary><p>If your WhatsApp Business API account is already active, the dealer query agent or complaint intake bot can be live in 3–4 weeks from the start of the Pilot engagement. API setup adds roughly 1–2 weeks. The 6-week Pilot timeline accounts for both.</p></details>
+<details><summary>Can the agents handle multi-language inputs — Hindi, Gujarati, regional languages?</summary><p>Yes. The underlying LLMs handle Hindi and Hinglish well out of the box. Gujarati and other regional languages are supported with slightly more prompt engineering and testing. We benchmark language accuracy during the Learn stage and only wire the agent into production systems once accuracy meets your defined threshold.</p></details>
+  <footer>
+    Built by <a href="https://hopetech.me">HopeTech</a> · A Bettroi product · <a href="https://hopetech.me/sitemap.xml">Sitemap</a>
+  </footer>
+</div>
+</body>
+</html>

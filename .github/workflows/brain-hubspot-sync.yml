@@ -1,0 +1,33 @@
+name: Brain — HubSpot Auto-CRM
+
+# Every weekday evening 17:30 IST, push recent Fathom calls into HubSpot:
+# - upserts companies + contacts by domain/email
+# - logs a call engagement with auto-recap, next-step, deal-stage hint
+
+on:
+  schedule:
+    - cron: '0 12 * * 1-5'  # 12:00 UTC = 17:30 IST, Mon-Fri
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Fathom → HubSpot sync
+        env:
+          SUPABASE_URL: ${{ secrets.BRAIN_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.BRAIN_SUPABASE_SERVICE_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.BRAIN_ANTHROPIC_API_KEY }}
+          FATHOM_API_KEY: ${{ secrets.BRAIN_FATHOM_API_KEY }}
+          HUBSPOT_TOKEN: ${{ secrets.BRAIN_HUBSPOT_TOKEN }}
+          SLACK_BOT_TOKEN: ${{ secrets.BRAIN_SLACK_BOT_TOKEN }}
+          SLACK_MURALI_USER_ID: ${{ secrets.BRAIN_SLACK_MURALI_USER_ID }}
+        run: node _Murali-Second-Brain/hubspot-from-fathom.mjs --days=2
