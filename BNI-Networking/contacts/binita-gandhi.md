@@ -5,7 +5,7 @@ bni_contact_id: cteam_c_binita
 status: "Identified"
 segment: "Other"
 deal_probability: 50
-updated_at: 2026-05-01T16:25:24.07109+00:00
+updated_at: 2026-05-25T07:00:23.521503+00:00
 ---
 # Binita Gandhi
 **Status:** Identified

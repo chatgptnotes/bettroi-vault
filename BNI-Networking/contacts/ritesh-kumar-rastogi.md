@@ -10,7 +10,7 @@ segment: "Industrial Automation"
 deal_probability: 50
 phones: "9667871187"
 email: ritesh@soundunleash.com
-updated_at: 2026-05-02T05:35:54.489501+00:00
+updated_at: 2026-05-25T07:12:48.45163+00:00
 ---
 # Ritesh Kumar Rastogi
 **Company:** Home Automation

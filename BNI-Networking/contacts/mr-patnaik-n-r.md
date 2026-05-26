@@ -10,7 +10,7 @@ segment: "AI / Tech"
 assigned_to: "Sonam Sharnagat"
 deal_probability: 50
 phones: "9840954469"
-updated_at: 2026-04-28T06:32:08.601276+00:00
+updated_at: 2026-05-25T07:07:24.612676+00:00
 ---
 # Mr Patnaik N R
 **Company:** Foyer Technology Pvt Ltd
