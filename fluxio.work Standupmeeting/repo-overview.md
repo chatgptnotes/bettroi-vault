@@ -2,18 +2,18 @@
 domain: fluxio.work
 repo: chatgptnotes/hopehospital-dashboard
 default_branch: main
-last_push: 2026-05-17T16:43:26Z
-size_kb: 2772
+last_push: 2026-05-25T14:40:58Z
+size_kb: 2817
 language: TypeScript
 description: "Hope Hospital + Ayushman Hospital - operations management dashboard. Live at fluxio.work."
-extracted: 2026-05-25T07:26:05.656Z
+extracted: 2026-05-26T07:05:53.678Z
 ---
 # Hope+Ayushman Operations — `fluxio.work`
 
 **Live URL:** https://fluxio.work/
 **GitHub repo:** https://github.com/chatgptnotes/hopehospital-dashboard
-**Default branch:** `main`  ·  **Last push:** 2026-05-17T16:43:26Z
-**Language:** TypeScript  ·  **Repo size:** 2772KB
+**Default branch:** `main`  ·  **Last push:** 2026-05-25T14:40:58Z
+**Language:** TypeScript  ·  **Repo size:** 2817KB
 
 > Hope Hospital + Ayushman Hospital - operations management dashboard. Live at fluxio.work.
 
@@ -60,7 +60,7 @@ extracted: 2026-05-25T07:26:05.656Z
 ## Folder breakdown
 
 - `src/` — 141 files
-- `supabase/` — 11 files
+- `supabase/` — 14 files
 - `public/` — 7 files
 - `.env/` — 1 file
 - `.gitignore/` — 1 file
@@ -77,6 +77,9 @@ extracted: 2026-05-25T07:26:05.656Z
 
 ## Recent commits
 
+- `906618b` _2026-05-25_ — fix(org-vault): show card image upload buttons for new cards too
+- `54afbee` _2026-05-25_ — feat(org-vault): add front/back image upload to card form
+- `9fcb528` _2026-05-25_ — feat: add PAN/Aadhaar image uploads to org vault and multi-image upload to cards
 - `fad301c` _2026-05-17_ — feat(bank-credentials): add editable comments field per card
 - `51f41e4` _2026-05-17_ — feat: add Brain Access link to sidebar (Management section)
 - `985d691` _2026-05-17_ — feat: add Brain Access link to sidebar (Management section)
@@ -84,9 +87,6 @@ extracted: 2026-05-25T07:26:05.656Z
 - `e48d72b` _2026-05-17_ — feat(bank-credentials): inline edit for OTP mobile per card
 - `aa64e19` _2026-05-17_ — feat(bank-credentials): display OTP mobile on each card
 - `76a77c3` _2026-05-17_ — chore: remove password prompt, use Referer-based domain check
-- `bc7e664` _2026-05-17_ — fix: exclude .html from SPA rewrite
-- `2120f5b` _2026-05-17_ — feat: brain access admin page
-- `8e1a1e1` _2026-05-16_ — feat(org-vault): add View and Download buttons for cancelled cheque
 
 ## README
 
