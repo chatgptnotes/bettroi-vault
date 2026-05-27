@@ -2,17 +2,17 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-05-25T06:07:28Z
+last_push: 2026-05-27T06:38:08Z
 size_kb: 37331
 language: TypeScript
 description: ""
-extracted: 2026-05-26T07:05:57.866Z
+extracted: 2026-05-27T07:19:37.540Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-05-25T06:07:28Z
+**Default branch:** `main`  ·  **Last push:** 2026-05-27T06:38:08Z
 **Language:** TypeScript  ·  **Repo size:** 37331KB
 
 
@@ -90,6 +90,7 @@ extracted: 2026-05-26T07:05:57.866Z
 
 ## Recent commits
 
+- `3e62f1a` _2026-05-27_ — fix(corporate-receipts): show menu to all roles + fix Add Receipt crash
 - `760b22b` _2026-05-25_ — fix(ipd-discharge): remove NABH and Hope logos from print letterhead
 - `b94538a` _2026-05-23_ — feat(discharge): conservative-aware summary + print fixes (#314)
 - `2da764b` _2026-05-23_ — fix(tablet-billing): record collection via advance_payment, not broken RPC (#313
@@ -99,7 +100,6 @@ extracted: 2026-05-26T07:05:57.866Z
 - `b86c197` _2026-05-23_ — fix(pwa): scope dark base background to installed app only (#309)
 - `25343db` _2026-05-23_ — perf(discharge): eager-load IPD Discharge Summary to fix stale-chunk crash (#308
 - `cb6d3d6` _2026-05-22_ — Merge pull request #306 from chatgptnotes/feat/pwa-installable-fullscreen
-- `9e17bf1` _2026-05-22_ — fix(perf): don't fire sidebar count queries until authenticated
 
 ## README
 

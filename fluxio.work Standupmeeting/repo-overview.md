@@ -6,7 +6,7 @@ last_push: 2026-05-25T14:40:58Z
 size_kb: 2817
 language: TypeScript
 description: "Hope Hospital + Ayushman Hospital - operations management dashboard. Live at fluxio.work."
-extracted: 2026-05-26T07:05:53.678Z
+extracted: 2026-05-27T07:19:34.253Z
 ---
 # Hope+Ayushman Operations — `fluxio.work`
 
