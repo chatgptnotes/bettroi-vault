@@ -72,3 +72,6 @@ Rough estimates for a mid-size plant (50 WOs/day, 500 decisions/month):
 - [[Plan A - Building the Agent]] — Phase 4 implementation
 - [[Cyclic RAG]] — what the embedder feeds
 - [[Deployment Tiers]] — hardware requirements per tier
+- [[Correction Loop]] — lesson synthesis (Phase 6 reflection) always routes to Claude Sonnet
+- [[Skills Vault]] — skills with `requires_deep_reasoning: true` trigger API escalation
+- [[Memory Vault]] — correction and episode embedding runs on local Ollama

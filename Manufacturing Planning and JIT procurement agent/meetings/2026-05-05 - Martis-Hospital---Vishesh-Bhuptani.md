@@ -13,3 +13,11 @@ description: "Martis Hospital director Vishesh Bhuptani discussed implant manufa
 > Martis Hospital director Vishesh Bhuptani discussed implant manufacturing portfolio including trauma, spine, neurosurgical implants and J&J partnership expansion.
 
 ### Vishesh Bhuptani Director of Martis Hospital (NABH accredited), not a doctor — runs multi-specialty hospital with 25+ core doctors, 100+ associated. Coverage: neurosurgery, cardiac, orthopedics, critical care, gynecology, urology, general surgery. Also runs Maharani Medicare (40-year implant manufacturing). Hospital ~3 years old. ### Implant Portfolio Orthopedic and neurosurgical implants: trauma, spine, cranial, maxillofacial, hip joint. Knee and shoulder in R&D. Neurosurgical: aneurysm clips, hydrocephalus shunts. First channel partner for Johnson & Johnson in Gujarat.
+
+## Related
+
+- [[Home]] — project entry point
+- [[Generic vs Vertical]] — medical implant manufacturing = Discrete vertical (lot traceability critical)
+- [[Multi-Level BOM]] — implant assemblies (e.g. hip joint kit) have multi-level BOM structures
+- [[Plan B - Data Sourcing]] — intake checklist applies; compliance/regulatory section relevant (FDA/IATF awareness)
+- [[Deployment Tiers]] — Maharani Medicare is a Silver/Gold candidate given 40-year manufacturing base

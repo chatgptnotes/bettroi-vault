@@ -116,5 +116,7 @@ If the customer's ERP only stores flat BOMs but they have shared WIPs in reality
 
 - [[Shared WIPs]] — the operational consequences this data model enables
 - [[Master Production Schedule]] — uses cumulative lead time for backward-scheduling
+- [[Cyclic RAG]] — lesson-adjusted lead times feed into the cumulative lead time calculation
+- [[Skills Vault]] — lot-sizing and allocation policies that govern BOM explosion decisions
 - [[Plan A - Building the Agent]] — Phase 3 implementation
 - [[Plan B - Data Sourcing]] — what the customer must hand over for BOM

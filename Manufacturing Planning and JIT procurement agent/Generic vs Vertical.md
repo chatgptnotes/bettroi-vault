@@ -99,7 +99,10 @@ Same product. Different first-30-seconds.
 
 ## See Also
 
+- [[Home]] — project entry point
+- [[Primer]] — the plain-English rationale for the generic-first design decision
 - [[Plan A - Building the Agent]] — Phase 7 (vertical hooks)
+- [[Plan B - Data Sourcing]] — the interview questions that pull out vertical-specific skills
 - [[Skills Vault]] — where the 30-domain folder lives
 - [[Deployment Tiers]] — vertical packs ship at Bronze, not later
 - [[Shared WIPs]] — how each vertical handles shared-process topology differently

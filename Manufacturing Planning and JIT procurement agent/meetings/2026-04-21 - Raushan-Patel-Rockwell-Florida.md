@@ -13,3 +13,9 @@ description: "Rockwell Automation Florida collaboration discussed with Saikat an
 > Rockwell Automation Florida collaboration discussed with Saikat and Abhishek on automation initiatives.
 
 Raushan Patel from Rockwell Automation (Florida Sector 64). Saikat + Abhishek joined. Discussion on automation collaboration.
+
+## Related
+
+- [[Home]] — project entry point
+- [[Plan A - Building the Agent]] — the agent this collaboration supports
+- [[Hybrid LLM Routing]] — Rockwell's OT/MES stack is relevant to the local-model path

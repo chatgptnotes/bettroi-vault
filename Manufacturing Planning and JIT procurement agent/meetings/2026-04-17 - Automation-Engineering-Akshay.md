@@ -13,3 +13,9 @@ description: "Dr Murali introduced automation partners: BT (AI consultant), Saik
 > Dr Murali introduced automation partners: BT (AI consultant), Saikat (20+ years manufacturing automation engineer).
 
 Dr Murali introduced partners: BT (AI consultant Dubai, helps biz adopt AI), Saikat (automation engineer 20+ years, agentic solutions for manufacturing).
+
+## Related
+
+- [[Home]] — project entry point
+- [[Plan A - Building the Agent]] — engineering plan this team is building toward
+- [[Generic vs Vertical]] — the horizontal-then-vertical strategy relevant to automation partners

@@ -13,3 +13,9 @@ description: "Dr Murali scheduled two automation engineering meetings April 17, 
 > Dr Murali scheduled two automation engineering meetings April 17, 2026: BNI member 6:30 PM IST, pharma plant designer 10 PM IST.
 
 Dr Murali confirmed 2 meetings for Automation Engineering contacts Apr 17 2026. First 6:30 PM IST with BNI member. Second 10 PM IST with pharma plant designer.
+
+## Related
+
+- [[Home]] — project entry point
+- [[Plan A - Building the Agent]] — engineering plan these contacts are supporting
+- [[Generic vs Vertical]] — pharma plant designer is a potential Batch vertical customer

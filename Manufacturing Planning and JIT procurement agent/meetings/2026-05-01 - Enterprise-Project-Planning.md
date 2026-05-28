@@ -13,3 +13,10 @@ description: "Enterprise project planning: requirements gathering, module defini
 > Enterprise project planning: requirements gathering, module definition, workflow, client approval processes, data formats structured.
 
 ### Project scope Reading emails, transcribing into proposals. Need structured proposals with clear sections so clients understand scope and value. ### Enterprise project planning Detailed project plan (not just proposal): requirements gathering (data formats, timelines, delivery dates), module definition, workflow/SoW, client approval processes. Identify sections requiring client approval, data input formats and output requi...
+
+## Related
+
+- [[Home]] — project entry point
+- [[Plan A - Building the Agent]] — the engineering plan this session was structuring
+- [[Plan B - Data Sourcing]] — the customer intake checklist referenced in requirements gathering
+- [[Deployment Tiers]] — Bronze/Silver/Gold tiers map to the deployment stages discussed

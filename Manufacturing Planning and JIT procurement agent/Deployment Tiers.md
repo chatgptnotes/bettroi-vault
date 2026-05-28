@@ -68,5 +68,9 @@ Renewal economics: at Platinum, the customer's effective cost of switching = "lo
 ## See Also
 
 - [[Plan B - Data Sourcing]] — full intake checklist per tier
+- [[Plan A - Building the Agent]] — the engineering phases that correspond to tier unlocks
 - [[Correction Loop]] — what creates the Platinum lock-in
 - [[Memory Vault]] — the customer-owned asset
+- [[Hybrid LLM Routing]] — hardware requirements per tier depend on local model usage
+- [[Generic vs Vertical]] — vertical skill packs ship at Bronze, not later
+- [[Master Production Schedule]] — Gold tier unlocks the full MPS loop

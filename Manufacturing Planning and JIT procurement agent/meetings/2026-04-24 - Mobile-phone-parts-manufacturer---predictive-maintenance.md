@@ -13,3 +13,11 @@ description: "Mobile phone parts manufacturer seeks predictive maintenance solut
 > Mobile phone parts manufacturer seeks predictive maintenance solution for robotic conveyor systems with position-shift accuracy issues.
 
 Client manufactures mobile phone parts using robots + conveyors with motor gearboxes. Items shift position during processing affecting accuracy. Needs predictive maintenance for enclosed systems.
+
+## Related
+
+- [[Home]] — project entry point
+- [[Generic vs Vertical]] — Discrete vertical (electronics/mobile parts)
+- [[Deployment Tiers]] — potential Bronze tier prospect (Excel + manual data hand-over)
+- [[Plan B - Data Sourcing]] — intake checklist for onboarding this type of customer
+- [[Multi-Level BOM]] — mobile parts assembly has multi-level BOM structure
