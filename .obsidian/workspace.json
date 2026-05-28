@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "bb3382806a9ae5af",
+        "id": "5bb8aaed21929bde",
         "type": "tabs",
         "children": [
           {
-            "id": "2c320a689eceed4f",
+            "id": "31164756ee4ef9a6",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -74,7 +74,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 225.5
+    "width": 434.5
   },
   "right": {
     "id": "14e54506ecb855cd",
@@ -188,7 +188,7 @@
       "github-sync:Sync with Remote": false
     }
   },
-  "active": "2c320a689eceed4f",
+  "active": "31164756ee4ef9a6",
   "lastOpenFiles": [
     "_Calendar/2026-05-29.md",
     "_Daily-Briefs/2026-05-28.md",
