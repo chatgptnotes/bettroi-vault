@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" font-family="Inter, system-ui, sans-serif">
+  <g font-size="13" fill="#222">
+    <!-- Timeline rail -->
+    <line x1="80" y1="240" x2="1120" y2="240" stroke="#888" stroke-width="2"/>
+
+    <!-- Bronze -->
+    <g>
+      <circle cx="180" cy="240" r="38" fill="#B87333" stroke="#7A4E22" stroke-width="2"/>
+      <text x="180" y="246" text-anchor="middle" font-weight="700" fill="white" font-size="16">B</text>
+      <text x="180" y="170" text-anchor="middle" font-weight="700" font-size="18">Bronze</text>
+      <text x="180" y="195" text-anchor="middle" font-size="12" fill="#666">Week 1</text>
+      <text x="180" y="305" text-anchor="middle" font-size="12" fill="#444">Item master + BOM</text>
+      <text x="180" y="325" text-anchor="middle" font-size="12" fill="#444">+ Excel exports</text>
+      <text x="180" y="355" text-anchor="middle" font-size="11" fill="#888" font-style="italic">Weekly recommendation</text>
+    </g>
+
+    <!-- Silver -->
+    <g>
+      <circle cx="430" cy="240" r="42" fill="#C0C0C0" stroke="#7A7A7A" stroke-width="2"/>
+      <text x="430" y="246" text-anchor="middle" font-weight="700" fill="white" font-size="18">S</text>
+      <text x="430" y="165" text-anchor="middle" font-weight="700" font-size="18">Silver</text>
+      <text x="430" y="190" text-anchor="middle" font-size="12" fill="#666">Week 4</text>
+      <text x="430" y="305" text-anchor="middle" font-size="12" fill="#444">+ ERP read</text>
+      <text x="430" y="325" text-anchor="middle" font-size="12" fill="#444">+ 15–20 skills authored</text>
+      <text x="430" y="355" text-anchor="middle" font-size="11" fill="#888" font-style="italic">Daily schedule + PO list</text>
+    </g>
+
+    <!-- Gold -->
+    <g>
+      <circle cx="700" cy="240" r="48" fill="#E5B73B" stroke="#A37D1E" stroke-width="2"/>
+      <text x="700" y="246" text-anchor="middle" font-weight="700" fill="white" font-size="20">G</text>
+      <text x="700" y="160" text-anchor="middle" font-weight="700" font-size="18">Gold</text>
+      <text x="700" y="185" text-anchor="middle" font-size="12" fill="#666">Month 3</text>
+      <text x="700" y="310" text-anchor="middle" font-size="12" fill="#444">+ MES / SCADA feed</text>
+      <text x="700" y="330" text-anchor="middle" font-size="12" fill="#444">+ outcome data flowing back</text>
+      <text x="700" y="360" text-anchor="middle" font-size="11" fill="#888" font-style="italic">Reactive rescheduling</text>
+    </g>
+
+    <!-- Platinum -->
+    <g>
+      <circle cx="990" cy="240" r="55" fill="#E5E4E2" stroke="#666" stroke-width="2.5"/>
+      <text x="990" y="248" text-anchor="middle" font-weight="700" fill="#333" font-size="22">P</text>
+      <text x="990" y="155" text-anchor="middle" font-weight="700" font-size="18">Platinum</text>
+      <text x="990" y="180" text-anchor="middle" font-size="12" fill="#666">Month 6+</text>
+      <text x="990" y="315" text-anchor="middle" font-size="12" fill="#444">30+ active Lessons</text>
+      <text x="990" y="335" text-anchor="middle" font-size="12" fill="#444">override rate ~10%</text>
+      <text x="990" y="365" text-anchor="middle" font-size="11" fill="#E5621A" font-style="italic" font-weight="600">Defensible moat</text>
+    </g>
+
+    <!-- Bottom strip -->
+    <text x="600" y="420" text-anchor="middle" font-size="14" font-style="italic" fill="#666">
+      Each transition is a renewal moment, not a cliff. You upgrade when you're ready.
+    </text>
+  </g>
+</svg>

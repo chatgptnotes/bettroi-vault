@@ -1,0 +1,382 @@
+/* =====================================================================
+ * Pitch Deck — design tokens and slide layouts
+ * Single source of style truth. Consumed by:
+ *   - generate-pdf.py (WeasyPrint / headless Chrome)
+ *   - generate-pptx.py (ported into Python constants)
+ * ===================================================================== */
+
+:root {
+  /* ---- Color palette: editorial industrial -------------------------- */
+  --color-bg-dark:        oklch(14% 0.01 60);     /* near-black warm */
+  --color-bg-light:       oklch(98% 0.005 80);    /* warm off-white */
+  --color-surface-dark:   oklch(22% 0.015 60);
+  --color-surface-light:  oklch(94% 0.008 80);
+  --color-text-dark:      oklch(95% 0.01 80);
+  --color-text-light:     oklch(18% 0.01 60);
+  --color-muted-dark:     oklch(70% 0.01 80);
+  --color-muted-light:    oklch(42% 0.01 60);
+  --color-rule-dark:      oklch(35% 0.01 80 / 0.4);
+  --color-rule-light:     oklch(30% 0.01 60 / 0.15);
+
+  /* ---- Accents — semantic, not decorative --------------------------- */
+  --color-accent-ember:   oklch(64% 0.20 45);     /* deep saffron / signal */
+  --color-accent-teal:    oklch(58% 0.13 195);
+  --color-accent-indigo:  oklch(48% 0.17 280);
+  --color-accent-amber:   oklch(78% 0.16 80);
+
+  /* ---- Typography --------------------------------------------------- */
+  --font-display: "Space Grotesk", "Inter Tight", "Segoe UI", system-ui, sans-serif;
+  --font-body:    "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", "Consolas", monospace;
+
+  --text-mega:   clamp(3.5rem, 6vw, 6.5rem);
+  --text-h1:     clamp(2.25rem, 3.5vw, 3.5rem);
+  --text-h2:     clamp(1.5rem, 2vw, 2rem);
+  --text-body:   clamp(1.05rem, 1.1vw, 1.25rem);
+  --text-small:  clamp(0.85rem, 0.9vw, 1rem);
+
+  /* ---- Spacing ------------------------------------------------------ */
+  --space-slide-pad:   clamp(3rem, 4vw, 5rem);
+  --space-section:     clamp(1.5rem, 2vw, 2.5rem);
+  --space-tight:       0.5rem;
+
+  /* ---- Motion / radius --------------------------------------------- */
+  --radius-card:  16px;
+  --radius-sm:    6px;
+}
+
+/* ---- Page setup for WeasyPrint / PDF --------------------------------- */
+@page {
+  size: 13.333in 7.5in;           /* 16:9, matches PPTX default */
+  margin: 0;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+  color: var(--color-text-light);
+  background: var(--color-bg-light);
+}
+
+/* =====================================================================
+ * Slide container
+ * ===================================================================== */
+.slide {
+  width: 13.333in;
+  height: 7.5in;
+  padding: var(--space-slide-pad);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  page-break-after: always;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide:last-child { page-break-after: auto; }
+
+.slide.theme-dark {
+  background: var(--color-bg-dark);
+  color: var(--color-text-dark);
+}
+
+.slide.theme-light {
+  background: var(--color-bg-light);
+  color: var(--color-text-light);
+}
+
+/* ---- Slide-number plate (bottom-right) ------------------------------- */
+.slide::after {
+  content: attr(data-slide) " / 14";
+  position: absolute;
+  bottom: 1.25rem;
+  right: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  opacity: 0.5;
+}
+
+.slide.theme-dark::before,
+.slide.theme-light::before {
+  content: "Galvon · Manufacturing AI";
+  position: absolute;
+  bottom: 1.25rem;
+  left: var(--space-slide-pad);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+/* =====================================================================
+ * Typography
+ * ===================================================================== */
+.slide h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem;
+  max-width: 16ch;
+}
+
+.slide h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--space-section);
+  color: var(--color-accent-ember);
+}
+
+.slide.theme-dark h2 {
+  color: var(--color-accent-amber);
+}
+
+.slide p {
+  max-width: 70ch;
+  margin: 0 0 1rem;
+}
+
+.slide strong { font-weight: 600; }
+
+.slide blockquote {
+  border-left: 3px solid var(--color-accent-ember);
+  margin: 1.5rem 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  font-style: italic;
+  color: var(--color-muted-light);
+}
+
+.slide.theme-dark blockquote {
+  color: var(--color-muted-dark);
+}
+
+/* =====================================================================
+ * Layouts
+ * ===================================================================== */
+
+/* ---- Title slide ----------------------------------------------------- */
+.slide.layout-title {
+  justify-content: center;
+}
+
+.slide.layout-title h1 {
+  font-size: var(--text-mega);
+  max-width: 18ch;
+}
+
+.slide.layout-title h2 {
+  font-size: var(--text-h1);
+  font-weight: 300;
+  color: var(--color-muted-dark);
+}
+
+.slide.layout-title .meta {
+  margin-top: 3rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  opacity: 0.5;
+}
+
+/* ---- Full-bleed editorial ------------------------------------------- */
+.slide.layout-full-bleed h1 {
+  font-size: clamp(3rem, 4.5vw, 5rem);
+  max-width: 14ch;
+}
+
+.slide.layout-full-bleed p {
+  font-size: clamp(1.15rem, 1.3vw, 1.4rem);
+  max-width: 60ch;
+  line-height: 1.6;
+}
+
+/* ---- Stats table ---------------------------------------------------- */
+.slide.layout-stats table,
+.slide table {
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  width: 100%;
+}
+
+.slide table th,
+.slide table td {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-rule-light);
+  font-size: 1rem;
+}
+
+.slide.theme-dark table th,
+.slide.theme-dark table td {
+  border-bottom-color: var(--color-rule-dark);
+}
+
+.slide table th {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted-light);
+}
+
+.slide.theme-dark table th {
+  color: var(--color-muted-dark);
+}
+
+.slide table td:last-child {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--color-accent-ember);
+  font-weight: 600;
+}
+
+.slide.theme-dark table td:last-child {
+  color: var(--color-accent-amber);
+}
+
+/* ---- Two/three card layouts ----------------------------------------- */
+.slide.layout-two-cards,
+.slide.layout-three-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: start;
+}
+
+.slide.layout-two-cards .cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.slide.layout-three-cards .cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  background: var(--color-surface-light);
+  border-radius: var(--radius-card);
+  padding: 1.5rem 1.75rem;
+  border-top: 4px solid var(--color-accent-ember);
+}
+
+.card.accent-teal   { border-top-color: var(--color-accent-teal); }
+.card.accent-indigo { border-top-color: var(--color-accent-indigo); }
+.card.accent-ember  { border-top-color: var(--color-accent-ember); }
+
+.slide.theme-dark .card {
+  background: var(--color-surface-dark);
+}
+
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+}
+
+.card p, .card ul {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.card ul {
+  padding-left: 1.1rem;
+}
+
+.card li { margin-bottom: 0.35rem; }
+
+/* ---- Split layout (text + visual) ----------------------------------- */
+.slide.layout-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.slide.layout-split .left,
+.slide.layout-split .right {
+  min-width: 0;
+}
+
+/* ---- Diagram / pre blocks ------------------------------------------- */
+.slide pre,
+.slide.layout-diagram pre {
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.3;
+  white-space: pre;
+  overflow: visible;
+  margin: 0;
+  color: inherit;
+  opacity: 0.85;
+}
+
+.slide.layout-chart pre,
+.slide.layout-diagram pre {
+  font-size: 0.85rem;
+}
+
+/* ---- Story (Tuesday at Acme) ---------------------------------------- */
+.slide.layout-story p {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  max-width: 65ch;
+  margin-bottom: 0.85rem;
+}
+
+.slide.layout-story strong:first-child {
+  display: inline-block;
+  min-width: 5.5em;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  color: var(--color-accent-ember);
+  text-transform: uppercase;
+}
+
+/* ---- Tier table ----------------------------------------------------- */
+.slide.layout-tier-table table td:last-child {
+  text-align: right;
+}
+
+/* ---- CTA slide ------------------------------------------------------ */
+.slide.layout-cta {
+  justify-content: center;
+}
+
+.slide.layout-cta h1 {
+  font-size: clamp(2.75rem, 4vw, 4.5rem);
+  max-width: 14ch;
+  margin-bottom: 2rem;
+}
+
+.slide.layout-cta ol {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  max-width: 60ch;
+}
+
+/* =====================================================================
+ * Print fine-tuning
+ * ===================================================================== */
+@media print {
+  .slide { box-shadow: none; margin: 0; }
+}

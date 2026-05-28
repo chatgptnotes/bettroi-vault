@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#E5621A"/>
+    </marker>
+    <marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#888"/>
+    </marker>
+  </defs>
+
+  <g font-size="14">
+    <!-- Factory data -->
+    <rect x="40" y="120" width="220" height="140" rx="10" fill="none" stroke="#888" stroke-width="1.5"/>
+    <text x="150" y="155" text-anchor="middle" font-weight="600" font-size="16">Factory Data</text>
+    <text x="150" y="185" text-anchor="middle" fill="#666">ERP · Excel · MES</text>
+    <text x="150" y="210" text-anchor="middle" fill="#666">work orders · BOM</text>
+    <text x="150" y="232" text-anchor="middle" fill="#666">inventory · machines</text>
+
+    <!-- Agent -->
+    <rect x="490" y="80" width="220" height="220" rx="10" fill="#FFF7F0" stroke="#E5621A" stroke-width="2"/>
+    <text x="600" y="120" text-anchor="middle" font-weight="700" font-size="18" fill="#E5621A">The Agent</text>
+    <text x="600" y="155" text-anchor="middle" fill="#333">reads + reasons</text>
+    <text x="600" y="180" text-anchor="middle" fill="#333">retrieves rules</text>
+    <text x="600" y="205" text-anchor="middle" fill="#333">retrieves lessons</text>
+    <text x="600" y="230" text-anchor="middle" fill="#333">writes recommendation</text>
+    <text x="600" y="265" text-anchor="middle" font-style="italic" font-size="12" fill="#888">with citations</text>
+
+    <!-- Planner -->
+    <rect x="940" y="120" width="220" height="140" rx="10" fill="none" stroke="#888" stroke-width="1.5"/>
+    <text x="1050" y="155" text-anchor="middle" font-weight="600" font-size="16">The Planner</text>
+    <text x="1050" y="185" text-anchor="middle" fill="#666">approves</text>
+    <text x="1050" y="210" text-anchor="middle" fill="#666">edits</text>
+    <text x="1050" y="232" text-anchor="middle" fill="#666">with reasoning</text>
+
+    <!-- Arrows -->
+    <line x1="265" y1="190" x2="485" y2="190" stroke="#888" stroke-width="1.5" marker-end="url(#arrow-muted)"/>
+    <line x1="715" y1="190" x2="935" y2="190" stroke="#E5621A" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <!-- Correction loop arrow -->
+    <path d="M 1050 265 Q 1050 380 600 380 Q 150 380 150 265" fill="none" stroke="#E5621A" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
+    <rect x="490" y="350" width="220" height="60" rx="8" fill="#FFF7F0" stroke="#E5621A" stroke-width="1.5"/>
+    <text x="600" y="375" text-anchor="middle" font-weight="600" fill="#E5621A">CORRECTION captured</text>
+    <text x="600" y="395" text-anchor="middle" font-size="12" fill="#666">with diff + planner's reason</text>
+
+    <!-- Bottom label -->
+    <text x="600" y="465" text-anchor="middle" font-size="13" fill="#666" font-style="italic">
+      Next time, the agent retrieves this correction
+    </text>
+    <text x="600" y="485" text-anchor="middle" font-size="13" fill="#666" font-style="italic">
+      and doesn't repeat the mistake.
+    </text>
+  </g>
+</svg>

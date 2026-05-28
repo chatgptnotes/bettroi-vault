@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" font-family="Inter, system-ui, sans-serif">
+  <g font-size="13" fill="#222">
+    <!-- Finals -->
+    <rect x="120" y="60" width="160" height="60" rx="8" fill="#FFF7F0" stroke="#E5621A" stroke-width="2"/>
+    <text x="200" y="85" text-anchor="middle" font-weight="700">P1</text>
+    <text x="200" y="105" text-anchor="middle" font-size="11" fill="#666">due Day 30</text>
+
+    <rect x="380" y="60" width="160" height="60" rx="8" fill="#FFF7F0" stroke="#E5621A" stroke-width="2"/>
+    <text x="460" y="85" text-anchor="middle" font-weight="700">P2</text>
+    <text x="460" y="105" text-anchor="middle" font-size="11" fill="#666">due Day 35</text>
+
+    <rect x="640" y="60" width="160" height="60" rx="8" fill="#FFF7F0" stroke="#E5621A" stroke-width="2"/>
+    <text x="720" y="85" text-anchor="middle" font-weight="700">P3</text>
+    <text x="720" y="105" text-anchor="middle" font-size="11" fill="#666">due Day 20</text>
+
+    <!-- Shared WIP -->
+    <rect x="320" y="200" width="320" height="80" rx="10" fill="#E5621A" stroke="#E5621A" stroke-width="2"/>
+    <text x="480" y="232" text-anchor="middle" font-weight="700" font-size="18" fill="white">Shared WIP-5</text>
+    <text x="480" y="258" text-anchor="middle" font-size="12" fill="white" opacity="0.9">aggregate demand: 1,600 units</text>
+
+    <!-- WIP-1 -->
+    <rect x="320" y="340" width="320" height="50" rx="8" fill="none" stroke="#888" stroke-width="1.5"/>
+    <text x="480" y="370" text-anchor="middle" font-weight="600">5 shared upstream steps</text>
+
+    <!-- Raw -->
+    <rect x="320" y="430" width="320" height="50" rx="8" fill="#F0E9DD" stroke="#888" stroke-width="1.5"/>
+    <text x="480" y="460" text-anchor="middle" font-weight="600">Raw material R · 8,000 kg</text>
+
+    <!-- Edges -->
+    <line x1="200" y1="125" x2="380" y2="200" stroke="#E5621A" stroke-width="2"/>
+    <line x1="460" y1="125" x2="460" y2="200" stroke="#E5621A" stroke-width="2"/>
+    <line x1="720" y1="125" x2="580" y2="200" stroke="#E5621A" stroke-width="2"/>
+
+    <line x1="480" y1="285" x2="480" y2="340" stroke="#888" stroke-width="1.5"/>
+    <line x1="480" y1="390" x2="480" y2="430" stroke="#888" stroke-width="1.5"/>
+
+    <!-- Side annotations -->
+    <text x="900" y="100" font-size="13" fill="#666" font-weight="600">Aggregation at shared step:</text>
+    <text x="900" y="125" font-size="13" fill="#666">demand(WIP-5) = P1 + P2 + P3</text>
+
+    <text x="900" y="240" font-size="13" fill="#E5621A" font-weight="600">One campaign, not three small batches.</text>
+    <text x="900" y="265" font-size="13" fill="#666">Hits MOQ once. Saves changeovers.</text>
+
+    <text x="900" y="445" font-size="13" fill="#666" font-weight="600">JIT trigger walks up the tree.</text>
+    <text x="900" y="470" font-size="13" fill="#666">Monsoon lesson → +4 day lead time.</text>
+  </g>
+</svg>

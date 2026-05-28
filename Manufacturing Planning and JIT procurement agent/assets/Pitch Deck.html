@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pitch Deck — Manufacturing AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+ * Pitch Deck — design tokens and slide layouts
+ * Single source of style truth. Consumed by:
+ *   - generate-pdf.py (WeasyPrint / headless Chrome)
+ *   - generate-pptx.py (ported into Python constants)
+ * ===================================================================== */
+
+:root {
+  /* ---- Color palette: editorial industrial -------------------------- */
+  --color-bg-dark:        oklch(14% 0.01 60);     /* near-black warm */
+  --color-bg-light:       oklch(98% 0.005 80);    /* warm off-white */
+  --color-surface-dark:   oklch(22% 0.015 60);
+  --color-surface-light:  oklch(94% 0.008 80);
+  --color-text-dark:      oklch(95% 0.01 80);
+  --color-text-light:     oklch(18% 0.01 60);
+  --color-muted-dark:     oklch(70% 0.01 80);
+  --color-muted-light:    oklch(42% 0.01 60);
+  --color-rule-dark:      oklch(35% 0.01 80 / 0.4);
+  --color-rule-light:     oklch(30% 0.01 60 / 0.15);
+
+  /* ---- Accents — semantic, not decorative --------------------------- */
+  --color-accent-ember:   oklch(64% 0.20 45);     /* deep saffron / signal */
+  --color-accent-teal:    oklch(58% 0.13 195);
+  --color-accent-indigo:  oklch(48% 0.17 280);
+  --color-accent-amber:   oklch(78% 0.16 80);
+
+  /* ---- Typography --------------------------------------------------- */
+  --font-display: "Space Grotesk", "Inter Tight", "Segoe UI", system-ui, sans-serif;
+  --font-body:    "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", "Consolas", monospace;
+
+  --text-mega:   clamp(3.5rem, 6vw, 6.5rem);
+  --text-h1:     clamp(2.25rem, 3.5vw, 3.5rem);
+  --text-h2:     clamp(1.5rem, 2vw, 2rem);
+  --text-body:   clamp(1.05rem, 1.1vw, 1.25rem);
+  --text-small:  clamp(0.85rem, 0.9vw, 1rem);
+
+  /* ---- Spacing ------------------------------------------------------ */
+  --space-slide-pad:   clamp(3rem, 4vw, 5rem);
+  --space-section:     clamp(1.5rem, 2vw, 2.5rem);
+  --space-tight:       0.5rem;
+
+  /* ---- Motion / radius --------------------------------------------- */
+  --radius-card:  16px;
+  --radius-sm:    6px;
+}
+
+/* ---- Page setup for WeasyPrint / PDF --------------------------------- */
+@page {
+  size: 13.333in 7.5in;           /* 16:9, matches PPTX default */
+  margin: 0;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+  color: var(--color-text-light);
+  background: var(--color-bg-light);
+}
+
+/* =====================================================================
+ * Slide container
+ * ===================================================================== */
+.slide {
+  width: 13.333in;
+  height: 7.5in;
+  padding: var(--space-slide-pad);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  page-break-after: always;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide:last-child { page-break-after: auto; }
+
+.slide.theme-dark {
+  background: var(--color-bg-dark);
+  color: var(--color-text-dark);
+}
+
+.slide.theme-light {
+  background: var(--color-bg-light);
+  color: var(--color-text-light);
+}
+
+/* ---- Slide-number plate (bottom-right) ------------------------------- */
+.slide::after {
+  content: attr(data-slide) " / 14";
+  position: absolute;
+  bottom: 1.25rem;
+  right: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  opacity: 0.5;
+}
+
+.slide.theme-dark::before,
+.slide.theme-light::before {
+  content: "Galvon · Manufacturing AI";
+  position: absolute;
+  bottom: 1.25rem;
+  left: var(--space-slide-pad);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+/* =====================================================================
+ * Typography
+ * ===================================================================== */
+.slide h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem;
+  max-width: 16ch;
+}
+
+.slide h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--space-section);
+  color: var(--color-accent-ember);
+}
+
+.slide.theme-dark h2 {
+  color: var(--color-accent-amber);
+}
+
+.slide p {
+  max-width: 70ch;
+  margin: 0 0 1rem;
+}
+
+.slide strong { font-weight: 600; }
+
+.slide blockquote {
+  border-left: 3px solid var(--color-accent-ember);
+  margin: 1.5rem 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  font-style: italic;
+  color: var(--color-muted-light);
+}
+
+.slide.theme-dark blockquote {
+  color: var(--color-muted-dark);
+}
+
+/* =====================================================================
+ * Layouts
+ * ===================================================================== */
+
+/* ---- Title slide ----------------------------------------------------- */
+.slide.layout-title {
+  justify-content: center;
+}
+
+.slide.layout-title h1 {
+  font-size: var(--text-mega);
+  max-width: 18ch;
+}
+
+.slide.layout-title h2 {
+  font-size: var(--text-h1);
+  font-weight: 300;
+  color: var(--color-muted-dark);
+}
+
+.slide.layout-title .meta {
+  margin-top: 3rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  opacity: 0.5;
+}
+
+/* ---- Full-bleed editorial ------------------------------------------- */
+.slide.layout-full-bleed h1 {
+  font-size: clamp(3rem, 4.5vw, 5rem);
+  max-width: 14ch;
+}
+
+.slide.layout-full-bleed p {
+  font-size: clamp(1.15rem, 1.3vw, 1.4rem);
+  max-width: 60ch;
+  line-height: 1.6;
+}
+
+/* ---- Stats table ---------------------------------------------------- */
+.slide.layout-stats table,
+.slide table {
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  width: 100%;
+}
+
+.slide table th,
+.slide table td {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-rule-light);
+  font-size: 1rem;
+}
+
+.slide.theme-dark table th,
+.slide.theme-dark table td {
+  border-bottom-color: var(--color-rule-dark);
+}
+
+.slide table th {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted-light);
+}
+
+.slide.theme-dark table th {
+  color: var(--color-muted-dark);
+}
+
+.slide table td:last-child {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--color-accent-ember);
+  font-weight: 600;
+}
+
+.slide.theme-dark table td:last-child {
+  color: var(--color-accent-amber);
+}
+
+/* ---- Two/three card layouts ----------------------------------------- */
+.slide.layout-two-cards,
+.slide.layout-three-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: start;
+}
+
+.slide.layout-two-cards .cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.slide.layout-three-cards .cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  background: var(--color-surface-light);
+  border-radius: var(--radius-card);
+  padding: 1.5rem 1.75rem;
+  border-top: 4px solid var(--color-accent-ember);
+}
+
+.card.accent-teal   { border-top-color: var(--color-accent-teal); }
+.card.accent-indigo { border-top-color: var(--color-accent-indigo); }
+.card.accent-ember  { border-top-color: var(--color-accent-ember); }
+
+.slide.theme-dark .card {
+  background: var(--color-surface-dark);
+}
+
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+}
+
+.card p, .card ul {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.card ul {
+  padding-left: 1.1rem;
+}
+
+.card li { margin-bottom: 0.35rem; }
+
+/* ---- Split layout (text + visual) ----------------------------------- */
+.slide.layout-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.slide.layout-split .left,
+.slide.layout-split .right {
+  min-width: 0;
+}
+
+/* ---- Diagram / pre blocks ------------------------------------------- */
+.slide pre,
+.slide.layout-diagram pre {
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.3;
+  white-space: pre;
+  overflow: visible;
+  margin: 0;
+  color: inherit;
+  opacity: 0.85;
+}
+
+.slide.layout-chart pre,
+.slide.layout-diagram pre {
+  font-size: 0.85rem;
+}
+
+/* ---- Story (Tuesday at Acme) ---------------------------------------- */
+.slide.layout-story p {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  max-width: 65ch;
+  margin-bottom: 0.85rem;
+}
+
+.slide.layout-story strong:first-child {
+  display: inline-block;
+  min-width: 5.5em;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  color: var(--color-accent-ember);
+  text-transform: uppercase;
+}
+
+/* ---- Tier table ----------------------------------------------------- */
+.slide.layout-tier-table table td:last-child {
+  text-align: right;
+}
+
+/* ---- CTA slide ------------------------------------------------------ */
+.slide.layout-cta {
+  justify-content: center;
+}
+
+.slide.layout-cta h1 {
+  font-size: clamp(2.75rem, 4vw, 4.5rem);
+  max-width: 14ch;
+  margin-bottom: 2rem;
+}
+
+.slide.layout-cta ol {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  max-width: 60ch;
+}
+
+/* =====================================================================
+ * Print fine-tuning
+ * ===================================================================== */
+@media print {
+  .slide { box-shadow: none; margin: 0; }
+}
+
+</style>
+</head>
+<body>
+<section class="slide layout-title theme-dark" data-slide="1"><h1>Capture your best planner's knowledge</h1>
+<h2>before it walks out the door.</h2>
+<p><strong>An advisory AI agent for production scheduling and JIT procurement</strong> — runs on a single machine inside your plant, learns from every decision your planner makes, and turns 15 years of tribal knowledge into an asset you own.</p>
+<blockquote>
+<p>Galvon · 2026</p>
+</blockquote></section>
+<section class="slide layout-full-bleed theme-dark" data-slide="2"><h1>The Problem</h1>
+<p>Every manufacturing company has <strong>one or two people who really know how to run the place</strong>.</p>
+<p>They decide what to make today. What to order. From whom. When to expedite. When to wait. Their knowledge is in their head — built from 15 years of being burned by Supplier A in monsoon, knowing Machine 4 hates a 2-hour run-then-stop, knowing Tata pays a ₹50K/day penalty if you slip.</p>
+<p><strong>When that person is on leave, takes a competing job, or retires, the company loses money.</strong></p></section>
+<section class="slide layout-stats theme-light" data-slide="3"><h1>What This Costs You — Today</h1>
+<p>A typical mid-size plant loses <strong>₹2–8 Cr a year</strong> to scheduling mistakes nobody captures.</p>
+<table>
+<thead>
+<tr>
+<th>Where the money goes</th>
+<th>Typical annual loss</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Late-delivery penalties + lost orders</td>
+<td>₹40 L – 2 Cr</td>
+</tr>
+<tr>
+<td>Expedited freight to recover slippage</td>
+<td>₹20 – 80 L</td>
+</tr>
+<tr>
+<td>Scrap from bad changeover sequencing</td>
+<td>₹30 L – 1.5 Cr</td>
+</tr>
+<tr>
+<td>Lost shifts to setup/changeover thrash</td>
+<td>₹50 L – 2 Cr</td>
+</tr>
+<tr>
+<td>Excess working capital in safety stock</td>
+<td>₹1 – 3 Cr tied up</td>
+</tr>
+</tbody>
+</table>
+<p>These numbers don't show up in any one report. They're hidden across penalty debits, freight invoices, scrap registers, and inventory holding cost — and they grow when your best planner is on leave.</p></section>
+<section class="slide layout-split theme-dark" data-slide="4"><h1>The Agent in One Picture</h1>
+<pre><code>   FACTORY DATA               THE AGENT                THE PLANNER
+   (ERP, Excel, MES)    ───►  reads, reasons,   ───►  approves / edits
+                              cites rules                   │
+                                                            ▼
+                                                     CORRECTION
+                                                     captured with
+                                                     reasoning,
+                                                     written to vault
+                                                            │
+                                                            ▼
+                                                     next time the
+                                                     agent retrieves
+                                                     this correction
+                                                     and does not
+                                                     repeat the mistake
+</code></pre>
+<p>The agent does <strong>not</strong> decide for you. It recommends. The planner approves. Every edit teaches it. Everything is auditable.</p></section>
+<section class="slide layout-two-cards theme-light" data-slide="5"><h1>Two Vaults — Playbook and Logbook</h1>
+<p>The agent reads from a <strong>Skills Vault</strong> (the factory's playbook, written by humans) and writes to a <strong>Memory Vault</strong> (the logbook of every decision, correction, and lesson learned).</p>
+<div class="cards">
+<div class="card"><h3>Skills Vault — your playbook</h3><ul>
+<li>Written by you and the planner</li>
+<li>Plain markdown files in git</li>
+<li>VIP customer rules, machine quirks, supplier policies, changeover rules</li>
+<li>Read-only to the agent — it cannot accidentally edit your rules</li>
+</ul></div>
+<div class="card"><h3>Memory Vault — the agent's logbook</h3><ul>
+<li>Written by the agent every time a decision happens</li>
+<li>Every recommendation, every edit, every reason</li>
+<li>After repeated overrides, the agent drafts a <strong>Lesson</strong> for you to approve</li>
+<li>100% yours, in plain markdown, in git</li>
+</ul></div>
+</div>
+<p>Both are plain text. Both are yours. If we disappear tomorrow, your knowledge is still readable in Notepad.</p></section>
+<section class="slide layout-diagram theme-dark" data-slide="6"><h1>How It Learns — The Correction Loop</h1>
+<pre><code>agent recommends ──► planner edits ──► correction note written
+                          │                       │
+                          │                  (3+ similar
+                          │                   corrections)
+                          │                       ▼
+                          │              nightly reflection
+                          │              drafts a Lesson
+                          │                       │
+                          │                       ▼
+                          │              planner promotes it
+                          │                       │
+                          │                       ▼
+                          └──── next decision uses the Lesson
+                                — the mistake is not repeated
+</code></pre>
+<p><strong>This is the IP.</strong> Every override is a permanent training signal. Three similar overrides become a promoted rule. The agent grows without anyone writing code.</p></section>
+<section class="slide layout-story theme-light" data-slide="7"><h1>A Tuesday Morning at "Acme Auto Parts"</h1>
+<p><strong>9:00 AM</strong> — Rakesh arrives. The agent has already drafted today's schedule and tomorrow's reorder list, with citations to every rule it used.</p>
+<p><strong>9:05 AM</strong> — Rakesh reviews. The Tata priority rule is right. The Machine 4 warmup rule is right. But he bumps a Mahindra work order ahead because Mahindra called him last night about a launch event Friday. He types one sentence — <em>"Mahindra emergency, Friday launch"</em> — and clicks Approve.</p>
+<p><strong>9:06 AM</strong> — The agent writes a correction note: what it said, what Rakesh did, why.</p>
+<p><strong>11:30 AM</strong> — Machine 4 trips. The agent re-plans in seconds and offers two options with citations. Rakesh picks one. No correction needed this time.</p>
+<p><strong>30 days later</strong> — Rakesh has overridden the agent 4 times on Mahindra emergencies. The agent drafts a Lesson:</p>
+<blockquote>
+<p><em>"When a Mahindra emergency call is logged, treat Mahindra orders as same-priority as Tata for 48 hours."</em></p>
+</blockquote>
+<p>Rakesh edits one word, promotes it. From tomorrow, the agent applies the rule automatically. <strong>Rakesh stops having to make the same correction.</strong></p></section>
+<section class="slide layout-chart theme-dark" data-slide="8"><h1>The Value Compounds</h1>
+<pre><code>Planner
+override rate
+
+ 100% │██
+      │  ████████
+  75% │         ████████
+      │                 ████████
+  50% │                          ██████████
+      │                                    ████████
+  25% │                                            ████████████
+      │                                                        ██████████
+  10% │                                                                  ████████
+      │
+      └─────────────────────────────────────────────────────────────────────────►
+       Week 1     Week 4     Week 8     Month 3     Month 6     Month 12
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>What's happening</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Week 1</strong></td>
+<td>Agent ships generic. ~80% override rate. <strong>Corrections are the product</strong>, not the recommendations.</td>
+</tr>
+<tr>
+<td><strong>Month 1</strong></td>
+<td>~50 corrections captured. Override rate ~50%.</td>
+</tr>
+<tr>
+<td><strong>Month 3</strong></td>
+<td>~10 promoted Lessons. Override rate ~25%.</td>
+</tr>
+<tr>
+<td><strong>Month 6</strong></td>
+<td>~30 active Lessons. Override rate ~10%. <strong>The agent recommends what your best planner would, even when they're on leave.</strong></td>
+</tr>
+<tr>
+<td><strong>Month 12</strong></td>
+<td>Steady state. Quarterly Lesson review. The institutional knowledge that used to walk out at 6pm now lives in your vault.</td>
+</tr>
+</tbody>
+</table></section>
+<section class="slide layout-technical theme-light" data-slide="9"><h1>What Makes Real Manufacturing Hard</h1>
+<p>Most "AI scheduling" demos work on toy plants — one product, one line, one supplier. <strong>Real plants don't look like that.</strong> Your products share upstream processes, your BOMs are multi-level, and one quality reject cascades into a dozen downstream orders.</p>
+<table>
+<thead>
+<tr>
+<th>Real-plant problem</th>
+<th>What the agent does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multiple finals share an upstream WIP (e.g. one furnace heat feeds rebar + wire rod + structural)</td>
+<td>Models items as a <strong>DAG</strong>, not a flat list. Aggregates demand at the shared step.</td>
+</tr>
+<tr>
+<td>Multi-level BOM with shared sub-assemblies</td>
+<td>BOM-explode walks the tree, computes cumulative lead time, hits MOQ once instead of three small batches.</td>
+</tr>
+<tr>
+<td>Supply at a shared step &lt; total demand from finals</td>
+<td>Runs your <strong>allocation policy</strong> as a skill (which customer takes the hit, which slips, why).</td>
+</tr>
+<tr>
+<td>Quality reject at a shared upstream step</td>
+<td>Walks <code>where_used</code> forward, shows you which downstream orders will slip and by how much.</td>
+</tr>
+<tr>
+<td>Supplier slip during monsoon / festival / year-end</td>
+<td>Applies promoted Lessons to inflate that supplier's effective lead time for that season only.</td>
+</tr>
+</tbody>
+</table>
+<p>This is the <strong>MPS + MRP + daily-schedule loop</strong> every plant runs in spreadsheets today — but now with rules and lessons that evolve.</p></section>
+<section class="slide layout-three-cards theme-light" data-slide="10"><h1>One Engine, Three Verticals</h1>
+<p>Same core. Three skill packs. <strong>The agent ships pre-loaded with rules that match how your industry actually runs.</strong></p>
+<div class="cards">
+<div class="card accent-ember"><h3>Discrete</h3><p><strong>Auto parts · electronics · panel building · machining</strong></p>
+<ul>
+<li>Kanban-pull triggers and WIP caps</li>
+<li>Due-date prioritization with critical-ratio tweaks</li>
+<li>Lot-traceability protection on serialized parts</li>
+<li>Cell-grouping and changeover sequencing</li>
+</ul></div>
+<div class="card accent-teal"><h3>Batch</h3><p><strong>Chemicals · food · pharma · paints · cosmetics</strong></p>
+<ul>
+<li>Recipe-driven material consumption</li>
+<li>Campaign batching, grade transitions, CIP/SIP rules</li>
+<li>Expiry-aware FIFO</li>
+<li>21-CFR-11 / GMP-aware scheduling</li>
+</ul></div>
+<div class="card accent-indigo"><h3>Process</h3><p><strong>Cement · steel · paper · refineries · smelters</strong></p>
+<ul>
+<li>TOC drum-buffer-rope bottleneck protection</li>
+<li>Grade-transition slope rules</li>
+<li>Utility-tariff peak/off-peak load shifting</li>
+<li>Variable-yield JIT for consumables</li>
+</ul></div>
+</div></section>
+<section class="slide layout-split theme-dark" data-slide="11"><h1>Your Data Stays In Your Plant</h1>
+<p>The agent runs <strong>locally</strong>. Routine queries — <em>"recompute the kanban refill"</em>, <em>"explode this BOM"</em> — never leave your network. Only the genuinely hard reasoning escalates to a remote model, and even then no master data crosses the wire.</p>
+<table>
+<thead>
+<tr>
+<th>Where it runs</th>
+<th>What it does</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Local Ollama</strong> (on your plant PC)</td>
+<td>90% of decisions — routine scheduling, JIT triggers, retrieval, Q&amp;A</td>
+<td>Hardware amortization only</td>
+</tr>
+<tr>
+<td><strong>Claude API</strong> (escalation only)</td>
+<td>Complex re-planning, lesson synthesis, anomaly explanation</td>
+<td>~₹250–400 / month per plant</td>
+</tr>
+<tr>
+<td><strong>Haiku classifier</strong></td>
+<td>Routes each query to the right model</td>
+<td>~₹40 / month per plant</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The plant never stops getting useful output, even when the internet is down.</strong> Hard queries queue with a clear status. Routine schedules and JIT triggers stay current.</p>
+<p>Minimum hardware to start: 16 GB RAM, 8 cores. No GPU required for Bronze tier.</p></section>
+<section class="slide layout-tier-table theme-light" data-slide="12"><h1>Deployment Roadmap — Bronze → Platinum</h1>
+<p>You don't commit to everything on Day 1. We tier the engagement so you see value in Week 1 and earn the right to escalate.</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>What you give us</th>
+<th>What the agent does</th>
+<th>Time to value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bronze</strong></td>
+<td>Item master + BOM + supplier list + weekly Excel exports</td>
+<td>Weekly schedule recommendation + JIT reorder list + generic priority ranking</td>
+<td><strong>Week 1</strong></td>
+</tr>
+<tr>
+<td><strong>Silver</strong></td>
+<td>Above + ERP read or daily file exports + 15–20 customer skills authored in a 1-day workshop</td>
+<td>Daily schedule, daily PO suggestions, supplier-reliability-aware JIT, customer-aware prioritization</td>
+<td><strong>Week 4</strong></td>
+</tr>
+<tr>
+<td><strong>Gold</strong></td>
+<td>Above + MES/SCADA live feed + production confirmations + GRN data</td>
+<td>Reactive rescheduling on machine-down, closed-loop learning, promoted Lessons, anomaly explanations</td>
+<td><strong>Month 3</strong></td>
+</tr>
+<tr>
+<td><strong>Platinum</strong></td>
+<td>Time-gated, not feature-gated. 6+ months of accumulated corrections and Lessons.</td>
+<td>Genuinely personalized. Override rate ~10%. Defensible knowledge moat that competitors cannot port.</td>
+<td><strong>Month 6+</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Each transition is a renewal moment, not a cliff. You upgrade when you're ready — not when a sales rep says so.</p></section>
+<section class="slide layout-two-cards theme-light" data-slide="13"><h1>What You Give Us / What You Own</h1>
+<div class="cards">
+<div class="card accent-ember"><h3>Minimal intake — Week 1</h3><ul>
+<li>Item master + BOM + supplier list (Excel is fine)</li>
+<li>One named planner — 30 min/day for 60 days</li>
+<li>One IT person — 4 hours total, Week 1</li>
+<li>One shared folder for daily file drops</li>
+<li>One PC inside the plant: 16 GB RAM, 8 cores</li>
+</ul>
+<p><strong>That's it.</strong> No ERP rip-and-replace. No MES integration on Day 1. No 6-month "data foundation" prerequisite.</p></div>
+<div class="card accent-teal"><h3>What you keep — forever</h3><ul>
+<li><strong>Skills Vault</strong> — every rule you authored</li>
+<li><strong>Memory Vault</strong> — every decision, correction, Lesson the agent learned</li>
+<li>Both are plain markdown files in your own git repo</li>
+<li>If you cancel the subscription, the vaults stay yours</li>
+<li>A successor planner starts at Month-6 quality, not Week-1</li>
+</ul></div>
+</div>
+<p><strong>The agent runtime is the recurring revenue. The vaults are the customer-owned asset.</strong> That asymmetry is the deal.</p></section>
+<section class="slide layout-cta theme-dark" data-slide="14"><h1>The Next Step</h1>
+<p>We don't sell on the first call. We run a <strong>30-minute Customer Readiness Audit</strong> — a checklist against your master data, your planner availability, and your IT access.</p>
+<p>You walk away with:</p>
+<ol>
+<li>A <strong>tier recommendation</strong> (Bronze / Silver / Gold) based on what your plant can realistically support today.</li>
+<li>A <strong>go / no-go</strong> call, given honestly. We will tell you if you should fix your data foundation before starting.</li>
+<li>A <strong>fixed-fee Week-1 pilot quote</strong>, if you proceed.</li>
+</ol>
+<blockquote>
+<p><strong>Book the audit:</strong>
+chatgptnotes@gmail.com · Dr. Murali B. K. — Galvon
+<em>Or talk to Saikat (automation engineer, 20+ years) directly.</em></p>
+</blockquote>
+<hr /></section>
+</body>
+</html>
