@@ -1,13 +1,13 @@
 {
   "collapse-filter": false,
-  "search": "Manufacturing Planning and JIT procurement agent",
+  "search": "path: Manufacturing Planning and JIT procurement agent",
   "showTags": true,
   "showAttachments": true,
   "hideUnresolved": true,
   "showOrphans": true,
-  "collapse-color-groups": false,
+  "collapse-color-groups": true,
   "colorGroups": [],
-  "collapse-display": false,
+  "collapse-display": true,
   "showArrow": false,
   "textFadeMultiplier": -1.4,
   "nodeSizeMultiplier": 1.45260416666667,
@@ -17,6 +17,6 @@
   "repelStrength": 20,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 0.3213363860503581,
+  "scale": 0.16348370567220413,
   "close": false
 }
