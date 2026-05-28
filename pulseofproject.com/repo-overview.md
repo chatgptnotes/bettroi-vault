@@ -2,18 +2,18 @@
 domain: pulseofproject.com
 repo: chatgptnotes/pulseofproject
 default_branch: main
-last_push: 2026-05-15T15:30:49Z
-size_kb: 2327
+last_push: 2026-05-27T12:20:16Z
+size_kb: 2436
 language: JavaScript
 description: ""
-extracted: 2026-05-27T07:19:35.881Z
+extracted: 2026-05-28T07:12:56.698Z
 ---
 # Software Operations Tracker — `pulseofproject.com`
 
 **Live URL:** https://pulseofproject.com/
 **GitHub repo:** https://github.com/chatgptnotes/pulseofproject
-**Default branch:** `main`  ·  **Last push:** 2026-05-15T15:30:49Z
-**Language:** JavaScript  ·  **Repo size:** 2327KB
+**Default branch:** `main`  ·  **Last push:** 2026-05-27T12:20:16Z
+**Language:** JavaScript  ·  **Repo size:** 2436KB
 
 
 
@@ -62,14 +62,14 @@ extracted: 2026-05-27T07:19:35.881Z
 - `CHECKBOX_UI_UPDATE_FIX.md` (6KB)
 - `CHECK_ADMIN_PROJECTS_DATA.sql` (2KB)
 - `CHECK_USER_PROJECT_ASSIGNMENT.sql` (3KB)
-- `CLAUDE.md` (2KB)
+- `CLAUDE.md` (19KB)
 - `COLLABORATIVE_PROJECT_TRACKING_GUIDE.md` (6KB)
 - `COMPLETE-ALL-PROJECTS-SQL.sql` (28KB)
 - `COMPLETE_ERROR_FIX_GUIDE.md` (6KB)
 
 ## Folder breakdown
 
-- `apps/` — 113 files
+- `apps/` — 116 files
 - `packages/` — 13 files
 - `.claude/` — 10 files
 - `supabase/` — 7 files
@@ -87,6 +87,9 @@ extracted: 2026-05-27T07:19:35.881Z
 
 ## Recent commits
 
+- `34e4236` _2026-05-27_ — refactor(seo): move pre-render fallback styles to a stylesheet
+- `774dcd7` _2026-05-27_ — fix(seo): point canonical/OG/sitemap to www.pulseofproject.com
+- `716a833` _2026-05-27_ — feat(seo): optimize metadata, public landing, perf, and social tags
 - `88cf6b0` _2026-05-15_ — Merge pull request #6 from chatgptnotes/deploy/employees
 - `ec0f880` _2026-05-15_ — feat(employees): add Employees page (Drmhope + Bettroi roster) - v2.0.28
 - `2ed7c23` _2026-05-15_ — Merge pull request #5 from chatgptnotes/deploy/domain-master
@@ -94,9 +97,6 @@ extracted: 2026-05-27T07:19:35.881Z
 - `02eedfb` _2026-05-06_ — Merge pull request #3 from chatgptnotes/feat/bug-scope-classification
 - `ff62148` _2026-05-06_ — chore: bump version to 2.0.26
 - `832972d` _2026-05-06_ — fix: declare scope-classifier deps in apps/web
-- `af335f8` _2026-05-06_ — Merge pull request #2 from chatgptnotes/feat/bug-scope-classification
-- `0e56570` _2026-05-06_ — chore: bump version to 2.0.25
-- `f1a1858` _2026-05-06_ — feat: bug scope classification against signed-off agreement
 
 ## README
 

@@ -2,18 +2,18 @@
 domain: fluxio.work
 repo: chatgptnotes/hopehospital-dashboard
 default_branch: main
-last_push: 2026-05-25T14:40:58Z
-size_kb: 2817
+last_push: 2026-05-27T15:12:01Z
+size_kb: 2827
 language: TypeScript
 description: "Hope Hospital + Ayushman Hospital - operations management dashboard. Live at fluxio.work."
-extracted: 2026-05-27T07:19:34.253Z
+extracted: 2026-05-28T07:12:54.061Z
 ---
 # Hope+Ayushman Operations — `fluxio.work`
 
 **Live URL:** https://fluxio.work/
 **GitHub repo:** https://github.com/chatgptnotes/hopehospital-dashboard
-**Default branch:** `main`  ·  **Last push:** 2026-05-25T14:40:58Z
-**Language:** TypeScript  ·  **Repo size:** 2817KB
+**Default branch:** `main`  ·  **Last push:** 2026-05-27T15:12:01Z
+**Language:** TypeScript  ·  **Repo size:** 2827KB
 
 > Hope Hospital + Ayushman Hospital - operations management dashboard. Live at fluxio.work.
 
@@ -60,7 +60,7 @@ extracted: 2026-05-27T07:19:34.253Z
 ## Folder breakdown
 
 - `src/` — 141 files
-- `supabase/` — 14 files
+- `supabase/` — 15 files
 - `public/` — 7 files
 - `.env/` — 1 file
 - `.gitignore/` — 1 file
@@ -77,6 +77,7 @@ extracted: 2026-05-27T07:19:34.253Z
 
 ## Recent commits
 
+- `893349a` _2026-05-27_ — feat(bank-credentials): auto-generate PDF from page + per-bank QR code upload
 - `906618b` _2026-05-25_ — fix(org-vault): show card image upload buttons for new cards too
 - `54afbee` _2026-05-25_ — feat(org-vault): add front/back image upload to card form
 - `9fcb528` _2026-05-25_ — feat: add PAN/Aadhaar image uploads to org vault and multi-image upload to cards
@@ -86,7 +87,6 @@ extracted: 2026-05-27T07:19:34.253Z
 - `8673a7f` _2026-05-17_ — chore: remove password prompt, use Referer-based domain check
 - `e48d72b` _2026-05-17_ — feat(bank-credentials): inline edit for OTP mobile per card
 - `aa64e19` _2026-05-17_ — feat(bank-credentials): display OTP mobile on each card
-- `76a77c3` _2026-05-17_ — chore: remove password prompt, use Referer-based domain check
 
 ## README
 

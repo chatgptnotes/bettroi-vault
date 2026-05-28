@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-05-27T06:38:08Z
-size_kb: 37331
+last_push: 2026-05-28T07:03:36Z
+size_kb: 37641
 language: TypeScript
 description: ""
-extracted: 2026-05-27T07:19:37.540Z
+extracted: 2026-05-28T07:12:59.174Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-05-27T06:38:08Z
-**Language:** TypeScript  ·  **Repo size:** 37331KB
+**Default branch:** `main`  ·  **Last push:** 2026-05-28T07:03:36Z
+**Language:** TypeScript  ·  **Repo size:** 37641KB
 
 
 
@@ -33,7 +33,7 @@ extracted: 2026-05-27T07:19:37.540Z
 - `tally:sync`: `node scripts/sync-tally-export.js`
 - `tally:direct-sync`: `node scripts/tally-direct-sync.js`
 
-**Dependencies (68):** @ckeditor/ckeditor5-build-classic, @ckeditor/ckeditor5-react, @dnd-kit/core, @dnd-kit/sortable, @dnd-kit/utilities, @hookform/resolvers, @radix-ui/react-accordion, @radix-ui/react-alert-dialog, @radix-ui/react-aspect-ratio, @radix-ui/react-avatar, @radix-ui/react-checkbox, @radix-ui/react-collapsible, @radix-ui/react-context-menu, @radix-ui/react-dialog, @radix-ui/react-dropdown-menu, @radix-ui/react-hover-card, @radix-ui/react-label, @radix-ui/react-menubar, @radix-ui/react-navigation-menu, @radix-ui/react-popover, @radix-ui/react-progress, @radix-ui/react-radio-group, @radix-ui/react-scroll-area, @radix-ui/react-select, @radix-ui/react-separator, @radix-ui/react-slider, @radix-ui/react-slot, @radix-ui/react-switch, @radix-ui/react-tabs, @radix-ui/react-toast...
+**Dependencies (69):** @ckeditor/ckeditor5-build-classic, @ckeditor/ckeditor5-react, @dnd-kit/core, @dnd-kit/sortable, @dnd-kit/utilities, @hookform/resolvers, @radix-ui/react-accordion, @radix-ui/react-alert-dialog, @radix-ui/react-aspect-ratio, @radix-ui/react-avatar, @radix-ui/react-checkbox, @radix-ui/react-collapsible, @radix-ui/react-context-menu, @radix-ui/react-dialog, @radix-ui/react-dropdown-menu, @radix-ui/react-hover-card, @radix-ui/react-label, @radix-ui/react-menubar, @radix-ui/react-navigation-menu, @radix-ui/react-popover, @radix-ui/react-progress, @radix-ui/react-radio-group, @radix-ui/react-scroll-area, @radix-ui/react-select, @radix-ui/react-separator, @radix-ui/react-slider, @radix-ui/react-slot, @radix-ui/react-switch, @radix-ui/react-tabs, @radix-ui/react-toast...
 
 **Dev Dependencies (22):** @eslint/js, @playwright/test, @supabase/mcp-server-supabase, @tailwindcss/typography, @types/node, @types/react, @types/react-dom, @vercel/node, @vitejs/plugin-react, @vitejs/plugin-react-swc, autoprefixer, eslint, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, lovable-tagger, postcss, tailwindcss, typescript, typescript-eslint...
 
@@ -72,8 +72,8 @@ extracted: 2026-05-27T07:19:37.540Z
 
 ## Folder breakdown
 
-- `src/` — 754 files
-- `supabase/` — 387 files
+- `src/` — 758 files
+- `supabase/` — 391 files
 - `public/` — 51 files
 - `claude-auto-confirm/` — 19 files
 - `.claude/` — 17 files
@@ -90,16 +90,16 @@ extracted: 2026-05-27T07:19:37.540Z
 
 ## Recent commits
 
-- `3e62f1a` _2026-05-27_ — fix(corporate-receipts): show menu to all roles + fix Add Receipt crash
-- `760b22b` _2026-05-25_ — fix(ipd-discharge): remove NABH and Hope logos from print letterhead
-- `b94538a` _2026-05-23_ — feat(discharge): conservative-aware summary + print fixes (#314)
-- `2da764b` _2026-05-23_ — fix(tablet-billing): record collection via advance_payment, not broken RPC (#313
-- `6d26a51` _2026-05-23_ — feat(tablet): admin-only hospital switcher in top bar (#312)
-- `121c973` _2026-05-23_ — feat(visit): allow typing a new Diagnosis (creatable select) (#311)
-- `ec54322` _2026-05-23_ — feat(ipd-dashboard): show Actions column for receptionist role (#310)
-- `b86c197` _2026-05-23_ — fix(pwa): scope dark base background to installed app only (#309)
-- `25343db` _2026-05-23_ — perf(discharge): eager-load IPD Discharge Summary to fix stale-chunk crash (#308
-- `cb6d3d6` _2026-05-22_ — Merge pull request #306 from chatgptnotes/feat/pwa-installable-fullscreen
+- `f5f6acf` _2026-05-28_ — feat(director-dashboard): Director's Files document library + Daily Revenue Repo
+- `ee7ac2c` _2026-05-28_ — fix: open Executive Action Items PDF synchronously to avoid popup block
+- `3d3f065` _2026-05-28_ — fix: open Executive Action Items PDF directly in new tab
+- `d8a0775` _2026-05-28_ — Merge branch 'fix/hide-rm-returning-patients' into main
+- `abac480` _2026-05-27_ — feat: add Executive Action Items button to Director Dashboard
+- `5555998` _2026-05-27_ — fix: hide Relationship Manager field for returning patients (#316)
+- `050e1ae` _2026-05-27_ — fix: show real Relationship Manager from visits, fall back to Direct
+- `756d1eb` _2026-05-27_ — feat: phone search, selectable RM, and revert Aadhaar/RM-hide changes
+- `14f115f` _2026-05-27_ — fix: hide Relationship Manager field for returning patients
+- `6ee5e61` _2026-05-27_ — style(relationship-manager): replace # with RM- prefix on code badge and PDF
 
 ## README
 
