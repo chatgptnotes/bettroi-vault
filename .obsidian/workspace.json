@@ -189,6 +189,8 @@
   },
   "active": "2c320a689eceed4f",
   "lastOpenFiles": [
+    "_Calendar/2026-06-01.md",
+    "_Calendar/2026-05-30.md",
     "_Daily-Briefs/2026-06-01.md",
     "Manufacturing Planning and JIT procurement agent/assets/styles/deck.css",
     "Manufacturing Planning and JIT procurement agent/assets/diagrams/12-deployment-tiers.svg",
@@ -228,8 +230,6 @@
     "modules/Insurance.md",
     "modules/IPD.md",
     "modules/Corporate.md",
-    "modules/Billing.md",
-    "modules/Admin & Users.md",
     "bettroi-vault-main/node_modules/@supabase/phoenix/priv/static/phoenix.png",
     "bettroi-vault-main/node_modules/@supabase/phoenix/priv/static/phoenix-orange.png",
     "bettroi-vault-main/Untitled.canvas",
