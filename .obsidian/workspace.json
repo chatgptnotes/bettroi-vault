@@ -11,10 +11,14 @@
             "id": "2c320a689eceed4f",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "bettroi-vault-main/Manufacturing Planning and JIT procurement agent/meetings/2026-05-05 - Martis-Hospital---Vishesh-Bhuptani.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-05-05 - Martis-Hospital---Vishesh-Bhuptani"
             }
           }
         ]
@@ -49,8 +53,8 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "sop hope hospital",
-                "matchingCase": false,
+                "query": "661567993",
+                "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
@@ -70,7 +74,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
