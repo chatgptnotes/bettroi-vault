@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-05-28T07:03:36Z
-size_kb: 37641
+last_push: 2026-06-01T05:54:12Z
+size_kb: 39295
 language: TypeScript
 description: ""
-extracted: 2026-05-28T07:12:59.174Z
+extracted: 2026-06-01T07:37:12.233Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-05-28T07:03:36Z
-**Language:** TypeScript  ·  **Repo size:** 37641KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-01T05:54:12Z
+**Language:** TypeScript  ·  **Repo size:** 39295KB
 
 
 
@@ -33,7 +33,7 @@ extracted: 2026-05-28T07:12:59.174Z
 - `tally:sync`: `node scripts/sync-tally-export.js`
 - `tally:direct-sync`: `node scripts/tally-direct-sync.js`
 
-**Dependencies (69):** @ckeditor/ckeditor5-build-classic, @ckeditor/ckeditor5-react, @dnd-kit/core, @dnd-kit/sortable, @dnd-kit/utilities, @hookform/resolvers, @radix-ui/react-accordion, @radix-ui/react-alert-dialog, @radix-ui/react-aspect-ratio, @radix-ui/react-avatar, @radix-ui/react-checkbox, @radix-ui/react-collapsible, @radix-ui/react-context-menu, @radix-ui/react-dialog, @radix-ui/react-dropdown-menu, @radix-ui/react-hover-card, @radix-ui/react-label, @radix-ui/react-menubar, @radix-ui/react-navigation-menu, @radix-ui/react-popover, @radix-ui/react-progress, @radix-ui/react-radio-group, @radix-ui/react-scroll-area, @radix-ui/react-select, @radix-ui/react-separator, @radix-ui/react-slider, @radix-ui/react-slot, @radix-ui/react-switch, @radix-ui/react-tabs, @radix-ui/react-toast...
+**Dependencies (70):** @ckeditor/ckeditor5-build-classic, @ckeditor/ckeditor5-react, @dnd-kit/core, @dnd-kit/sortable, @dnd-kit/utilities, @hookform/resolvers, @radix-ui/react-accordion, @radix-ui/react-alert-dialog, @radix-ui/react-aspect-ratio, @radix-ui/react-avatar, @radix-ui/react-checkbox, @radix-ui/react-collapsible, @radix-ui/react-context-menu, @radix-ui/react-dialog, @radix-ui/react-dropdown-menu, @radix-ui/react-hover-card, @radix-ui/react-label, @radix-ui/react-menubar, @radix-ui/react-navigation-menu, @radix-ui/react-popover, @radix-ui/react-progress, @radix-ui/react-radio-group, @radix-ui/react-scroll-area, @radix-ui/react-select, @radix-ui/react-separator, @radix-ui/react-slider, @radix-ui/react-slot, @radix-ui/react-switch, @radix-ui/react-tabs, @radix-ui/react-toast...
 
 **Dev Dependencies (22):** @eslint/js, @playwright/test, @supabase/mcp-server-supabase, @tailwindcss/typography, @types/node, @types/react, @types/react-dom, @vercel/node, @vitejs/plugin-react, @vitejs/plugin-react-swc, autoprefixer, eslint, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, lovable-tagger, postcss, tailwindcss, typescript, typescript-eslint...
 
@@ -58,6 +58,8 @@ extracted: 2026-05-28T07:12:59.174Z
 - `AUDIT_REPORT.md` (40KB)
 - `AUTOMATED_TEST_NESTED_SUBTESTS.sql` (8KB)
 - `AYUSHMAN_QUICK_FIX.sql` (3KB)
+- `Adamrit_HMS_Brochure.html` (62KB)
+- `Adamrit_HMS_Brochure.pdf` (2.1MB)
 - `BATCH_INVENTORY_IMPLEMENTATION_GUIDE.md` (12KB)
 - `CASH_BOOK_DAILY_TRANSACTIONS_GUIDE.md` (5KB)
 - `CGHS_SURGERY_FIELDS_IMPLEMENTATION.md` (3KB)
@@ -67,19 +69,17 @@ extracted: 2026-05-28T07:12:59.174Z
 - `CHECK_AND_FIX_SEQUENCE.sql` (6KB)
 - `CHECK_AND_INSERT_ALL_CBC_FORMULAS.sql` (3KB)
 - `CHECK_NESTED_SUB_TESTS.sql` (471B)
-- `CHECK_NESTED_UNITS.sql` (424B)
-- `CHECK_PAYMENT_MODE.sql` (2KB)
 
 ## Folder breakdown
 
-- `src/` — 758 files
-- `supabase/` — 391 files
+- `src/` — 789 files
+- `supabase/` — 401 files
 - `public/` — 51 files
 - `claude-auto-confirm/` — 19 files
 - `.claude/` — 17 files
+- `e2e/` — 11 files
 - `scripts/` — 9 files
-- `e2e/` — 7 files
-- `api/` — 6 files
+- `api/` — 7 files
 - `supabase-migrations/` — 2 files
 - `.env.example/` — 1 file
 - `.gitignore/` — 1 file
@@ -90,16 +90,16 @@ extracted: 2026-05-28T07:12:59.174Z
 
 ## Recent commits
 
-- `f5f6acf` _2026-05-28_ — feat(director-dashboard): Director's Files document library + Daily Revenue Repo
-- `ee7ac2c` _2026-05-28_ — fix: open Executive Action Items PDF synchronously to avoid popup block
-- `3d3f065` _2026-05-28_ — fix: open Executive Action Items PDF directly in new tab
-- `d8a0775` _2026-05-28_ — Merge branch 'fix/hide-rm-returning-patients' into main
-- `abac480` _2026-05-27_ — feat: add Executive Action Items button to Director Dashboard
-- `5555998` _2026-05-27_ — fix: hide Relationship Manager field for returning patients (#316)
-- `050e1ae` _2026-05-27_ — fix: show real Relationship Manager from visits, fall back to Direct
-- `756d1eb` _2026-05-27_ — feat: phone search, selectable RM, and revert Aadhaar/RM-hide changes
-- `14f115f` _2026-05-27_ — fix: hide Relationship Manager field for returning patients
-- `6ee5e61` _2026-05-27_ — style(relationship-manager): replace # with RM- prefix on code badge and PDF
+- `e9543e3` _2026-06-01_ — feat(daily-allocation): add IPD Collection section + center title + hide number 
+- `670d039` _2026-05-31_ — feat(director-dashboard): make My Projects launcher editable + add GST and Tax D
+- `cbd9c4f` _2026-05-30_ — feat: NephroPlus dialysis revenue-share tab + JotForm task-optimizer flows
+- `eefb833` _2026-05-30_ — feat: seamlessly fall back from Gemini flash to flash-lite on failure
+- `4e220b4` _2026-05-30_ — perf: cut Gemini token usage via image downscaling + model routing
+- `2de898d` _2026-05-30_ — feat: add Task Optimizer tab with AI task suggestions and daily log
+- `579823e` _2026-05-30_ — feat: make scanned medicines fully editable before sending
+- `68eee4c` _2026-05-30_ — refactor: simplify prescription print to a plain A4 layout
+- `efbe073` _2026-05-30_ — feat: clean A4 print for Prescription Details
+- `70fab8c` _2026-05-30_ — feat: attach scanned chart photo to the prescription
 
 ## README
 
