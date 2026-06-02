@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-06-01T05:54:12Z
-size_kb: 39295
+last_push: 2026-06-02T05:44:02Z
+size_kb: 39418
 language: TypeScript
 description: ""
-extracted: 2026-06-01T07:37:12.233Z
+extracted: 2026-06-02T07:31:25.665Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-06-01T05:54:12Z
-**Language:** TypeScript  ·  **Repo size:** 39295KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-02T05:44:02Z
+**Language:** TypeScript  ·  **Repo size:** 39418KB
 
 
 
@@ -72,8 +72,8 @@ extracted: 2026-06-01T07:37:12.233Z
 
 ## Folder breakdown
 
-- `src/` — 789 files
-- `supabase/` — 401 files
+- `src/` — 788 files
+- `supabase/` — 407 files
 - `public/` — 51 files
 - `claude-auto-confirm/` — 19 files
 - `.claude/` — 17 files
@@ -90,16 +90,16 @@ extracted: 2026-06-01T07:37:12.233Z
 
 ## Recent commits
 
+- `4eb1e41` _2026-06-02_ — feat: auto-fetch payment vouchers into cash book and day book by date
+- `57eb320` _2026-06-01_ — feat: add Casualty Register page and nurse workflow automation templates
+- `87bc54f` _2026-06-01_ — feat: clickable intimation date with green status pill on IPD dashboard
+- `2caa777` _2026-06-01_ — feat(payment-voucher): add Payment Voucher page with date-filtered history
+- `e4117be` _2026-06-01_ — feat: rebuild NephroPlus as director payout view + jotform task-optimizer update
 - `e9543e3` _2026-06-01_ — feat(daily-allocation): add IPD Collection section + center title + hide number 
 - `670d039` _2026-05-31_ — feat(director-dashboard): make My Projects launcher editable + add GST and Tax D
 - `cbd9c4f` _2026-05-30_ — feat: NephroPlus dialysis revenue-share tab + JotForm task-optimizer flows
 - `eefb833` _2026-05-30_ — feat: seamlessly fall back from Gemini flash to flash-lite on failure
 - `4e220b4` _2026-05-30_ — perf: cut Gemini token usage via image downscaling + model routing
-- `2de898d` _2026-05-30_ — feat: add Task Optimizer tab with AI task suggestions and daily log
-- `579823e` _2026-05-30_ — feat: make scanned medicines fully editable before sending
-- `68eee4c` _2026-05-30_ — refactor: simplify prescription print to a plain A4 layout
-- `efbe073` _2026-05-30_ — feat: clean A4 print for Prescription Details
-- `70fab8c` _2026-05-30_ — feat: attach scanned chart photo to the prescription
 
 ## README
 
