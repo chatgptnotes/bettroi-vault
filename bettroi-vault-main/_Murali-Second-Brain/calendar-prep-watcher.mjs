@@ -19,6 +19,34 @@ const MIN_AHEAD_MIN = 15;
 const MAX_AHEAD_MIN = 35;
 const STATE_KEY = 'U_CALENDAR_NOTIFIED';
 
+// Google Calendar descriptions arrive as HTML. Slack `text` is mrkdwn, not HTML,
+// so tags render literally. Convert to clean plain text before sending.
+function htmlToText(html) {
+  if (!html) return '';
+  return String(html)
+    // collapse <a href="X">X</a> to a single value (avoid showing the URL twice)
+    .replace(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi, (_m, href, label) => {
+      const text = label.replace(/<[^>]+>/g, '').trim();
+      return text && text !== href ? `${text} (${href})` : href;
+    })
+    // block-level tags become line breaks
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/(p|div|li|tr|h[1-6])>/gi, '\n')
+    // drop all remaining tags
+    .replace(/<[^>]+>/g, '')
+    // decode common entities
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    // tidy whitespace
+    .replace(/[ \t]+\n/g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
 async function getNotifiedSet() {
   const { data } = await supabase.from('brain_user_state').select('last_items_dm').eq('slack_user_id', STATE_KEY).maybeSingle();
   return new Set((data?.last_items_dm ?? []));
@@ -97,7 +125,7 @@ async function processEvent(event, notified, slackUsers) {
     }
   }
 
-  const headerCore = `*Meeting:* ${title}\n*Starts:* ${startStr} IST (in ${Math.round(minutesAhead)} min)${attendeesRaw.length ? `\n*Attendees:* ${attendeesRaw.slice(0, 8).join(', ')}` : ''}\n${event.location ? `*Location:* ${event.location}\n` : ''}${event.description ? `\n*Agenda:*\n${event.description.slice(0, 400)}\n` : ''}`;
+  const headerCore = `*Meeting:* ${title}\n*Starts:* ${startStr} IST (in ${Math.round(minutesAhead)} min)${attendeesRaw.length ? `\n*Attendees:* ${attendeesRaw.slice(0, 8).join(', ')}` : ''}\n${event.location ? `*Location:* ${event.location}\n` : ''}${event.description ? `\n*Agenda:*\n${htmlToText(event.description).slice(0, 400)}\n` : ''}`;
 
   for (const [slackId, { user, focusPerson }] of recipients.entries()) {
     let brief = '';
@@ -105,7 +133,11 @@ async function processEvent(event, notified, slackUsers) {
       const { answer, srcList } = await prepText(title, user.role || 'public', user.role === 'murali' ? null : focusPerson);
       brief = `\n\n${answer}${srcList ? '\n\n*Sources:*\n' + srcList : ''}`;
     } catch (e) {
-      brief = `\n\n_(Brain query failed: ${e.message})_`;
+      const quota = e.status === 429 || /quota|exceeded|429|insufficient/i.test(e.message || '');
+      brief = quota
+        ? `\n\n_(Briefing skipped — brain is temporarily unavailable.)_`
+        : `\n\n_(Briefing unavailable right now.)_`;
+      console.warn(`  ! brain query failed${quota ? ' (quota/429)' : ''}: ${e.message}`);
     }
     const greeting = user.role === 'murali' ? '🧭 *Pre-meeting briefing*\n' : `🧭 *Heads-up — meeting in ${Math.round(minutesAhead)} min*\nYou're invited to a meeting Dr. Murali is attending. Here's context relevant to you.\n\n`;
     const text = `${greeting}${headerCore}${brief}`;
