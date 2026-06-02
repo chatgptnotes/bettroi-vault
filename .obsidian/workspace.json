@@ -193,8 +193,9 @@
       "bases:Create new base": false
     }
   },
-  "active": "81d5829f33e7d444",
+  "active": "2c320a689eceed4f",
   "lastOpenFiles": [
+    "_Daily-Briefs/2026-06-02.md",
     "_Calendar/2026-06-01.md",
     "_Calendar/2026-05-30.md",
     "_Daily-Briefs/2026-06-01.md",
@@ -235,7 +236,6 @@
     "modules/Lab.md",
     "modules/Insurance.md",
     "modules/IPD.md",
-    "modules/Corporate.md",
     "bettroi-vault-main/node_modules/@supabase/phoenix/priv/static/phoenix.png",
     "bettroi-vault-main/node_modules/@supabase/phoenix/priv/static/phoenix-orange.png",
     "bettroi-vault-main/Untitled.canvas",
