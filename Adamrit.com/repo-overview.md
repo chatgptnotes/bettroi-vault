@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-06-02T05:44:02Z
-size_kb: 39418
+last_push: 2026-06-02T12:36:44Z
+size_kb: 39610
 language: TypeScript
 description: ""
-extracted: 2026-06-02T07:31:25.665Z
+extracted: 2026-06-03T07:34:13.132Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-06-02T05:44:02Z
-**Language:** TypeScript  ·  **Repo size:** 39418KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-02T12:36:44Z
+**Language:** TypeScript  ·  **Repo size:** 39610KB
 
 
 
@@ -33,9 +33,9 @@ extracted: 2026-06-02T07:31:25.665Z
 - `tally:sync`: `node scripts/sync-tally-export.js`
 - `tally:direct-sync`: `node scripts/tally-direct-sync.js`
 
-**Dependencies (70):** @ckeditor/ckeditor5-build-classic, @ckeditor/ckeditor5-react, @dnd-kit/core, @dnd-kit/sortable, @dnd-kit/utilities, @hookform/resolvers, @radix-ui/react-accordion, @radix-ui/react-alert-dialog, @radix-ui/react-aspect-ratio, @radix-ui/react-avatar, @radix-ui/react-checkbox, @radix-ui/react-collapsible, @radix-ui/react-context-menu, @radix-ui/react-dialog, @radix-ui/react-dropdown-menu, @radix-ui/react-hover-card, @radix-ui/react-label, @radix-ui/react-menubar, @radix-ui/react-navigation-menu, @radix-ui/react-popover, @radix-ui/react-progress, @radix-ui/react-radio-group, @radix-ui/react-scroll-area, @radix-ui/react-select, @radix-ui/react-separator, @radix-ui/react-slider, @radix-ui/react-slot, @radix-ui/react-switch, @radix-ui/react-tabs, @radix-ui/react-toast...
+**Dependencies (71):** @ckeditor/ckeditor5-build-classic, @ckeditor/ckeditor5-react, @dnd-kit/core, @dnd-kit/sortable, @dnd-kit/utilities, @hookform/resolvers, @radix-ui/react-accordion, @radix-ui/react-alert-dialog, @radix-ui/react-aspect-ratio, @radix-ui/react-avatar, @radix-ui/react-checkbox, @radix-ui/react-collapsible, @radix-ui/react-context-menu, @radix-ui/react-dialog, @radix-ui/react-dropdown-menu, @radix-ui/react-hover-card, @radix-ui/react-label, @radix-ui/react-menubar, @radix-ui/react-navigation-menu, @radix-ui/react-popover, @radix-ui/react-progress, @radix-ui/react-radio-group, @radix-ui/react-scroll-area, @radix-ui/react-select, @radix-ui/react-separator, @radix-ui/react-slider, @radix-ui/react-slot, @radix-ui/react-switch, @radix-ui/react-tabs, @radix-ui/react-toast...
 
-**Dev Dependencies (22):** @eslint/js, @playwright/test, @supabase/mcp-server-supabase, @tailwindcss/typography, @types/node, @types/react, @types/react-dom, @vercel/node, @vitejs/plugin-react, @vitejs/plugin-react-swc, autoprefixer, eslint, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, lovable-tagger, postcss, tailwindcss, typescript, typescript-eslint...
+**Dev Dependencies (23):** @eslint/js, @playwright/test, @supabase/mcp-server-supabase, @tailwindcss/typography, @types/node, @types/react, @types/react-dom, @vercel/node, @vitejs/plugin-basic-ssl, @vitejs/plugin-react, @vitejs/plugin-react-swc, autoprefixer, eslint, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, lovable-tagger, postcss, tailwindcss, typescript...
 
 ## Top-level files
 
@@ -72,13 +72,13 @@ extracted: 2026-06-02T07:31:25.665Z
 
 ## Folder breakdown
 
-- `src/` — 788 files
-- `supabase/` — 407 files
+- `src/` — 795 files
+- `supabase/` — 410 files
 - `public/` — 51 files
+- `scripts/` — 23 files
 - `claude-auto-confirm/` — 19 files
 - `.claude/` — 17 files
 - `e2e/` — 11 files
-- `scripts/` — 9 files
 - `api/` — 7 files
 - `supabase-migrations/` — 2 files
 - `.env.example/` — 1 file
@@ -90,16 +90,16 @@ extracted: 2026-06-02T07:31:25.665Z
 
 ## Recent commits
 
+- `8fb9f34` _2026-06-02_ — feat(casualty): save Aadhaar front+back images to patient-documents with preview
+- `cb540ff` _2026-06-02_ — feat(casualty): front + back Aadhaar scan with live camera and new patient regis
+- `0788a6d` _2026-06-02_ — Biling automation (#318)
+- `39b99db` _2026-06-02_ — fix(cash-book): use picked discharge date for Final Payment on cash book (#317)
+- `ea9180d` _2026-06-02_ — feat(casualty): add document scan + live camera OCR for emergency patient form
 - `4eb1e41` _2026-06-02_ — feat: auto-fetch payment vouchers into cash book and day book by date
 - `57eb320` _2026-06-01_ — feat: add Casualty Register page and nurse workflow automation templates
 - `87bc54f` _2026-06-01_ — feat: clickable intimation date with green status pill on IPD dashboard
 - `2caa777` _2026-06-01_ — feat(payment-voucher): add Payment Voucher page with date-filtered history
 - `e4117be` _2026-06-01_ — feat: rebuild NephroPlus as director payout view + jotform task-optimizer update
-- `e9543e3` _2026-06-01_ — feat(daily-allocation): add IPD Collection section + center title + hide number 
-- `670d039` _2026-05-31_ — feat(director-dashboard): make My Projects launcher editable + add GST and Tax D
-- `cbd9c4f` _2026-05-30_ — feat: NephroPlus dialysis revenue-share tab + JotForm task-optimizer flows
-- `eefb833` _2026-05-30_ — feat: seamlessly fall back from Gemini flash to flash-lite on failure
-- `4e220b4` _2026-05-30_ — perf: cut Gemini token usage via image downscaling + model routing
 
 ## README
 
