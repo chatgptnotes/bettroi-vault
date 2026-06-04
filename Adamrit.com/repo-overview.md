@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-06-02T12:36:44Z
-size_kb: 39610
+last_push: 2026-06-04T06:18:49Z
+size_kb: 39958
 language: TypeScript
 description: ""
-extracted: 2026-06-03T07:34:13.132Z
+extracted: 2026-06-04T07:31:13.808Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-06-02T12:36:44Z
-**Language:** TypeScript  ·  **Repo size:** 39610KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-04T06:18:49Z
+**Language:** TypeScript  ·  **Repo size:** 39958KB
 
 
 
@@ -33,12 +33,13 @@ extracted: 2026-06-03T07:34:13.132Z
 - `tally:sync`: `node scripts/sync-tally-export.js`
 - `tally:direct-sync`: `node scripts/tally-direct-sync.js`
 
-**Dependencies (71):** @ckeditor/ckeditor5-build-classic, @ckeditor/ckeditor5-react, @dnd-kit/core, @dnd-kit/sortable, @dnd-kit/utilities, @hookform/resolvers, @radix-ui/react-accordion, @radix-ui/react-alert-dialog, @radix-ui/react-aspect-ratio, @radix-ui/react-avatar, @radix-ui/react-checkbox, @radix-ui/react-collapsible, @radix-ui/react-context-menu, @radix-ui/react-dialog, @radix-ui/react-dropdown-menu, @radix-ui/react-hover-card, @radix-ui/react-label, @radix-ui/react-menubar, @radix-ui/react-navigation-menu, @radix-ui/react-popover, @radix-ui/react-progress, @radix-ui/react-radio-group, @radix-ui/react-scroll-area, @radix-ui/react-select, @radix-ui/react-separator, @radix-ui/react-slider, @radix-ui/react-slot, @radix-ui/react-switch, @radix-ui/react-tabs, @radix-ui/react-toast...
+**Dependencies (72):** @ckeditor/ckeditor5-build-classic, @ckeditor/ckeditor5-react, @dnd-kit/core, @dnd-kit/sortable, @dnd-kit/utilities, @hookform/resolvers, @radix-ui/react-accordion, @radix-ui/react-alert-dialog, @radix-ui/react-aspect-ratio, @radix-ui/react-avatar, @radix-ui/react-checkbox, @radix-ui/react-collapsible, @radix-ui/react-context-menu, @radix-ui/react-dialog, @radix-ui/react-dropdown-menu, @radix-ui/react-hover-card, @radix-ui/react-label, @radix-ui/react-menubar, @radix-ui/react-navigation-menu, @radix-ui/react-popover, @radix-ui/react-progress, @radix-ui/react-radio-group, @radix-ui/react-scroll-area, @radix-ui/react-select, @radix-ui/react-separator, @radix-ui/react-slider, @radix-ui/react-slot, @radix-ui/react-switch, @radix-ui/react-tabs, @radix-ui/react-toast...
 
 **Dev Dependencies (23):** @eslint/js, @playwright/test, @supabase/mcp-server-supabase, @tailwindcss/typography, @types/node, @types/react, @types/react-dom, @vercel/node, @vitejs/plugin-basic-ssl, @vitejs/plugin-react, @vitejs/plugin-react-swc, autoprefixer, eslint, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, lovable-tagger, postcss, tailwindcss, typescript...
 
 ## Top-level files
 
+- `.dockerignore` (350B)
 - `.env.example` (2KB)
 - `.gitignore` (284B)
 - `.npmrc` (22B)
@@ -68,38 +69,37 @@ extracted: 2026-06-03T07:34:13.132Z
 - `CHECK_AND_FIX_RLS.sql` (2KB)
 - `CHECK_AND_FIX_SEQUENCE.sql` (6KB)
 - `CHECK_AND_INSERT_ALL_CBC_FORMULAS.sql` (3KB)
-- `CHECK_NESTED_SUB_TESTS.sql` (471B)
 
 ## Folder breakdown
 
-- `src/` — 795 files
-- `supabase/` — 410 files
+- `src/` — 802 files
+- `supabase/` — 412 files
 - `public/` — 51 files
 - `scripts/` — 23 files
 - `claude-auto-confirm/` — 19 files
 - `.claude/` — 17 files
 - `e2e/` — 11 files
+- `sidecar/` — 9 files
 - `api/` — 7 files
+- `docker/` — 5 files
+- `k8s/` — 4 files
+- `docs/` — 2 files
 - `supabase-migrations/` — 2 files
+- `.dockerignore/` — 1 file
 - `.env.example/` — 1 file
-- `.gitignore/` — 1 file
-- `.npmrc/` — 1 file
-- `.nvmrc/` — 1 file
-- `.vercelignore/` — 1 file
-- `1_DROP_ALL_PHARMACY_OBJECTS.sql/` — 1 file
 
 ## Recent commits
 
-- `8fb9f34` _2026-06-02_ — feat(casualty): save Aadhaar front+back images to patient-documents with preview
-- `cb540ff` _2026-06-02_ — feat(casualty): front + back Aadhaar scan with live camera and new patient regis
-- `0788a6d` _2026-06-02_ — Biling automation (#318)
-- `39b99db` _2026-06-02_ — fix(cash-book): use picked discharge date for Final Payment on cash book (#317)
-- `ea9180d` _2026-06-02_ — feat(casualty): add document scan + live camera OCR for emergency patient form
-- `4eb1e41` _2026-06-02_ — feat: auto-fetch payment vouchers into cash book and day book by date
-- `57eb320` _2026-06-01_ — feat: add Casualty Register page and nurse workflow automation templates
-- `87bc54f` _2026-06-01_ — feat: clickable intimation date with green status pill on IPD dashboard
-- `2caa777` _2026-06-01_ — feat(payment-voucher): add Payment Voucher page with date-filtered history
-- `e4117be` _2026-06-01_ — feat: rebuild NephroPlus as director payout view + jotform task-optimizer update
+- `0d3ed50` _2026-06-04_ — feat(sidecar): audit log shipping to WORM store (#320 item 1) (#322)
+- `e2ac302` _2026-06-04_ — feat(sidecar): HIPAA compliance items 3-5 — PHI-free audit, security tagging, id
+- `0c943b6` _2026-06-04_ — feat(sidecar): add loopback-isolated keyless sidecar with Compose + K8s (#319)
+- `e5efe81` _2026-06-03_ — Revert "feat(skills): Claude Skills page — browse 141 harvested skills + build y
+- `ea6a7f3` _2026-06-03_ — feat(skills): Claude Skills page — browse 141 harvested skills + build your own
+- `d6d6f75` _2026-06-03_ — feat(sidebar+cards): collapsible sidebar sections; clickable stat cards (Lab/OT/
+- `2617c28` _2026-06-03_ — fix(pwa): auto-update service worker; move Users into Masters section
+- `13ba5dd` _2026-06-03_ — refactor(sidebar): remove report items now consolidated in Reports Center
+- `230300d` _2026-06-03_ — feat(reports): add Reports Center hub listing all reports in one place
+- `80e443b` _2026-06-03_ — feat(sidebar+director): master list count badges and clickable KPI cards
 
 ## README
 
