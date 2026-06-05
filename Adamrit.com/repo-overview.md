@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-06-04T06:18:49Z
-size_kb: 39958
+last_push: 2026-06-05T06:18:15Z
+size_kb: 40059
 language: TypeScript
 description: ""
-extracted: 2026-06-04T07:31:13.808Z
+extracted: 2026-06-05T07:22:55.935Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-06-04T06:18:49Z
-**Language:** TypeScript  ·  **Repo size:** 39958KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-05T06:18:15Z
+**Language:** TypeScript  ·  **Repo size:** 40059KB
 
 
 
@@ -39,9 +39,9 @@ extracted: 2026-06-04T07:31:13.808Z
 
 ## Top-level files
 
-- `.dockerignore` (350B)
+- `.dockerignore` (445B)
 - `.env.example` (2KB)
-- `.gitignore` (284B)
+- `.gitignore` (395B)
 - `.npmrc` (22B)
 - `.nvmrc` (3B)
 - `.vercelignore` (188B)
@@ -72,34 +72,34 @@ extracted: 2026-06-04T07:31:13.808Z
 
 ## Folder breakdown
 
-- `src/` — 802 files
-- `supabase/` — 412 files
+- `src/` — 808 files
+- `supabase/` — 433 files
 - `public/` — 51 files
+- `agents/` — 25 files
 - `scripts/` — 23 files
 - `claude-auto-confirm/` — 19 files
 - `.claude/` — 17 files
 - `e2e/` — 11 files
 - `sidecar/` — 9 files
 - `api/` — 7 files
-- `docker/` — 5 files
+- `docs/` — 7 files
+- `docker/` — 6 files
 - `k8s/` — 4 files
-- `docs/` — 2 files
 - `supabase-migrations/` — 2 files
 - `.dockerignore/` — 1 file
-- `.env.example/` — 1 file
 
 ## Recent commits
 
-- `0d3ed50` _2026-06-04_ — feat(sidecar): audit log shipping to WORM store (#320 item 1) (#322)
-- `e2ac302` _2026-06-04_ — feat(sidecar): HIPAA compliance items 3-5 — PHI-free audit, security tagging, id
-- `0c943b6` _2026-06-04_ — feat(sidecar): add loopback-isolated keyless sidecar with Compose + K8s (#319)
-- `e5efe81` _2026-06-03_ — Revert "feat(skills): Claude Skills page — browse 141 harvested skills + build y
-- `ea6a7f3` _2026-06-03_ — feat(skills): Claude Skills page — browse 141 harvested skills + build your own
-- `d6d6f75` _2026-06-03_ — feat(sidebar+cards): collapsible sidebar sections; clickable stat cards (Lab/OT/
-- `2617c28` _2026-06-03_ — fix(pwa): auto-update service worker; move Users into Masters section
-- `13ba5dd` _2026-06-03_ — refactor(sidebar): remove report items now consolidated in Reports Center
-- `230300d` _2026-06-03_ — feat(reports): add Reports Center hub listing all reports in one place
-- `80e443b` _2026-06-03_ — feat(sidebar+director): master list count badges and clickable KPI cards
+- `a1c3658` _2026-06-05_ — Merge feat/skill-factory-per-user-subagents into main
+- `a350437` _2026-06-05_ — feat(skill-factory): per-user subagents and rules with Supabase persistence
+- `f08896a` _2026-06-05_ — Merge feat/skill-factory-gemini into main
+- `b0b6cce` _2026-06-05_ — feat(skill-factory): add Skill Factory page with Gemini AI Assistant
+- `81ac0f9` _2026-06-04_ — Merge origin/feat/business-brain-foundation into main (branch consolidation)
+- `eb2f574` _2026-06-04_ — Merge origin/feat/business-brain into main (branch consolidation)
+- `7576e50` _2026-06-04_ — Merge origin/feat/skill-factory-mockup into main (branch consolidation)
+- `a5da0e3` _2026-06-04_ — Merge origin/feat/pharmacy-stock-swap-photo-split into main (branch consolidatio
+- `b4093d3` _2026-06-04_ — Merge origin/feat/pharmacy-ward-bridge into main (branch consolidation)
+- `8c3ec31` _2026-06-04_ — Merge origin/fix/discharge-summary-hospital-name into main (branch consolidation
 
 ## README
 
