@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Team Collaboration SOP</title>
+<style>
+  @page { size: A4; margin: 14mm 14mm 16mm 14mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1f2933; margin: 0; line-height: 1.5; font-size: 13px;
+  }
+  .page { page-break-after: always; padding: 4mm 0; }
+  .page:last-child { page-break-after: auto; }
+
+  .cover { text-align: center; padding-top: 60mm; }
+  .cover h1 { font-size: 34px; margin: 0 0 8px; color: #0b3d91; letter-spacing: 0.5px; }
+  .cover .sub { font-size: 15px; color: #52606d; }
+  .cover .meta { margin-top: 40px; font-size: 12px; color: #7b8794; }
+  .cover .badge {
+    display: inline-block; margin-top: 28px; padding: 8px 18px; border-radius: 22px;
+    background: #e8f0fe; color: #0b3d91; font-weight: 600; font-size: 13px;
+  }
+
+  h2 {
+    font-size: 21px; color: #0b3d91; margin: 0 0 4px;
+    border-bottom: 3px solid #e8f0fe; padding-bottom: 6px;
+  }
+  .lead { color: #52606d; font-size: 12.5px; margin: 0 0 16px; }
+  .step-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 50%; background: #0b3d91; color: #fff;
+    font-weight: 700; font-size: 13px; margin-right: 8px; vertical-align: middle;
+  }
+  .diagram { text-align: center; margin: 14px 0 18px; }
+  .rules { margin: 0; padding: 0; list-style: none; }
+  .rules li {
+    padding: 9px 12px; margin-bottom: 8px; background: #f5f7fa; border-left: 4px solid #0b3d91;
+    border-radius: 4px;
+  }
+  .rules li b { color: #0b3d91; }
+  .callout {
+    background: #fff8e6; border: 1px solid #f5d97a; border-radius: 6px;
+    padding: 10px 14px; margin-top: 12px; font-size: 12px;
+  }
+  .callout b { color: #8a6d00; }
+  .footer-note { margin-top: 18px; font-size: 11px; color: #9aa5b1; }
+  table.raci { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 11.5px; }
+  table.raci th, table.raci td { border: 1px solid #d2d9e0; padding: 7px 9px; text-align: left; }
+  table.raci th { background: #0b3d91; color: #fff; font-weight: 600; }
+  table.raci tr:nth-child(even) td { background: #f5f7fa; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="page cover">
+  <h1>Team Collaboration SOP</h1>
+  <div class="sub">How our software team works together, shares documents, and prepares for client meetings</div>
+  <div class="badge">Standard Operating Procedure</div>
+  <div class="meta">HopeTech / Bettroi software team<br>Version 2.0 &nbsp;&middot;&nbsp; June 2026</div>
+</section>
+
+<!-- LIFECYCLE OVERVIEW -->
+<section class="page">
+  <h2>The full delivery lifecycle</h2>
+  <p class="lead">Every project moves through eight stages. Green stages we already run well; amber are partly covered; red are the gaps this SOP now closes.</p>
+  <div class="diagram">
+    <svg width="660" height="340" viewBox="0 0 660 340" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="lc" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+          <path d="M0,0 L7,3 L0,6 Z" fill="#7b8794"/>
+        </marker>
+      </defs>
+      <!-- Row 1: Sell Plan Build Test -->
+      <g>
+        <rect x="20"  y="30" width="140" height="60" rx="9" fill="#eafaf1" stroke="#1f9d55" stroke-width="2"/>
+        <text x="90"  y="56" text-anchor="middle" font-size="13" font-weight="700" fill="#1f7a43">1. Sell</text>
+        <text x="90"  y="74" text-anchor="middle" font-size="9.5" fill="#52606d">proposalos.in</text>
+
+        <rect x="190" y="30" width="140" height="60" rx="9" fill="#fff8e6" stroke="#e0a800" stroke-width="2"/>
+        <text x="260" y="56" text-anchor="middle" font-size="13" font-weight="700" fill="#8a6d00">2. Plan</text>
+        <text x="260" y="74" text-anchor="middle" font-size="9.5" fill="#52606d">kickoff + sign-off</text>
+
+        <rect x="360" y="30" width="140" height="60" rx="9" fill="#fff8e6" stroke="#e0a800" stroke-width="2"/>
+        <text x="430" y="56" text-anchor="middle" font-size="13" font-weight="700" fill="#8a6d00">3. Build</text>
+        <text x="430" y="74" text-anchor="middle" font-size="9.5" fill="#52606d">tasks + code review</text>
+
+        <rect x="510" y="30" width="130" height="60" rx="9" fill="#fde8e8" stroke="#cf1124" stroke-width="2"/>
+        <text x="575" y="56" text-anchor="middle" font-size="13" font-weight="700" fill="#a01020">4. Test</text>
+        <text x="575" y="74" text-anchor="middle" font-size="9.5" fill="#52606d">QA gate</text>
+      </g>
+      <!-- Row 2: Deploy Accept Support Improve -->
+      <g>
+        <rect x="510" y="160" width="130" height="60" rx="9" fill="#fde8e8" stroke="#cf1124" stroke-width="2"/>
+        <text x="575" y="186" text-anchor="middle" font-size="13" font-weight="700" fill="#a01020">5. Deploy</text>
+        <text x="575" y="204" text-anchor="middle" font-size="9.5" fill="#52606d">staging to prod</text>
+
+        <rect x="360" y="160" width="140" height="60" rx="9" fill="#fde8e8" stroke="#cf1124" stroke-width="2"/>
+        <text x="430" y="186" text-anchor="middle" font-size="13" font-weight="700" fill="#a01020">6. Accept</text>
+        <text x="430" y="204" text-anchor="middle" font-size="9.5" fill="#52606d">client UAT sign-off</text>
+
+        <rect x="190" y="160" width="140" height="60" rx="9" fill="#fff8e6" stroke="#e0a800" stroke-width="2"/>
+        <text x="260" y="186" text-anchor="middle" font-size="13" font-weight="700" fill="#8a6d00">7. Support</text>
+        <text x="260" y="204" text-anchor="middle" font-size="9.5" fill="#52606d">pulseofproject.com</text>
+
+        <rect x="20"  y="160" width="140" height="60" rx="9" fill="#fff8e6" stroke="#e0a800" stroke-width="2"/>
+        <text x="90"  y="186" text-anchor="middle" font-size="13" font-weight="700" fill="#8a6d00">8. Improve</text>
+        <text x="90"  y="204" text-anchor="middle" font-size="9.5" fill="#52606d">retro + Second Brain</text>
+      </g>
+      <!-- arrows row1 -->
+      <line x1="160" y1="60" x2="190" y2="60" stroke="#7b8794" stroke-width="2" marker-end="url(#lc)"/>
+      <line x1="330" y1="60" x2="360" y2="60" stroke="#7b8794" stroke-width="2" marker-end="url(#lc)"/>
+      <line x1="500" y1="60" x2="510" y2="60" stroke="#7b8794" stroke-width="2" marker-end="url(#lc)"/>
+      <!-- down to row2 -->
+      <line x1="575" y1="90" x2="575" y2="160" stroke="#7b8794" stroke-width="2" marker-end="url(#lc)"/>
+      <!-- arrows row2 (right to left) -->
+      <line x1="510" y1="190" x2="500" y2="190" stroke="#7b8794" stroke-width="2" marker-end="url(#lc)"/>
+      <line x1="360" y1="190" x2="330" y2="190" stroke="#7b8794" stroke-width="2" marker-end="url(#lc)"/>
+      <line x1="190" y1="190" x2="160" y2="190" stroke="#7b8794" stroke-width="2" marker-end="url(#lc)"/>
+      <!-- loop back Improve -> Plan -->
+      <path d="M90,160 C90,120 200,118 240,90" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#lc)"/>
+      <text x="150" y="128" font-size="9.5" fill="#6020c0">learnings feed the next project</text>
+      <!-- legend -->
+      <g>
+        <rect x="20" y="280" width="16" height="16" rx="3" fill="#eafaf1" stroke="#1f9d55" stroke-width="2"/>
+        <text x="44" y="293" font-size="11" fill="#1f7a43">Covered today</text>
+        <rect x="180" y="280" width="16" height="16" rx="3" fill="#fff8e6" stroke="#e0a800" stroke-width="2"/>
+        <text x="204" y="293" font-size="11" fill="#8a6d00">Partly covered</text>
+        <rect x="340" y="280" width="16" height="16" rx="3" fill="#fde8e8" stroke="#cf1124" stroke-width="2"/>
+        <text x="364" y="293" font-size="11" fill="#a01020">Gap to close</text>
+      </g>
+    </svg>
+  </div>
+  <p class="footer-note">Pages 1 to 5 cover how we communicate and keep documents straight (the foundation). Pages 6 to 12 add the delivery steps that turn this into a complete software workflow.</p>
+</section>
+
+<!-- 1. SLACK -->
+<section class="page">
+  <h2><span class="step-num">1</span>Slack is our single collaboration channel</h2>
+  <p class="lead">All project conversation lives in Slack. Every project gets one channel, and its first pinned message is the Google Doc index.</p>
+  <div class="diagram">
+    <svg width="640" height="300" viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6 Z" fill="#0b3d91"/>
+        </marker>
+      </defs>
+      <!-- channel -->
+      <rect x="20" y="120" width="150" height="64" rx="10" fill="#e8f0fe" stroke="#0b3d91" stroke-width="2"/>
+      <text x="95" y="148" text-anchor="middle" font-size="14" font-weight="700" fill="#0b3d91">#proj-client</text>
+      <text x="95" y="168" text-anchor="middle" font-size="11" fill="#52606d">one channel</text>
+      <!-- pinned doc -->
+      <rect x="245" y="40" width="170" height="64" rx="10" fill="#fff8e6" stroke="#f5d97a" stroke-width="2"/>
+      <text x="330" y="65" text-anchor="middle" font-size="13" font-weight="700" fill="#8a6d00">Pinned: Google Doc</text>
+      <text x="330" y="84" text-anchor="middle" font-size="11" fill="#8a6d00">master index (first msg)</text>
+      <!-- threads -->
+      <rect x="245" y="200" width="170" height="64" rx="10" fill="#eafaf1" stroke="#1f9d55" stroke-width="2"/>
+      <text x="330" y="225" text-anchor="middle" font-size="13" font-weight="700" fill="#1f7a43">Threads</text>
+      <text x="330" y="244" text-anchor="middle" font-size="11" fill="#1f7a43">discussion + decisions</text>
+      <!-- vault -->
+      <rect x="480" y="120" width="150" height="64" rx="10" fill="#f3e8fd" stroke="#7c3aed" stroke-width="2"/>
+      <text x="555" y="148" text-anchor="middle" font-size="13" font-weight="700" fill="#6020c0">Second Brain</text>
+      <text x="555" y="168" text-anchor="middle" font-size="11" fill="#6020c0">decisions saved</text>
+      <!-- arrows -->
+      <line x1="170" y1="140" x2="245" y2="80" stroke="#0b3d91" stroke-width="2" marker-end="url(#arr)"/>
+      <line x1="170" y1="164" x2="245" y2="224" stroke="#0b3d91" stroke-width="2" marker-end="url(#arr)"/>
+      <line x1="415" y1="224" x2="480" y2="164" stroke="#0b3d91" stroke-width="2" marker-end="url(#arr)"/>
+    </svg>
+  </div>
+  <ul class="rules">
+    <li><b>One channel per project</b>, named <b>#proj-client</b>. No scattered DMs for project work.</li>
+    <li><b>First pinned message = the Google Doc master index</b> (see page 2). Always one click away.</li>
+    <li><b>Use threads</b> for discussions. Key decisions get summarized back into the Second Brain.</li>
+    <li><b>External collaborators</b> join via Slack Connect, never by sharing internal channels.</li>
+  </ul>
+</section>
+
+<!-- 2. GOOGLE DOC INDEX -->
+<section class="page">
+  <h2><span class="step-num">2</span>The Google Doc master index</h2>
+  <p class="lead">One living Google Doc per client holds every document link, before and after the order. It is the map to everything.</p>
+  <div class="diagram">
+    <svg width="640" height="280" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg">
+      <rect x="200" y="10" width="240" height="46" rx="8" fill="#0b3d91"/>
+      <text x="320" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">Google Doc Master Index</text>
+      <!-- four boxes -->
+      <rect x="20" y="110" width="140" height="120" rx="10" fill="#e8f0fe" stroke="#0b3d91" stroke-width="2"/>
+      <text x="90" y="138" text-anchor="middle" font-size="13" font-weight="700" fill="#0b3d91">Pre-Order</text>
+      <text x="90" y="162" text-anchor="middle" font-size="10.5" fill="#52606d">Proposal</text>
+      <text x="90" y="180" text-anchor="middle" font-size="10.5" fill="#52606d">PO</text>
+      <text x="90" y="198" text-anchor="middle" font-size="10.5" fill="#52606d">Scope</text>
+
+      <rect x="180" y="110" width="140" height="120" rx="10" fill="#eafaf1" stroke="#1f9d55" stroke-width="2"/>
+      <text x="250" y="138" text-anchor="middle" font-size="13" font-weight="700" fill="#1f7a43">Post-Order</text>
+      <text x="250" y="162" text-anchor="middle" font-size="10.5" fill="#52606d">Deliverables</text>
+      <text x="250" y="180" text-anchor="middle" font-size="10.5" fill="#52606d">Invoices</text>
+      <text x="250" y="198" text-anchor="middle" font-size="10.5" fill="#52606d">Change requests</text>
+
+      <rect x="340" y="110" width="140" height="120" rx="10" fill="#fff8e6" stroke="#f5d97a" stroke-width="2"/>
+      <text x="410" y="138" text-anchor="middle" font-size="13" font-weight="700" fill="#8a6d00">Client-Shared</text>
+      <text x="410" y="162" text-anchor="middle" font-size="10.5" fill="#52606d">Files they</text>
+      <text x="410" y="180" text-anchor="middle" font-size="10.5" fill="#52606d">send to us</text>
+
+      <rect x="500" y="110" width="140" height="120" rx="10" fill="#f3e8fd" stroke="#7c3aed" stroke-width="2"/>
+      <text x="570" y="138" text-anchor="middle" font-size="13" font-weight="700" fill="#6020c0">Sent-to-Client</text>
+      <text x="570" y="162" text-anchor="middle" font-size="10.5" fill="#52606d">Files we</text>
+      <text x="570" y="180" text-anchor="middle" font-size="10.5" fill="#52606d">send them</text>
+      <!-- connectors -->
+      <line x1="320" y1="56" x2="90" y2="110" stroke="#9aa5b1" stroke-width="1.5"/>
+      <line x1="320" y1="56" x2="250" y2="110" stroke="#9aa5b1" stroke-width="1.5"/>
+      <line x1="320" y1="56" x2="410" y2="110" stroke="#9aa5b1" stroke-width="1.5"/>
+      <line x1="320" y1="56" x2="570" y2="110" stroke="#9aa5b1" stroke-width="1.5"/>
+    </svg>
+  </div>
+  <ul class="rules">
+    <li>Every shared file gets a <b>row in the index</b> AND a copy/link in the client's vault folder.</li>
+    <li>The index URL is the <b>pinned first Slack message</b> and is also recorded in the Second Brain.</li>
+    <li><b>Source of truth = the index + the vault</b>, never someone's local Downloads folder.</li>
+  </ul>
+</section>
+
+<!-- 3. 4PM STANDUP -->
+<section class="page">
+  <h2><span class="step-num">3</span>The 4:00 PM pre-demo standup</h2>
+  <p class="lead">One day before any demo or client meeting, the whole team meets at 4:00 PM to confirm we are ready.</p>
+  <div class="diagram">
+    <svg width="640" height="200" viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arr2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6 Z" fill="#0b3d91"/>
+        </marker>
+      </defs>
+      <line x1="40" y1="100" x2="600" y2="100" stroke="#cbd2d9" stroke-width="3" marker-end="url(#arr2)"/>
+      <!-- day -1 -->
+      <circle cx="180" cy="100" r="14" fill="#0b3d91"/>
+      <text x="180" y="70" text-anchor="middle" font-size="13" font-weight="700" fill="#0b3d91">Demo day &minus; 1</text>
+      <text x="180" y="138" text-anchor="middle" font-size="13" font-weight="700" fill="#0b3d91">4:00 PM standup</text>
+      <!-- demo day -->
+      <circle cx="470" cy="100" r="14" fill="#1f9d55"/>
+      <text x="470" y="70" text-anchor="middle" font-size="13" font-weight="700" fill="#1f7a43">Demo day</text>
+      <text x="470" y="138" text-anchor="middle" font-size="13" font-weight="700" fill="#1f7a43">Client meeting</text>
+    </svg>
+  </div>
+  <div class="callout">
+    <b>Readiness checklist (run every time):</b>
+    <ul style="margin:6px 0 0; padding-left:18px;">
+      <li>Demo script ready and rehearsed</li>
+      <li>Environment and test data verified working</li>
+      <li>Open bugs triaged; blockers flagged</li>
+      <li>An owner assigned to each talking point</li>
+      <li>Fallback plan if something breaks live</li>
+    </ul>
+  </div>
+  <p class="footer-note">The standup is auto-captured: it appears in the calendar feed, and if recorded, as a meeting note in the project folder.</p>
+</section>
+
+<!-- 4. FILE ACCESS TIERS -->
+<section class="page">
+  <h2><span class="step-num">4</span>File and document access tiers</h2>
+  <p class="lead">Every document carries a sensitivity tier. This decides where it can be shared and stored.</p>
+  <div class="diagram">
+    <svg width="640" height="220" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
+      <!-- public -->
+      <circle cx="120" cy="70" r="34" fill="#1f9d55"/>
+      <text x="120" y="76" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">PUBLIC</text>
+      <text x="120" y="130" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1f7a43">Shareable openly</text>
+      <text x="120" y="150" text-anchor="middle" font-size="10.5" fill="#52606d">Brochures, public specs</text>
+      <!-- internal -->
+      <circle cx="320" cy="70" r="34" fill="#e0a800"/>
+      <text x="320" y="76" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">INTERNAL</text>
+      <text x="320" y="130" text-anchor="middle" font-size="11.5" font-weight="700" fill="#8a6d00">Team only</text>
+      <text x="320" y="150" text-anchor="middle" font-size="10.5" fill="#52606d">Project notes, drafts</text>
+      <!-- restricted -->
+      <circle cx="520" cy="70" r="34" fill="#cf1124"/>
+      <text x="520" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">RESTRICTED</text>
+      <text x="520" y="130" text-anchor="middle" font-size="11.5" font-weight="700" fill="#a01020">Need-to-know</text>
+      <text x="520" y="150" text-anchor="middle" font-size="10.5" fill="#52606d">POs, invoices, contracts</text>
+    </svg>
+  </div>
+  <ul class="rules">
+    <li><b>Public</b> &mdash; freely shareable material.</li>
+    <li><b>Internal</b> &mdash; project notes and drafts; team only, never in public channels.</li>
+    <li><b>Restricted</b> &mdash; anything with pricing, money, or PII: POs, invoices, contracts.</li>
+    <li><b>PHI is never committed</b> to the shared vault. It stays in the gitignored scratch space.</li>
+    <li><b>Naming:</b> <code>YYYY-MM-DD - client - doc-type - short-title</code></li>
+  </ul>
+</section>
+
+<!-- 5. PROCESS OVERVIEW / RACI -->
+<section class="page">
+  <h2><span class="step-num">5</span>Bug tracking and who does what</h2>
+  <p class="lead">Bug tracking and the who-does-what view live in <b>pulseofproject.com</b>, which is connected to the Second Brain vault by API. Each bug links back to its Slack thread and its row in the Google Doc index.</p>
+  <div class="diagram">
+    <svg width="640" height="160" viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arr3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6 Z" fill="#0b3d91"/>
+        </marker>
+      </defs>
+      <rect x="14" y="58" width="140" height="46" rx="8" fill="#fde8e8" stroke="#cf1124" stroke-width="2"/>
+      <text x="84" y="86" text-anchor="middle" font-size="12.5" font-weight="700" fill="#a01020">Bug reported</text>
+      <rect x="210" y="50" width="170" height="62" rx="8" fill="#e8f0fe" stroke="#0b3d91" stroke-width="2"/>
+      <text x="295" y="76" text-anchor="middle" font-size="13" font-weight="700" fill="#0b3d91">pulseofproject.com</text>
+      <text x="295" y="95" text-anchor="middle" font-size="10" fill="#52606d">bugs + who-does-what</text>
+      <rect x="450" y="50" width="176" height="62" rx="8" fill="#f3e8fd" stroke="#7c3aed" stroke-width="2"/>
+      <text x="538" y="76" text-anchor="middle" font-size="12.5" font-weight="700" fill="#6020c0">Second Brain vault</text>
+      <text x="538" y="95" text-anchor="middle" font-size="10" fill="#6020c0">connected by API</text>
+      <line x1="154" y1="81" x2="210" y2="81" stroke="#0b3d91" stroke-width="2" marker-end="url(#arr3)"/>
+      <line x1="380" y1="81" x2="450" y2="81" stroke="#7c3aed" stroke-width="2" marker-end="url(#arr3)"/>
+      <text x="415" y="73" text-anchor="middle" font-size="9.5" fill="#7c3aed">API</text>
+    </svg>
+  </div>
+  <table class="raci">
+    <tr><th>Activity</th><th>Owner</th><th>Where it lives</th></tr>
+    <tr><td>Project conversation</td><td>Whole team</td><td>Slack #proj-client</td></tr>
+    <tr><td>Document links (pre and post order)</td><td>Project lead</td><td>Google Doc master index</td></tr>
+    <tr><td>Pre-demo readiness</td><td>Whole team @ 4 PM</td><td>Standup + checklist</td></tr>
+    <tr><td>Client bugs and who-does-what</td><td>Assigned dev</td><td>pulseofproject.com (API to vault)</td></tr>
+    <tr><td>Restricted docs (PO, invoice)</td><td>Project lead</td><td>Restricted tier, not public</td></tr>
+  </table>
+  <p class="footer-note">Source of truth: the Google Doc index plus the Second Brain vault. pulseofproject.com syncs bug and task status into the vault by API.</p>
+</section>
+
+<!-- 6. REQUIREMENTS & ACCEPTANCE -->
+<section class="page">
+  <h2><span class="step-num">6</span>Requirements and acceptance sign-off</h2>
+  <p class="lead">Two written gates wrap every order: the client agrees the scope before we build, and confirms it works before we invoice. Same checklist, checked twice.</p>
+  <div class="diagram">
+    <svg width="640" height="150" viewBox="0 0 640 150" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="a6" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#0b3d91"/></marker></defs>
+      <rect x="20" y="52" width="170" height="56" rx="9" fill="#e8f0fe" stroke="#0b3d91" stroke-width="2"/>
+      <text x="105" y="76" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0b3d91">Scope signed off</text>
+      <text x="105" y="94" text-anchor="middle" font-size="10" fill="#52606d">before build starts</text>
+      <rect x="235" y="52" width="170" height="56" rx="9" fill="#f5f7fa" stroke="#9aa5b1" stroke-width="2"/>
+      <text x="320" y="76" text-anchor="middle" font-size="12.5" font-weight="700" fill="#52606d">Build</text>
+      <text x="320" y="94" text-anchor="middle" font-size="10" fill="#7b8794">against the same criteria</text>
+      <rect x="450" y="52" width="170" height="56" rx="9" fill="#eafaf1" stroke="#1f9d55" stroke-width="2"/>
+      <text x="535" y="76" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f7a43">Client accepts</text>
+      <text x="535" y="94" text-anchor="middle" font-size="10" fill="#52606d">then we invoice</text>
+      <line x1="190" y1="80" x2="235" y2="80" stroke="#0b3d91" stroke-width="2" marker-end="url(#a6)"/>
+      <line x1="405" y1="80" x2="450" y2="80" stroke="#0b3d91" stroke-width="2" marker-end="url(#a6)"/>
+    </svg>
+  </div>
+  <ul class="rules">
+    <li><b>Acceptance criteria</b> are written into the scope doc (in proposalos.in / Google Doc index) and the client signs it before work starts.</li>
+    <li><b>Change requests</b> go through the same sign-off, never verbally; each is logged in the Google Doc index.</li>
+    <li><b>Acceptance test</b> at delivery: client confirms each criterion is met. That sign-off triggers the invoice.</li>
+  </ul>
+</section>
+
+<!-- 7. CODE REVIEW / GIT -->
+<section class="page">
+  <h2><span class="step-num">7</span>Code review and Git workflow</h2>
+  <p class="lead">No code reaches the main branch without review. This is where most bugs are caught before a client ever sees them.</p>
+  <div class="diagram">
+    <svg width="640" height="150" viewBox="0 0 640 150" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="a7" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#0b3d91"/></marker></defs>
+      <rect x="10" y="55" width="120" height="46" rx="8" fill="#e8f0fe" stroke="#0b3d91" stroke-width="2"/>
+      <text x="70" y="82" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0b3d91">Feature branch</text>
+      <rect x="165" y="55" width="120" height="46" rx="8" fill="#fff8e6" stroke="#e0a800" stroke-width="2"/>
+      <text x="225" y="82" text-anchor="middle" font-size="11.5" font-weight="700" fill="#8a6d00">Pull request</text>
+      <rect x="320" y="55" width="120" height="46" rx="8" fill="#fde8e8" stroke="#cf1124" stroke-width="2"/>
+      <text x="380" y="82" text-anchor="middle" font-size="11.5" font-weight="700" fill="#a01020">Review + approve</text>
+      <rect x="475" y="55" width="150" height="46" rx="8" fill="#eafaf1" stroke="#1f9d55" stroke-width="2"/>
+      <text x="550" y="82" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1f7a43">Merge to main</text>
+      <line x1="130" y1="78" x2="165" y2="78" stroke="#0b3d91" stroke-width="2" marker-end="url(#a7)"/>
+      <line x1="285" y1="78" x2="320" y2="78" stroke="#0b3d91" stroke-width="2" marker-end="url(#a7)"/>
+      <line x1="440" y1="78" x2="475" y2="78" stroke="#0b3d91" stroke-width="2" marker-end="url(#a7)"/>
+    </svg>
+  </div>
+  <ul class="rules">
+    <li><b>Branch per task</b>; never commit straight to main.</li>
+    <li><b>Pull request reviewed by at least one other developer</b> before merge.</li>
+    <li><b>No hardcoded secrets</b>; credentials come from environment variables only.</li>
+    <li>Each PR links back to its <b>pulseofproject.com</b> task.</li>
+  </ul>
+</section>
+
+<!-- 8. TESTING / QA -->
+<section class="page">
+  <h2><span class="step-num">8</span>Testing and the QA gate</h2>
+  <p class="lead">A feature is tested against its acceptance criteria before any demo or release. Testing must not happen live in front of the client.</p>
+  <div class="diagram">
+    <svg width="640" height="150" viewBox="0 0 640 150" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="a8" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#0b3d91"/></marker></defs>
+      <rect x="30" y="55" width="150" height="46" rx="8" fill="#f5f7fa" stroke="#9aa5b1" stroke-width="2"/>
+      <text x="105" y="82" text-anchor="middle" font-size="12" font-weight="700" fill="#52606d">Feature built</text>
+      <rect x="245" y="55" width="150" height="46" rx="8" fill="#fff8e6" stroke="#e0a800" stroke-width="2"/>
+      <text x="320" y="76" text-anchor="middle" font-size="12" font-weight="700" fill="#8a6d00">QA gate</text>
+      <text x="320" y="92" text-anchor="middle" font-size="9.5" fill="#52606d">test vs criteria</text>
+      <rect x="460" y="30" width="160" height="40" rx="8" fill="#eafaf1" stroke="#1f9d55" stroke-width="2"/>
+      <text x="540" y="55" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1f7a43">Pass to demo / release</text>
+      <rect x="460" y="86" width="160" height="40" rx="8" fill="#fde8e8" stroke="#cf1124" stroke-width="2"/>
+      <text x="540" y="111" text-anchor="middle" font-size="11.5" font-weight="700" fill="#a01020">Fail back to dev</text>
+      <line x1="180" y1="78" x2="245" y2="78" stroke="#0b3d91" stroke-width="2" marker-end="url(#a8)"/>
+      <line x1="395" y1="72" x2="460" y2="52" stroke="#1f9d55" stroke-width="2" marker-end="url(#a8)"/>
+      <line x1="395" y1="86" x2="460" y2="104" stroke="#cf1124" stroke-width="2" marker-end="url(#a8)"/>
+    </svg>
+  </div>
+  <ul class="rules">
+    <li>Someone other than the author <b>tests against the acceptance criteria</b>.</li>
+    <li>Bugs found are logged in <b>pulseofproject.com</b> and fixed before the gate is passed.</li>
+    <li>The <b>4 PM pre-demo standup</b> confirms the QA gate is green for everything being shown.</li>
+  </ul>
+</section>
+
+<!-- 9. DEPLOY / ENVIRONMENTS -->
+<section class="page">
+  <h2><span class="step-num">9</span>Deploy, environments and rollback</h2>
+  <p class="lead">Changes flow through fixed environments. Every release has an approver and a way to undo it.</p>
+  <div class="diagram">
+    <svg width="640" height="150" viewBox="0 0 640 150" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="a9" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#0b3d91"/></marker></defs>
+      <rect x="30" y="55" width="150" height="46" rx="8" fill="#e8f0fe" stroke="#0b3d91" stroke-width="2"/>
+      <text x="105" y="76" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0b3d91">Dev</text>
+      <text x="105" y="92" text-anchor="middle" font-size="9.5" fill="#52606d">build + experiment</text>
+      <rect x="245" y="55" width="150" height="46" rx="8" fill="#fff8e6" stroke="#e0a800" stroke-width="2"/>
+      <text x="320" y="76" text-anchor="middle" font-size="12.5" font-weight="700" fill="#8a6d00">Staging</text>
+      <text x="320" y="92" text-anchor="middle" font-size="9.5" fill="#52606d">QA + client preview</text>
+      <rect x="460" y="55" width="160" height="46" rx="8" fill="#eafaf1" stroke="#1f9d55" stroke-width="2"/>
+      <text x="540" y="76" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f7a43">Production</text>
+      <text x="540" y="92" text-anchor="middle" font-size="9.5" fill="#52606d">approved release</text>
+      <line x1="180" y1="78" x2="245" y2="78" stroke="#0b3d91" stroke-width="2" marker-end="url(#a9)"/>
+      <line x1="395" y1="78" x2="460" y2="78" stroke="#0b3d91" stroke-width="2" marker-end="url(#a9)"/>
+      <path d="M540,101 C540,135 320,135 320,108" fill="none" stroke="#cf1124" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#a9)"/>
+      <text x="430" y="132" text-anchor="middle" font-size="9.5" fill="#a01020">rollback if it breaks</text>
+    </svg>
+  </div>
+  <ul class="rules">
+    <li><b>Dev to Staging to Production</b>; never edit production directly.</li>
+    <li>Client-facing releases need a <b>named approver</b>.</li>
+    <li>Every release has a <b>rollback plan</b> so a bad deploy can be reverted fast.</li>
+  </ul>
+</section>
+
+<!-- 10. INCIDENTS / SUPPORT -->
+<section class="page">
+  <h2><span class="step-num">10</span>Incidents, support and escalation</h2>
+  <p class="lead">When something breaks for a client in production, response time depends on how serious it is.</p>
+  <table class="raci">
+    <tr><th>Severity</th><th>Example</th><th>Response</th></tr>
+    <tr><td><b>P1 Critical</b></td><td>System down, client cannot work</td><td>Immediate; all-hands hotfix</td></tr>
+    <tr><td><b>P2 High</b></td><td>Major feature broken, workaround exists</td><td>Same business day</td></tr>
+    <tr><td><b>P3 Normal</b></td><td>Minor bug, low impact</td><td>Next planned cycle</td></tr>
+  </table>
+  <ul class="rules" style="margin-top:14px;">
+    <li>All incidents are logged in <b>pulseofproject.com</b> and announced in the project Slack channel.</li>
+    <li>P1 fixes follow the same <b>review and rollback</b> rules; speed never skips review.</li>
+    <li>Each incident gets a one-line <b>root-cause note</b> saved to the Second Brain.</li>
+  </ul>
+</section>
+
+<!-- 11. RETROSPECTIVE -->
+<section class="page">
+  <h2><span class="step-num">11</span>Retrospective and continuous improvement</h2>
+  <p class="lead">After each project or major milestone, a short look-back so the next project runs better.</p>
+  <div class="diagram">
+    <svg width="640" height="160" viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="a11" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#7c3aed"/></marker></defs>
+      <circle cx="120" cy="80" r="46" fill="#eafaf1" stroke="#1f9d55" stroke-width="2"/>
+      <text x="120" y="78" text-anchor="middle" font-size="12" font-weight="700" fill="#1f7a43">What went</text>
+      <text x="120" y="94" text-anchor="middle" font-size="12" font-weight="700" fill="#1f7a43">well</text>
+      <circle cx="320" cy="80" r="46" fill="#fde8e8" stroke="#cf1124" stroke-width="2"/>
+      <text x="320" y="78" text-anchor="middle" font-size="12" font-weight="700" fill="#a01020">What to</text>
+      <text x="320" y="94" text-anchor="middle" font-size="12" font-weight="700" fill="#a01020">fix</text>
+      <circle cx="520" cy="80" r="46" fill="#f3e8fd" stroke="#7c3aed" stroke-width="2"/>
+      <text x="520" y="78" text-anchor="middle" font-size="12" font-weight="700" fill="#6020c0">Saved to</text>
+      <text x="520" y="94" text-anchor="middle" font-size="12" font-weight="700" fill="#6020c0">Second Brain</text>
+      <line x1="166" y1="80" x2="270" y2="80" stroke="#7c3aed" stroke-width="2" marker-end="url(#a11)"/>
+      <line x1="366" y1="80" x2="470" y2="80" stroke="#7c3aed" stroke-width="2" marker-end="url(#a11)"/>
+    </svg>
+  </div>
+  <ul class="rules">
+    <li>Short retro after each project or milestone: <b>what went well, what to fix, one action each</b>.</li>
+    <li>Lessons are saved to the <b>Second Brain</b> (and harvested as reusable patterns) so they compound.</li>
+  </ul>
+</section>
+
+<!-- 12. CROSS-CUTTING -->
+<section class="page">
+  <h2><span class="step-num">12</span>Cross-cutting essentials</h2>
+  <p class="lead">Three rules that apply across every stage above.</p>
+  <ul class="rules">
+    <li><b>Access and secrets</b> &mdash; new team members are granted repo / server / client-system access on joining and have it <b>revoked when they leave</b>. Credentials live in a secrets manager, never in chat or code.</li>
+    <li><b>Time and effort tracking</b> &mdash; work is logged against the order so we can <b>bill accurately against the PO</b> in proposalos.in.</li>
+    <li><b>Definition of Ready / Definition of Done</b> &mdash; a task only starts when it has clear acceptance criteria (Ready), and is only closed when built, reviewed, tested, and deployed (Done).</li>
+  </ul>
+  <div class="callout" style="margin-top:18px;">
+    <b>The one-line summary:</b> Communicate in Slack, keep every link in the Google Doc index, sign off scope before and after, review and test before you ship, deploy safely, and write down what you learned.
+  </div>
+</section>
+
+</body>
+</html>

@@ -26,6 +26,7 @@ A working **Business Brain** + **at least one production AI agent per department
 | `04-step-by-step.md` | The 10 sequential steps from Discovery to first agent live, with screenshot placeholders |
 | `05-interactive-app-spec.md` | Engineering spec for the paid interactive web tool (Next.js + Supabase + Stripe) |
 | `06-core-concepts.md` | The five vocabulary items every client must understand: Closed Loops, Business Brain, Test Harnesses, New Org Structures (IC/DRI/AI Founder), Token Maxing |
+| `07-team-collaboration.md` | How the software team collaborates and delivers end to end: Slack rules, Google Doc master index, 4 PM pre-demo standup, file-access tiers, pulseofproject.com bug tracking, and the full delivery lifecycle (requirements sign-off, code review, QA gate, deploy/rollback, incidents, retrospective). Illustrated PDF in `assets/team-collaboration-sop.pdf`. |
 
 **Related (outside this folder):**
 - `corpus/personal-brain-pattern.md` — Matt Wolfe's Wiki + CRM + Journal pattern, adapted as an opt-in extension for individual users (founders, AI Champions). Distinct from the Business Brain — this is the *Personal* Brain.
