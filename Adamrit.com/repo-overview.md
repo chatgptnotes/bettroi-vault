@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-06-05T06:18:15Z
-size_kb: 40059
+last_push: 2026-06-05T12:20:23Z
+size_kb: 40316
 language: TypeScript
 description: ""
-extracted: 2026-06-05T07:22:55.935Z
+extracted: 2026-06-06T06:59:29.293Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-06-05T06:18:15Z
-**Language:** TypeScript  ·  **Repo size:** 40059KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-05T12:20:23Z
+**Language:** TypeScript  ·  **Repo size:** 40316KB
 
 
 
@@ -32,6 +32,7 @@ extracted: 2026-06-05T07:22:55.935Z
 - `generate-types`: `ts-node scripts/generate-types.ts`
 - `tally:sync`: `node scripts/sync-tally-export.js`
 - `tally:direct-sync`: `node scripts/tally-direct-sync.js`
+- `check:emails`: `cd scripts/email-automation && node run.js`
 
 **Dependencies (72):** @ckeditor/ckeditor5-build-classic, @ckeditor/ckeditor5-react, @dnd-kit/core, @dnd-kit/sortable, @dnd-kit/utilities, @hookform/resolvers, @radix-ui/react-accordion, @radix-ui/react-alert-dialog, @radix-ui/react-aspect-ratio, @radix-ui/react-avatar, @radix-ui/react-checkbox, @radix-ui/react-collapsible, @radix-ui/react-context-menu, @radix-ui/react-dialog, @radix-ui/react-dropdown-menu, @radix-ui/react-hover-card, @radix-ui/react-label, @radix-ui/react-menubar, @radix-ui/react-navigation-menu, @radix-ui/react-popover, @radix-ui/react-progress, @radix-ui/react-radio-group, @radix-ui/react-scroll-area, @radix-ui/react-select, @radix-ui/react-separator, @radix-ui/react-slider, @radix-ui/react-slot, @radix-ui/react-switch, @radix-ui/react-tabs, @radix-ui/react-toast...
 
@@ -72,34 +73,34 @@ extracted: 2026-06-05T07:22:55.935Z
 
 ## Folder breakdown
 
-- `src/` — 808 files
-- `supabase/` — 433 files
+- `src/` — 816 files
+- `supabase/` — 435 files
 - `public/` — 51 files
+- `scripts/` — 26 files
 - `agents/` — 25 files
-- `scripts/` — 23 files
 - `claude-auto-confirm/` — 19 files
 - `.claude/` — 17 files
 - `e2e/` — 11 files
 - `sidecar/` — 9 files
+- `docs/` — 8 files
 - `api/` — 7 files
-- `docs/` — 7 files
 - `docker/` — 6 files
 - `k8s/` — 4 files
-- `supabase-migrations/` — 2 files
+- `supabase-migrations/` — 3 files
 - `.dockerignore/` — 1 file
 
 ## Recent commits
 
-- `a1c3658` _2026-06-05_ — Merge feat/skill-factory-per-user-subagents into main
-- `a350437` _2026-06-05_ — feat(skill-factory): per-user subagents and rules with Supabase persistence
-- `f08896a` _2026-06-05_ — Merge feat/skill-factory-gemini into main
-- `b0b6cce` _2026-06-05_ — feat(skill-factory): add Skill Factory page with Gemini AI Assistant
-- `81ac0f9` _2026-06-04_ — Merge origin/feat/business-brain-foundation into main (branch consolidation)
-- `eb2f574` _2026-06-04_ — Merge origin/feat/business-brain into main (branch consolidation)
-- `7576e50` _2026-06-04_ — Merge origin/feat/skill-factory-mockup into main (branch consolidation)
-- `a5da0e3` _2026-06-04_ — Merge origin/feat/pharmacy-stock-swap-photo-split into main (branch consolidatio
-- `b4093d3` _2026-06-04_ — Merge origin/feat/pharmacy-ward-bridge into main (branch consolidation)
-- `8c3ec31` _2026-06-04_ — Merge origin/fix/discharge-summary-hospital-name into main (branch consolidation
+- `d1437dd` _2026-06-05_ — chore(billing): commit remaining email automation files
+- `76e1330` _2026-06-05_ — Merge branch 'main' of https://github.com/chatgptnotes/adamrit into biling-autom
+- `213027d` _2026-06-05_ — docs: add billing email automation feature documentation
+- `b62faa6` _2026-06-05_ — fix(billing): try u/1 account index for info@hopehospital.com Gmail link
+- `01fde67` _2026-06-05_ — feat(billing): connect Re-phrase to Gemini AI — uses existing geminiFetch from s
+- `e4449d2` _2026-06-05_ — Merge origin/main (payment-voucher) into main
+- `054feb5` _2026-06-05_ — Merge feat/discharge-autofill-and-section-fixes into main
+- `22198bd` _2026-06-05_ — feat(discharge): photo OCR auto-fill + field-driven Clinical History/Advice/Stay
+- `82e9e65` _2026-06-05_ — feat(payment-voucher): add per-row print button for individual vouchers
+- `d1cf952` _2026-06-05_ — feat(billing): add Re-phrase button with 4 styles — Standard, Formal, Brief, Fri
 
 ## README
 
