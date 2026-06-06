@@ -1,0 +1,27 @@
+name: Brain — proposalos.in Sync
+
+# Pulls proposals, POs, and invoices from proposalos.in and ingests them into
+# brain_chunks (marked off_limits — financial). Direct ingest, no commit needed.
+
+on:
+  schedule:
+    - cron: '0 4 * * *'  # 04:00 UTC = 09:30 IST, daily
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Sync proposalos.in documents
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          PROPOSALOS_API_URL: ${{ secrets.PROPOSALOS_API_URL }}
+          PROPOSALOS_API_KEY: ${{ secrets.PROPOSALOS_API_KEY }}
+        run: node _Murali-Second-Brain/proposalos-sync.mjs
