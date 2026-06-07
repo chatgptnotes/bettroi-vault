@@ -10,7 +10,7 @@ tags: [playbook, collaboration, slack, sop, process, workflow, delivery-lifecycl
 
 # Bettroi — Team Collaboration SOP
 
-**Document:** BETTROI-SOP-001 · Version 2.5 · Status: Approved · Classification: Internal / Confidential · Owner: cmd@hopehospital.com · Applies to: Bettroi / HopeTech software team · Effective: June 2026
+**Document:** BETTROI-SOP-001 · Version 2.6 · Status: Approved · Classification: Internal / Confidential · Owner: cmd@hopehospital.com · Applies to: Bettroi / HopeTech software team · Effective: June 2026
 
 **Purpose:** how the Bettroi software team works together, shares documents, prepares for client meetings, and delivers software end to end — with everything captured in the Second Brain (Bettroi Vault). A printable, diagram-illustrated version lives at `corpus/playbook/assets/team-collaboration-sop.pdf` (shareable in Slack).
 
@@ -119,6 +119,7 @@ Two written gates wrap every order: the client agrees the scope **before** we bu
 
 - Acceptance criteria are written into the scope doc (proposalos.in / Google Doc index) and signed before work starts.
 - **Before kickoff, prepare a project plan + a delivery plan, walk the client through both, and get sign-off.** Only then does the build start. This prevents scope creep — the "Limitless Brain" lesson, where unmanaged changes doubled/tripled the project cost.
+- **The client must provide a clear wireframe of each page** they want developed, before the build starts. Developers build to an agreed visual, not an assumption — this removes back-and-forth and rework.
 - Change requests go through the same sign-off, never verbally; each is logged in the Google Doc index (and POP after the PO).
 - Acceptance test at delivery: client confirms each criterion is met. That sign-off triggers the invoice.
 
