@@ -59,7 +59,7 @@
 </style>
 </head>
 <body>
-<div class="docfooter">BETTROI &middot; Team Collaboration SOP &middot; BETTROI-SOP-001 &middot; v2.4 &middot; Internal / Confidential</div>
+<div class="docfooter">BETTROI &middot; Team Collaboration SOP &middot; BETTROI-SOP-001 &middot; v2.5 &middot; Internal / Confidential</div>
 
 <!-- COVER -->
 <section class="page cover" style="padding-top:42mm;">
@@ -69,7 +69,7 @@
   <div class="badge">Standard Operating Procedure</div>
   <table class="docctrl">
     <tr><td class="k">Document ID</td><td>BETTROI-SOP-001</td></tr>
-    <tr><td class="k">Version</td><td>2.4</td></tr>
+    <tr><td class="k">Version</td><td>2.5</td></tr>
     <tr><td class="k">Status</td><td>Approved</td></tr>
     <tr><td class="k">Classification</td><td>Internal / Confidential</td></tr>
     <tr><td class="k">Owner</td><td>cmd@hopehospital.com</td></tr>
@@ -191,13 +191,16 @@
     <li><b>First pinned message = the Google Doc master index</b> (see page 2). Always one click away.</li>
     <li><b>Use threads</b> for discussions. Key decisions get summarized back into the Second Brain.</li>
     <li><b>External collaborators</b> join via Slack Connect, never by sharing internal channels.</li>
+    <li><b>Email is for formal records only</b> &mdash; all project info lives in Slack. If something arrives by email, post it (or its link) into the project thread.</li>
+    <li><b>Slack is how newcomers get context</b> &mdash; a person joining mid-project reads the thread (Slack's summary gives the full history). Email and WhatsApp cannot.</li>
+    <li><b>One DRI / tech lead per project</b>, from discovery; on join/leave there is a proper handoff so context is never lost.</li>
   </ul>
 </section>
 
 <!-- 2. GOOGLE DOC INDEX -->
 <section class="page">
   <h2><span class="step-num">2</span>The Google Doc master index</h2>
-  <p class="lead">One living Google Doc per client holds every document link, before and after the order. It is the map to everything.</p>
+  <p class="lead">One living Google Doc per project holds hyperlinks to every document, organised by before vs after the order (and within each, received-from-client vs sent-to-client). It is the map to everything, and it is the description of the project's Slack thread.</p>
   <div class="diagram">
     <svg width="640" height="280" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg">
       <rect x="200" y="10" width="240" height="46" rx="8" fill="#0b3d91"/>
@@ -232,9 +235,10 @@
     </svg>
   </div>
   <ul class="rules">
-    <li>Every shared file gets a <b>row in the index</b> AND a copy/link in the client's vault folder.</li>
+    <li>Every shared file gets a <b>row in the index</b> AND a copy/link in the project folder (four sub-folders: before/after order &times; received/sent).</li>
     <li>The index URL is the <b>pinned first Slack message</b> and is also recorded in the Second Brain.</li>
     <li><b>Source of truth = the index + the vault</b>, never someone's local Downloads folder.</li>
+    <li><b>Before the PO</b> the project lives here; <b>once the PO arrives it moves into Pulse of Project</b> (plan, kickoff, and everything after).</li>
   </ul>
 </section>
 
@@ -271,6 +275,20 @@
     </ul>
   </div>
   <p class="footer-note">The standup is auto-captured: it appears in the calendar feed, and if recorded, as a meeting note in the project folder.</p>
+</section>
+
+<!-- MEETING DISCIPLINE & CLIENT ETIQUETTE -->
+<section class="page">
+  <h2>Meeting discipline &amp; client etiquette</h2>
+  <p class="lead">The 4 PM standup is for demos. Beyond it, every single client meeting gets an internal pre-brief first &mdash; owned by the Project Manager.</p>
+  <ul class="rules">
+    <li><b>Internal pre-brief before EVERY client meeting</b> (not just demos). The <b>Project Manager fixes the internal meeting before the client meeting</b> &mdash; who attends, what we will demo, the sequence, the expected outcome. <b>No internal pre-brief &rarr; the client call is not attended.</b></li>
+    <li><b>Notify the client of attendees ahead of each meeting.</b> For enterprise/government clients (who expose their data to us), the PM tells them in advance who from our team will join.</li>
+    <li><b>Inform the client when a team member joins or leaves</b> the project. New people are never introduced into a client's system or call without the client knowing first.</li>
+  </ul>
+  <div class="callout">
+    <b>Why:</b> we are distributed across geographies. A short internal alignment makes us look like one professional team, prevents surprises in front of the client, and respects the data access enterprise clients have granted us.
+  </div>
 </section>
 
 <!-- 4. FILE ACCESS TIERS -->
@@ -379,6 +397,7 @@
     <li><b>POP is the only channel</b> for the client to submit feedback on deliverables, milestone submissions, UAT, bug reports, change requests (CRs), and enhancement requests.</li>
     <li>Feedback that arrives via <b>WhatsApp, email, phone, or any informal channel is redirected to POP</b> by the team, so it is documented and tracked.</li>
     <li>If it is not in POP, it is <b>not on the official list</b> the team works from.</li>
+    <li><b>UAT feedback goes straight into POP</b> &mdash; give the client the POP URL and have them log it there directly, not in WhatsApp, Drive, or a Word doc someone then has to chase down.</li>
   </ul>
   <div class="callout">
     <b>Why this matters:</b> a lot of productive time is currently lost extracting feedback from scattered channels and consolidating it for the team. Making POP the single source of truth improves <b>accountability, traceability, and overall efficiency</b>. POP enhancements to better support this process are in progress (discussed with Sahil).
@@ -429,7 +448,8 @@
   </div>
   <ul class="rules">
     <li><b>Acceptance criteria</b> are written into the scope doc (in proposalos.in / Google Doc index) and the client signs it before work starts.</li>
-    <li><b>Change requests</b> go through the same sign-off, never verbally; each is logged in the Google Doc index.</li>
+    <li><b>Before kickoff: prepare a project plan + delivery plan, walk the client through both, get sign-off</b> &mdash; then build. Prevents scope creep (the "Limitless Brain" lesson, where unmanaged changes doubled/tripled cost).</li>
+    <li><b>Change requests</b> go through the same sign-off, never verbally; each is logged in the Google Doc index (and POP after the PO).</li>
     <li><b>Acceptance test</b> at delivery: client confirms each criterion is met. That sign-off triggers the invoice.</li>
   </ul>
 </section>
@@ -484,8 +504,10 @@
     </svg>
   </div>
   <ul class="rules">
-    <li>Someone other than the author <b>tests against the acceptance criteria</b>.</li>
+    <li>A <b>dedicated QA (not the developer) runs manual + regression testing</b> against the acceptance criteria before anything passes to staging.</li>
     <li>Bugs found are logged in <b>pulseofproject.com</b> and fixed before the gate is passed.</li>
+    <li><b>Reopened bugs get an audit</b> &mdash; when a closed bug comes back, cross-check why (bad fix, or QA miss).</li>
+    <li><b>Estimates include QA time + a buffer.</b> AI makes dev and QA faster (a day of QA can take 2&ndash;3 hours), so the buffer stays small &mdash; but it is always there.</li>
     <li>The <b>4 PM pre-demo standup</b> confirms the QA gate is green for everything being shown.</li>
   </ul>
 </section>
@@ -514,6 +536,8 @@
   </div>
   <ul class="rules">
     <li><b>Dev to Staging to Production</b>; never edit production directly.</li>
+    <li><b>Staging/UAT uses masked production data &mdash; never the real production data.</b> The client tests on staging; only after sign-off does it go live.</li>
+    <li><b>Every project needs a staging environment</b> (e.g. Linguist currently has none &mdash; fix that); bugs can't be safely reproduced without one.</li>
     <li>Client-facing releases need a <b>named approver</b>.</li>
     <li>Every release has a <b>rollback plan</b> so a bad deploy can be reverted fast.</li>
   </ul>
@@ -565,11 +589,13 @@
 <!-- 12. CROSS-CUTTING -->
 <section class="page">
   <h2><span class="step-num">12</span>Cross-cutting essentials</h2>
-  <p class="lead">Three rules that apply across every stage above.</p>
+  <p class="lead">Rules that apply across every stage above.</p>
   <ul class="rules">
+    <li><b>NDA / NCNDA for every contributor</b> &mdash; everyone who touches a project signs an NDA/NCNDA in their <b>personal capacity</b>, including part-time and external resources. They inadvertently see client and confidential data. <b>No access until signed.</b></li>
     <li><b>Access and secrets</b> &mdash; new team members are granted repo / server / client-system access on joining and have it <b>revoked when they leave</b>. Credentials live in a secrets manager, never in chat or code.</li>
     <li><b>Time and effort tracking</b> &mdash; work is logged against the order so we can <b>bill accurately against the PO</b> in proposalos.in.</li>
     <li><b>Definition of Ready / Definition of Done</b> &mdash; a task only starts when it has clear acceptance criteria (Ready), and is only closed when built, reviewed, tested, and deployed (Done).</li>
+    <li><b>Process standard</b> &mdash; this SOP is the process; it is being aligned to a recognised standard (ISO certification in progress).</li>
   </ul>
   <div class="callout" style="margin-top:18px;">
     <b>The one-line summary:</b> Communicate in Slack, keep every link in the Google Doc index, sign off scope before and after, review and test before you ship, deploy safely, and write down what you learned.

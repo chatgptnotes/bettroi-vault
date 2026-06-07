@@ -137,17 +137,21 @@ Flow: feature branch → pull request → review and approve → merge to main.
 
 A feature is tested against its acceptance criteria before any demo or release. Testing must not happen live in front of the client.
 
-- Someone other than the author tests against the acceptance criteria.
+- **A dedicated QA (not the developer) runs both manual and regression testing** before anything is passed to staging/release — not just the developer's own check.
 - Bugs found are logged in pulseofproject.com and fixed before the gate is passed.
+- **Reopened bugs get an audit** — when a previously-closed bug comes back, cross-check why it reopened (was the fix wrong, or did QA miss it).
+- **Estimates include QA time + a buffer.** With AI, dev and QA are faster (a QA pass that took a day can take 2–3 hours), so the buffer stays small — but it is always included.
 - The 4 PM pre-demo standup confirms the QA gate is green for everything being shown.
 
-Flow: feature built → QA gate (test vs criteria) → pass to demo/release, or fail back to dev.
+Flow: feature built → QA gate (manual + regression vs criteria) → pass to staging/release, or fail back to dev.
 
 ## 9. Deploy, environments and rollback
 
 Changes flow through fixed environments. Every release has an approver and a way to undo it.
 
 - **Dev → Staging → Production**; never edit production directly.
+- **Staging/UAT uses masked production data — never the real production data.** The client tests on staging; only after sign-off does it go to production with live data.
+- Every project needs a staging environment (e.g. Linguist currently has none — fix that): bugs can't be safely reproduced without one.
 - Client-facing releases need a named approver.
 - Every release has a rollback plan so a bad deploy can be reverted fast.
 
@@ -174,9 +178,11 @@ After each project or major milestone, a short look-back so the next one runs be
 
 ## 12. Cross-cutting essentials
 
+- **NDA / NCNDA for every contributor** — everyone who touches a project signs an NDA/NCNDA in their **personal capacity**, including part-time and external resources (e.g. contractors helping after hours). They inadvertently see client and confidential data, so this protects both us and the client. No access until signed.
 - **Access and secrets** — team members get repo / server / client-system access on joining and have it revoked when they leave. Credentials live in a secrets manager, never in chat or code.
 - **Time and effort tracking** — work is logged against the order so we can bill accurately against the PO in proposalos.in.
 - **Definition of Ready / Definition of Done** — a task only starts when it has clear acceptance criteria (Ready), and is only closed when built, reviewed, tested, and deployed (Done).
+- **Process standard** — this SOP is the process; it is being aligned to a recognised standard (ISO certification in progress).
 
 **One-line summary:** Communicate in Slack, keep every link in the Google Doc index, sign off scope before and after, review and test before you ship, deploy safely, and write down what you learned.
 
