@@ -19,9 +19,9 @@ jobs:
       - run: npm ci
       - name: Sync pulseofproject.com bugs + projects
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          SUPABASE_URL: ${{ secrets.BRAIN_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.BRAIN_SUPABASE_SERVICE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.BRAIN_OPENAI_API_KEY }}
           PULSE_SUPABASE_URL: ${{ secrets.PULSE_SUPABASE_URL }}
           PULSE_SUPABASE_SERVICE_KEY: ${{ secrets.PULSE_SUPABASE_SERVICE_KEY }}
         run: node _Murali-Second-Brain/pulseofproject-sync.mjs
