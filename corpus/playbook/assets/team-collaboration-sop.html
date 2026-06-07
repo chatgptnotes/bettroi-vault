@@ -17,6 +17,13 @@
   .cover h1 { font-size: 34px; margin: 0 0 8px; color: #0b3d91; letter-spacing: 0.5px; }
   .cover .sub { font-size: 15px; color: #52606d; }
   .cover .meta { margin-top: 40px; font-size: 12px; color: #7b8794; }
+  .wordmark { font-size: 26px; font-weight: 800; letter-spacing: 5px; color: #0b3d91; }
+  .wordmark .dot { color: #cf1124; }
+  table.docctrl { margin: 34px auto 0; border-collapse: collapse; font-size: 11px; width: 80%; }
+  table.docctrl td { border: 1px solid #d2d9e0; padding: 6px 10px; text-align: left; }
+  table.docctrl td.k { background: #f5f7fa; font-weight: 700; color: #3e4c59; width: 38%; }
+  .docfooter { position: fixed; bottom: 5mm; left: 0; right: 0; text-align: center;
+    font-size: 8.5px; color: #9aa5b1; letter-spacing: 0.3px; }
   .cover .badge {
     display: inline-block; margin-top: 28px; padding: 8px 18px; border-radius: 22px;
     background: #e8f0fe; color: #0b3d91; font-weight: 600; font-size: 13px;
@@ -52,13 +59,24 @@
 </style>
 </head>
 <body>
+<div class="docfooter">BETTROI &middot; Team Collaboration SOP &middot; BETTROI-SOP-001 &middot; v2.4 &middot; Internal / Confidential</div>
 
 <!-- COVER -->
-<section class="page cover">
-  <h1>Team Collaboration SOP</h1>
-  <div class="sub">How our software team works together, shares documents, and prepares for client meetings</div>
+<section class="page cover" style="padding-top:42mm;">
+  <div class="wordmark">BETTROI<span class="dot">.</span></div>
+  <h1 style="margin-top:14px;">Team Collaboration SOP</h1>
+  <div class="sub">How the Bettroi software team works together, shares documents, prepares for client meetings, and delivers software end to end &mdash; with everything captured in the Second Brain (Bettroi Vault)</div>
   <div class="badge">Standard Operating Procedure</div>
-  <div class="meta">HopeTech / Bettroi software team<br>Version 2.2 &nbsp;&middot;&nbsp; June 2026</div>
+  <table class="docctrl">
+    <tr><td class="k">Document ID</td><td>BETTROI-SOP-001</td></tr>
+    <tr><td class="k">Version</td><td>2.4</td></tr>
+    <tr><td class="k">Status</td><td>Approved</td></tr>
+    <tr><td class="k">Classification</td><td>Internal / Confidential</td></tr>
+    <tr><td class="k">Owner</td><td>cmd@hopehospital.com</td></tr>
+    <tr><td class="k">Effective date</td><td>June 2026</td></tr>
+    <tr><td class="k">Applies to</td><td>Bettroi / HopeTech software team</td></tr>
+    <tr><td class="k">Canonical copy</td><td>corpus/playbook/07-team-collaboration.md (Bettroi Vault)</td></tr>
+  </table>
 </section>
 
 <!-- LIFECYCLE OVERVIEW -->
@@ -223,7 +241,7 @@
 <!-- 3. 4PM STANDUP -->
 <section class="page">
   <h2><span class="step-num">3</span>The 4:00 PM pre-demo standup</h2>
-  <p class="lead">One day before any demo or client meeting, the whole team meets at 4:00 PM to confirm we are ready.</p>
+  <p class="lead">One day before any demo or client meeting, the whole team meets at <b>4:00 PM IST</b> to confirm we are ready. Attendance is mandatory for everyone on the project.</p>
   <div class="diagram">
     <svg width="640" height="200" viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -290,7 +308,7 @@
 <!-- 5. PROCESS OVERVIEW / RACI -->
 <section class="page">
   <h2><span class="step-num">5</span>Bug tracking and who does what</h2>
-  <p class="lead">Bug tracking and the who-does-what view live in <b>pulseofproject.com</b>, which is connected to the Second Brain vault by API. Each bug links back to its Slack thread and its row in the Google Doc index.</p>
+  <p class="lead">Bug tracking and the who-does-what view live in <b>pulseofproject.com</b> (POP), connected to the Second Brain vault by API (synced daily into <code>brain_chunks</code> with severity P1/P2/P3, status, and assignee). Each bug links back to its Slack thread and its row in the Google Doc index.</p>
   <div class="diagram">
     <svg width="640" height="160" viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -555,6 +573,61 @@
   </ul>
   <div class="callout" style="margin-top:18px;">
     <b>The one-line summary:</b> Communicate in Slack, keep every link in the Google Doc index, sign off scope before and after, review and test before you ship, deploy safely, and write down what you learned.
+  </div>
+</section>
+
+<!-- ADDENDUM: everything lands in the Second Brain -->
+<section class="page">
+  <div style="background:#6020c0;color:#fff;padding:10px 16px;border-radius:8px;font-weight:700;font-size:13px;letter-spacing:0.5px;display:inline-block;margin-bottom:10px;">ADDENDUM</div>
+  <h2 style="border:none;padding-bottom:2px;">How it all lands in the Second Brain (Bettroi Vault)</h2>
+  <p class="lead">Every collaboration tool feeds one place: the Bettroi Vault. Daily syncs pull each source into <b>brain_chunks</b> (a Supabase vector store), so the whole team and our AI agents can ask one question and get answers across all of it.</p>
+  <div class="diagram">
+    <svg width="660" height="290" viewBox="0 0 660 290" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="sb" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#6020c0"/></marker></defs>
+      <!-- sources (left) -->
+      <rect x="14" y="20"  width="150" height="36" rx="7" fill="#e8f0fe" stroke="#0b3d91" stroke-width="1.5"/>
+      <text x="89" y="43" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0b3d91">Slack threads</text>
+      <rect x="14" y="74"  width="150" height="36" rx="7" fill="#fff8e6" stroke="#e0a800" stroke-width="1.5"/>
+      <text x="89" y="97" text-anchor="middle" font-size="11.5" font-weight="700" fill="#8a6d00">Google Doc index</text>
+      <rect x="14" y="128" width="150" height="36" rx="7" fill="#eafaf1" stroke="#1f9d55" stroke-width="1.5"/>
+      <text x="89" y="151" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1f7a43">Pulse of Project</text>
+      <rect x="14" y="182" width="150" height="36" rx="7" fill="#fde8e8" stroke="#cf1124" stroke-width="1.5"/>
+      <text x="89" y="205" text-anchor="middle" font-size="11" font-weight="700" fill="#a01020">proposalos / proposifyai</text>
+      <!-- sync (middle) -->
+      <rect x="245" y="95" width="150" height="70" rx="10" fill="#f5f7fa" stroke="#52606d" stroke-width="2"/>
+      <text x="320" y="124" text-anchor="middle" font-size="13" font-weight="700" fill="#3e4c59">Daily sync</text>
+      <text x="320" y="142" text-anchor="middle" font-size="9.5" fill="#52606d">scripts + GitHub</text>
+      <text x="320" y="156" text-anchor="middle" font-size="9.5" fill="#52606d">Actions, +embeddings</text>
+      <!-- brain (right) -->
+      <rect x="455" y="90" width="185" height="80" rx="12" fill="#f3e8fd" stroke="#6020c0" stroke-width="2.5"/>
+      <text x="547" y="120" text-anchor="middle" font-size="13.5" font-weight="700" fill="#6020c0">Second Brain</text>
+      <text x="547" y="138" text-anchor="middle" font-size="10.5" fill="#6020c0">Bettroi Vault</text>
+      <text x="547" y="154" text-anchor="middle" font-size="9.5" fill="#52606d">Supabase brain_chunks</text>
+      <!-- query (bottom) -->
+      <rect x="455" y="210" width="185" height="44" rx="10" fill="#eafaf1" stroke="#1f9d55" stroke-width="2"/>
+      <text x="547" y="230" text-anchor="middle" font-size="12" font-weight="700" fill="#1f7a43">Team + AI agents ask</text>
+      <text x="547" y="246" text-anchor="middle" font-size="9.5" fill="#52606d">one question, all sources</text>
+      <!-- arrows sources -> sync -->
+      <line x1="164" y1="38"  x2="245" y2="120" stroke="#6020c0" stroke-width="1.5" marker-end="url(#sb)"/>
+      <line x1="164" y1="92"  x2="245" y2="128" stroke="#6020c0" stroke-width="1.5" marker-end="url(#sb)"/>
+      <line x1="164" y1="146" x2="245" y2="136" stroke="#6020c0" stroke-width="1.5" marker-end="url(#sb)"/>
+      <line x1="164" y1="200" x2="245" y2="148" stroke="#6020c0" stroke-width="1.5" marker-end="url(#sb)"/>
+      <!-- sync -> brain -->
+      <line x1="395" y1="130" x2="455" y2="130" stroke="#6020c0" stroke-width="2" marker-end="url(#sb)"/>
+      <!-- brain -> query -->
+      <line x1="547" y1="170" x2="547" y2="210" stroke="#6020c0" stroke-width="2" marker-end="url(#sb)"/>
+    </svg>
+  </div>
+  <table class="raci">
+    <tr><th>Source</th><th>How it is stored in the Second Brain</th></tr>
+    <tr><td><b>Slack</b> (dev/bug threads)</td><td>Thread messages pulled via the Slack API into brain_chunks (searchable)</td></tr>
+    <tr><td><b>Google Doc</b> master index</td><td>The index link is recorded in the vault; document links travel with each project</td></tr>
+    <tr><td><b>Pulse of Project</b></td><td>Bugs + projects (status, severity, who-does-what) synced into brain_chunks daily</td></tr>
+    <tr><td><b>proposalos / proposifyai</b></td><td>Proposals as notes; POs &amp; invoices into brain_chunks marked <b>restricted</b> (off-limits)</td></tr>
+    <tr><td><b>This SOP + all vault notes</b></td><td>Markdown synced into brain_chunks, so the rules themselves are queryable</td></tr>
+  </table>
+  <div class="callout">
+    <b>The payoff:</b> nobody has to hunt across Slack, Docs, POP, and proposalos to reconstruct what happened. Ask the Brain once &mdash; "what P1 bugs are open for Bajaj and who owns them", "what did we quote Linkist" &mdash; and the answer is grounded in all of it. Financial data stays restricted.
   </div>
 </section>
 

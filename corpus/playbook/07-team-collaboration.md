@@ -8,9 +8,11 @@ status: approved
 tags: [playbook, collaboration, slack, sop, process, workflow, delivery-lifecycle]
 ---
 
-# Team Collaboration SOP
+# Bettroi — Team Collaboration SOP
 
-**Purpose:** how the software team works together, shares documents, prepares for client meetings, and delivers software end to end. A printable, diagram-illustrated version lives at `corpus/playbook/assets/team-collaboration-sop.pdf` (shareable in Slack).
+**Document:** BETTROI-SOP-001 · Version 2.4 · Status: Approved · Classification: Internal / Confidential · Owner: cmd@hopehospital.com · Applies to: Bettroi / HopeTech software team · Effective: June 2026
+
+**Purpose:** how the Bettroi software team works together, shares documents, prepares for client meetings, and delivers software end to end — with everything captured in the Second Brain (Bettroi Vault). A printable, diagram-illustrated version lives at `corpus/playbook/assets/team-collaboration-sop.pdf` (shareable in Slack).
 
 Pages 1 to 5 are the communication and document foundation. Sections 6 to 12 add the delivery steps that make this a complete software workflow.
 
@@ -44,7 +46,7 @@ One living Google Doc per client holds every document link, before and after the
 
 ## 3. The 4:00 PM pre-demo standup
 
-One day before any demo or client meeting, the whole team meets at **4:00 PM** to confirm readiness.
+One day before any demo or client meeting, the whole team meets at **4:00 PM IST** to confirm readiness. Attendance is mandatory for everyone on the project.
 
 Readiness checklist: demo script ready and rehearsed; environment and test data verified; open bugs triaged and blockers flagged; an owner assigned to each talking point; a fallback plan if something breaks live.
 
@@ -160,3 +162,19 @@ After each project or major milestone, a short look-back so the next one runs be
 - **Definition of Ready / Definition of Done** — a task only starts when it has clear acceptance criteria (Ready), and is only closed when built, reviewed, tested, and deployed (Done).
 
 **One-line summary:** Communicate in Slack, keep every link in the Google Doc index, sign off scope before and after, review and test before you ship, deploy safely, and write down what you learned.
+
+## Addendum — How it all lands in the Second Brain (Bettroi Vault)
+
+Every collaboration tool feeds one place: the Bettroi Vault. Daily syncs pull each source into **brain_chunks** (a Supabase vector store), so the whole team and our AI agents can ask one question and get answers across all of it.
+
+| Source | How it is stored in the Second Brain |
+|---|---|
+| **Slack** (dev/bug threads) | Thread messages pulled via the Slack API into brain_chunks (`slack-thread-sync.mjs`) |
+| **Google Doc** master index | The index link is recorded in the vault; document links travel with each project |
+| **Pulse of Project** | Bugs + projects (status, severity, who-does-what) synced into brain_chunks daily (`pulseofproject-sync.mjs`) |
+| **proposalos / proposifyai** | Proposals as notes; POs & invoices into brain_chunks marked **restricted** / off-limits (`sync-proposifyai.mjs`) |
+| **This SOP + all vault notes** | Markdown synced into brain_chunks via `obsidian-sync.mjs`, so the rules themselves are queryable |
+
+**Flow:** sources → daily sync (scripts + GitHub Actions, with embeddings) → Second Brain (Supabase `brain_chunks`) → team + AI agents query (`brain:ask`).
+
+**The payoff:** nobody has to hunt across Slack, Docs, POP, and proposalos to reconstruct what happened. Ask the Brain once — "what P1 bugs are open for Bajaj and who owns them", "what did we quote Linkist" — and the answer is grounded in all of it. Financial data stays restricted.
