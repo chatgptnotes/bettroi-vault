@@ -70,6 +70,16 @@ Bug tracking and the who-does-what view live in **pulseofproject.com**, connecte
 | Client bugs and who-does-what | Assigned dev | pulseofproject.com (API to vault) |
 | Restricted docs (PO, invoice) | Project lead | Restricted tier, not public |
 
+## KEY POLICY — all client feedback goes through Pulse of Project (POP)
+
+POP is the official and **only** channel for the client to log feedback. This is what makes the project trackable.
+
+- **POP is the only channel** for the client to submit feedback on deliverables, milestone submissions, UAT, bug reports, change requests (CRs), and enhancement requests.
+- Feedback that arrives via **WhatsApp, email, phone, or any informal channel is redirected to POP** by the team, so it is documented and tracked.
+- If it is not in POP, it is **not on the official list** the team works from.
+
+**Why this matters:** a lot of productive time is currently lost extracting feedback from scattered channels and consolidating it for the team. Making POP the single source of truth improves **accountability, traceability, and overall efficiency**. POP enhancements to better support this process are in progress (discussed with Sahil).
+
 ## 6. Requirements and acceptance sign-off
 
 Two written gates wrap every order: the client agrees the scope **before** we build, and confirms it works **before** we invoice. Same checklist, checked twice.
