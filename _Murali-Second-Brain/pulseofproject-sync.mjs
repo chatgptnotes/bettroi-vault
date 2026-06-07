@@ -88,11 +88,13 @@ async function run() {
       b.comments ? `\nComments: ${b.comments}` : null,
     ].filter(v => v !== null && v !== undefined).join('\n');
 
+    const ref = `pulseofproject://bug/${b.id}`;
+    await dst.from('brain_chunks').delete().eq('source_ref', ref); // idempotent
     const r = await ingestText({
       text,
       project_tag: b.project_name ?? '_inbox',
       source_type: SOURCE,
-      source_ref: `pulseofproject://bug/${b.id}`,
+      source_ref: ref,
       metadata: {
         kind: 'bug', sno: b.sno, severity: b.severity, status: b.status,
         testing_status: b.testing_status, assigned_to: b.assigned_to, project: b.project_name,
@@ -107,9 +109,7 @@ async function run() {
   // deadline, team_count, category, url.
   let projects = [];
   try {
-    projects = await fetchSince(src, 'admin_projects',
-      'id,name,client,description,status,priority,progress,deadline,category,url,updated_at',
-      since);
+    projects = await fetchSince(src, 'admin_projects', '*', since);
   } catch (e) {
     console.warn(`  admin_projects fetch skipped: ${e.message}`);
   }
@@ -127,11 +127,13 @@ async function run() {
         p.description ? `\n${p.description}` : null,
       ].filter(v => v !== null && v !== undefined).join('\n');
 
+      const ref = `pulseofproject://project/${p.id}`;
+      await dst.from('brain_chunks').delete().eq('source_ref', ref); // idempotent
       const r = await ingestText({
         text,
         project_tag: p.name,
         source_type: SOURCE,
-        source_ref: `pulseofproject://project/${p.id}`,
+        source_ref: ref,
         metadata: { kind: 'project', client: p.client, status: p.status, priority: p.priority, progress: p.progress },
       });
       ingested++; failedChunks += r?.failed ?? 0;

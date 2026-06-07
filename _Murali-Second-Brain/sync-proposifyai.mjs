@@ -118,11 +118,13 @@ async function syncProjectDocuments() {
       pay?.note ? `Payment note: ${pay.note}` : null,
     ].filter(v => v !== null && v !== undefined).join('\n');
 
+    const ref = `proposifyai://document/${d.id}`;
+    await brain.from('brain_chunks').delete().eq('source_ref', ref); // idempotent
     await ingestText({
       text,
       project_tag: d.project,
       source_type: 'proposifyai',
-      source_ref: `proposifyai://document/${d.id}`,
+      source_ref: ref,
       metadata: {
         docType: d.doc_type, project: d.project, direction: d.direction,
         amount: d.amount, delivered: d.delivered, stage: d.stage,
