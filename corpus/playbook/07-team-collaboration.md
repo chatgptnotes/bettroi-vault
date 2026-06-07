@@ -10,7 +10,7 @@ tags: [playbook, collaboration, slack, sop, process, workflow, delivery-lifecycl
 
 # Bettroi — Team Collaboration SOP
 
-**Document:** BETTROI-SOP-001 · Version 2.4 · Status: Approved · Classification: Internal / Confidential · Owner: cmd@hopehospital.com · Applies to: Bettroi / HopeTech software team · Effective: June 2026
+**Document:** BETTROI-SOP-001 · Version 2.5 · Status: Approved · Classification: Internal / Confidential · Owner: cmd@hopehospital.com · Applies to: Bettroi / HopeTech software team · Effective: June 2026
 
 **Purpose:** how the Bettroi software team works together, shares documents, prepares for client meetings, and delivers software end to end — with everything captured in the Second Brain (Bettroi Vault). A printable, diagram-illustrated version lives at `corpus/playbook/assets/team-collaboration-sop.pdf` (shareable in Slack).
 
@@ -35,14 +35,23 @@ Every project moves through eight stages: **Sell → Plan → Build → Test →
 - **First pinned message = the Google Doc master index.** Always one click away.
 - Use threads for discussions; key decisions get summarized back into the Second Brain.
 - External collaborators join via Slack Connect, never by sharing internal channels.
+- **Email is for formal records only.** All project information lives in Slack — if something arrives by email, post it (or its link) into the project's Slack thread.
+- **Slack is how newcomers get context.** A person joining a project mid-way (incl. part-time contributors) reads the whole thread — Slack's thread summary gives the full history at a glance. Email and WhatsApp cannot do this.
+- **One DRI / tech lead per project**, plugged in from discovery. When someone joins or leaves, there is a proper **handoff** so context is never lost.
 
 ## 2. The Google Doc master index
 
-One living Google Doc per client holds every document link, before and after the order: **Pre-Order** (proposal, PO, scope) / **Post-Order** (deliverables, invoices, change requests) / **Client-Shared** (files they send us) / **Sent-to-Client** (files we send them).
+One living Google Doc per project holds **hyperlinks to every document**, organised by **before vs after the order**, and within each by **who shared it**:
 
-- Every shared file gets a row in the index AND a copy/link in the client's vault folder.
+- **Before order** — received from client / sent to client (proposal, scope, clarifications)
+- **After order** — received from client / sent to client (PO, kickoff, deliverables, invoices, change requests)
+
+Set up the project folder with these four sub-folders, and keep the master Google Doc (the hyperlinks index) as the **description of the project's Slack thread** so it is one click away.
+
+- Every shared file gets a row in the index AND a copy/link in the project folder.
 - The index URL is the pinned first Slack message and is recorded in the Second Brain.
 - Source of truth = the index + the vault, never someone's local Downloads folder.
+- **Before the PO**, the project lives in the Google Doc + project folder only. **Once the PO arrives**, the project moves into **Pulse of Project (POP)** — project plan, kickoff, and everything after are tracked there.
 
 ## 3. The 4:00 PM pre-demo standup
 
@@ -51,6 +60,12 @@ One day before any demo or client meeting, the whole team meets at **4:00 PM IST
 Readiness checklist: demo script ready and rehearsed; environment and test data verified; open bugs triaged and blockers flagged; an owner assigned to each talking point; a fallback plan if something breaks live.
 
 The standup is auto-captured in the calendar feed, and as a meeting note if recorded.
+
+## Meeting discipline & client etiquette
+
+- **Internal pre-brief before EVERY client meeting** (not just demos). The **Project Manager fixes (schedules) the internal meeting before the client meeting** — covering who attends, what we will demo, the sequence, and the expected outcome. If the internal pre-brief did not happen, the client call is cancelled / not attended.
+- **Notify the client of attendees ahead of each meeting.** For enterprise/government clients (who expose their data to us), the PM tells the client in advance who from our team will be on the call.
+- **Inform the client when a team member joins or leaves** the project. New people are never introduced into a client's system or call without the client knowing first.
 
 ## 4. File and document access tiers
 
@@ -79,6 +94,7 @@ POP is the official and **only** channel for the client to log feedback. This is
 - **POP is the only channel** for the client to submit feedback on deliverables, milestone submissions, UAT, bug reports, change requests (CRs), and enhancement requests.
 - Feedback that arrives via **WhatsApp, email, phone, or any informal channel is redirected to POP** by the team, so it is documented and tracked.
 - If it is not in POP, it is **not on the official list** the team works from.
+- **UAT feedback goes straight into POP.** During user testing, give the client the POP URL and have them log feedback there directly — not in WhatsApp, Google Drive, or a Word doc that someone then has to hunt down and consolidate.
 
 **Why this matters:** a lot of productive time is currently lost extracting feedback from scattered channels and consolidating it for the team. Making POP the single source of truth improves **accountability, traceability, and overall efficiency**. POP enhancements to better support this process are in progress (discussed with Sahil).
 
@@ -102,7 +118,8 @@ Each project has one dedicated Slack thread for development & bugs, bookmarked i
 Two written gates wrap every order: the client agrees the scope **before** we build, and confirms it works **before** we invoice. Same checklist, checked twice.
 
 - Acceptance criteria are written into the scope doc (proposalos.in / Google Doc index) and signed before work starts.
-- Change requests go through the same sign-off, never verbally; each is logged in the Google Doc index.
+- **Before kickoff, prepare a project plan + a delivery plan, walk the client through both, and get sign-off.** Only then does the build start. This prevents scope creep — the "Limitless Brain" lesson, where unmanaged changes doubled/tripled the project cost.
+- Change requests go through the same sign-off, never verbally; each is logged in the Google Doc index (and POP after the PO).
 - Acceptance test at delivery: client confirms each criterion is met. That sign-off triggers the invoice.
 
 ## 7. Code review and Git workflow
