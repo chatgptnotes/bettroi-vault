@@ -64,7 +64,7 @@ async function run() {
   const since = await getLastSync(dst);
   console.log(`Last sync: ${since}`);
   const now = new Date().toISOString();
-  let ingested = 0;
+  let ingested = 0, failedChunks = 0;
 
   // ── Bug reports (bugs + who does what) ─────────────────────────────────────
   // Schema (chatgptnotes/pulseofproject, bug_reports table): project_name,
@@ -88,7 +88,7 @@ async function run() {
       b.comments ? `\nComments: ${b.comments}` : null,
     ].filter(v => v !== null && v !== undefined).join('\n');
 
-    await ingestText({
+    const r = await ingestText({
       text,
       project_tag: b.project_name ?? '_inbox',
       source_type: SOURCE,
@@ -98,7 +98,7 @@ async function run() {
         testing_status: b.testing_status, assigned_to: b.assigned_to, project: b.project_name,
       },
     });
-    ingested++;
+    ingested++; failedChunks += r?.failed ?? 0;
   }
   console.log(`  bugs: ${bugs?.length ?? 0} ingested`);
 
@@ -127,20 +127,26 @@ async function run() {
         p.description ? `\n${p.description}` : null,
       ].filter(v => v !== null && v !== undefined).join('\n');
 
-      await ingestText({
+      const r = await ingestText({
         text,
         project_tag: p.name,
         source_type: SOURCE,
         source_ref: `pulseofproject://project/${p.id}`,
         metadata: { kind: 'project', client: p.client, status: p.status, priority: p.priority, progress: p.progress },
       });
-      ingested++;
+      ingested++; failedChunks += r?.failed ?? 0;
     }
     console.log(`  projects: ${projects?.length ?? 0} ingested`);
   }
 
-  await setLastSync(dst, now);
-  console.log(`\npulseofproject sync complete. Ingested ${ingested} record(s).`);
+  // Only advance the cursor if every chunk embedded+stored. Otherwise leave it
+  // so a re-run (after e.g. OpenAI quota is restored) re-ingests these records.
+  if (failedChunks === 0) {
+    await setLastSync(dst, now);
+    console.log(`\npulseofproject sync complete. Ingested ${ingested} record(s).`);
+  } else {
+    console.warn(`\n⚠ ${failedChunks} chunk(s) failed to embed — cursor NOT advanced. Fix the cause (e.g. OpenAI quota) and re-run \`npm run brain:pulse\`.`);
+  }
 }
 
 run().catch(err => { console.error(err); process.exit(1); });
