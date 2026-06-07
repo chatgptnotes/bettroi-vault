@@ -37,6 +37,25 @@ async function setLastSync(sb, ts) {
   await sb.from('brain_sync_state').upsert({ source: SOURCE, last_synced: ts }, { onConflict: 'source' });
 }
 
+// Paginated fetch of explicit columns since `since`. Selecting explicit columns
+// (not *) avoids pulling heavy fields like image_url that cause statement timeouts.
+async function fetchSince(src, table, columns, since) {
+  const PAGE = 500;
+  let from = 0;
+  const all = [];
+  for (;;) {
+    const { data, error } = await src.from(table)
+      .select(columns).gt('updated_at', since)
+      .order('updated_at', { ascending: true })
+      .range(from, from + PAGE - 1);
+    if (error) throw new Error(`${table} fetch failed: ${error.message}`);
+    all.push(...(data ?? []));
+    if (!data || data.length < PAGE) break;
+    from += PAGE;
+  }
+  return all;
+}
+
 async function run() {
   requireEnv();
   console.log('pulseofproject sync starting...');
@@ -51,9 +70,9 @@ async function run() {
   // Schema (chatgptnotes/pulseofproject, bug_reports table): project_name,
   // project_version, sno, date, module, screen, snag, severity (P1/P2/P3),
   // status, testing_status, assigned_to, reported_by, comments, image_url.
-  const { data: bugs, error: bugErr } = await src
-    .from('bug_reports').select('*').gt('updated_at', since);
-  if (bugErr) throw new Error(`bug_reports fetch failed: ${bugErr.message}`);
+  const bugs = await fetchSince(src, 'bug_reports',
+    'id,project_name,project_version,sno,date,module,screen,snag,severity,status,testing_status,assigned_to,reported_by,comments,type,updated_at',
+    since);
 
   for (const b of bugs ?? []) {
     const text = [
@@ -86,11 +105,15 @@ async function run() {
   // ── Projects (status + ownership) ──────────────────────────────────────────
   // admin_projects: id, name, client, description, status, priority, progress,
   // deadline, team_count, category, url.
-  const { data: projects, error: projErr } = await src
-    .from('admin_projects').select('*').gt('updated_at', since);
-  if (projErr) {
-    console.warn(`  admin_projects fetch skipped: ${projErr.message}`);
-  } else {
+  let projects = [];
+  try {
+    projects = await fetchSince(src, 'admin_projects',
+      'id,name,client,description,status,priority,progress,deadline,category,url,updated_at',
+      since);
+  } catch (e) {
+    console.warn(`  admin_projects fetch skipped: ${e.message}`);
+  }
+  {
     for (const p of projects ?? []) {
       const text = [
         `Project: ${p.name}`,
