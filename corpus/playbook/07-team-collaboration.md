@@ -80,6 +80,21 @@ POP is the official and **only** channel for the client to log feedback. This is
 
 **Why this matters:** a lot of productive time is currently lost extracting feedback from scattered channels and consolidating it for the team. Making POP the single source of truth improves **accountability, traceability, and overall efficiency**. POP enhancements to better support this process are in progress (discussed with Sahil).
 
+## Slack thread directory — internal dev coordination
+
+Each project has one dedicated Slack thread for development & bugs, bookmarked in **Later** so it is always one click away. One thread per topic keeps internal coordination from scattering.
+
+| Thread | Use it for |
+|---|---|
+| **Bajaj PIMS — dev & bugs** | All AI-powered PIMS for Bajaj development & bug messages |
+| **Hope — dev & bugs** | All Hope product development & bug messages |
+| **&lt;new project&gt; — dev & bugs** | Pattern: one "development & bugs" thread per project, pinned "use this thread for all &lt;project&gt; development & bugs messages" |
+
+- **One thread per project** for dev & bug coordination; bookmark it in Slack **Later**.
+- Pin the thread with: *"use this thread for all &lt;project&gt; development & bugs messages"*.
+- These threads are for **internal team coordination**. Official client feedback still goes through **Pulse of Project (POP)** — see the POP policy above.
+- Add a new dev & bugs thread whenever a new project starts.
+
 ## 6. Requirements and acceptance sign-off
 
 Two written gates wrap every order: the client agrees the scope **before** we build, and confirms it works **before** we invoice. Same checklist, checked twice.
