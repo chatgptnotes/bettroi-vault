@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-06-05T12:20:23Z
-size_kb: 40316
+last_push: 2026-06-06T12:42:46Z
+size_kb: 40426
 language: TypeScript
 description: ""
-extracted: 2026-06-06T06:59:29.293Z
+extracted: 2026-06-07T07:18:23.268Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-06-05T12:20:23Z
-**Language:** TypeScript  ·  **Repo size:** 40316KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-06T12:42:46Z
+**Language:** TypeScript  ·  **Repo size:** 40426KB
 
 
 
@@ -73,8 +73,8 @@ extracted: 2026-06-06T06:59:29.293Z
 
 ## Folder breakdown
 
-- `src/` — 816 files
-- `supabase/` — 435 files
+- `src/` — 824 files
+- `supabase/` — 436 files
 - `public/` — 51 files
 - `scripts/` — 26 files
 - `agents/` — 25 files
@@ -91,6 +91,9 @@ extracted: 2026-06-06T06:59:29.293Z
 
 ## Recent commits
 
+- `c25c558` _2026-06-06_ — ci: redeploy from current HEAD
+- `8b53996` _2026-06-06_ — feat(deadline-tracking): utility-bill deadline dashboard
+- `6cc7d57` _2026-06-06_ — feat(skill-factory): build v2 page with task-optimizer engine
 - `d1437dd` _2026-06-05_ — chore(billing): commit remaining email automation files
 - `76e1330` _2026-06-05_ — Merge branch 'main' of https://github.com/chatgptnotes/adamrit into biling-autom
 - `213027d` _2026-06-05_ — docs: add billing email automation feature documentation
@@ -98,9 +101,6 @@ extracted: 2026-06-06T06:59:29.293Z
 - `01fde67` _2026-06-05_ — feat(billing): connect Re-phrase to Gemini AI — uses existing geminiFetch from s
 - `e4449d2` _2026-06-05_ — Merge origin/main (payment-voucher) into main
 - `054feb5` _2026-06-05_ — Merge feat/discharge-autofill-and-section-fixes into main
-- `22198bd` _2026-06-05_ — feat(discharge): photo OCR auto-fill + field-driven Clinical History/Advice/Stay
-- `82e9e65` _2026-06-05_ — feat(payment-voucher): add per-row print button for individual vouchers
-- `d1cf952` _2026-06-05_ — feat(billing): add Re-phrase button with 4 styles — Standard, Formal, Brief, Fri
 
 ## README
 
