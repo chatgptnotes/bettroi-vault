@@ -1,23 +1,27 @@
 -- Fix: brain_chunks inserts failing with "different vector dimensions 1536 and 0"
--- Cause: one or more rows hold a malformed (non-1536) embedding, which poisons the
--- HNSW vector index so EVERY new insert fails. Run this in the Supabase SQL Editor
--- for the brain project. Safe: only removes malformed rows.
+-- Diagnosis (confirmed): all 65 stored rows are valid 1536-dim, and freshly
+-- generated embeddings are 1536-dim, yet even a direct insert fails. The HNSW
+-- vector index is corrupt (holds a phantom 0-dim entry). The fix is to rebuild
+-- the index. Run this in the Supabase SQL Editor for the brain project (drmhope).
 
--- 1. Inspect — how many rows per embedding dimension? (expect mostly 1536, plus a few bad)
+-- 1. (Optional sanity) dimensions present in the table — expect only 1536
 select vector_dims(embedding) as dims, count(*)
 from brain_chunks
 group by 1
 order by 1;
 
--- 2. Remove malformed rows (null or not 1536-dim)
-delete from brain_chunks
-where embedding is null
-   or vector_dims(embedding) <> 1536;
-
--- 3. Enforce the dimension on the column so a 0-dim vector can never get back in
+-- 2. Enforce a fixed dimension on the column (no-op if already vector(1536);
+--    guarantees the index can be built and blocks any 0-dim value)
 alter table brain_chunks
   alter column embedding type vector(1536);
 
--- 4. Rebuild the vector index + refresh planner stats
-reindex table brain_chunks;
+-- 3. Rebuild the vector index from clean table data
+drop index if exists brain_chunks_embedding_hnsw_idx;
+drop index if exists brain_chunks_embedding_idx;
+create index brain_chunks_embedding_hnsw_idx
+  on brain_chunks
+  using hnsw (embedding vector_cosine_ops)
+  with (m = 16, ef_construction = 64);
+
+-- 4. Refresh planner stats
 analyze brain_chunks;
