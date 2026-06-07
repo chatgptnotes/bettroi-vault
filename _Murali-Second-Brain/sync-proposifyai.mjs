@@ -5,6 +5,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
+import { ingestText } from './ingest.mjs';
 
 const propo = createClient(process.env.PROPOSIFY_SUPABASE_URL, process.env.PROPOSIFY_SUPABASE_SERVICE_KEY, { auth: { persistSession: false } });
 const brain = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY, { auth: { persistSession: false } });
@@ -94,6 +95,46 @@ function fmtMd(p) {
   ].join('\n');
 }
 
+// POs / invoices / proposals are tracked in project_documents (with amount,
+// delivery + stage) and project_payments (paid / advance). Financial, so these
+// go into brain_chunks as off_limits=true.
+async function syncProjectDocuments() {
+  const { data: docs, error: docErr } = await propo.from('project_documents').select('*');
+  if (docErr) { console.warn(`project_documents skipped: ${docErr.message}`); return; }
+  const { data: pays } = await propo.from('project_payments').select('*');
+  const payByKey = Object.fromEntries((pays ?? []).map(p => [`${p.project}::${p.direction}`, p]));
+
+  let ingested = 0;
+  for (const d of docs ?? []) {
+    const pay = payByKey[`${d.project}::${d.direction}`];
+    const text = [
+      `${(d.doc_type ?? 'document').toUpperCase()}: ${d.label ?? d.filename ?? '(untitled)'}`,
+      `Project: ${d.project}`,
+      `Direction: ${d.direction}`,
+      d.amount ? `Amount: ${d.amount}` : null,
+      `Delivered: ${d.delivered ? 'yes' : 'no'}`,
+      d.stage ? `Stage: ${d.stage}` : null,
+      pay ? `Paid: ${pay.paid ? 'yes' : 'no'}  ·  Advance taken: ${pay.advance_taken ? 'yes' : 'no'}` : null,
+      pay?.note ? `Payment note: ${pay.note}` : null,
+    ].filter(v => v !== null && v !== undefined).join('\n');
+
+    await ingestText({
+      text,
+      project_tag: d.project,
+      source_type: 'proposifyai',
+      source_ref: `proposifyai://document/${d.id}`,
+      metadata: {
+        docType: d.doc_type, project: d.project, direction: d.direction,
+        amount: d.amount, delivered: d.delivered, stage: d.stage,
+        paid: pay?.paid ?? null, advance_taken: pay?.advance_taken ?? null,
+        off_limits: true,  // financial — restricted
+      },
+    });
+    ingested++;
+  }
+  console.log(`✓ Ingested ${ingested} PO/invoice/proposal document(s) into brain_chunks (off_limits)`);
+}
+
 async function run() {
   const { data: proposals } = await propo.from('proposals').select('*').order('created_at', { ascending: false });
   console.log(`Pulled ${proposals.length} proposals from proposifyai.com`);
@@ -122,6 +163,9 @@ async function run() {
   } else {
     console.log('(No pricing data to extract)');
   }
+
+  // POs / invoices / proposal-tracker documents (financial, off_limits)
+  await syncProjectDocuments();
 
   console.log('\nNext: npm run brain:obsidian   (ingests the proposal .md files into brain)');
 }

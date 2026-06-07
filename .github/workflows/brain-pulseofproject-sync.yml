@@ -1,7 +1,7 @@
 name: Brain — pulseofproject.com Sync
 
-# Pulls bugs / tasks (the "who does what" view) from pulseofproject.com and
-# ingests them into brain_chunks. Direct ingest, no commit needed.
+# Pulls bug reports + projects (the "who does what" view) from pulseofproject.com's
+# Supabase and ingests them into brain_chunks. Direct ingest, no commit needed.
 
 on:
   schedule:
@@ -17,11 +17,11 @@ jobs:
         with:
           node-version: '22'
       - run: npm ci
-      - name: Sync pulseofproject.com issues
+      - name: Sync pulseofproject.com bugs + projects
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          PULSE_API_URL: ${{ secrets.PULSE_API_URL }}
-          PULSE_API_KEY: ${{ secrets.PULSE_API_KEY }}
+          PULSE_SUPABASE_URL: ${{ secrets.PULSE_SUPABASE_URL }}
+          PULSE_SUPABASE_SERVICE_KEY: ${{ secrets.PULSE_SUPABASE_SERVICE_KEY }}
         run: node _Murali-Second-Brain/pulseofproject-sync.mjs

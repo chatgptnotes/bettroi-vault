@@ -8,7 +8,6 @@
     "sync": "node scripts/sync-to-supabase.mjs",
     "brain:test": "node --env-file=.env.local _Murali-Second-Brain/ingest.mjs",
     "brain:fathom": "node --env-file=.env.local _Murali-Second-Brain/fathom-sync.mjs",
-    "brain:proposalos": "node --env-file=.env.local _Murali-Second-Brain/proposalos-sync.mjs",
     "brain:pulse": "node --env-file=.env.local _Murali-Second-Brain/pulseofproject-sync.mjs",
     "brain:obsidian": "node --env-file=.env.local _Murali-Second-Brain/obsidian-sync.mjs",
     "brain:ask": "node --env-file=.env.local _Murali-Second-Brain/query.mjs",

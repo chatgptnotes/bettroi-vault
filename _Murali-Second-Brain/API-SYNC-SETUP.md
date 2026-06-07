@@ -1,59 +1,58 @@
-# proposalos.in + pulseofproject.com → Brain sync — setup
+# External tools → Brain sync — where the keys live & how it runs
 
-Two sync scripts pull external data into `brain_chunks` so it is RAG-queryable,
-modeled on `fathom-sync.mjs`. They run daily via GitHub Actions and can be run
-locally with the npm scripts.
+Two team tools feed the Second Brain. Both are **your own Supabase-backed apps**,
+so the sync reads their Supabase directly (like `sync-bni-contacts.mjs`) — there
+is no third-party REST API to configure.
 
-| Source | Script | npm | Off-limits? |
-|---|---|---|---|
-| proposalos.in (proposals, POs, invoices) | `proposalos-sync.mjs` | `npm run brain:proposalos` | Yes (financial) |
-| pulseofproject.com (bugs, who-does-what) | `pulseofproject-sync.mjs` | `npm run brain:pulse` | No |
+| Tool | = | Repo | Sync script | npm |
+|---|---|---|---|---|
+| proposalos.in | **proposifyai.com** | `chatgptnotes/proposifyai.com` | `sync-proposifyai.mjs` (already existed) | `npm run brain:sync-proposifyai` |
+| pulseofproject.com | — | `chatgptnotes/pulseofproject` | `pulseofproject-sync.mjs` | `npm run brain:pulse` |
 
-## 1. Set the env vars
+## proposalos.in = proposifyai.com — already wired
 
-Add to `.env.local` (for local runs) AND to the GitHub repo secrets (for CI):
+There is **no separate proposalos sync** — proposalos.in is the same product as
+proposifyai.com, which already has `sync-proposifyai.mjs`. It pulls the
+`proposals` table from proposifyai's Supabase, writes one markdown file per
+proposal under `Proposals/{client}/`, and extracts pricing into `brain_proposals`.
 
-```
-PROPOSALOS_API_URL=https://proposalos.in/api
-PROPOSALOS_API_KEY=...
-PULSE_API_URL=https://pulseofproject.com/api
-PULSE_API_KEY=...
-```
+- **Keys (already in `.env.local`):** `PROPOSIFY_SUPABASE_URL`, `PROPOSIFY_SUPABASE_SERVICE_KEY`
+- **Where the real values come from:** the proposifyai.com Supabase project →
+  Dashboard → Project Settings → API (or the repo's env / deployed env).
+- **Run:** `npm run brain:sync-proposifyai`
 
-`SUPABASE_URL`, `SUPABASE_SERVICE_KEY`, and `OPENAI_API_KEY` are already configured.
+Note: proposifyai's schema has grown (see `proposifyai/supabase/migrations/`) to
+include `project_tracker`, `project_payments`, etc. If POs/invoices live in those
+tables (not just `proposals`), `sync-proposifyai.mjs` can be extended to read them.
 
-## 2. Adapt the CONFIG block to each real API
+## pulseofproject.com — Supabase sync (this script)
 
-Each script has a clearly marked `── CONFIG ──` section at the top. That is the
-only part to change once you have the API docs:
+`pulseofproject-sync.mjs` reads two tables and ingests them into `brain_chunks`:
 
-- **`listUrl(since)`** — the endpoint + query param that lists records modified
-  since a timestamp. Default assumes `GET {API_URL}/documents?updated_since=...`
-  (proposalos) and `GET {API_URL}/issues?updated_since=...` (pulse).
-- **`toRecord(raw)` / `toItem(raw)`** — maps the API's JSON fields to the fields
-  we ingest. Defaults try the common names (`id`, `total`, `status`, `assignee`,
-  etc.); fix any that do not match the real payload.
-- **Auth** — both default to `Authorization: Bearer <key>`. Change the header in
-  the `headers` object if the API uses a different scheme (e.g. `X-Api-Key`).
+- **`bug_reports`** — bugs + who-does-what: `project_name`, `sno`, `module`,
+  `screen`, `snag`, `severity` (P1/P2/P3), `status`, `testing_status`,
+  `assigned_to`, `reported_by`, `comments`.
+- **`admin_projects`** — project status: `name`, `client`, `status`, `priority`,
+  `progress`, `deadline`, `category`.
 
-If proposalos.in / pulseofproject.com are your own Supabase-backed apps instead
-of REST APIs, swap `fetchDocuments` / `fetchItems` to use a Supabase client
-exactly like `sync-bni-contacts.mjs` does.
+### Setup
 
-## 3. Run
+1. In the pulseofproject "bugtracking" Supabase project → Dashboard → Project
+   Settings → API, copy the **Project URL** and **service_role key**.
+2. Add to `.env.local` (and GitHub repo secrets for CI):
+   ```
+   PULSE_SUPABASE_URL=...
+   PULSE_SUPABASE_SERVICE_KEY=...
+   ```
+   (`SUPABASE_URL`, `SUPABASE_SERVICE_KEY`, `OPENAI_API_KEY` are already set.)
+3. Run: `npm run brain:pulse`
 
-```
-npm run brain:proposalos
-npm run brain:pulse
-```
+Delta-synced via the `brain_sync_state` table (`source = pulseofproject`), on
+`updated_at`, so only changed records re-ingest. Daily GitHub Action:
+`.github/workflows/brain-pulseofproject-sync.yml`.
 
-Each tracks its own cursor in the `brain_sync_state` table (`source` =
-`proposalos` / `pulseofproject`) so only new/updated records are ingested.
+## Verify
 
-## 4. Verify
-
-- Console shows `✓ Ingested N chunk(s) — [client] proposalos: proposalos://...`
-- In Supabase, `brain_chunks` has rows with `source_type = 'proposalos'`
-  (`off_limits = true`) and `source_type = 'pulseofproject'`.
-- `npm run brain:ask "what is the total of invoice <number>"` returns the value
-  (only for off-limits-enabled queries).
+- Console shows `bugs: N ingested` / `projects: N ingested`.
+- In Supabase, `brain_chunks` has rows with `source_type = 'pulseofproject'`.
+- `npm run brain:ask "what P1 bugs are open and who owns them"` returns them.
