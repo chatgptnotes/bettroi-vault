@@ -694,9 +694,19 @@ async function extractFileText(file) {
   const path = await downloadSlackFile(file);
   try {
     if (PLAINTEXT_TYPES.has(ext)) return (await readFile(path, 'utf8')).slice(0, 200000);
-    const { stdout } = await execFileP(FIRECRAWL_BIN, ['parse', path, '--only-main-content'],
-      { maxBuffer: 20 * 1024 * 1024, timeout: 120000 });
-    return stdout?.trim() || null;
+    // firecrawl parse hits a cloud API that occasionally errors transiently —
+    // retry a few times with backoff so a single blip doesn't drop the file
+    // (Slack won't redeliver the event).
+    let lastErr;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      if (attempt) await new Promise(r => setTimeout(r, attempt * 5000));
+      try {
+        const { stdout } = await execFileP(FIRECRAWL_BIN, ['parse', path, '--only-main-content'],
+          { maxBuffer: 20 * 1024 * 1024, timeout: 120000 });
+        return stdout?.trim() || null;
+      } catch (e) { lastErr = e; console.warn(`  ⚠ firecrawl parse attempt ${attempt + 1}/3 failed: ${e.message.slice(0, 80)}`); }
+    }
+    throw lastErr;
   } finally {
     unlink(path).catch(() => {});
   }
