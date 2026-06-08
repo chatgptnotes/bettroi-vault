@@ -5,14 +5,21 @@ import { ImapFlow } from 'imapflow';
 import { createClient } from '@supabase/supabase-js';
 import { callClaude } from './ai-client.mjs';
 import { ingestText } from './ingest.mjs';
-import { writeFile, mkdir } from 'node:fs/promises';
+import { writeFile, mkdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { homedir } from 'node:os';
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY, { auth: { persistSession: false } });
 
 const VAULT_ROOT = new URL('../', import.meta.url).pathname;
 const DRY = process.argv.includes('--dry');
 const LOOKBACK_HOURS = parseInt(process.argv.find(a => a.startsWith('--hours='))?.split('=')[1] ?? '24', 10);
+// Explicit --hours=N = one-time date-based backfill. Otherwise: incremental mode,
+// processing only emails with UID greater than the last-seen watermark (local file).
+// Incremental avoids re-classifying the whole day every run (IMAP date search is
+// date-granular, not hour-granular) — critical while classification runs on the slow VPS.
+const BACKFILL = process.argv.some(a => a.startsWith('--hours='));
+const UID_FILE = join(homedir(), '.brain-email-last-uid');
 
 const EMAIL_HOST = process.env.EMAIL_IMAP_HOST ?? 'imap.gmail.com';
 const EMAIL_PORT = parseInt(process.env.EMAIL_IMAP_PORT ?? '993', 10);
@@ -71,9 +78,6 @@ async function inferProject(subject, body) {
 }
 
 async function run() {
-  const since = new Date(Date.now() - LOOKBACK_HOURS * 3600 * 1000);
-  console.log(`Email sync: ${process.env.EMAIL_USER} @ ${EMAIL_HOST} — last ${LOOKBACK_HOURS}h`);
-
   const client = new ImapFlow({
     host: EMAIL_HOST,
     port: EMAIL_PORT,
@@ -82,11 +86,37 @@ async function run() {
     logger: false,
   });
   await client.connect();
-  await client.mailboxOpen('INBOX');
+  const mailbox = await client.mailboxOpen('INBOX');
+  const maxUid = (mailbox.uidNext ?? 1) - 1;
+
+  // Decide what to fetch: explicit backfill (date range) vs incremental (new UIDs only).
+  let fetchArgs;
+  if (BACKFILL) {
+    const since = new Date(Date.now() - LOOKBACK_HOURS * 3600 * 1000);
+    console.log(`Email sync: backfill last ${LOOKBACK_HOURS}h — ${process.env.EMAIL_USER}`);
+    fetchArgs = [{ since }, { envelope: true, uid: true, source: true }];
+  } else {
+    let lastUid = null;
+    try { lastUid = parseInt((await readFile(UID_FILE, 'utf8')).trim(), 10) || null; } catch {}
+    if (!lastUid) {
+      // First run: set the watermark and stop — don't classify all history on the slow VPS.
+      await writeFile(UID_FILE, String(maxUid));
+      await client.logout();
+      console.log(`Email sync: initialized watermark at UID ${maxUid}. New mail from here on will be ingested. For a one-time history backfill run with --hours=N.`);
+      return;
+    }
+    if (lastUid >= maxUid) {
+      await client.logout();
+      console.log(`Email sync: no new mail (watermark UID ${lastUid}).`);
+      return;
+    }
+    console.log(`Email sync: incremental UIDs ${lastUid + 1}..${maxUid} — ${process.env.EMAIL_USER}`);
+    fetchArgs = [`${lastUid + 1}:*`, { envelope: true, uid: true, source: true }, { uid: true }];
+  }
 
   // Phase 1: collect all email metadata + bodies FIRST (fast IMAP work)
   const emails = [];
-  for await (const msg of client.fetch({ since }, { envelope: true, uid: true, source: true })) {
+  for await (const msg of client.fetch(...fetchArgs)) {
     const env = msg.envelope;
     const subject = env?.subject ?? '(no subject)';
     const from = (env?.from?.[0]?.address) ?? 'unknown';
@@ -165,6 +195,12 @@ async function run() {
     });
     ingested++;
     console.log(`  ✓ [${cls.type}/${cls.score.toFixed(2)}] ${e.subject.slice(0, 60)} → ${project}`);
+  }
+
+  // Advance the watermark to the highest UID seen so the next run only gets new mail.
+  if (!DRY) {
+    const newMax = emails.reduce((m, e) => Math.max(m, e.uid || 0), maxUid);
+    await writeFile(UID_FILE, String(newMax)).catch(() => {});
   }
 
   console.log(`\nProcessed ${emails.length} emails · Ingested ${ingested} · Skipped ${skipped}`);
