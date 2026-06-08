@@ -647,6 +647,9 @@ app.shortcut('send_to_brain', async ({ shortcut, ack, client, respond }) => {
 // are OCR'd best-effort; substantial text messages (incl. thread replies) are
 // ingested directly. Short chatter is skipped. Idempotent via ingest source_ref.
 
+// Absolute path — launchd's minimal PATH doesn't include the npm-global bin dir,
+// so a bare 'firecrawl' command throws ENOENT. Overridable via env.
+const FIRECRAWL_BIN = process.env.FIRECRAWL_BIN || '/Users/murali/.npm-global/bin/firecrawl';
 const FIRECRAWL_TYPES = new Set(['pdf', 'docx', 'doc', 'odt', 'rtf', 'xlsx', 'xls', 'html', 'htm']);
 const PLAINTEXT_TYPES = new Set(['txt', 'text', 'md', 'markdown', 'csv', 'log', 'json']);
 const MIN_INGEST_CHARS = 150;
@@ -691,7 +694,7 @@ async function extractFileText(file) {
   const path = await downloadSlackFile(file);
   try {
     if (PLAINTEXT_TYPES.has(ext)) return (await readFile(path, 'utf8')).slice(0, 200000);
-    const { stdout } = await execFileP('firecrawl', ['parse', path, '--only-main-content'],
+    const { stdout } = await execFileP(FIRECRAWL_BIN, ['parse', path, '--only-main-content'],
       { maxBuffer: 20 * 1024 * 1024, timeout: 120000 });
     return stdout?.trim() || null;
   } finally {
