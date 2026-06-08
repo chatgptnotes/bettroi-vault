@@ -50,7 +50,9 @@ async function fetchSummary(meeting) {
   const res = await fetch(`${FATHOM_API}/recordings/${recordingId}/summary`, { headers });
   if (!res.ok) return null;
   const data = await res.json();
-  return data.summary ?? data.content ?? data.text ?? null;
+  // Fathom returns { summary: { template_name, markdown_formatted } } — pull the markdown.
+  const sum = data.summary;
+  return (sum && typeof sum === 'object' ? sum.markdown_formatted : sum) ?? data.content ?? data.text ?? null;
 }
 
 async function run() {
@@ -75,6 +77,8 @@ async function run() {
   for (const meeting of meetings) {
     const title = meeting.title ?? meeting.name ?? 'Untitled Meeting';
     const date = meeting.created_at ?? meeting.started_at ?? now;
+    // Fathom meetings have no top-level `id`; recording_id is the stable unique key.
+    const meetingId = meeting.recording_id ?? meeting.id;
 
     // Try to extract project tag from meeting title e.g. "[AdamritHMS] weekly standup"
     const prefixMatch = title.match(/^\[([^\]]+)\]/);
@@ -94,8 +98,8 @@ async function run() {
       text,
       project_tag,
       source_type: 'fathom',
-      source_ref: `fathom://meetings/${meeting.id}`,
-      metadata: { title: cleanTitle, date, meeting_id: meeting.id },
+      source_ref: `fathom://meetings/${meetingId}`,
+      metadata: { title: cleanTitle, date, meeting_id: meetingId },
     });
     ingested++;
   }
