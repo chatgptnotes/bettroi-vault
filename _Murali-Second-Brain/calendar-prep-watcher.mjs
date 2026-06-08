@@ -6,6 +6,9 @@
 import ical from 'node-ical';
 import { createClient } from '@supabase/supabase-js';
 import { WebClient } from '@slack/web-api';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { homedir } from 'node:os';
+import { join } from 'node:path';
 
 const ICS_URL = process.env.GOOGLE_CAL_ICS_URL;
 if (!ICS_URL) { console.error('GOOGLE_CAL_ICS_URL not set in .env.local'); process.exit(1); }
@@ -161,7 +164,8 @@ async function processEvent(event, notified, slackUsers) {
 
 // Probe both AI engines so Murali learns of an outage BEFORE a meeting, not during.
 // Primary = Anthropic credits; Fallback = nexaproc VPS gateway (reached via the SSH tunnel).
-const HEALTH_KEY = 'U_BRAIN_HEALTH';
+// Last status is stored in a local file (brain_user_state.last_items_dm is uuid[], can't hold a string).
+const HEALTH_STATE_FILE = join(homedir(), '.brain-health-state');
 
 async function checkEngines() {
   let primaryOk = false, primaryMsg = '';
@@ -194,8 +198,8 @@ async function healthAlert() {
   const { primaryOk, primaryMsg, fallbackOk, fallbackMsg } = await checkEngines();
   const status = primaryOk ? 'ok' : (fallbackOk ? 'degraded' : 'down');
 
-  const { data } = await supabase.from('brain_user_state').select('last_items_dm').eq('slack_user_id', HEALTH_KEY).maybeSingle();
-  const prev = data?.last_items_dm?.[0] ?? 'ok';
+  let prev = 'ok';
+  try { prev = readFileSync(HEALTH_STATE_FILE, 'utf8').trim() || 'ok'; } catch { /* no prior state */ }
   if (status === prev) { console.log(`Health: ${status} (unchanged, no alert).`); return; }
 
   const text = status === 'down'
@@ -212,9 +216,7 @@ async function healthAlert() {
     const open = await slack.conversations.open({ users: muraliId });
     await slack.chat.postMessage({ channel: open.channel.id, text });
   } catch (e) { console.warn(`health DM failed: ${e.message}`); }
-  await supabase.from('brain_user_state').upsert(
-    { slack_user_id: HEALTH_KEY, last_items_dm: [status], updated_at: new Date().toISOString() },
-    { onConflict: 'slack_user_id' });
+  try { writeFileSync(HEALTH_STATE_FILE, status); } catch (e) { console.warn(`could not save health state: ${e.message}`); }
   console.log(`Health: ${prev} → ${status} (alerted Murali).`);
 }
 
