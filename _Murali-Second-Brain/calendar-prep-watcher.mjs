@@ -159,7 +159,67 @@ async function processEvent(event, notified, slackUsers) {
   return true;
 }
 
+// Probe both AI engines so Murali learns of an outage BEFORE a meeting, not during.
+// Primary = Anthropic credits; Fallback = nexaproc VPS gateway (reached via the SSH tunnel).
+const HEALTH_KEY = 'U_BRAIN_HEALTH';
+
+async function checkEngines() {
+  let primaryOk = false, primaryMsg = '';
+  try {
+    const { anthropic } = await import('./ai-client.mjs');
+    await anthropic.messages.create({ model: 'claude-haiku-4-5-20251001', max_tokens: 1, messages: [{ role: 'user', content: 'ping' }] });
+    primaryOk = true;
+  } catch (e) {
+    primaryMsg = /credit|balance|insufficient|quota|billing/i.test(e.message || '') ? 'out of credits' : (e.message || 'error').slice(0, 80);
+  }
+
+  let fallbackOk = false, fallbackMsg = '';
+  try {
+    const resp = await fetch(process.env.NEXAPROC_VPS_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Nexaproc-Key': process.env.NEXAPROC_VPS_KEY || '' },
+      body: '{}',
+      signal: AbortSignal.timeout(8000),
+    });
+    fallbackOk = resp.status > 0; // any HTTP reply means the tunnel + gateway are alive
+  } catch (e) {
+    fallbackMsg = /timeout|abort/i.test(e.message || '') ? 'unreachable (tunnel down?)' : (e.message || 'error').slice(0, 80);
+  }
+  return { primaryOk, primaryMsg, fallbackOk, fallbackMsg };
+}
+
+async function healthAlert() {
+  const muraliId = process.env.SLACK_MURALI_USER_ID;
+  if (!muraliId) return;
+  const { primaryOk, primaryMsg, fallbackOk, fallbackMsg } = await checkEngines();
+  const status = primaryOk ? 'ok' : (fallbackOk ? 'degraded' : 'down');
+
+  const { data } = await supabase.from('brain_user_state').select('last_items_dm').eq('slack_user_id', HEALTH_KEY).maybeSingle();
+  const prev = data?.last_items_dm?.[0] ?? 'ok';
+  if (status === prev) { console.log(`Health: ${status} (unchanged, no alert).`); return; }
+
+  const text = status === 'down'
+    ? `🔴 *Brain DOWN* — pre-meeting briefings will be blank.\n• Main (Anthropic): ${primaryMsg}\n• Backup (VPS): ${fallbackMsg}\nFix one to restore briefings.`
+    : status === 'degraded'
+    ? `🟡 *Running on backup* — main brain (Anthropic) is ${primaryMsg}. Briefings still work via the VPS gateway, but top up Anthropic credits to restore the primary (and speed).`
+    : `🟢 *Brain healthy again* — main brain (Anthropic) is back.`;
+
+  if (DRY) {
+    console.log(`[DRY] health alert (${prev}→${status}):`, text);
+  } else {
+    try {
+      const open = await slack.conversations.open({ users: muraliId });
+      await slack.chat.postMessage({ channel: open.channel.id, text });
+    } catch (e) { console.warn(`health DM failed: ${e.message}`); }
+  }
+  await supabase.from('brain_user_state').upsert(
+    { slack_user_id: HEALTH_KEY, last_items_dm: [status], updated_at: new Date().toISOString() },
+    { onConflict: 'slack_user_id' });
+  console.log(`Health: ${prev} → ${status} (alerted Murali).`);
+}
+
 async function run() {
+  await healthAlert();
   console.log(`Fetching calendar at ${new Date().toISOString()}...`);
   const events = await ical.async.fromURL(ICS_URL);
   const all = Object.values(events).filter(e => e.type === 'VEVENT');
