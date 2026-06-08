@@ -72,20 +72,27 @@ async function run() {
     lines.push(`${flag} *${s.label}* — ${count} chunks, newest ${ago(last)}`);
   }
 
-  const engineDown = Object.values(engines).some(v => v.startsWith('🔴'));
-  const briefingOk = engines.anthropic.startsWith('🟢') || engines.vps.startsWith('🟢');
-  const verdict = engineDown || warnings
-    ? `⚠️ *Brain needs attention* — ${warnings} stale source(s)${engineDown ? ', engine issue' : ''}${briefingOk ? '' : ', *no working brain*'}`
-    : '🟢 *Brain healthy* — all sources fresh, engines up';
+  // VPS Claude Code subscription is the primary text brain; the API is backup — so
+  // API-out-of-credits is informational, not critical. Critical = no LLM at all, or
+  // no embeddings (which blocks all ingestion).
+  const textBrainOk = engines.vps.startsWith('🟢') || engines.anthropic.startsWith('🟢');
+  const embeddingsOk = engines.openai.startsWith('🟢');
+  const verdict = !textBrainOk
+    ? '🔴 *Brain DOWN* — no working LLM (subscription + API both unreachable)'
+    : !embeddingsOk
+    ? '🔴 *Ingestion DOWN* — embeddings (OpenAI) unreachable'
+    : warnings
+    ? `⚠️ *Mostly healthy* — ${warnings} stale source(s)`
+    : `🟢 *Brain healthy* — running on ${engines.vps.startsWith('🟢') ? 'Claude Code subscription (VPS)' : 'Anthropic API'}`;
 
   const text = [
     `🧠 *Second Brain — daily health*`,
     verdict,
     ``,
     `*Engines:*`,
-    `• Primary (Anthropic): ${engines.anthropic}`,
-    `• Backup (VPS tunnel): ${engines.vps}`,
-    `• Embeddings (OpenAI): ${engines.openai}`,
+    `• Text brain — Claude Code subscription (VPS): ${engines.vps}`,
+    `• Backup — Anthropic API: ${engines.anthropic}`,
+    `• Embeddings — OpenAI: ${engines.openai}`,
     ``,
     `*Sources:*`,
     ...lines,

@@ -66,15 +66,28 @@ async function callVPS(params, attempt = 0) {
   };
 }
 
+// Does this request carry non-text content (images / documents)? Those can't go
+// through the CLI sidecar (bridge.ts flattens messages to a text prompt), so they
+// must use the real API.
+function hasNonTextContent(params) {
+  for (const m of params.messages || []) {
+    if (Array.isArray(m.content) && m.content.some(b => b.type && b.type !== 'text')) return true;
+  }
+  return false;
+}
+
 export async function callClaude(params) {
+  // Vision/document calls must use the real Anthropic API (sidecar is text-only).
+  if (hasNonTextContent(params)) return await primary.messages.create(params);
+
+  // Text calls: prefer the Claude Code SUBSCRIPTION on the VPS (flat-rate, no API
+  // credits — and the only path that works while the API balance is empty). Fall
+  // back to the metered Anthropic API only if the sidecar is unreachable.
   try {
-    return await primary.messages.create(params);
+    return await callVPS(params);
   } catch (e) {
-    if (isCreditsError(e)) {
-      console.warn('  [ai-client] primary credits exhausted → VPS nexaproc fallback');
-      return await callVPS(params);
-    }
-    throw e;
+    console.warn(`  [ai-client] VPS sidecar unavailable (${(e.message || '').slice(0, 70)}) → Anthropic API`);
+    return await primary.messages.create(params);
   }
 }
 
