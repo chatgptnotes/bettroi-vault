@@ -1,0 +1,25 @@
+name: Brain VPS tunnel
+description: >
+  Opens a restricted SSH tunnel to the Claude Code gateway (nexaproc) on the VPS,
+  then exports NEXAPROC_VPS_URL + NEXAPROC_VPS_KEY so the brain runs on the Claude
+  Code subscription instead of metered API credits. The SSH key is forwarding-only.
+inputs:
+  ssh_key:      { description: Private SSH key (forwarding-only), required: true }
+  ssh_host:     { description: VPS host/IP, required: true }
+  nexaproc_key: { description: X-Nexaproc-Key for the gateway, required: true }
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        mkdir -p ~/.ssh && chmod 700 ~/.ssh
+        printf '%s\n' "${{ inputs.ssh_key }}" > ~/.ssh/ci_tunnel
+        chmod 600 ~/.ssh/ci_tunnel
+        ssh -i ~/.ssh/ci_tunnel -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new \
+            -o ExitOnForwardFailure=yes -o ServerAliveInterval=15 -fN \
+            -L 8787:127.0.0.1:8787 "root@${{ inputs.ssh_host }}"
+        # wait until the tunnel is actually listening
+        for i in $(seq 1 10); do (exec 3<>/dev/tcp/127.0.0.1/8787) 2>/dev/null && { exec 3>&-; break; }; sleep 1; done
+        echo "NEXAPROC_VPS_URL=http://127.0.0.1:8787/api/invoke" >> "$GITHUB_ENV"
+        echo "NEXAPROC_VPS_KEY=${{ inputs.nexaproc_key }}" >> "$GITHUB_ENV"
+        echo "Brain tunnel up → 127.0.0.1:8787"

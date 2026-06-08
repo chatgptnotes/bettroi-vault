@@ -21,6 +21,12 @@ jobs:
         with:
           node-version: '22'
       - run: npm ci
+      - name: Brain VPS tunnel (Claude Code subscription)
+        uses: ./.github/actions/brain-tunnel
+        with:
+          ssh_key: ${{ secrets.VPS_SSH_KEY }}
+          ssh_host: ${{ secrets.VPS_SSH_HOST }}
+          nexaproc_key: ${{ secrets.NEXAPROC_VPS_KEY }}
       - name: Draft Fathom follow-ups
         env:
           SUPABASE_URL: ${{ secrets.BRAIN_SUPABASE_URL }}
