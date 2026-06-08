@@ -5,7 +5,12 @@ import { App } from '@slack/bolt';
 import { createClient } from '@supabase/supabase-js';
 import { queryBrain } from './query.mjs';
 import { ingestText } from './ingest.mjs';
-import { callClaude } from './ai-client.mjs';
+import { callClaude, anthropic } from './ai-client.mjs';
+import { readFile, unlink } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
+const execFileP = promisify(execFile);
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -613,6 +618,117 @@ app.shortcut('send_to_brain', async ({ shortcut, ack, client, respond }) => {
       channel: channelId, user: shortcut.user.id,
       text: `❌ Failed to ingest thread: ${err.message}`,
     });
+  }
+});
+
+// ── Auto-ingest from any channel the bot is a member of ─────────────────────
+// Documents (pdf/doc/etc.) are extracted to text via the firecrawl CLI; images
+// are OCR'd best-effort; substantial text messages (incl. thread replies) are
+// ingested directly. Short chatter is skipped. Idempotent via ingest source_ref.
+
+const FIRECRAWL_TYPES = new Set(['pdf', 'docx', 'doc', 'odt', 'rtf', 'xlsx', 'xls', 'html', 'htm']);
+const PLAINTEXT_TYPES = new Set(['txt', 'text', 'md', 'markdown', 'csv', 'log', 'json']);
+const MIN_INGEST_CHARS = 150;
+
+async function downloadSlackFile(file) {
+  const url = file.url_private_download ?? file.url_private;
+  const res = await fetch(url, { headers: { Authorization: `Bearer ${process.env.SLACK_BOT_TOKEN}` } });
+  if (!res.ok) throw new Error(`download HTTP ${res.status}`);
+  const buf = Buffer.from(await res.arrayBuffer());
+  const ext = (file.filetype || file.name?.split('.').pop() || 'bin').toLowerCase();
+  const path = pathJoin(tmpdir(), `slack-${file.id}.${ext}`);
+  await writeFile(path, buf);
+  return path;
+}
+
+// Image OCR uses the PRIMARY Anthropic client only — the VPS fallback strips
+// image blocks, so routing vision through callClaude would hallucinate text.
+// If primary is unavailable (e.g. out of credits), we skip the image cleanly.
+async function ocrImage(file) {
+  try {
+    const res = await fetch(file.url_private, { headers: { Authorization: `Bearer ${process.env.SLACK_BOT_TOKEN}` } });
+    const b64 = Buffer.from(await res.arrayBuffer()).toString('base64');
+    const r = await anthropic.messages.create({
+      model: 'claude-sonnet-4-6', max_tokens: 2048,
+      messages: [{ role: 'user', content: [
+        { type: 'image', source: { type: 'base64', media_type: file.mimetype, data: b64 } },
+        { type: 'text', text: 'Extract ALL text from this image faithfully as markdown. If there is no meaningful text, reply exactly: NONE' },
+      ] }],
+    });
+    const t = r.content[0].text.trim();
+    return (t === 'NONE' || t.length < 15) ? null : t;
+  } catch (e) {
+    console.warn(`[auto-ingest] image OCR skipped (${e.message.slice(0, 60)})`);
+    return null;
+  }
+}
+
+async function extractFileText(file) {
+  if (file.mimetype?.startsWith('image/')) return await ocrImage(file);
+  const ext = (file.filetype || file.name?.split('.').pop() || '').toLowerCase();
+  if (!FIRECRAWL_TYPES.has(ext) && !PLAINTEXT_TYPES.has(ext)) return null;
+  const path = await downloadSlackFile(file);
+  try {
+    if (PLAINTEXT_TYPES.has(ext)) return (await readFile(path, 'utf8')).slice(0, 200000);
+    const { stdout } = await execFileP('firecrawl', ['parse', path, '--only-main-content'],
+      { maxBuffer: 20 * 1024 * 1024, timeout: 120000 });
+    return stdout?.trim() || null;
+  } finally {
+    unlink(path).catch(() => {});
+  }
+}
+
+const channelNameCache = new Map();
+async function channelNameFor(client, channelId) {
+  if (channelNameCache.has(channelId)) return channelNameCache.get(channelId);
+  let name = channelId;
+  try { const info = await client.conversations.info({ channel: channelId }); name = info.channel?.name ?? channelId; } catch {}
+  channelNameCache.set(channelId, name);
+  return name;
+}
+
+app.event('message', async ({ event, client }) => {
+  // #brain-inbox has its own dedicated handler above; DMs/group-DMs are answered, not ingested.
+  if (event.channel === BRAIN_INBOX) return;
+  if (event.channel_type === 'im' || event.channel_type === 'mpim') return;
+  // Only real user posts and file shares — skip bots, edits, joins, deletes.
+  if (event.bot_id || (event.subtype && event.subtype !== 'file_share')) return;
+
+  const channelName = await channelNameFor(client, event.channel);
+  const project_tag = `slack-${channelName}`;
+  const tsIso = new Date(parseFloat(event.ts) * 1000).toISOString();
+
+  // 1. Attachments → extract text → ingest
+  for (const file of event.files ?? []) {
+    try {
+      const text = await extractFileText(file);
+      if (!text || text.length < 20) continue;
+      await ingestText({
+        text: `File shared in #${channelName}: ${file.name ?? file.id}\n\n${text}`,
+        project_tag,
+        source_type: 'slack-file',
+        source_ref: file.permalink ?? `slack://${event.channel}/${file.id}`,
+        metadata: { channel: channelName, file_name: file.name, file_type: file.filetype, date: tsIso },
+      });
+      console.log(`[auto-ingest] file "${file.name}" from #${channelName} → ingested`);
+    } catch (e) {
+      console.warn(`[auto-ingest] file "${file.name}" failed: ${e.message.slice(0, 100)}`);
+    }
+  }
+
+  // 2. Substantial text (incl. thread replies) → ingest; skip short chatter
+  const txt = (event.text ?? '').replace(/<@[^>]+>/g, '').trim();
+  if (txt.length >= MIN_INGEST_CHARS) {
+    try {
+      await ingestText({
+        text: txt, project_tag, source_type: 'slack',
+        source_ref: `slack://${event.channel}/${event.ts}`,
+        metadata: { channel: channelName, thread_ts: event.thread_ts ?? null, date: tsIso },
+      });
+      console.log(`[auto-ingest] message (${txt.length} chars) from #${channelName} → ingested`);
+    } catch (e) {
+      console.warn(`[auto-ingest] message failed: ${e.message.slice(0, 100)}`);
+    }
   }
 });
 
