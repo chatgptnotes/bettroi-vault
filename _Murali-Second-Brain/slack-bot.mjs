@@ -627,6 +627,8 @@ app.shortcut('send_to_brain', async ({ shortcut, ack, client, respond }) => {
           console.warn(`[send_to_brain] file "${file.name}" failed: ${e.message.slice(0, 100)}`);
         }
       }
+      // Google Doc links anywhere in the thread → fetch + ingest
+      filesIngested += await ingestGoogleDocLinks(m.text, { project_tag, channelName, tsIso: new Date().toISOString(), threadTs });
     }
 
     await client.chat.postEphemeral({
@@ -712,6 +714,52 @@ async function extractFileText(file) {
   }
 }
 
+// Google Docs/Sheets/Slides shared as "anyone with the link" export as text with
+// no auth. Restricted docs redirect to an HTML login page — we detect that and skip.
+const GDOC_RE = /https?:\/\/docs\.google\.com\/(document|spreadsheets|presentation)\/d\/([a-zA-Z0-9_-]{20,})/g;
+
+function extractGoogleDocLinks(text) {
+  const out = new Map();
+  for (const m of (text ?? '').matchAll(GDOC_RE)) out.set(m[2], { kind: m[1], id: m[2] });
+  return [...out.values()];
+}
+
+async function fetchGoogleDocText({ kind, id }) {
+  const exportUrl =
+    kind === 'document'     ? `https://docs.google.com/document/d/${id}/export?format=txt` :
+    kind === 'spreadsheets' ? `https://docs.google.com/spreadsheets/d/${id}/export?format=csv` :
+    kind === 'presentation' ? `https://docs.google.com/presentation/d/${id}/export/txt` :
+    null;
+  if (!exportUrl) return null;
+  const res = await fetch(exportUrl, { redirect: 'follow' });
+  if (!res.ok) return null;
+  // Restricted docs (not "anyone with link") bounce to an HTML login page.
+  if ((res.headers.get('content-type') || '').includes('text/html')) return null;
+  const text = (await res.text()).trim();
+  return text.length > 20 ? text : null;
+}
+
+async function ingestGoogleDocLinks(messageText, { project_tag, channelName, tsIso, threadTs }) {
+  let count = 0;
+  for (const link of extractGoogleDocLinks(messageText)) {
+    try {
+      const text = await fetchGoogleDocText(link);
+      if (!text) continue;
+      const canonical = `https://docs.google.com/${link.kind}/d/${link.id}`;
+      await ingestText({
+        text: `Google ${link.kind} shared in #${channelName}\n${canonical}\n\n${text}`,
+        project_tag, source_type: 'gdoc', source_ref: canonical,
+        metadata: { channel: channelName, gdoc_id: link.id, kind: link.kind, thread_ts: threadTs ?? null, date: tsIso },
+      });
+      count++;
+      console.log(`[auto-ingest] gdoc ${link.kind} ${link.id} from #${channelName} → ingested`);
+    } catch (e) {
+      console.warn(`[auto-ingest] gdoc ${link.id} failed: ${e.message.slice(0, 100)}`);
+    }
+  }
+  return count;
+}
+
 const channelNameCache = new Map();
 async function channelNameFor(client, channelId) {
   if (channelNameCache.has(channelId)) return channelNameCache.get(channelId);
@@ -764,6 +812,9 @@ app.event('message', async ({ event, client }) => {
       console.warn(`[auto-ingest] message failed: ${e.message.slice(0, 100)}`);
     }
   }
+
+  // 3. Google Doc/Sheet/Slides links (anyone-with-link) → fetch + ingest contents
+  await ingestGoogleDocLinks(event.text, { project_tag, channelName, tsIso, threadTs: event.thread_ts });
 });
 
 // ── Start ─────────────────────────────────────────────────────────────────────
