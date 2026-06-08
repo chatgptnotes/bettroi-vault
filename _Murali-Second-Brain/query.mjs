@@ -48,14 +48,46 @@ export async function queryBrain({ question, role = 'murali' }) {
   const queryEmbedding = embed.data[0].embedding;
 
   // 4. Vector search via Supabase function
-  const { data: chunks, error } = await supabase.rpc('brain_search', {
+  let { data: chunks, error } = await supabase.rpc('brain_search', {
     query_embedding: queryEmbedding,
     project_filter: allowed_projects,
     off_limits_ok: role === 'murali',
-    match_count: 6,
+    match_count: 18,                          // fetch a wider candidate pool, then re-rank
   });
   if (error) throw new Error(`Search failed: ${error.message}`);
   if (!chunks?.length) return { answer: "I don't have any relevant information for that question.", sources: [] };
+
+  // Re-rank candidates: blend semantic similarity with recency + keyword overlap, then
+  // enforce source diversity (≤2 chunks per source_ref). Pure vector ranking missed
+  // recent and exact-term matches (e.g. ranked the to-do digest over actual meeting
+  // notes). No LLM needed — works even while the primary brain is out of credits.
+  {
+    const kw = [...new Set((question.toLowerCase().match(/[a-z0-9]{4,}/g) || []))];
+    const now = Date.now();
+    const scored = chunks.map(c => {
+      const ageDays = c.created_at ? (now - new Date(c.created_at).getTime()) / 8.64e7 : 365;
+      const recency = Math.exp(-ageDays / 45);                                   // ~0..1, newer ranks higher
+      const lc = (c.content || '').toLowerCase();
+      const kwHits = kw.length ? kw.filter(w => lc.includes(w)).length / kw.length : 0;
+      // Semantic similarity leads; recency + keyword overlap only break near-ties.
+      return { c, score: (c.similarity ?? 0) + 0.06 * recency + 0.05 * kwHits };
+    }).sort((a, b) => b.score - a.score);
+    // Diversity: ≤2 chunks per source_ref AND ≤4 per source_type, so one kind of
+    // document can't crowd out the rest. Backfill if diversity caps leave us short.
+    const picked = [], perRef = {}, perType = {};
+    for (const pass of [true, false]) {
+      for (const { c } of scored) {
+        if (picked.includes(c)) continue;
+        if (pass && ((perRef[c.source_ref] || 0) >= 2 || (perType[c.source_type] || 0) >= 4)) continue;
+        perRef[c.source_ref] = (perRef[c.source_ref] || 0) + 1;
+        perType[c.source_type] = (perType[c.source_type] || 0) + 1;
+        picked.push(c);
+        if (picked.length >= 8) break;
+      }
+      if (picked.length >= 8) break;
+    }
+    chunks = picked;
+  }
 
   // 4. Build context from chunks
   const context = chunks.map((c, i) =>
