@@ -608,9 +608,30 @@ app.shortcut('send_to_brain', async ({ shortcut, ack, client, respond }) => {
       },
     });
 
+    // Also extract any files attached anywhere in the thread (PDFs/docs/images)
+    let filesIngested = 0;
+    for (const m of replies.messages) {
+      for (const file of m.files ?? []) {
+        try {
+          const ftext = await extractFileText(file);
+          if (!ftext || ftext.length < 20) continue;
+          await ingestText({
+            text: `File shared in #${channelName}: ${file.name ?? file.id}\n\n${ftext}`,
+            project_tag,
+            source_type: 'slack-file',
+            source_ref: file.permalink ?? `slack://${channelId}/${file.id}`,
+            metadata: { channel: channelName, file_name: file.name, file_type: file.filetype, thread_ts: threadTs },
+          });
+          filesIngested++;
+        } catch (e) {
+          console.warn(`[send_to_brain] file "${file.name}" failed: ${e.message.slice(0, 100)}`);
+        }
+      }
+    }
+
     await client.chat.postEphemeral({
       channel: channelId, user: shortcut.user.id,
-      text: `✅ Ingested ${replies.messages.length} message(s) from #${channelName} → filed under \`${project_tag}\``,
+      text: `✅ Ingested ${replies.messages.length} message(s)${filesIngested ? ` + ${filesIngested} file(s)` : ''} from #${channelName} → filed under \`${project_tag}\``,
     });
   } catch (err) {
     console.error('send_to_brain error:', err);
