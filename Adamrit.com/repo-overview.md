@@ -6,7 +6,7 @@ last_push: 2026-06-06T12:42:46Z
 size_kb: 40426
 language: TypeScript
 description: ""
-extracted: 2026-06-07T07:18:23.268Z
+extracted: 2026-06-08T07:33:06.174Z
 ---
 # Hospital Management System — `adamrit.com`
 
