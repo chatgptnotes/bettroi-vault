@@ -206,12 +206,12 @@ async function healthAlert() {
 
   if (DRY) {
     console.log(`[DRY] health alert (${prev}→${status}):`, text);
-  } else {
-    try {
-      const open = await slack.conversations.open({ users: muraliId });
-      await slack.chat.postMessage({ channel: open.channel.id, text });
-    } catch (e) { console.warn(`health DM failed: ${e.message}`); }
+    return;
   }
+  try {
+    const open = await slack.conversations.open({ users: muraliId });
+    await slack.chat.postMessage({ channel: open.channel.id, text });
+  } catch (e) { console.warn(`health DM failed: ${e.message}`); }
   await supabase.from('brain_user_state').upsert(
     { slack_user_id: HEALTH_KEY, last_items_dm: [status], updated_at: new Date().toISOString() },
     { onConflict: 'slack_user_id' });
