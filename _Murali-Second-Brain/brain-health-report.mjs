@@ -45,8 +45,8 @@ async function checkEngines() {
     out.anthropic = /credit|balance|insufficient|quota|billing/i.test(e.message || '') ? '🔴 out of credits' : `🔴 ${(e.message || '').slice(0, 40)}`;
   }
   try {
-    const r = await fetch(process.env.NEXAPROC_VPS_URL, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Nexaproc-Key': process.env.NEXAPROC_VPS_KEY || '' }, body: '{}', signal: AbortSignal.timeout(8000) });
-    out.vps = r.status > 0 ? '🟢 reachable (tunnel up)' : '🔴 unreachable';
+    const r = await fetch(process.env.NEXAPROC_VPS_URL, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Nexaproc-Key': process.env.NEXAPROC_VPS_KEY || '' }, body: '{}', signal: AbortSignal.timeout(25000) });
+    out.vps = r.status === 429 ? '🟡 reachable but busy' : (r.status > 0 ? '🟢 reachable (tunnel up)' : '🔴 unreachable');
   } catch { out.vps = '🔴 unreachable (tunnel down?)'; }
   try {
     const oa = new openai({ apiKey: process.env.OPENAI_API_KEY });
@@ -103,7 +103,7 @@ async function run() {
   if (!muraliId) { console.error('SLACK_MURALI_USER_ID not set'); return; }
   const open = await slack.conversations.open({ users: muraliId });
   await slack.chat.postMessage({ channel: open.channel.id, text });
-  console.log(`Health report sent. ${warnings} warning(s), engine issue: ${engineDown}`);
+  console.log(`Health report sent. ${warnings} warning(s), engine issue: ${!textBrainOk || !embeddingsOk}`);
 }
 
 run().catch(e => { console.error(e); process.exit(1); });

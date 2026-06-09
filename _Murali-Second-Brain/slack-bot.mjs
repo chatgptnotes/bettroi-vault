@@ -5,7 +5,7 @@ import { App } from '@slack/bolt';
 import { createClient } from '@supabase/supabase-js';
 import { queryBrain } from './query.mjs';
 import { ingestText } from './ingest.mjs';
-import { callClaude, anthropic } from './ai-client.mjs';
+import { callClaude, anthropic, anthropicCreditsExhausted } from './ai-client.mjs';
 import { readFile, unlink } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { execFile } from 'node:child_process';
@@ -270,6 +270,9 @@ app.event('message', async ({ event, client }) => {
     });
   } catch (err) {
     await client.chat.postMessage({ channel: event.channel, text: `Error: ${err.message}` });
+    if (anthropicCreditsExhausted) {
+      await alertMurali('anthropic-credits', '🔴 *Anthropic API credits exhausted* — the brain\'s fallback is down. Top up at console.anthropic.com → Plans & Billing. The VPS gateway is still primary, but it can\'t handle all requests alone.');
+    }
   }
 });
 

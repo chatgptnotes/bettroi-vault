@@ -7,6 +7,10 @@ import Anthropic from '@anthropic-ai/sdk';
 
 const primary = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
+// Live-binding flag — set true when Anthropic returns a credits/billing error.
+// Callers can read this to decide whether to alert the user.
+export let anthropicCreditsExhausted = false;
+
 function isCreditsError(e) {
   return e.status === 402
     || /credit|balance|insufficient|quota|billing/i.test(e.message || '');
@@ -85,9 +89,21 @@ export async function callClaude(params) {
   // back to the metered Anthropic API only if the sidecar is unreachable.
   try {
     return await callVPS(params);
-  } catch (e) {
-    console.warn(`  [ai-client] VPS sidecar unavailable (${(e.message || '').slice(0, 70)}) → Anthropic API`);
-    return await primary.messages.create(params);
+  } catch (vpsErr) {
+    console.warn(`  [ai-client] VPS sidecar unavailable (${(vpsErr.message || '').slice(0, 70)}) → Anthropic API`);
+    try {
+      return await primary.messages.create(params);
+    } catch (anthropicErr) {
+      if (isCreditsError(anthropicErr)) {
+        // Anthropic credits exhausted. VPS is the only working path — wait 25s
+        // for the bridge to free up, then try VPS one more time before giving up.
+        anthropicCreditsExhausted = true;
+        console.warn(`  [ai-client] Anthropic credits exhausted; waiting 25s for VPS to free up...`);
+        await new Promise(r => setTimeout(r, 25000));
+        return await callVPS(params); // throws if still busy — caller handles
+      }
+      throw anthropicErr;
+    }
   }
 }
 

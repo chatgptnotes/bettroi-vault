@@ -179,13 +179,16 @@ async function checkEngines() {
 
   let fallbackOk = false, fallbackMsg = '';
   try {
+    // Use a 25s timeout — the VPS bridge may be busy (429) and take a few seconds to respond.
+    // Any HTTP response (including 429 "busy") means the tunnel and gateway are alive.
     const resp = await fetch(process.env.NEXAPROC_VPS_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Nexaproc-Key': process.env.NEXAPROC_VPS_KEY || '' },
       body: '{}',
-      signal: AbortSignal.timeout(8000),
+      signal: AbortSignal.timeout(25000),
     });
-    fallbackOk = resp.status > 0; // any HTTP reply means the tunnel + gateway are alive
+    fallbackOk = true; // any HTTP reply means the tunnel + gateway are alive
+    if (resp.status === 429) fallbackMsg = 'busy (processing another request)';
   } catch (e) {
     fallbackMsg = /timeout|abort/i.test(e.message || '') ? 'unreachable (tunnel down?)' : (e.message || 'error').slice(0, 80);
   }
