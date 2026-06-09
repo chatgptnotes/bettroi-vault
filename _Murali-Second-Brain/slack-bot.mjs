@@ -145,6 +145,23 @@ app.event('message', async ({ event, client }) => {
 
   const lc = question.toLowerCase();
 
+  // focus / priorities — strategic advisor (owner only; reads _Strategy/ goals)
+  if (/^(focus|priorities|what should i (focus|work) on)\b/.test(lc)) {
+    if (role !== 'murali') {
+      await client.chat.postMessage({ channel: event.channel, text: '_Strategic focus is owner-only._' });
+      return;
+    }
+    await client.chat.postMessage({ channel: event.channel, text: '🧭 Thinking strategically about your goals…' });
+    try {
+      const { buildFocus } = await import('./strategy-advisor.mjs');
+      const brief = await buildFocus();
+      await client.chat.postMessage({ channel: event.channel, text: brief });
+    } catch (err) {
+      await client.chat.postMessage({ channel: event.channel, text: `Error building focus brief: ${err.message}` });
+    }
+    return;
+  }
+
   // wa <target> <message> — send WhatsApp via Twilio Sandbox
   const waMatch = question.match(/^wa\s+(\S+)\s+(.+)/is);
   if (waMatch && role === 'murali') {
