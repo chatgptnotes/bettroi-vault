@@ -32,3 +32,7 @@ scripts/auto-sync.log
 # Email content — sensitive, never push to GitHub
 _Email-Inbox/
 _Email-Drafts/
+
+# Claudian plugin local state (session transcripts, local keys) — never commit
+.claudian/
+.claude/
