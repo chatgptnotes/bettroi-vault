@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-06-06T12:42:46Z
-size_kb: 40426
+last_push: 2026-06-08T12:27:00Z
+size_kb: 40516
 language: TypeScript
 description: ""
-extracted: 2026-06-08T07:33:06.174Z
+extracted: 2026-06-09T07:07:55.618Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-06-06T12:42:46Z
-**Language:** TypeScript  ·  **Repo size:** 40426KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-08T12:27:00Z
+**Language:** TypeScript  ·  **Repo size:** 40516KB
 
 
 
@@ -27,6 +27,9 @@ extracted: 2026-06-08T07:33:06.174Z
 - `build:dev`: `vite build --mode development`
 - `check:finalbill`: `node scripts/check-finalbill-locked.cjs`
 - `verify:finalbill-lock`: `node scripts/verify-finalbill-lock.cjs`
+- `check:automation-tables`: `node scripts/check-automation-table-access.cjs`
+- `smoke:automations`: `node scripts/smoke-automations.cjs`
+- `test:automations`: `npx vite-node e2e/run-task-flows.test.ts`
 - `lint`: `eslint .`
 - `preview`: `vite preview`
 - `generate-types`: `ts-node scripts/generate-types.ts`
@@ -73,10 +76,10 @@ extracted: 2026-06-08T07:33:06.174Z
 
 ## Folder breakdown
 
-- `src/` — 824 files
+- `src/` — 827 files
 - `supabase/` — 436 files
 - `public/` — 51 files
-- `scripts/` — 26 files
+- `scripts/` — 28 files
 - `agents/` — 25 files
 - `claude-auto-confirm/` — 19 files
 - `.claude/` — 17 files
@@ -91,6 +94,8 @@ extracted: 2026-06-08T07:33:06.174Z
 
 ## Recent commits
 
+- `a3a1e96` _2026-06-08_ — fix(skill-factory): bidirectional sync between canvas and steps panel
+- `770b20f` _2026-06-08_ — feat(automations): chatbot-driven automation builder with 17-rule safety stack
 - `c25c558` _2026-06-06_ — ci: redeploy from current HEAD
 - `8b53996` _2026-06-06_ — feat(deadline-tracking): utility-bill deadline dashboard
 - `6cc7d57` _2026-06-06_ — feat(skill-factory): build v2 page with task-optimizer engine
@@ -99,8 +104,6 @@ extracted: 2026-06-08T07:33:06.174Z
 - `213027d` _2026-06-05_ — docs: add billing email automation feature documentation
 - `b62faa6` _2026-06-05_ — fix(billing): try u/1 account index for info@hopehospital.com Gmail link
 - `01fde67` _2026-06-05_ — feat(billing): connect Re-phrase to Gemini AI — uses existing geminiFetch from s
-- `e4449d2` _2026-06-05_ — Merge origin/main (payment-voucher) into main
-- `054feb5` _2026-06-05_ — Merge feat/discharge-autofill-and-section-fixes into main
 
 ## README
 
