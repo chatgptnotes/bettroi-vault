@@ -19,7 +19,7 @@ const slack = process.env.SLACK_BOT_TOKEN ? new WebClient(process.env.SLACK_BOT_
 const VAULT_ROOT = new URL('../', import.meta.url).pathname;
 const DRY = process.argv.includes('--dry');
 
-const SKIP_PROJECTS = new Set(['_inbox', 'vault-root', 'clippings', 'agents', 'corpus', 'glossary', 'decisions']);
+const SKIP_PROJECTS = new Set(['_inbox', 'vault-root', 'clippings', 'agents', 'corpus', 'glossary', 'decisions', 'bettroi-vault-main', 'modules', 'services']);
 
 async function readStrategy() {
   const out = {};

@@ -172,6 +172,10 @@ async function fileExists(p) {
   try { await readFile(p, 'utf8'); return true; } catch { return false; }
 }
 
+async function readFileSafe(p) {
+  try { return await readFile(p, 'utf8'); } catch { return null; }
+}
+
 async function run() {
   const idx = await folderIndex();
   let projects = await activeProjects();
@@ -190,11 +194,16 @@ async function run() {
     seenFolders.add(folder);
 
     const target = join(VAULT_ROOT, folder, 'CLAUDE.md');
-    const exists = await fileExists(target);
-    const outPath = exists ? join(VAULT_ROOT, folder, 'CLAUDE.generated.md') : target;
+    const genPath = join(VAULT_ROOT, folder, 'CLAUDE.generated.md');
+    // Only treat a CLAUDE.md as "preserve" if it's human-authored (lacks our project-claude frontmatter).
+    const existingClaude = await readFileSafe(target);
+    const humanClaude = existingClaude !== null && !existingClaude.includes('type: project-claude');
+    const outPath = humanClaude ? genPath : target;
 
-    // Resume mode: skip projects already generated so an interrupted batch can finish cheaply.
-    if (RESUME && !DRY && await fileExists(outPath)) { console.log(`  ⏭ ${folder}/ — already generated, skipping (--resume)`); continue; }
+    // Resume mode: skip if we've already generated an output here (either our CLAUDE.md or CLAUDE.generated.md).
+    if (RESUME && !DRY && ((existingClaude !== null && !humanClaude) || await fileExists(genPath))) {
+      console.log(`  ⏭ ${folder}/ — already generated, skipping (--resume)`); continue;
+    }
 
     try {
       const { meetings, items } = await gather(tag);
@@ -202,7 +211,7 @@ async function run() {
       const body = await generate(tag, folder, { meetings, items }, home);
 
       if (DRY) {
-        console.log(`\n──────── ${folder}/${exists ? 'CLAUDE.generated.md' : 'CLAUDE.md'} ────────`);
+        console.log(`\n──────── ${folder}/${humanClaude ? 'CLAUDE.generated.md' : 'CLAUDE.md'} ────────`);
         console.log(body.slice(0, 600) + (body.length > 600 ? '\n…(truncated)…' : ''));
         written++;
         continue;
@@ -210,7 +219,7 @@ async function run() {
 
       const fm = `---\nproject: ${tag}\ntype: project-claude\ngenerated_at: ${new Date().toISOString()}\n---\n\n`;
       await writeFile(outPath, fm + body + '\n' + STANDARD_BLOCK);
-      console.log(`  ✓ ${folder}/${exists ? 'CLAUDE.generated.md (existing CLAUDE.md preserved)' : 'CLAUDE.md'}`);
+      console.log(`  ✓ ${folder}/${humanClaude ? 'CLAUDE.generated.md (human CLAUDE.md preserved)' : 'CLAUDE.md'}`);
       written++;
     } catch (e) {
       // A busy VPS / transient AI error must NOT abort the whole batch — log, record, move on.
