@@ -528,7 +528,8 @@ app.event('message', async ({ event, client }) => {
 
   // Ingest text content (non-image messages)
   if (!event.files?.length && content.length > 10) {
-    await ingestText({ text: content, project_tag: userTag ?? '_inbox', source_type: 'slack', source_ref: `slack://${event.channel}/${event.ts}`, metadata: { date: new Date().toISOString() } });
+    const r = await ingestText({ text: content, project_tag: userTag ?? '_inbox', source_type: 'slack', source_ref: `slack://${event.channel}/${event.ts}`, metadata: { date: new Date().toISOString() } });
+    if (r?.quotaBlocked) await alertMurali('openai-quota', '⚠️ *OpenAI embedding quota exhausted* — new content is NOT being saved to the brain. Top up billing at platform.openai.com to restore ingestion.');
   }
 });
 
@@ -825,6 +826,27 @@ app.error(async (error) => {
   console.error('[brain-bot] fatal — exiting for launchd restart:', error.message);
   process.exit(1);
 });
+
+// Belt-and-suspenders: unhandled promise rejections also exit cleanly for launchd restart.
+process.on('unhandledRejection', (reason) => {
+  console.error('[brain-bot] unhandledRejection — exiting for launchd restart:', reason);
+  process.exit(1);
+});
+
+// ── Quota alert helper ─────────────────────────────────────────────────────────
+// Sends a Slack DM to Murali at most once per hour for the same alert type.
+const alertCooldowns = new Map();
+async function alertMurali(type, text) {
+  const now = Date.now();
+  if ((now - (alertCooldowns.get(type) ?? 0)) < 3600000) return; // 1-hour cooldown
+  alertCooldowns.set(type, now);
+  try {
+    const open = await app.client.conversations.open({ users: process.env.SLACK_MURALI_USER_ID });
+    await app.client.chat.postMessage({ channel: open.channel.id, text });
+  } catch (e) {
+    console.warn(`[alert] DM failed for type=${type}: ${e.message}`);
+  }
+}
 
 await app.start();
 console.log('⚡ Brain bot running in Socket Mode — DM me or mention @brain in any channel');
