@@ -12,6 +12,8 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 const execFileP = promisify(execFile);
 
+if (!process.env.SLACK_MURALI_USER_ID) throw new Error('SLACK_MURALI_USER_ID is required — bot cannot safely determine owner access without it');
+
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_KEY,
@@ -79,8 +81,10 @@ async function buildMeetingPrep(topic, role) {
   });
 
   // 2. Look for related action items
-  // Find related action items by keyword match
-  const keywords = topic.toLowerCase().split(/\s+/).filter(w => w.length > 3);
+  // Find related action items by keyword match — sanitize to alphanumeric/space/hyphen only
+  const keywords = topic.toLowerCase().split(/\s+/)
+    .map(w => w.replace(/[^a-z0-9\s\-]/g, ''))
+    .filter(w => w.length > 3);
   let itemsBlock = '';
   if (keywords.length) {
     const { data: items } = await supabase

@@ -20,21 +20,26 @@ function fail(res, status, msg) {
   return res.status(status).json({ error: msg });
 }
 
-const ALLOWED_ORIGINS = [
+const ALLOWED_ORIGINS = new Set([
   'https://fluxio.work',
   'https://www.fluxio.work',
   'http://localhost:5173',
   'http://localhost:3000',
-];
+]);
 
 export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return ok(res, {});
 
-  // Origin / Referer check — only requests from fluxio.work allowed
-  const origin = req.headers.origin || '';
-  const referer = req.headers.referer || '';
-  const isAllowed = ALLOWED_ORIGINS.some(o => origin.startsWith(o) || referer.startsWith(o));
-  if (!isAllowed) return fail(res, 403, 'forbidden: requests must come from fluxio.work');
+  // Origin / Referer check — exact equality, not startsWith (prevents lookalike domains)
+  const origin = req.headers.origin ?? '';
+  const referer = (req.headers.referer ?? '').replace(/\/$/, '');
+  const originAllowed = ALLOWED_ORIGINS.has(origin);
+  const refAllowed = [...ALLOWED_ORIGINS].some(o => referer === o || referer.startsWith(o + '/'));
+  if (!originAllowed && !refAllowed) return fail(res, 403, 'forbidden');
+
+  // Admin password gate — must match BRAIN_ADMIN_PASSWORD env var
+  const adminPw = process.env.BRAIN_ADMIN_PASSWORD;
+  if (adminPw && req.headers['x-admin-password'] !== adminPw) return fail(res, 403, 'forbidden');
 
   if (req.method === 'GET') {
     const { data: users, error: ue } = await supabase

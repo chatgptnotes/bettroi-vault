@@ -52,7 +52,7 @@ async function callVPS(params, attempt = 0) {
 
   if (!resp.ok) {
     const body = await resp.text().catch(() => '');
-    throw new Error(`nexaproc VPS ${resp.status}: ${body}`);
+    throw new Error(`nexaproc VPS ${resp.status}: ${body.slice(0, 120)}`);
   }
 
   const data = await resp.json();
