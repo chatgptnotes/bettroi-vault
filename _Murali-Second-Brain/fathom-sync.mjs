@@ -33,47 +33,38 @@ async function setLastSync(ts) {
 }
 
 async function fetchMeetings(since) {
-  // Fathom always returns 10 per page regardless of limit — paginate via next_cursor
-  // Stop when a page contains only meetings older than `since` (avoids full history fetch)
-  const sinceDate = new Date(since);
+  // Use created_after to filter server-side; include_summary avoids separate per-meeting API calls.
+  // Pagination: response.next_cursor is the token; query param is `cursor` (not `next_cursor`).
   const all = [];
   let cursor = null;
   let pages = 0;
 
   while (pages < 50) { // safety cap: 500 meetings max per sync run
-    const url = cursor
-      ? `${FATHOM_API}/meetings?cursor=${encodeURIComponent(cursor)}`
-      : `${FATHOM_API}/meetings`;
-    const res = await fetch(url, { headers });
+    const url = new URL(`${FATHOM_API}/meetings`);
+    url.searchParams.set('created_after', since);
+    url.searchParams.set('include_summary', 'true');
+    if (cursor) url.searchParams.set('cursor', cursor);
+
+    const res = await fetch(url.toString(), { headers });
     if (!res.ok) throw new Error(`Fathom API error: ${res.status} ${await res.text().catch(() => '')}`);
     const data = await res.json();
-    const page = data.items ?? data.meetings ?? data.data ?? data.results ?? [];
+    const page = data.items ?? [];
     pages++;
 
-    let hitOld = false;
-    for (const m of page) {
-      const meetingDate = new Date(m.created_at ?? m.started_at ?? m.date);
-      if (meetingDate <= sinceDate) { hitOld = true; break; }
-      all.push(m);
-    }
+    all.push(...page);
 
-    // Stop if we hit old meetings or there's no next page
-    if (hitOld || !data.next_cursor) break;
+    if (!data.next_cursor) break;
     cursor = data.next_cursor;
   }
 
   return all;
 }
 
-async function fetchSummary(meeting) {
-  // Fathom returns recording_id on the meeting object; fall back to meeting.id
-  const recordingId = meeting.recording_id ?? meeting.id;
-  const res = await fetch(`${FATHOM_API}/recordings/${recordingId}/summary`, { headers });
-  if (!res.ok) return null;
-  const data = await res.json();
-  // Fathom returns { summary: { template_name, markdown_formatted } } — pull the markdown.
-  const sum = data.summary;
-  return (sum && typeof sum === 'object' ? sum.markdown_formatted : sum) ?? data.content ?? data.text ?? null;
+function extractSummary(meeting) {
+  // inline summary from include_summary=true — field is default_summary.markdown_formatted
+  const s = meeting.default_summary;
+  if (!s) return null;
+  return (typeof s === 'object' ? s.markdown_formatted : s) ?? null;
 }
 
 async function run() {
@@ -106,8 +97,7 @@ async function run() {
     const project_tag = prefixMatch ? prefixMatch[1] : '_inbox';
     const cleanTitle = prefixMatch ? title.slice(prefixMatch[0].length).trim() : title;
 
-    // Get full summary
-    const summary = await fetchSummary(meeting);
+    const summary = extractSummary(meeting);
     if (!summary) {
       console.log(`  ⚠ No summary for: ${title} — skipping`);
       continue;
