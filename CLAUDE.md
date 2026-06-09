@@ -30,7 +30,7 @@ This project uses the Ironbark learning loop with auto-sync to the community ski
 - **Background sync**: Every 30 min, `sync-cli.js` pulls new community skills and pushes local ones
 - **Opt-out**: `IRONBARK_SYNC_DISABLED=1`
 
-### Available Harvested Skills (144)
+### Available Harvested Skills (147)
 
 Each skill lives at `~/.claude/skills/harvested/<name>/SKILL.md`. Reference any skill below by name when the task matches.
 
@@ -44,6 +44,8 @@ Each skill lives at `~/.claude/skills/harvested/<name>/SKILL.md`. Reference any 
 | `Async AI Advisory on Real-Time Hot Path` | Pattern for void-launching AI analysis from time-critical control loops (alarm engines, tag processo |
 | `Auto-Tenant Fetch Wrapper` | Modify the frontend API fetch wrapper to auto-append tenant_id from session storage so all existing  |
 | `BNI CRM — Bugs & Gotchas Harvested During Build` | Non-obvious issues encountered while building a Supabase-backed multi-page CRM (BNI 121). Covers ngi |
+| `brain-bot-recovery-vps-sidecar` | Diagnose and recover a Slack bot backed by an SSH-tunnelled AI-aas VPS gateway — SSH key restore, tu |
+| `brain-security-hardening` | Security fixes for a Slack-bot + Supabase RAG knowledge base — admin endpoint auth, exact-match orig |
 | `Browser-Console curl|bash Deploy Bootstrap` | When SSH to a VPS is blocked from the agent's network and the only available shell is a browser-base |
 | `bulk-file-to-db-importer` | Node.js script to bulk-import local files (HTML, PDF, etc.) into a Supabase table under a specific u |
 | `Chatbot Reply/Ignore Intent Gate` | System prompt pattern that adds a first-pass REPLY vs IGNORE decision layer to any chatbot, preventi |
@@ -171,6 +173,7 @@ Each skill lives at `~/.claude/skills/harvested/<name>/SKILL.md`. Reference any 
 | `Vercel Prebuilt Deploy Workaround` | When Vercel remote builds fail silently (empty error message), build locally with vercel build --pro |
 | `vercel-frontend-vps-backend-split` | Topology pattern when the frontend is on Vercel (auto-deploy from GitHub) but the backend (API + DB  |
 | `Vite Environment URL Auto-Detection` | Frontend apps deployed to Vercel must auto-detect API/WebSocket URLs for production vs development — |
+| `vps-local-claudecode-recovery` | When SSH access to a shared VPS is lost (key wiped, firewall blocked), use the VPS's own locally-ins |
 | `weasyprint-rest-api-pdf` | Fetch data from a Supabase REST API with curl (no app running), generate styled A4 PDFs per entity w |
 | `WhatsApp Instant Acknowledgment Before Slow Processing` | Send an immediate ack message to the user before kicking off a long-running operation (AI inference, |
 | `WhatsApp Personalized Research Before Replying` | Before replying to any BNI member on WhatsApp, research their company, specialty, city, and prior co |
