@@ -819,5 +819,12 @@ app.event('message', async ({ event, client }) => {
 
 // ── Start ─────────────────────────────────────────────────────────────────────
 
+// Exit on any unrecoverable Bolt/Socket error so launchd (KeepAlive=true) restarts
+// cleanly. Without this, a dead Slack WebSocket hangs silently forever.
+app.error(async (error) => {
+  console.error('[brain-bot] fatal — exiting for launchd restart:', error.message);
+  process.exit(1);
+});
+
 await app.start();
 console.log('⚡ Brain bot running in Socket Mode — DM me or mention @brain in any channel');
