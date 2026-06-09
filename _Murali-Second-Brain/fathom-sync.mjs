@@ -33,15 +33,36 @@ async function setLastSync(ts) {
 }
 
 async function fetchMeetings(since) {
-  const url = `${FATHOM_API}/meetings?limit=100`;
-  const res = await fetch(url, { headers });
-  if (!res.ok) throw new Error(`Fathom API error: ${res.status} ${await res.text()}`);
-  const data = await res.json();
-
+  // Fathom always returns 10 per page regardless of limit — paginate via next_cursor
+  // Stop when a page contains only meetings older than `since` (avoids full history fetch)
   const sinceDate = new Date(since);
-  return (data.items ?? data.meetings ?? data.data ?? data.results ?? []).filter(
-    m => new Date(m.created_at ?? m.started_at ?? m.date) > sinceDate
-  );
+  const all = [];
+  let cursor = null;
+  let pages = 0;
+
+  while (pages < 50) { // safety cap: 500 meetings max per sync run
+    const url = cursor
+      ? `${FATHOM_API}/meetings?cursor=${encodeURIComponent(cursor)}`
+      : `${FATHOM_API}/meetings`;
+    const res = await fetch(url, { headers });
+    if (!res.ok) throw new Error(`Fathom API error: ${res.status} ${await res.text().catch(() => '')}`);
+    const data = await res.json();
+    const page = data.items ?? data.meetings ?? data.data ?? data.results ?? [];
+    pages++;
+
+    let hitOld = false;
+    for (const m of page) {
+      const meetingDate = new Date(m.created_at ?? m.started_at ?? m.date);
+      if (meetingDate <= sinceDate) { hitOld = true; break; }
+      all.push(m);
+    }
+
+    // Stop if we hit old meetings or there's no next page
+    if (hitOld || !data.next_cursor) break;
+    cursor = data.next_cursor;
+  }
+
+  return all;
 }
 
 async function fetchSummary(meeting) {
