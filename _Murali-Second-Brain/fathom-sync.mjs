@@ -33,16 +33,28 @@ async function setLastSync(ts) {
 }
 
 async function fetchPage(url, retries = 3) {
+  let lastErr;
   for (let attempt = 1; attempt <= retries; attempt++) {
-    const res = await fetch(url, { headers });
-    if (res.ok) return res.json();
-    if (res.status === 502 && attempt < retries) {
-      console.log(`  Fathom 502 on attempt ${attempt} — retrying in 10s…`);
-      await new Promise(r => setTimeout(r, 10000));
-      continue;
+    try {
+      const res = await fetch(url, { headers });
+      if (res.ok) return res.json();
+      if ((res.status === 502 || res.status === 503) && attempt < retries) {
+        console.log(`  Fathom ${res.status} on attempt ${attempt} — retrying in 10s…`);
+        await new Promise(r => setTimeout(r, 10000));
+        continue;
+      }
+      throw new Error(`Fathom API error: ${res.status} ${await res.text().catch(() => '')}`);
+    } catch (e) {
+      lastErr = e;
+      if (attempt < retries && /fetch failed|ECONNREFUSED|ETIMEDOUT|ENOTFOUND/i.test(e.message || '')) {
+        console.log(`  Fathom network error on attempt ${attempt} — retrying in 10s…`);
+        await new Promise(r => setTimeout(r, 10000));
+        continue;
+      }
+      throw e;
     }
-    throw new Error(`Fathom API error: ${res.status} ${await res.text().catch(() => '')}`);
   }
+  throw lastErr;
 }
 
 async function fetchMeetings(since) {
