@@ -80,7 +80,9 @@ function extractSummary(meeting) {
 
 async function run() {
   console.log('Fathom sync starting...');
-  const since = await getLastSync();
+  const rawSince = await getLastSync();
+  // Normalize Postgres +00:00 to Z so Fathom API accepts it
+  const since = new Date(rawSince).toISOString();
   console.log(`Last sync: ${since}`);
 
   let meetings;
