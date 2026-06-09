@@ -30,7 +30,7 @@ This project uses the Ironbark learning loop with auto-sync to the community ski
 - **Background sync**: Every 30 min, `sync-cli.js` pulls new community skills and pushes local ones
 - **Opt-out**: `IRONBARK_SYNC_DISABLED=1`
 
-### Available Harvested Skills (141)
+### Available Harvested Skills (144)
 
 Each skill lives at `~/.claude/skills/harvested/<name>/SKILL.md`. Reference any skill below by name when the task matches.
 
@@ -53,6 +53,7 @@ Each skill lives at `~/.claude/skills/harvested/<name>/SKILL.md`. Reference any 
 | `client-facing-no-platform-reuse-framing` |  |
 | `client-project-plan-bettroi-style-pipeline` |  |
 | `cloud-to-vps-http-bridge` | Lightweight Node.js HTTP bridge that lets a serverless cloud platform (Vercel, Railway, etc.) trigge |
+| `config-change-no-effect-restart-stale-process` | You edited config (env file, .env) but behavior didn't change because a long-running process loaded  |
 | `copy-sql-migration-to-clipboard` | After writing any SQL migration file, immediately copy it to clipboard with pbcopy so the user can p |
 | `Credential Survivorship Audit` | When a credentials-based failure recurs after a previous fix, the credential was only partially remo |
 | `Cron-Poll Continuous Deploy via git ls-remote SHA Check` | When GitHub Actions SSH-deploy and inbound webhooks are both unavailable (SSH port blocked from runn |
@@ -143,6 +144,7 @@ Each skill lives at `~/.claude/skills/harvested/<name>/SKILL.md`. Reference any 
 | `Screenshot-to-Root-Cause Error Diagnosis` | Decode minified React/production errors from browser screenshots — decode error URLs, trace stack tr |
 | `Self-Updating Cron Script via Remote Fetch and Atomic Re-Exec` | A long-running cron script installed at `/usr/local/bin/foo.sh` is a frozen snapshot of the day it w |
 | `send-to-brain-slack-message-shortcut` | Add a "Send to Brain" message shortcut to a Slack bot so users can right-click any message → ingest  |
+| `service-healthy-locally-unreachable-externally-cloud-firewall` | Diagnose a service that works on the host but times out from outside — when the host firewall alread |
 | `shared-vps-coexistence` | Operational rules and procedures for safely adding a new product to a busy multi-tenant Linux VPS (H |
 | `silent-out-of-scope-no-enumeration` |  |
 | `slack-bot-permanent-on-macos-launchd` | Run a Slack bot 24/7 on your Mac without deploying to cloud. Uses @slack/bolt Socket Mode (no inboun |
@@ -150,6 +152,7 @@ Each skill lives at `~/.claude/skills/harvested/<name>/SKILL.md`. Reference any 
 | `Socket.IO Room Subscription Chain` | Complete the subscribe chain — frontend store must emit subscribe event to server, server must join  |
 | `Soft-Delete via hidden Flag for Reversible Dedupe` | Instead of `delete from`, mark duplicate or stale records with `hidden=true` and have every list vie |
 | `Split Auth Modal — Sign-In vs Sign-Up Mode` | Single AuthModal component with a `mode` prop that drives distinct UX flows — sign-in rejects new us |
+| `ssh-tunnel-to-firewall-blocked-internal-service` | Reach an internal service whose port is blocked by a provider/cloud firewall by forwarding it over a |
 | `stateful-cli-as-http-service` | Wrap a stateful or interactive CLI (claude, gh copilot, REPL tools) as an HTTP service. Covers the s |
 | `static-file-swap-stable-url` | To replace a document/asset's content without breaking any existing links, share URLs, or database p |
 | `Subscription vs Pay-As-You-Go API Key Billing Mismatch (Insufficient-Balance Despite Valid Plan)` | When a SaaS / LLM provider returns "insufficient balance" or 4xx-billing errors despite an active, p |
