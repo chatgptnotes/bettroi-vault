@@ -32,6 +32,19 @@ async function setLastSync(ts) {
     .eq('source', 'fathom');
 }
 
+async function fetchPage(url, retries = 3) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    const res = await fetch(url, { headers });
+    if (res.ok) return res.json();
+    if (res.status === 502 && attempt < retries) {
+      console.log(`  Fathom 502 on attempt ${attempt} — retrying in 10s…`);
+      await new Promise(r => setTimeout(r, 10000));
+      continue;
+    }
+    throw new Error(`Fathom API error: ${res.status} ${await res.text().catch(() => '')}`);
+  }
+}
+
 async function fetchMeetings(since) {
   // Use created_after to filter server-side; include_summary avoids separate per-meeting API calls.
   // Pagination: response.next_cursor is the token; query param is `cursor` (not `next_cursor`).
@@ -45,9 +58,7 @@ async function fetchMeetings(since) {
     url.searchParams.set('include_summary', 'true');
     if (cursor) url.searchParams.set('cursor', cursor);
 
-    const res = await fetch(url.toString(), { headers });
-    if (!res.ok) throw new Error(`Fathom API error: ${res.status} ${await res.text().catch(() => '')}`);
-    const data = await res.json();
+    const data = await fetchPage(url.toString());
     const page = data.items ?? [];
     pages++;
 
