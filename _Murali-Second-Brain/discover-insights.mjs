@@ -13,7 +13,7 @@ const slack = process.env.SLACK_BOT_TOKEN ? new WebClient(process.env.SLACK_BOT_
 const DAYS = parseInt(process.argv.find(a => a.startsWith('--days='))?.split('=')[1] ?? '14', 10);
 const DRY = process.argv.includes('--dry');
 
-const SKIP_PROJECTS = new Set(['_inbox', 'vault-root', 'clippings', 'agents', 'corpus', 'glossary', 'decisions']);
+const SKIP_PROJECTS = new Set(['_inbox', 'vault-root', 'clippings', 'agents', 'corpus', 'glossary', 'decisions', '_strategy']);
 
 async function gatherCorpus() {
   const since = new Date(Date.now() - DAYS * 86400000).toISOString();

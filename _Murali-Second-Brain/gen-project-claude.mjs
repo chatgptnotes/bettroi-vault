@@ -179,40 +179,56 @@ async function run() {
 
   console.log(`${DRY ? '[DRY] ' : ''}Generating project CLAUDE.md for ${projects.length} project(s)...\n`);
 
+  const RESUME = process.argv.includes('--resume'); // skip projects whose output file already exists
   const seenFolders = new Set(); // dedupe tags that resolve to the same folder (keep highest count first)
-  let written = 0, skipped = 0;
+  let written = 0, skipped = 0, failed = 0;
+  const failures = [];
   for (const { tag, count } of projects) {
     const folder = resolveFolder(tag, idx);
     if (!folder) { console.log(`  ⊘ ${tag} (${count}) — no matching folder, skipping`); skipped++; continue; }
     if (seenFolders.has(folder)) { console.log(`  ↳ ${tag} (${count}) — already covered by ${folder}/, merged`); continue; }
     seenFolders.add(folder);
 
-    const { meetings, items } = await gather(tag);
-    const home = await readHome(folder);
-    const body = await generate(tag, folder, { meetings, items }, home);
-
-    const fm = `---\nproject: ${tag}\ntype: project-claude\ngenerated_at: ${new Date().toISOString()}\n---\n\n`;
-    const content = fm + body + '\n' + STANDARD_BLOCK;
-
     const target = join(VAULT_ROOT, folder, 'CLAUDE.md');
     const exists = await fileExists(target);
     const outPath = exists ? join(VAULT_ROOT, folder, 'CLAUDE.generated.md') : target;
 
-    if (DRY) {
-      console.log(`\n──────── ${folder}/${exists ? 'CLAUDE.generated.md' : 'CLAUDE.md'} ────────`);
-      console.log(body.slice(0, 600) + (body.length > 600 ? '\n…(truncated)…' : ''));
+    // Resume mode: skip projects already generated so an interrupted batch can finish cheaply.
+    if (RESUME && !DRY && await fileExists(outPath)) { console.log(`  ⏭ ${folder}/ — already generated, skipping (--resume)`); continue; }
+
+    try {
+      const { meetings, items } = await gather(tag);
+      const home = await readHome(folder);
+      const body = await generate(tag, folder, { meetings, items }, home);
+
+      if (DRY) {
+        console.log(`\n──────── ${folder}/${exists ? 'CLAUDE.generated.md' : 'CLAUDE.md'} ────────`);
+        console.log(body.slice(0, 600) + (body.length > 600 ? '\n…(truncated)…' : ''));
+        written++;
+        continue;
+      }
+
+      const fm = `---\nproject: ${tag}\ntype: project-claude\ngenerated_at: ${new Date().toISOString()}\n---\n\n`;
+      await writeFile(outPath, fm + body + '\n' + STANDARD_BLOCK);
+      console.log(`  ✓ ${folder}/${exists ? 'CLAUDE.generated.md (existing CLAUDE.md preserved)' : 'CLAUDE.md'}`);
       written++;
-      continue;
+    } catch (e) {
+      // A busy VPS / transient AI error must NOT abort the whole batch — log, record, move on.
+      console.warn(`  ✗ ${folder} (${tag}) failed: ${(e.message || '').slice(0, 100)}`);
+      failures.push(folder);
+      failed++;
     }
 
-    await writeFile(outPath, content);
-    console.log(`  ✓ ${folder}/${exists ? 'CLAUDE.generated.md (existing CLAUDE.md preserved)' : 'CLAUDE.md'}`);
-    written++;
+    await new Promise(r => setTimeout(r, 2000)); // throttle — be a good citizen on the shared single-flight VPS
   }
 
-  console.log(`\n${DRY ? '[DRY] ' : ''}Done. ${written} generated, ${skipped} skipped (no folder).`);
+  console.log(`\n${DRY ? '[DRY] ' : ''}Done. ${written} generated, ${skipped} skipped (no folder), ${failed} failed.`);
+  if (failures.length) console.log(`Failed (re-run with --resume to retry): ${failures.join(', ')}`);
 }
 
-run().catch(e => { console.error(e); process.exit(1); });
+// Only run the batch when invoked directly (not when imported for STANDARD_BLOCK / helpers).
+if (process.argv[1] && process.argv[1].endsWith('gen-project-claude.mjs')) {
+  run().catch(e => { console.error(e); process.exit(1); });
+}
 
 export { generate, gather, resolveFolder, folderIndex, readHome, STANDARD_BLOCK };

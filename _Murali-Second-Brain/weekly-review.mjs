@@ -64,7 +64,7 @@ async function getProjectActivity(start) {
     .gte('created_at', start).eq('off_limits', false);
   const byProject = {}, bySource = {};
   for (const c of data ?? []) {
-    if (!['_inbox','vault-root','clippings','agents','corpus','glossary','decisions'].includes(c.project_tag)) {
+    if (!['_inbox','vault-root','clippings','agents','corpus','glossary','decisions','_strategy'].includes(c.project_tag)) {
       byProject[c.project_tag] = (byProject[c.project_tag] || 0) + 1;
     }
     bySource[c.source_type] = (bySource[c.source_type] || 0) + 1;
