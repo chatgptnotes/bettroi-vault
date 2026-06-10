@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Strategy/Goals.md",
+                "file": "_Strategy/Vision.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Goals"
+              "title": "Vision"
             }
           }
         ]
@@ -194,6 +194,9 @@
   },
   "active": "2c320a689eceed4f",
   "lastOpenFiles": [
+    "_Strategy/Priorities.md",
+    "_Strategy/Goals.md",
+    "_Strategy/Vision.md",
     "Untitled 4.canvas",
     "2026-06-10.md",
     "Untitled 3.canvas",
@@ -222,8 +225,6 @@
     "Test Project XYZ",
     "_Murali-Second-Brain/new-project.mjs",
     "Corporate Billing Rules/CLAUDE.md",
-    "hopetech.me/CLAUDE.md",
-    "Bettroi-HopeTech-project-status/CLAUDE.md",
     "_Murali-Second-Brain/strategy-advisor.mjs",
     "_Strategy",
     "_Murali-Second-Brain/gen-project-claude.mjs",

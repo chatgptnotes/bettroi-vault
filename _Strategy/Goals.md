@@ -28,5 +28,5 @@ Build Hope Hospital and Ayushman hospital into the reference AI-first hospital, 
 
 ## Explicitly NOT doing now
 <!-- Naming what you're saying no to is as important as the yeses. The advisor uses this to flag drift. -->
-- **Overdue, ownerless client demos** (Linkist, pratyaya.in, drawtoboq) — kill or formally hand off. No personal cycles on these.
-- **The long tail of one-off exploratory projects** (4csecure, neurosense-360, etc.) — frozen until the quarter's core goals are on track.
+- **Overdue, ownerless client demos** (pratyaya.in, drawtoboq) — kill or formally hand off. No personal cycles on these.
+- **The long tail of one-off exploratory projects** — frozen until the quarter's core goals are on track.
