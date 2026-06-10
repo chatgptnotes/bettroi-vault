@@ -12,7 +12,7 @@ updated: 2026-06-09
 
 ## North Star
 <!-- The one-line "why" everything ladders up to. Replace this. -->
-_e.g. Build Hope Hospital into the reference AI-first hospital, and Bettroi/HopeTech into the firm that takes others there._
+Build Hope Hospital and Ayushman hospital into the reference AI-first hospital, and Bettroi/HopeTech into the firm that takes others there.
 
 ## This Quarter (Q_ 2026)
 <!-- 3-5 concrete, measurable outcomes for the current quarter. -->

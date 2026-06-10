@@ -11,10 +11,14 @@
             "id": "2c320a689eceed4f",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "_Strategy/Goals.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Goals"
             }
           }
         ]
@@ -49,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "661567993",
+                "query": "",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -70,8 +74,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -191,6 +194,9 @@
   },
   "active": "2c320a689eceed4f",
   "lastOpenFiles": [
+    "Untitled 4.canvas",
+    "2026-06-10.md",
+    "Untitled 3.canvas",
     "_Email-Inbox/2026-06-09/2026-06-09-gdmo-internal-meeting-eform-application-tracker-final-implem.md",
     "_Email-Inbox/2026-06-09/2026-06-09-credit-limit-notification.md",
     "Hope-Hospital/CLAUDE.generated.md",
@@ -218,8 +224,6 @@
     "Corporate Billing Rules/CLAUDE.md",
     "hopetech.me/CLAUDE.md",
     "Bettroi-HopeTech-project-status/CLAUDE.md",
-    "decodemybrain.com/CLAUDE.md",
-    "Doctors digital office/CLAUDE.md",
     "_Murali-Second-Brain/strategy-advisor.mjs",
     "_Strategy",
     "_Murali-Second-Brain/gen-project-claude.mjs",
