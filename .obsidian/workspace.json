@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Adamrit/agent-corpus/adamrit-billing-workflow.md",
+                "file": "_Strategy/Vision.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "adamrit-billing-workflow"
+              "title": "Vision"
             }
           }
         ]
@@ -205,10 +205,11 @@
   },
   "active": "2c320a689eceed4f",
   "lastOpenFiles": [
-    "Adamrit.com/CLAUDE.md",
-    "_Strategy/Vision.md",
     "_Strategy/Priorities.md",
     "_Strategy/Goals.md",
+    "_Strategy/Vision.md",
+    "Adamrit/agent-corpus/adamrit-billing-workflow.md",
+    "Adamrit.com/CLAUDE.md",
     "Untitled 4.canvas",
     "2026-06-10.md",
     "Untitled 3.canvas",
@@ -235,7 +236,6 @@
     "Test Project XYZ/CLAUDE.md",
     "Test Project XYZ",
     "_Murali-Second-Brain/new-project.mjs",
-    "Corporate Billing Rules/CLAUDE.md",
     "_Murali-Second-Brain/strategy-advisor.mjs",
     "_Strategy",
     "_Murali-Second-Brain/gen-project-claude.mjs",
