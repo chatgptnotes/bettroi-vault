@@ -27,8 +27,9 @@ experience.
   Murali's in-editor agent for drafting and editing notes.
 
 ## Requirements (already met)
-- Claude Code CLI installed → `which claude` = `/Users/murali/.npm-global/bin/claude`
-- Obsidian v1.7.2+ (desktop) — this vault already runs community plugins (obsidian-git, github-sync)
+- Claude Code CLI installed → `which claude` = `/Users/murali/.local/bin/claude` (v2.1.170)
+- Obsidian v1.12.7 (desktop) — this vault already runs community plugins (obsidian-git, github-sync)
+- ⚠️ `claude` (`/Users/murali/.local/bin`) and `node` (`/opt/homebrew/bin`) are in **different directories** — Obsidian's GUI likely won't find Node on its own. Apply the PATH fix below.
 
 ## Install
 1. Obsidian → Settings → **Community plugins** → **Browse**
@@ -38,10 +39,10 @@ experience.
 
 ## First-run config
 - **Claude CLI path** — leave **empty** first so Claudian auto-detects. If you see
-  `spawn claude ENOENT` (common with npm-global installs), set it manually in
-  **Settings → Advanced → Claude CLI path** to `/Users/murali/.npm-global/bin/claude`.
-- **Node not found** — if the CLI launches but Node isn't found, add to
-  **Settings → Environment → Custom variables**: `PATH=/opt/homebrew/bin` (where `node` lives).
+  `spawn claude ENOENT`, set it manually in
+  **Settings → Advanced → Claude CLI path** to `/Users/murali/.local/bin/claude`.
+- **Node not found (expected here)** — `claude` and `node` are in different dirs, so this is
+  likely. Add to **Settings → Environment → Custom variables**: `PATH=/opt/homebrew/bin:/Users/murali/.local/bin`
 - **Provider** — defaults to your Claude Code subscription. To route in-editor chat through a
   cheaper model, use the `use-glm` / `use-deepseek` toggles from `LLM-PROVIDER-SWITCHER.md`
   before launching Obsidian (Claudian inherits the Obsidian process environment).
