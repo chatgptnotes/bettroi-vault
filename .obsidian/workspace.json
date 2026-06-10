@@ -11,10 +11,14 @@
             "id": "2c320a689eceed4f",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "System Overview.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "System Overview"
             }
           }
         ]
@@ -199,8 +203,9 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "5a539f2f33618031",
+  "active": "3ecc5533c302fb12",
   "lastOpenFiles": [
+    "2026-06-10.md",
     "Untitled 1",
     "_Strategy/Priorities.md",
     "_Strategy/Goals.md",
@@ -208,7 +213,6 @@
     "Adamrit/agent-corpus/adamrit-billing-workflow.md",
     "Adamrit.com/CLAUDE.md",
     "Untitled 4.canvas",
-    "2026-06-10.md",
     "Untitled 3.canvas",
     "_Email-Inbox/2026-06-09/2026-06-09-gdmo-internal-meeting-eform-application-tracker-final-implem.md",
     "_Email-Inbox/2026-06-09/2026-06-09-credit-limit-notification.md",
@@ -238,7 +242,6 @@
     "_Email-Inbox/2026-06-09",
     "_Murali-Second-Brain/brain-health-report.mjs",
     "_Murali-Second-Brain/doubletick-webhook/package.json",
-    "_Murali-Second-Brain/doubletick-webhook/api/doubletick-webhook.js",
     "Manufacturing Planning and JIT procurement agent/assets/diagrams/12-deployment-tiers.svg",
     "Manufacturing Planning and JIT procurement agent/assets/diagrams/09-multilevel-bom.svg",
     "Manufacturing Planning and JIT procurement agent/assets/diagrams/08-override-curve.svg",
