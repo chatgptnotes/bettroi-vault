@@ -36,3 +36,4 @@ _Email-Drafts/
 # Claudian plugin local state (session transcripts, local keys) — never commit
 .claudian/
 .claude/
+.gstack/
