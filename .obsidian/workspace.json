@@ -11,14 +11,10 @@
             "id": "2c320a689eceed4f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_Brain-Onboarding/TEAM-GUIDE.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "TEAM-GUIDE"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ]
@@ -206,8 +202,11 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "5a539f2f33618031",
+  "active": "2c320a689eceed4f",
   "lastOpenFiles": [
+    "_Email-Inbox/2026-06-16/2026-06-16-neuro360q-decode-mybrain-project-plan-internal-discussion.md",
+    "_Email-Inbox/2026-06-16",
+    "_Brain-Onboarding/TEAM-GUIDE.md",
     "_Email-Inbox/2026-06-15/2026-06-15-re-limitless-brain-lab-staging-uat-feedback-status.md",
     "_Email-Inbox/2026-06-15/2026-06-15-inland-bg-reference-number-0163326bg0y00045-issuance-debit-a.md",
     "_Email-Inbox/2026-06-15/2026-06-15-fwd-sending-the-moa-aoa-and-cert-of-inc.md",
@@ -237,15 +236,12 @@
     "_Email-Inbox/2026-06-10/2026-06-10-389-drm-hope-hospital-pvt-ltd-may2026-payout.md",
     "_Email-Inbox/2026-06-10/2026-06-10-transcript-of-the-ddo-demo-meeting-on-10-jun-2026.md",
     "_Email-Inbox/2026-06-10/2026-06-10-your-meeting-recap-mrniyas-ck-bni-121.md",
-    "_Email-Inbox/2026-06-10/2026-06-10-aadhar-card-copy-not-acceptable-for-sbi-life-insurance-medic.md",
-    "_Email-Inbox/2026-06-10/2026-06-10-reminder-get-proposal-from-ambufast-task202600002.md",
     "_Email-Inbox/2026-06-10",
     "Untitled 1",
     "Untitled 4.canvas",
     "Untitled 3.canvas",
     "Test Project XYZ/meetings",
     "Test Project XYZ",
-    "_Murali-Second-Brain/new-project.mjs",
     "Manufacturing Planning and JIT procurement agent/assets/diagrams/12-deployment-tiers.svg",
     "Manufacturing Planning and JIT procurement agent/assets/diagrams/09-multilevel-bom.svg",
     "Manufacturing Planning and JIT procurement agent/assets/diagrams/08-override-curve.svg",
