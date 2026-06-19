@@ -1,7 +1,8 @@
 name: Brain — Obsidian Sync
 
 # Ingests new/changed .md files from the vault into brain_chunks
-# whenever a push happens to main.
+# whenever a push happens to main. Only the files changed in the push are
+# (re)embedded — a full-vault re-embed only happens on manual workflow_dispatch.
 
 on:
   push:
@@ -10,11 +11,19 @@ on:
       - '**/*.md'
   workflow_dispatch:
 
+# A newer push supersedes an in-flight sync — don't stack redundant runs.
+concurrency:
+  group: obsidian-sync
+  cancel-in-progress: true
+
 jobs:
   sync:
     runs-on: ubuntu-latest
+    timeout-minutes: 15   # hard cap: a regression can never burn ~100 min/run again
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # need history to diff the pushed commit range
 
       - uses: actions/setup-node@v4
         with:
@@ -23,9 +32,58 @@ jobs:
       - name: Install deps
         run: npm ci
 
+      # Compute the .md files changed in this push. For workflow_dispatch (no diff
+      # range) we leave CHANGED_FILES unset so the script does a full re-sync.
+      - name: Compute changed markdown
+        id: changes
+        run: |
+          set -euo pipefail
+          BEFORE='${{ github.event.before }}'
+          AFTER='${{ github.sha }}'
+          ZERO='0000000000000000000000000000000000000000'
+
+          if [ "${{ github.event_name }}" != "push" ]; then
+            echo "Manual run — full re-sync (CHANGED_FILES unset)."
+            echo "mode=full" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # New branch / force-push / missing base → fall back to diffing the last commit,
+          # or full re-sync if even that isn't available.
+          if [ "$BEFORE" = "$ZERO" ] || ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            if git rev-parse HEAD~1 >/dev/null 2>&1; then
+              BEFORE="$(git rev-parse HEAD~1)"
+            else
+              echo "No usable base commit — full re-sync."
+              echo "mode=full" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          fi
+
+          # Added/Copied/Modified/Renamed targets → ingest;  Deleted → purge.
+          CHANGED="$(git diff --name-only --diff-filter=ACMR "$BEFORE" "$AFTER" -- '*.md' || true)"
+          DELETED="$(git diff --name-only --diff-filter=D  "$BEFORE" "$AFTER" -- '*.md' || true)"
+
+          echo "Changed:"; echo "$CHANGED"
+          echo "Deleted:"; echo "$DELETED"
+
+          {
+            echo "changed<<__EOF__"; echo "$CHANGED"; echo "__EOF__";
+            echo "deleted<<__EOF__"; echo "$DELETED"; echo "__EOF__";
+          } >> "$GITHUB_OUTPUT"
+          echo "mode=incremental" >> "$GITHUB_OUTPUT"
+
       - name: Sync vault to brain
         env:
           SUPABASE_URL: ${{ secrets.BRAIN_SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.BRAIN_SUPABASE_SERVICE_KEY }}
           OPENAI_API_KEY: ${{ secrets.BRAIN_OPENAI_API_KEY }}
-        run: node _Murali-Second-Brain/obsidian-sync.mjs
+          # Only exported in incremental mode; absent on full re-sync.
+          CHANGED_FILES: ${{ steps.changes.outputs.mode == 'incremental' && steps.changes.outputs.changed || '' }}
+          DELETED_FILES: ${{ steps.changes.outputs.mode == 'incremental' && steps.changes.outputs.deleted || '' }}
+          SYNC_MODE: ${{ steps.changes.outputs.mode }}
+        run: |
+          if [ "$SYNC_MODE" = "full" ]; then
+            unset CHANGED_FILES DELETED_FILES
+          fi
+          node _Murali-Second-Brain/obsidian-sync.mjs
