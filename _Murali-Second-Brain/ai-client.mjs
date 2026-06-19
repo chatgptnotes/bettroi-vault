@@ -1,11 +1,17 @@
-// ai-client.mjs — Anthropic client with automatic VPS fallback
-// Primary:  ANTHROPIC_API_KEY → direct Anthropic API
-// Backup:   nexaproc-ai-gateway on Hostinger VPS (NEXAPROC_VPS_URL + NEXAPROC_VPS_KEY)
-//           POST /api/invoke  taskID=GENERIC_ASK
-
+// ai-client.mjs — Claude client with local-CLI-first routing
+// Primary:  local `claude` CLI on the Max-plan subscription, pinned to Haiku
+//           (flat-rate). ANTHROPIC_API_KEY is stripped from the child env so the
+//           CLI authenticates via OAuth, NOT the metered API key. (See harvested
+//           skill: "Claude CLI: ANTHROPIC_API_KEY env silently overrides OAuth".)
+// Backup 1: nexaproc-ai-gateway (NEXAPROC_VPS_URL + NEXAPROC_VPS_KEY) — Sonnet.
+// Backup 2: direct Anthropic API (metered) via ANTHROPIC_API_KEY.
 import Anthropic from '@anthropic-ai/sdk';
+import { spawn } from 'node:child_process';
 
 const primary = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+
+// Model the local CLI is pinned to (override via BRAIN_CLAUDE_MODEL).
+const LOCAL_CLAUDE_MODEL = process.env.BRAIN_CLAUDE_MODEL || 'claude-haiku-4-5';
 
 // Live-binding flag — set true when Anthropic returns a credits/billing error.
 // Callers can read this to decide whether to alert the user.
@@ -70,6 +76,50 @@ async function callVPS(params, attempt = 0) {
   };
 }
 
+// Run the local `claude` CLI in headless print mode, pinned to Haiku, on the
+// Max-plan subscription. Returns an Anthropic-SDK-compatible response shape.
+// The prompt is piped via stdin; ANTHROPIC_* API creds are removed from the
+// child env so the CLI uses OAuth (subscription) rather than the metered key.
+function callLocalClaude(params, { timeoutMs = 120000 } = {}) {
+  return new Promise((resolve, reject) => {
+    const prompt = toPlainPrompt(params);
+    const env = { ...process.env, HOME: process.env.HOME || '/root' };
+    delete env.ANTHROPIC_API_KEY;
+    delete env.ANTHROPIC_AUTH_TOKEN;
+    delete env.ANTHROPIC_BASE_URL;
+
+    const args = ['-p', '--model', LOCAL_CLAUDE_MODEL, '--output-format', 'json'];
+    const child = spawn('claude', args, { env, stdio: ['pipe', 'pipe', 'pipe'] });
+
+    let out = '', err = '';
+    const timer = setTimeout(() => {
+      child.kill('SIGKILL');
+      reject(new Error(`local claude CLI timeout after ${timeoutMs}ms`));
+    }, timeoutMs);
+
+    child.stdout.on('data', d => { out += d; });
+    child.stderr.on('data', d => { err += d; });
+    child.on('error', e => { clearTimeout(timer); reject(e); });
+    child.on('close', code => {
+      clearTimeout(timer);
+      if (code !== 0) return reject(new Error(`claude CLI exit ${code}: ${err.slice(0, 150)}`));
+      let envelope;
+      try { envelope = JSON.parse(out); }
+      catch { return reject(new Error(`claude CLI parse fail: ${(out || err).slice(0, 150)}`)); }
+      if (envelope.is_error) return reject(new Error(`claude CLI error: ${String(envelope.result).slice(0, 150)}`));
+      const u = envelope.usage || {};
+      resolve({
+        content: [{ type: 'text', text: envelope.result ?? '' }],
+        model: `claude-cli-${LOCAL_CLAUDE_MODEL}`,
+        usage: { input_tokens: u.input_tokens ?? 0, output_tokens: u.output_tokens ?? 0 },
+      });
+    });
+
+    child.stdin.write(prompt);
+    child.stdin.end();
+  });
+}
+
 // Does this request carry non-text content (images / documents)? Those can't go
 // through the CLI sidecar (bridge.ts flattens messages to a text prompt), so they
 // must use the real API.
@@ -81,28 +131,34 @@ function hasNonTextContent(params) {
 }
 
 export async function callClaude(params) {
-  // Vision/document calls must use the real Anthropic API (sidecar is text-only).
+  // Vision/document calls must use the real Anthropic API (CLI/gateway are text-only).
   if (hasNonTextContent(params)) return await primary.messages.create(params);
 
-  // Text calls: prefer the Claude Code SUBSCRIPTION on the VPS (flat-rate, no API
-  // credits — and the only path that works while the API balance is empty). Fall
-  // back to the metered Anthropic API only if the sidecar is unreachable.
+  // Text calls, in order of preference:
+  //   1. local `claude` CLI on the Max-plan subscription, pinned to Haiku (flat-rate)
+  //   2. nexaproc-ai-gateway (subscription, Sonnet) if the CLI is unavailable
+  //   3. metered Anthropic API as the last resort
   try {
-    return await callVPS(params);
-  } catch (vpsErr) {
-    console.warn(`  [ai-client] VPS sidecar unavailable (${(vpsErr.message || '').slice(0, 70)}) → Anthropic API`);
+    return await callLocalClaude(params);
+  } catch (cliErr) {
+    console.warn(`  [ai-client] local Haiku CLI unavailable (${(cliErr.message || '').slice(0, 70)}) → VPS gateway`);
     try {
-      return await primary.messages.create(params);
-    } catch (anthropicErr) {
-      if (isCreditsError(anthropicErr)) {
-        // Anthropic credits exhausted. VPS is the only working path — wait 25s
-        // for the bridge to free up, then try VPS one more time before giving up.
-        anthropicCreditsExhausted = true;
-        console.warn(`  [ai-client] Anthropic credits exhausted; waiting 25s for VPS to free up...`);
-        await new Promise(r => setTimeout(r, 25000));
-        return await callVPS(params); // throws if still busy — caller handles
+      return await callVPS(params);
+    } catch (vpsErr) {
+      console.warn(`  [ai-client] VPS sidecar unavailable (${(vpsErr.message || '').slice(0, 70)}) → Anthropic API`);
+      try {
+        return await primary.messages.create(params);
+      } catch (anthropicErr) {
+        if (isCreditsError(anthropicErr)) {
+          // Anthropic credits exhausted — the local CLI subscription is the only
+          // working path. Wait briefly, then try the CLI once more before giving up.
+          anthropicCreditsExhausted = true;
+          console.warn(`  [ai-client] Anthropic credits exhausted; retrying local Haiku CLI...`);
+          await new Promise(r => setTimeout(r, 5000));
+          return await callLocalClaude(params);
+        }
+        throw anthropicErr;
       }
-      throw anthropicErr;
     }
   }
 }
