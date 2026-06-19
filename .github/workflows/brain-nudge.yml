@@ -8,9 +8,14 @@ on:
     - cron: '30 3 * * *'  # 03:30 UTC = 09:00 IST
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
   nudge:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

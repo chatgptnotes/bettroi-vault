@@ -8,9 +8,14 @@ on:
     - cron: '30 2 * * *'  # 02:30 UTC = 08:00 IST
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
   discover:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
 
