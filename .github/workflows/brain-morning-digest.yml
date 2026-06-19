@@ -8,9 +8,14 @@ on:
     - cron: '0 2 * * *'
   workflow_dispatch:  # allow manual trigger from GitHub UI
 
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
   digest:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
 
