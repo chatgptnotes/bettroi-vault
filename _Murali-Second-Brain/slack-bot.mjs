@@ -392,7 +392,7 @@ app.event('message', async ({ event, client }) => {
 
 import { writeFile, mkdir } from 'node:fs/promises';
 import { join as pathJoin, dirname as pathDirname } from 'node:path';
-const VAULT_PATH = '/Users/murali/BeBrain/bettroi-vault';
+const VAULT_PATH = process.env.VAULT_PATH || '/Users/murali/BeBrain/bettroi-vault';
 
 // Project folders the OCR auto-classifier can route to
 const KNOWN_PROJECTS = [

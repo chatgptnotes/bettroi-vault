@@ -9,7 +9,7 @@ import { join as pathJoin } from 'node:path';
 import { ingestText } from './ingest.mjs';
 import { callClaude } from './ai-client.mjs';
 
-const VAULT_PATH = '/Users/murali/BeBrain/bettroi-vault';
+const VAULT_PATH = process.env.VAULT_PATH || '/Users/murali/BeBrain/bettroi-vault';
 const KNOWN_PROJECTS = [
   'Adamrit', 'Adamrit.com', 'Hope', 'NABH-quality-HR', 'BNI-Networking',
   'Doctors digital office', 'Pangong-preventive-healthcare', 'Foyertech',

@@ -10,7 +10,7 @@ import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY, { auth: { persistSession: false } });
-const VAULT_PATH = '/Users/murali/BeBrain/bettroi-vault';
+const VAULT_PATH = process.env.VAULT_PATH || '/Users/murali/BeBrain/bettroi-vault';
 const DRY = process.argv.includes('--dry');
 
 // Competitors grouped by Bettroi product line. Edit this list to refine the watchlist.
