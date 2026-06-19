@@ -47,3 +47,13 @@
 [15505556ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://sockjs-eu.pusher.com/pusher/app/0a0276f4849ca0f1785d/196/j8jl4crs/xhr_streaming?protocol=7&client=js&version=8.5.0&t=1781894685687&n=19:0
 [15505557ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://sockjs-eu.pusher.com/pusher/app/0a0276f4849ca0f1785d/233/29c02osu/xhr?protocol=7&client=js&version=8.5.0&t=1781894689689&n=20:0
 [15555541ms] [ERROR] WebSocket connection to 'wss://ws-eu.pusher.com/app/0a0276f4849ca0f1785d?protocol=7&client=js&version=8.5.0&flash=false' failed: Error in connection establishment: net::ERR_NAME_NOT_RESOLVED @ https://hpanel.hostinger.com/assets/chunk/vendor.DTBtLhEs.js:368
+[15572553ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://sockjs-eu.pusher.com/pusher/app/0a0276f4849ca0f1785d/142/ghpabahi/xhr?protocol=7&client=js&version=8.5.0&t=1781894749693&n=26:0
+[16609235ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[16609438ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://sockjs-eu.pusher.com/pusher/app/0a0276f4849ca0f1785d/818/6qegevlg/xhr_streaming?protocol=7&client=js&version=8.5.0&t=1781894775692&n=27:0
+[16609438ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[16609438ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[16609439ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[16609439ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[16609439ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[16609439ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[16609439ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
