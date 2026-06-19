@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "07b29e2cf19cbc79",
+        "id": "bb3382806a9ae5af",
         "type": "tabs",
         "children": [
           {
-            "id": "85e1bdae91fcf2ef",
+            "id": "2c320a689eceed4f",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -90,6 +90,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "_Brain-Onboarding/TEAM-GUIDE.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,7 +100,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for TEAM-GUIDE"
             }
           },
           {
@@ -108,11 +109,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "_Brain-Onboarding/TEAM-GUIDE.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links"
+              "title": "Outgoing links from TEAM-GUIDE"
             }
           },
           {
@@ -150,12 +152,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "_Brain-Onboarding/TEAM-GUIDE.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline"
+              "title": "Outline of TEAM-GUIDE"
             }
           },
           {
@@ -183,10 +186,12 @@
       }
     ],
     "direction": "horizontal",
-    "width": 223.5
+    "width": 1097.5
   },
   "left-ribbon": {
     "hiddenItems": {
+      "github-sync:Sync with Remote": false,
+      "obsidian-git:Open Git source control": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -194,21 +199,14 @@
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
       "bases:Create new base": false,
-      "obsidian-git:Open Git source control": false,
-      "github-sync:Sync with Remote": false,
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "85e1bdae91fcf2ef",
+  "active": "2c320a689eceed4f",
   "lastOpenFiles": [
-    "services/Supabase.md",
-    "Adamrit.com/repo-overview.md",
-    "Adamrit.com/CLAUDE.md",
-    "Adamrit/agent-corpus/adamrit-billing-workflow.md",
-    "Adamrit/agent-corpus/adamrit-clinical-workflows.md",
     "Untitled 5.canvas",
-    "2026-06-19.md",
     "Untitled 1.base",
+    "2026-06-19.md",
     "bettroi-workflows-2026-06-19.pdf",
     "_Email-Inbox/2026-06-19/2026-06-19-stopping-of-tld-personnel-monitoring-service-to-your-institu.md",
     "_Email-Inbox/2026-06-19/2026-06-19-invitation-sabi-and-petrosafe-discussion-fri-jun-19-2026-430.md",
@@ -233,7 +231,11 @@
     "_Email-Inbox/2026-06-16/2026-06-16-review-meeting-through-vc-with-all-the-hospitals-in-the-stat.md",
     "_Email-Inbox/2026-06-16/2026-06-16-re-limitless-brain-lab-staging-uat-feedback-status.md",
     "_Email-Inbox/2026-06-16/2026-06-16-limitlessbrainlab-staging-uat-status-and-decode-neuro360-pro.md",
+    "_Email-Inbox/2026-06-16/2026-06-16-your-meeting-recap-neuro360q-decode-mybrain-project-plan-int.md",
+    "_Email-Inbox/2026-06-16/2026-06-16-inland-bg-reference-number-0163326bg0y00045-issuance-debit-a.md",
+    "_Email-Inbox/2026-06-16/2026-06-16-neuro360q-decode-mybrain-project-plan-internal-discussion.md",
     "_Email-Inbox/2026-06-16",
+    "_Brain-Onboarding/TEAM-GUIDE.md",
     "_Email-Inbox/2026-06-14",
     "_Email-Inbox/2026-06-15",
     "_Email-Inbox/2026-06-12",
