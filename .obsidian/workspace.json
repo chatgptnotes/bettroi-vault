@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "bb3382806a9ae5af",
+        "id": "07b29e2cf19cbc79",
         "type": "tabs",
         "children": [
           {
-            "id": "2c320a689eceed4f",
+            "id": "85e1bdae91fcf2ef",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -90,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "_Brain-Onboarding/TEAM-GUIDE.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for TEAM-GUIDE"
+              "title": "Backlinks"
             }
           },
           {
@@ -109,12 +108,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "_Brain-Onboarding/TEAM-GUIDE.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from TEAM-GUIDE"
+              "title": "Outgoing links"
             }
           },
           {
@@ -152,13 +150,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "_Brain-Onboarding/TEAM-GUIDE.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of TEAM-GUIDE"
+              "title": "Outline"
             }
           },
           {
@@ -177,8 +174,8 @@
             "state": {
               "type": "claudian-view",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "claudian-view"
+              "icon": "bot",
+              "title": "Claudian"
             }
           }
         ],
@@ -186,7 +183,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 1097.5
+    "width": 223.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -202,8 +199,16 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "2c320a689eceed4f",
+  "active": "85e1bdae91fcf2ef",
   "lastOpenFiles": [
+    "services/Supabase.md",
+    "Adamrit.com/repo-overview.md",
+    "Adamrit.com/CLAUDE.md",
+    "Adamrit/agent-corpus/adamrit-billing-workflow.md",
+    "Adamrit/agent-corpus/adamrit-clinical-workflows.md",
+    "Untitled 5.canvas",
+    "2026-06-19.md",
+    "Untitled 1.base",
     "bettroi-workflows-2026-06-19.pdf",
     "_Email-Inbox/2026-06-19/2026-06-19-stopping-of-tld-personnel-monitoring-service-to-your-institu.md",
     "_Email-Inbox/2026-06-19/2026-06-19-invitation-sabi-and-petrosafe-discussion-fri-jun-19-2026-430.md",
@@ -228,18 +233,11 @@
     "_Email-Inbox/2026-06-16/2026-06-16-review-meeting-through-vc-with-all-the-hospitals-in-the-stat.md",
     "_Email-Inbox/2026-06-16/2026-06-16-re-limitless-brain-lab-staging-uat-feedback-status.md",
     "_Email-Inbox/2026-06-16/2026-06-16-limitlessbrainlab-staging-uat-status-and-decode-neuro360-pro.md",
-    "_Email-Inbox/2026-06-16/2026-06-16-your-meeting-recap-neuro360q-decode-mybrain-project-plan-int.md",
-    "_Email-Inbox/2026-06-16/2026-06-16-inland-bg-reference-number-0163326bg0y00045-issuance-debit-a.md",
-    "_Email-Inbox/2026-06-16/2026-06-16-neuro360q-decode-mybrain-project-plan-internal-discussion.md",
     "_Email-Inbox/2026-06-16",
-    "_Brain-Onboarding/TEAM-GUIDE.md",
-    "_Email-Inbox/2026-06-15/2026-06-15-re-limitless-brain-lab-staging-uat-feedback-status.md",
     "_Email-Inbox/2026-06-14",
     "_Email-Inbox/2026-06-15",
     "_Email-Inbox/2026-06-12",
     "_Email-Inbox/2026-06-11",
-    "_Brain-Onboarding/How-to-Add-a-Google-Doc-to-the-Brain.pdf",
-    "_Email-Inbox/2026-06-10",
     "Untitled 4.canvas",
     "Untitled 3.canvas",
     "Manufacturing Planning and JIT procurement agent/assets/diagrams/12-deployment-tiers.svg",
