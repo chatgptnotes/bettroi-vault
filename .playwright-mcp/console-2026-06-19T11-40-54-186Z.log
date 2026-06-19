@@ -42,3 +42,6 @@ Ancestor with aria-hidden: <div.wuMMWb> @ https://accounts.google.com/v3/signin/
 [  608514ms] [ERROR] Failed to load resource: the server responded with a status of 503 () @ https://collector.github.com/github/collect:0
 [  617774ms] [ERROR] Failed to load resource: the server responded with a status of 503 () @ https://collector.github.com/github/collect:0
 [  617785ms] [ERROR] Failed to load resource: the server responded with a status of 503 () @ https://collector.github.com/github/collect:0
+[ 9886579ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://github.com/github-copilot/chat/implicit-context/settings/billing/%2Fsettings%2Fbilling%2Fusage:0
+[ 9914917ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://github.com/github-copilot/chat/implicit-context/settings/billing/%2Fsettings%2Fbilling%2Fbudgets:0
+[ 9943338ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://github.com/github-copilot/chat/implicit-context/settings/billing/%2Fsettings%2Fbilling%2Fbudgets:0
