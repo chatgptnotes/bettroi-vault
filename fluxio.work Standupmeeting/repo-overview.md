@@ -2,18 +2,18 @@
 domain: fluxio.work
 repo: chatgptnotes/hopehospital-dashboard
 default_branch: main
-last_push: 2026-05-31T06:29:40Z
-size_kb: 2868
+last_push: 2026-06-18T12:55:23Z
+size_kb: 3230
 language: TypeScript
 description: "Hope Hospital + Ayushman Hospital - operations management dashboard. Live at fluxio.work."
-extracted: 2026-06-09T07:07:52.831Z
+extracted: 2026-06-20T07:34:08.722Z
 ---
 # Hope+Ayushman Operations — `fluxio.work`
 
 **Live URL:** https://fluxio.work/
 **GitHub repo:** https://github.com/chatgptnotes/hopehospital-dashboard
-**Default branch:** `main`  ·  **Last push:** 2026-05-31T06:29:40Z
-**Language:** TypeScript  ·  **Repo size:** 2868KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-18T12:55:23Z
+**Language:** TypeScript  ·  **Repo size:** 3230KB
 
 > Hope Hospital + Ayushman Hospital - operations management dashboard. Live at fluxio.work.
 
@@ -37,9 +37,9 @@ extracted: 2026-06-09T07:07:52.831Z
 
 - `.env` (290B)
 - `.gitignore` (261B)
-- `CLAUDE.md` (1KB)
+- `CLAUDE.md` (22KB)
 - `README.md` (584B)
-- `bun.lockb` (214KB)
+- `bun.lockb` (213KB)
 - `components.json` (413B)
 - `eslint.config.js` (789B)
 - `index.html` (1KB)
@@ -59,9 +59,9 @@ extracted: 2026-06-09T07:07:52.831Z
 
 ## Folder breakdown
 
-- `src/` — 143 files
-- `supabase/` — 18 files
-- `public/` — 7 files
+- `src/` — 149 files
+- `supabase/` — 25 files
+- `public/` — 9 files
 - `.env/` — 1 file
 - `.gitignore/` — 1 file
 - `CLAUDE.md/` — 1 file
@@ -77,16 +77,16 @@ extracted: 2026-06-09T07:07:52.831Z
 
 ## Recent commits
 
-- `2a705ab` _2026-05-31_ — fix(share): emit canonical fluxio.work share URLs to avoid Chrome typosquat warn
-- `beb0cc3` _2026-05-31_ — feat(share): public shareable links for GST and Tax Deadlines pages — v1.2
-- `657f6d4` _2026-05-31_ — feat(tax-deadlines): multi-entity portfolio for DRM Hope Pvt Ltd, Hope Hospitals
-- `6edf167` _2026-05-31_ — feat(compliance): add editable GST and Tax Deadlines (IT + TDS) pages — v1.0
-- `893349a` _2026-05-27_ — feat(bank-credentials): auto-generate PDF from page + per-bank QR code upload
-- `906618b` _2026-05-25_ — fix(org-vault): show card image upload buttons for new cards too
-- `54afbee` _2026-05-25_ — feat(org-vault): add front/back image upload to card form
-- `9fcb528` _2026-05-25_ — feat: add PAN/Aadhaar image uploads to org vault and multi-image upload to cards
-- `fad301c` _2026-05-17_ — feat(bank-credentials): add editable comments field per card
-- `51f41e4` _2026-05-17_ — feat: add Brain Access link to sidebar (Management section)
+- `643de27` _2026-06-18_ — feat(staff-tasks): person tabs + per-person routes + Sonali Nurse In-Charge
+- `807dec4` _2026-06-18_ — feat(staff-tasks): add task lists for 9 more staff members
+- `62c18f7` _2026-06-18_ — feat(staff-tasks): add comments field to Confirm Day form
+- `f75b7f8` _2026-06-18_ — feat(staff-tasks): email Dr. Murali when Yash confirms day via Resend
+- `236f410` _2026-06-18_ — feat(staff-tasks): add Confirm Day button and Daily Log tab
+- `06d2b6d` _2026-06-18_ — feat(staff-tasks): make fully editable — add, inline edit, delete tasks
+- `20d5550` _2026-06-18_ — feat(staff-tasks): add Staff Tasks page with Yash Kuthe's 8 daily tasks
+- `6716fbd` _2026-06-18_ — feat(staff-jds): add Staff Job Descriptions page with 12 roles
+- `b8402f4` _2026-06-18_ — feat(admin-jd): add Hospital Administrator job description page
+- `a9301b3` _2026-06-18_ — feat(code-of-conduct): add Hospital Code of Conduct page with 13 operational rul
 
 ## README
 

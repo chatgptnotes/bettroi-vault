@@ -2,18 +2,18 @@
 domain: pulseofproject.com
 repo: chatgptnotes/pulseofproject
 default_branch: main
-last_push: 2026-05-27T12:20:16Z
-size_kb: 2436
+last_push: 2026-06-20T03:52:54Z
+size_kb: 2837
 language: JavaScript
 description: ""
-extracted: 2026-06-09T07:07:54.277Z
+extracted: 2026-06-20T07:34:09.893Z
 ---
 # Software Operations Tracker — `pulseofproject.com`
 
 **Live URL:** https://pulseofproject.com/
 **GitHub repo:** https://github.com/chatgptnotes/pulseofproject
-**Default branch:** `main`  ·  **Last push:** 2026-05-27T12:20:16Z
-**Language:** JavaScript  ·  **Repo size:** 2436KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-20T03:52:54Z
+**Language:** JavaScript  ·  **Repo size:** 2837KB
 
 
 
@@ -62,17 +62,17 @@ extracted: 2026-06-09T07:07:54.277Z
 - `CHECKBOX_UI_UPDATE_FIX.md` (6KB)
 - `CHECK_ADMIN_PROJECTS_DATA.sql` (2KB)
 - `CHECK_USER_PROJECT_ASSIGNMENT.sql` (3KB)
-- `CLAUDE.md` (19KB)
+- `CLAUDE.md` (23KB)
 - `COLLABORATIVE_PROJECT_TRACKING_GUIDE.md` (6KB)
 - `COMPLETE-ALL-PROJECTS-SQL.sql` (28KB)
 - `COMPLETE_ERROR_FIX_GUIDE.md` (6KB)
 
 ## Folder breakdown
 
-- `apps/` — 116 files
+- `apps/` — 140 files
+- `supabase/` — 17 files
 - `packages/` — 13 files
 - `.claude/` — 10 files
-- `supabase/` — 7 files
 - `scripts/` — 5 files
 - `api/` — 3 files
 - `supabase-migrations/` — 3 files
@@ -87,16 +87,16 @@ extracted: 2026-06-09T07:07:54.277Z
 
 ## Recent commits
 
-- `34e4236` _2026-05-27_ — refactor(seo): move pre-render fallback styles to a stylesheet
-- `774dcd7` _2026-05-27_ — fix(seo): point canonical/OG/sitemap to www.pulseofproject.com
-- `716a833` _2026-05-27_ — feat(seo): optimize metadata, public landing, perf, and social tags
-- `88cf6b0` _2026-05-15_ — Merge pull request #6 from chatgptnotes/deploy/employees
-- `ec0f880` _2026-05-15_ — feat(employees): add Employees page (Drmhope + Bettroi roster) - v2.0.28
-- `2ed7c23` _2026-05-15_ — Merge pull request #5 from chatgptnotes/deploy/domain-master
-- `58b3a47` _2026-05-15_ — feat(domain-master): new categorized Domain Master page + sidebar entry - v2.0.2
-- `02eedfb` _2026-05-06_ — Merge pull request #3 from chatgptnotes/feat/bug-scope-classification
-- `ff62148` _2026-05-06_ — chore: bump version to 2.0.26
-- `832972d` _2026-05-06_ — fix: declare scope-classifier deps in apps/web
+- `562823a` _2026-06-20_ — debug: show error details on screen in ErrorBoundary (not dev-only)
+- `486ee8c` _2026-06-20_ — feat(admin): add sticky Google Doc amber banner to admin project view
+- `9cf3f17` _2026-06-20_ — fix: correct project name DecodMyBrain → DecodeMyBrain
+- `545e34c` _2026-06-20_ — feat(projects): show Project Documents on every project page
+- `69d504e` _2026-06-20_ — feat(projects): show Project Doc button on every project page
+- `db571d4` _2026-06-20_ — fix(ProjectSelector): show Switch Project bar for DB-only projects
+- `c48dc89` _2026-06-20_ — fix(vercel): serve static files before SPA catch-all rewrite
+- `1d6e119` _2026-06-20_ — feat: serve feature reference HTML as static file via Vercel
+- `0df619a` _2026-06-20_ — fix(client): sticky Google Doc banner hidden behind top bar — offset to top-12 z
+- `5f90b1c` _2026-06-20_ — feat: add Feature Reference page (/features) with non-tech guide + all 54 projec
 
 ## README
 

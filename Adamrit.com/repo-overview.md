@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-06-08T12:27:00Z
-size_kb: 40516
+last_push: 2026-06-19T07:45:27Z
+size_kb: 41290
 language: TypeScript
 description: ""
-extracted: 2026-06-09T07:07:55.618Z
+extracted: 2026-06-20T07:34:11.240Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-06-08T12:27:00Z
-**Language:** TypeScript  ·  **Repo size:** 40516KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-19T07:45:27Z
+**Language:** TypeScript  ·  **Repo size:** 41290KB
 
 
 
@@ -30,6 +30,7 @@ extracted: 2026-06-09T07:07:55.618Z
 - `check:automation-tables`: `node scripts/check-automation-table-access.cjs`
 - `smoke:automations`: `node scripts/smoke-automations.cjs`
 - `test:automations`: `npx vite-node e2e/run-task-flows.test.ts`
+- `test:ward-bridge`: `npx vite-node e2e/ward-bridge.test.ts`
 - `lint`: `eslint .`
 - `preview`: `vite preview`
 - `generate-types`: `ts-node scripts/generate-types.ts`
@@ -37,14 +38,14 @@ extracted: 2026-06-09T07:07:55.618Z
 - `tally:direct-sync`: `node scripts/tally-direct-sync.js`
 - `check:emails`: `cd scripts/email-automation && node run.js`
 
-**Dependencies (72):** @ckeditor/ckeditor5-build-classic, @ckeditor/ckeditor5-react, @dnd-kit/core, @dnd-kit/sortable, @dnd-kit/utilities, @hookform/resolvers, @radix-ui/react-accordion, @radix-ui/react-alert-dialog, @radix-ui/react-aspect-ratio, @radix-ui/react-avatar, @radix-ui/react-checkbox, @radix-ui/react-collapsible, @radix-ui/react-context-menu, @radix-ui/react-dialog, @radix-ui/react-dropdown-menu, @radix-ui/react-hover-card, @radix-ui/react-label, @radix-ui/react-menubar, @radix-ui/react-navigation-menu, @radix-ui/react-popover, @radix-ui/react-progress, @radix-ui/react-radio-group, @radix-ui/react-scroll-area, @radix-ui/react-select, @radix-ui/react-separator, @radix-ui/react-slider, @radix-ui/react-slot, @radix-ui/react-switch, @radix-ui/react-tabs, @radix-ui/react-toast...
+**Dependencies (73):** @ckeditor/ckeditor5-build-classic, @ckeditor/ckeditor5-react, @dnd-kit/core, @dnd-kit/sortable, @dnd-kit/utilities, @hookform/resolvers, @radix-ui/react-accordion, @radix-ui/react-alert-dialog, @radix-ui/react-aspect-ratio, @radix-ui/react-avatar, @radix-ui/react-checkbox, @radix-ui/react-collapsible, @radix-ui/react-context-menu, @radix-ui/react-dialog, @radix-ui/react-dropdown-menu, @radix-ui/react-hover-card, @radix-ui/react-label, @radix-ui/react-menubar, @radix-ui/react-navigation-menu, @radix-ui/react-popover, @radix-ui/react-progress, @radix-ui/react-radio-group, @radix-ui/react-scroll-area, @radix-ui/react-select, @radix-ui/react-separator, @radix-ui/react-slider, @radix-ui/react-slot, @radix-ui/react-switch, @radix-ui/react-tabs, @radix-ui/react-toast...
 
 **Dev Dependencies (23):** @eslint/js, @playwright/test, @supabase/mcp-server-supabase, @tailwindcss/typography, @types/node, @types/react, @types/react-dom, @vercel/node, @vitejs/plugin-basic-ssl, @vitejs/plugin-react, @vitejs/plugin-react-swc, autoprefixer, eslint, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, lovable-tagger, postcss, tailwindcss, typescript...
 
 ## Top-level files
 
 - `.dockerignore` (445B)
-- `.env.example` (2KB)
+- `.env.example` (3KB)
 - `.gitignore` (395B)
 - `.npmrc` (22B)
 - `.nvmrc` (3B)
@@ -76,34 +77,34 @@ extracted: 2026-06-09T07:07:55.618Z
 
 ## Folder breakdown
 
-- `src/` — 827 files
-- `supabase/` — 436 files
+- `src/` — 841 files
+- `supabase/` — 450 files
 - `public/` — 51 files
-- `scripts/` — 28 files
+- `scripts/` — 32 files
 - `agents/` — 25 files
 - `claude-auto-confirm/` — 19 files
 - `.claude/` — 17 files
-- `e2e/` — 11 files
+- `api/` — 12 files
+- `e2e/` — 12 files
+- `docs/` — 9 files
 - `sidecar/` — 9 files
-- `docs/` — 8 files
-- `api/` — 7 files
 - `docker/` — 6 files
+- `rephrase-sidecar/` — 6 files
 - `k8s/` — 4 files
 - `supabase-migrations/` — 3 files
-- `.dockerignore/` — 1 file
 
 ## Recent commits
 
-- `a3a1e96` _2026-06-08_ — fix(skill-factory): bidirectional sync between canvas and steps panel
-- `770b20f` _2026-06-08_ — feat(automations): chatbot-driven automation builder with 17-rule safety stack
-- `c25c558` _2026-06-06_ — ci: redeploy from current HEAD
-- `8b53996` _2026-06-06_ — feat(deadline-tracking): utility-bill deadline dashboard
-- `6cc7d57` _2026-06-06_ — feat(skill-factory): build v2 page with task-optimizer engine
-- `d1437dd` _2026-06-05_ — chore(billing): commit remaining email automation files
-- `76e1330` _2026-06-05_ — Merge branch 'main' of https://github.com/chatgptnotes/adamrit into biling-autom
-- `213027d` _2026-06-05_ — docs: add billing email automation feature documentation
-- `b62faa6` _2026-06-05_ — fix(billing): try u/1 account index for info@hopehospital.com Gmail link
-- `01fde67` _2026-06-05_ — feat(billing): connect Re-phrase to Gemini AI — uses existing geminiFetch from s
+- `bb2b551` _2026-06-19_ — Lab panels: add Numeric/Text Type + Text Value to nested sub-tests
+- `7ff14d2` _2026-06-18_ — Cash Book top summary: split into Hope + Ayushman + Total
+- `7eaa876` _2026-06-18_ — Show Cash Book Total + Closing Balance at top (mirror of footer)
+- `5525410` _2026-06-18_ — Restrict lab panel Edit button to superadmin@ayushman.com only
+- `3704051` _2026-06-17_ — Fix lab test reports visibility + remove 1000-row truncation
+- `05fe380` _2026-06-17_ — fix(account-logs): sync month label with manual date input
+- `3f8d20d` _2026-06-17_ — fix(cash-book): apply effectiveHospitalName to PHARMACY transaction type guard
+- `3ee8f83` _2026-06-17_ — fix(cash-book): wire company filter and sort entries by date
+- `1c70d99` _2026-06-17_ — fix(account-logs): correct balance calculation to only count cash movements
+- `8d90eeb` _2026-06-16_ — feat(account-logs): add date range picker, TallyPrime-style opening/current/clos
 
 ## README
 
