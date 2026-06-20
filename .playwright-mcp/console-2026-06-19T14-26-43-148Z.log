@@ -192,3 +192,29 @@
 [35350491ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
 [35351457ms] [ERROR] Failed to load resource: net::ERR_QUIC_PROTOCOL_ERROR @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
 [35437345ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://sdk.fra-02.braze.eu/api/v3/content_cards/sync:0
+[37441525ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://sockjs-eu.pusher.com/pusher/app/0a0276f4849ca0f1785d/423/r7rbu3q1/xhr_streaming?protocol=7&client=js&version=8.5.0&t=1781915588919&n=97:0
+[37441526ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://sockjs-eu.pusher.com/pusher/app/0a0276f4849ca0f1785d/667/rosh9903/xhr?protocol=7&client=js&version=8.5.0&t=1781916639643&n=98:0
+[38422003ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[38422943ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[38423185ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[39174964ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://sdk.fra-02.braze.eu/api/v3/content_cards/sync:0
+[39557610ms] [ERROR] WebSocket connection to 'wss://ws-eu.pusher.com/app/0a0276f4849ca0f1785d?protocol=7&client=js&version=8.5.0&flash=false' failed: Error in connection establishment: net::ERR_NAME_NOT_RESOLVED @ https://hpanel.hostinger.com/assets/chunk/vendor.DTBtLhEs.js:368
+[39557611ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://hpanel.hostinger.com/hp-version.json:0
+[39557611ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://sockjs-eu.pusher.com/pusher/app/0a0276f4849ca0f1785d/984/see4cdf7/xhr_streaming?protocol=7&client=js&version=8.5.0&t=1781918375087&n=101:0
+[39557611ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://sockjs-eu.pusher.com/pusher/app/0a0276f4849ca0f1785d/358/v9llaphh/xhr?protocol=7&client=js&version=8.5.0&t=1781918379090&n=102:0
+[39835055ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://hpanel.hostinger.com/hp-version.json:0
+[39835055ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[39835055ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://sockjs-eu.pusher.com/pusher/app/0a0276f4849ca0f1785d/985/paj6a642/xhr?protocol=7&client=js&version=8.5.0&t=1781918874808&n=104:0
+[39835055ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://sockjs-eu.pusher.com/pusher/app/0a0276f4849ca0f1785d/251/kb16puhh/xhr_streaming?protocol=7&client=js&version=8.5.0&t=1781918870806&n=103:0
+[39937913ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://sdk.fra-02.braze.eu/api/v3/content_cards/sync:0
+[39937914ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[39937914ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[40382486ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[40382487ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[40382489ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[40382489ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[40387123ms] [ERROR] WebSocket connection to 'wss://ws-eu.pusher.com/app/0a0276f4849ca0f1785d?protocol=7&client=js&version=8.5.0&flash=false' failed: Error in connection establishment: net::ERR_NAME_NOT_RESOLVED @ https://hpanel.hostinger.com/assets/chunk/vendor.DTBtLhEs.js:368
+[40387124ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[40387126ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://sockjs-eu.pusher.com/pusher/app/0a0276f4849ca0f1785d/909/c3fqg285/xhr_streaming?protocol=7&client=js&version=8.5.0&t=1781919589872&n=107:0
+[40387126ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://experiment-api.hostinger.com/sdk/v2/vardata?v=0:0
+[40392143ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://hpanel.hostinger.com/api/hpanel/broadcasting/auth?type=app:0
