@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-06-19T07:45:27Z
-size_kb: 41290
+last_push: 2026-06-20T12:28:34Z
+size_kb: 41406
 language: TypeScript
 description: ""
-extracted: 2026-06-20T07:34:11.240Z
+extracted: 2026-06-21T06:00:19.204Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-06-19T07:45:27Z
-**Language:** TypeScript  ·  **Repo size:** 41290KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-20T12:28:34Z
+**Language:** TypeScript  ·  **Repo size:** 41406KB
 
 
 
@@ -95,6 +95,8 @@ extracted: 2026-06-20T07:34:11.240Z
 
 ## Recent commits
 
+- `be160b1` _2026-06-20_ — Lab report print: keep NORMAL RANGE hidden in preview/print
+- `1731547` _2026-06-20_ — Lab: auto-fill/auto-save default values, fix report print, editable text default
 - `bb2b551` _2026-06-19_ — Lab panels: add Numeric/Text Type + Text Value to nested sub-tests
 - `7ff14d2` _2026-06-18_ — Cash Book top summary: split into Hope + Ayushman + Total
 - `7eaa876` _2026-06-18_ — Show Cash Book Total + Closing Balance at top (mirror of footer)
@@ -103,8 +105,6 @@ extracted: 2026-06-20T07:34:11.240Z
 - `05fe380` _2026-06-17_ — fix(account-logs): sync month label with manual date input
 - `3f8d20d` _2026-06-17_ — fix(cash-book): apply effectiveHospitalName to PHARMACY transaction type guard
 - `3ee8f83` _2026-06-17_ — fix(cash-book): wire company filter and sort entries by date
-- `1c70d99` _2026-06-17_ — fix(account-logs): correct balance calculation to only count cash movements
-- `8d90eeb` _2026-06-16_ — feat(account-logs): add date range picker, TallyPrime-style opening/current/clos
 
 ## README
 

@@ -2,18 +2,18 @@
 domain: pulseofproject.com
 repo: chatgptnotes/pulseofproject
 default_branch: main
-last_push: 2026-06-20T03:52:54Z
-size_kb: 2837
+last_push: 2026-06-21T05:19:47Z
+size_kb: 2795
 language: JavaScript
 description: ""
-extracted: 2026-06-20T07:34:09.893Z
+extracted: 2026-06-21T06:00:15.399Z
 ---
 # Software Operations Tracker — `pulseofproject.com`
 
 **Live URL:** https://pulseofproject.com/
 **GitHub repo:** https://github.com/chatgptnotes/pulseofproject
-**Default branch:** `main`  ·  **Last push:** 2026-06-20T03:52:54Z
-**Language:** JavaScript  ·  **Repo size:** 2837KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-21T05:19:47Z
+**Language:** JavaScript  ·  **Repo size:** 2795KB
 
 
 
@@ -69,12 +69,12 @@ extracted: 2026-06-20T07:34:09.893Z
 
 ## Folder breakdown
 
-- `apps/` — 140 files
+- `apps/` — 145 files
 - `supabase/` — 17 files
 - `packages/` — 13 files
 - `.claude/` — 10 files
 - `scripts/` — 5 files
-- `api/` — 3 files
+- `api/` — 4 files
 - `supabase-migrations/` — 3 files
 - `server/` — 2 files
 - `.env.example/` — 1 file
@@ -87,16 +87,16 @@ extracted: 2026-06-20T07:34:09.893Z
 
 ## Recent commits
 
-- `562823a` _2026-06-20_ — debug: show error details on screen in ErrorBoundary (not dev-only)
-- `486ee8c` _2026-06-20_ — feat(admin): add sticky Google Doc amber banner to admin project view
-- `9cf3f17` _2026-06-20_ — fix: correct project name DecodMyBrain → DecodeMyBrain
-- `545e34c` _2026-06-20_ — feat(projects): show Project Documents on every project page
-- `69d504e` _2026-06-20_ — feat(projects): show Project Doc button on every project page
-- `db571d4` _2026-06-20_ — fix(ProjectSelector): show Switch Project bar for DB-only projects
-- `c48dc89` _2026-06-20_ — fix(vercel): serve static files before SPA catch-all rewrite
-- `1d6e119` _2026-06-20_ — feat: serve feature reference HTML as static file via Vercel
-- `0df619a` _2026-06-20_ — fix(client): sticky Google Doc banner hidden behind top bar — offset to top-12 z
-- `5f90b1c` _2026-06-20_ — feat: add Feature Reference page (/features) with non-tech guide + all 54 projec
+- `7167665` _2026-06-21_ — fix(embed): handle /pub Google Doc URLs by appending embedded=true
+- `a71fada` _2026-06-21_ — fix(client-view): use project_id slug (not UUID) so PulseOfProject doc lookups w
+- `2d757d9` _2026-06-21_ — feat(docs): side-by-side dual doc viewer, each 40vh, self-loading URLs
+- `aafd151` _2026-06-21_ — feat(live-projects): Master Doc column + Deliverables column + Features doc v1.5
+- `d604cd1` _2026-06-21_ — fix+feat(deliverables): normalized project_id match + accordion collapse/expand
+- `b7ac8f3` _2026-06-21_ — feat: unified Project Documents & PRDs section with master doc viewer
+- `29315a3` _2026-06-21_ — fix(deliverables): match by project_id slug not project_name on project page
+- `b0d1970` _2026-06-21_ — feat: deliverables dominant on project page + live-projects as landing
+- `2649680` _2026-06-20_ — feat(deliverables): AI-powered field suggestions via Claude
+- `f61754e` _2026-06-20_ — feat(deliverables): searchable project filter combobox
 
 ## README
 

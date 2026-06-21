@@ -1,0 +1,27 @@
+# Second Brain brain-* schedules — VPS cron (UTC). Generated from .github/workflows/brain-*.yml.
+# Overlapping times staggered by a few minutes so jobs don't run concurrently.
+# Activate:  crontab ops/brain.crontab   |  Inspect: crontab -l
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.local/bin
+
+30 0 * * *	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/daily-brief.mjs >> /var/log/brain/daily-brief.log 2>&1
+0 2 * * *	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/sync-calendar.mjs >> /var/log/brain/sync-calendar.log 2>&1
+5 2 * * *	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/digest.mjs >> /var/log/brain/digest.log 2>&1
+30 2 * * *	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/discover-insights.mjs >> /var/log/brain/insights.log 2>&1
+40 2 * * 0	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/weekly-review.mjs >> /var/log/brain/weekly-review.log 2>&1
+30 3 * * *	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/nudge-overdue.mjs >> /var/log/brain/nudge.log 2>&1
+45 3 * * 0	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/competitor-monitor.mjs >> /var/log/brain/competitor-monitor.log 2>&1
+0 4 * * 1-5	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/nudge-dev-assignments.mjs >> /var/log/brain/nudge-devs.log 2>&1
+10 4 1 * *	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/lost-deal-postmortem.mjs --days=90 >> /var/log/brain/lost-deal-postmortem.log 2>&1
+30 4 * * *	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/pulseofproject-sync.mjs >> /var/log/brain/pulseofproject-sync.log 2>&1
+35 4 * * 1	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/case-study-drafter.mjs --days=180 >> /var/log/brain/case-study-drafter.log 2>&1
+0 5 * * *	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/sync-bni-contacts.mjs >> /var/log/brain/bni-sync.log 2>&1
+10 5 * * *	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/slack-thread-sync.mjs >> /var/log/brain/slack-thread-sync.log 2>&1
+20 5 1 * *	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/programmatic-seo-generator.mjs >> /var/log/brain/seo-generator.log 2>&1
+15 */6 * * *	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/email-sync.mjs --hours=8 >> /var/log/brain/email-sync.log 2>&1
+0 6 * * *	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/repo-overview.mjs >> /var/log/brain/repo-overview.log 2>&1
+30 10 * * 1-5	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/proposify-from-fathom.mjs --days=2 >> /var/log/brain/proposify-drafter.log 2>&1
+30 11 * * *	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/sync-calendar.mjs >> /var/log/brain/sync-calendar-pm.log 2>&1
+35 11 * * 1-5	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/fathom-followup-drafter.mjs --days=2 >> /var/log/brain/fathom-followup.log 2>&1
+0 12 * * 1-5	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/hubspot-from-fathom.mjs --days=2 >> /var/log/brain/hubspot-sync.log 2>&1
+0 13 * * *	cd /root/projects/bettroi-vault && /usr/bin/node --env-file=_Murali-Second-Brain/.env.local _Murali-Second-Brain/linkedin-drafter.mjs --hours=48 >> /var/log/brain/linkedin-drafter.log 2>&1
