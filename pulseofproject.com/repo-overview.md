@@ -2,18 +2,18 @@
 domain: pulseofproject.com
 repo: chatgptnotes/pulseofproject
 default_branch: main
-last_push: 2026-06-21T05:19:47Z
-size_kb: 2795
+last_push: 2026-06-22T05:49:07Z
+size_kb: 2930
 language: JavaScript
 description: ""
-extracted: 2026-06-21T06:00:15.399Z
+extracted: 2026-06-22T06:00:18.720Z
 ---
 # Software Operations Tracker — `pulseofproject.com`
 
 **Live URL:** https://pulseofproject.com/
 **GitHub repo:** https://github.com/chatgptnotes/pulseofproject
-**Default branch:** `main`  ·  **Last push:** 2026-06-21T05:19:47Z
-**Language:** JavaScript  ·  **Repo size:** 2795KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-22T05:49:07Z
+**Language:** JavaScript  ·  **Repo size:** 2930KB
 
 
 
@@ -87,16 +87,16 @@ extracted: 2026-06-21T06:00:15.399Z
 
 ## Recent commits
 
-- `7167665` _2026-06-21_ — fix(embed): handle /pub Google Doc URLs by appending embedded=true
-- `a71fada` _2026-06-21_ — fix(client-view): use project_id slug (not UUID) so PulseOfProject doc lookups w
-- `2d757d9` _2026-06-21_ — feat(docs): side-by-side dual doc viewer, each 40vh, self-loading URLs
-- `aafd151` _2026-06-21_ — feat(live-projects): Master Doc column + Deliverables column + Features doc v1.5
-- `d604cd1` _2026-06-21_ — fix+feat(deliverables): normalized project_id match + accordion collapse/expand
-- `b7ac8f3` _2026-06-21_ — feat: unified Project Documents & PRDs section with master doc viewer
-- `29315a3` _2026-06-21_ — fix(deliverables): match by project_id slug not project_name on project page
-- `b0d1970` _2026-06-21_ — feat: deliverables dominant on project page + live-projects as landing
-- `2649680` _2026-06-20_ — feat(deliverables): AI-powered field suggestions via Claude
-- `f61754e` _2026-06-20_ — feat(deliverables): searchable project filter combobox
+- `6dcac7b` _2026-06-22_ — feat(projects): 5-category classification system per BT's suggestion
+- `2c5eda7` _2026-06-22_ — fix(live-projects): fix tall row spacing — span+flex → div in InlineText
+- `eaefe95` _2026-06-22_ — fix(research): research projects stay in Research after going live
+- `ab18071` _2026-06-22_ — feat(research): Go Live button per row + Go Live All for research projects
+- `138a382` _2026-06-22_ — feat(live-projects): inline edit for project name and client fields
+- `c31219e` _2026-06-21_ — fix(client-view): show edit/hide buttons for admin users on client URL
+- `bccb86a` _2026-06-21_ — feat(meeting-videos): paste Google Drive/Dropbox link + updated step 3 instructi
+- `c0cfb3a` _2026-06-21_ — feat(meeting-videos): drag-and-drop multi-file upload with 500MB limit + progres
+- `ba4763a` _2026-06-21_ — feat(documents): meeting videos section with upload, edit + hide per file
+- `284b54b` _2026-06-21_ — feat(deliverables-page): accordion cards with structured sections
 
 ## README
 
