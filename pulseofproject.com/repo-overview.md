@@ -2,18 +2,18 @@
 domain: pulseofproject.com
 repo: chatgptnotes/pulseofproject
 default_branch: main
-last_push: 2026-06-22T05:49:07Z
-size_kb: 2930
+last_push: 2026-06-22T09:25:42Z
+size_kb: 3037
 language: JavaScript
 description: ""
-extracted: 2026-06-22T06:00:18.720Z
+extracted: 2026-06-23T06:00:19.030Z
 ---
 # Software Operations Tracker — `pulseofproject.com`
 
 **Live URL:** https://pulseofproject.com/
 **GitHub repo:** https://github.com/chatgptnotes/pulseofproject
-**Default branch:** `main`  ·  **Last push:** 2026-06-22T05:49:07Z
-**Language:** JavaScript  ·  **Repo size:** 2930KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-22T09:25:42Z
+**Language:** JavaScript  ·  **Repo size:** 3037KB
 
 
 
@@ -87,16 +87,16 @@ extracted: 2026-06-22T06:00:18.720Z
 
 ## Recent commits
 
+- `a2dda5f` _2026-06-22_ — fix(projects): move Close to Close and Real Prospects below Projects section
+- `01543f0` _2026-06-22_ — feat(projects): add Close to Close and Real Prospects category sections
+- `8375dcc` _2026-06-22_ — feat(projects): add Bettroi Products category section
+- `747154e` _2026-06-22_ — feat(projects): add Personal and Hope Hospital category sections
+- `35e9278` _2026-06-22_ — feat(projects): add Internal Collaboration section to Projects Overview
+- `7cfd07d` _2026-06-22_ — fix(deliverables): show section even when no deliverables exist
+- `93c082b` _2026-06-22_ — fix(client-view): replace .single() with .limit(1) in getByShareToken to avoid 4
+- `cae0c05` _2026-06-22_ — fix(project-selector): load DB projects + wire Create New Project button
+- `85e353d` _2026-06-22_ — feat(meeting-videos): meeting summary text box with bullet points
 - `6dcac7b` _2026-06-22_ — feat(projects): 5-category classification system per BT's suggestion
-- `2c5eda7` _2026-06-22_ — fix(live-projects): fix tall row spacing — span+flex → div in InlineText
-- `eaefe95` _2026-06-22_ — fix(research): research projects stay in Research after going live
-- `ab18071` _2026-06-22_ — feat(research): Go Live button per row + Go Live All for research projects
-- `138a382` _2026-06-22_ — feat(live-projects): inline edit for project name and client fields
-- `c31219e` _2026-06-21_ — fix(client-view): show edit/hide buttons for admin users on client URL
-- `bccb86a` _2026-06-21_ — feat(meeting-videos): paste Google Drive/Dropbox link + updated step 3 instructi
-- `c0cfb3a` _2026-06-21_ — feat(meeting-videos): drag-and-drop multi-file upload with 500MB limit + progres
-- `ba4763a` _2026-06-21_ — feat(documents): meeting videos section with upload, edit + hide per file
-- `284b54b` _2026-06-21_ — feat(deliverables-page): accordion cards with structured sections
 
 ## README
 
