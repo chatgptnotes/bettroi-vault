@@ -2,17 +2,17 @@
 domain: pulseofproject.com
 repo: chatgptnotes/pulseofproject
 default_branch: main
-last_push: 2026-06-22T09:25:42Z
+last_push: 2026-06-25T05:42:34Z
 size_kb: 3037
 language: JavaScript
 description: ""
-extracted: 2026-06-24T06:00:19.352Z
+extracted: 2026-06-25T06:00:20.338Z
 ---
 # Software Operations Tracker — `pulseofproject.com`
 
 **Live URL:** https://pulseofproject.com/
 **GitHub repo:** https://github.com/chatgptnotes/pulseofproject
-**Default branch:** `main`  ·  **Last push:** 2026-06-22T09:25:42Z
+**Default branch:** `main`  ·  **Last push:** 2026-06-25T05:42:34Z
 **Language:** JavaScript  ·  **Repo size:** 3037KB
 
 
@@ -69,7 +69,7 @@ extracted: 2026-06-24T06:00:19.352Z
 
 ## Folder breakdown
 
-- `apps/` — 145 files
+- `apps/` — 146 files
 - `supabase/` — 17 files
 - `packages/` — 13 files
 - `.claude/` — 10 files
@@ -87,6 +87,8 @@ extracted: 2026-06-24T06:00:19.352Z
 
 ## Recent commits
 
+- `b7738ec` _2026-06-25_ — Merge pull request #8 from chatgptnotes/Auth-added
+- `8ad3ff1` _2026-06-25_ — Uth added in try demo
 - `a2dda5f` _2026-06-22_ — fix(projects): move Close to Close and Real Prospects below Projects section
 - `01543f0` _2026-06-22_ — feat(projects): add Close to Close and Real Prospects category sections
 - `8375dcc` _2026-06-22_ — feat(projects): add Bettroi Products category section
@@ -95,8 +97,6 @@ extracted: 2026-06-24T06:00:19.352Z
 - `7cfd07d` _2026-06-22_ — fix(deliverables): show section even when no deliverables exist
 - `93c082b` _2026-06-22_ — fix(client-view): replace .single() with .limit(1) in getByShareToken to avoid 4
 - `cae0c05` _2026-06-22_ — fix(project-selector): load DB projects + wire Create New Project button
-- `85e353d` _2026-06-22_ — feat(meeting-videos): meeting summary text box with bullet points
-- `6dcac7b` _2026-06-22_ — feat(projects): 5-category classification system per BT's suggestion
 
 ## README
 

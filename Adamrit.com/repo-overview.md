@@ -2,17 +2,17 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-06-20T12:28:34Z
+last_push: 2026-06-24T10:36:55Z
 size_kb: 41406
 language: TypeScript
 description: ""
-extracted: 2026-06-24T06:00:24.198Z
+extracted: 2026-06-25T06:00:25.007Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-06-20T12:28:34Z
+**Default branch:** `main`  ·  **Last push:** 2026-06-24T10:36:55Z
 **Language:** TypeScript  ·  **Repo size:** 41406KB
 
 
