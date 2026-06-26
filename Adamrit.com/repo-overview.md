@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-06-24T10:36:55Z
-size_kb: 41406
+last_push: 2026-06-25T11:34:09Z
+size_kb: 41569
 language: TypeScript
 description: ""
-extracted: 2026-06-25T06:00:25.007Z
+extracted: 2026-06-26T06:00:25.130Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-06-24T10:36:55Z
-**Language:** TypeScript  ·  **Repo size:** 41406KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-25T11:34:09Z
+**Language:** TypeScript  ·  **Repo size:** 41569KB
 
 
 
@@ -78,7 +78,7 @@ extracted: 2026-06-25T06:00:25.007Z
 ## Folder breakdown
 
 - `src/` — 841 files
-- `supabase/` — 450 files
+- `supabase/` — 451 files
 - `public/` — 51 files
 - `scripts/` — 32 files
 - `agents/` — 25 files
@@ -95,6 +95,9 @@ extracted: 2026-06-25T06:00:25.007Z
 
 ## Recent commits
 
+- `fa6732a` _2026-06-25_ — Lab Orders: search by Category/Service across all dates
+- `0df395c` _2026-06-25_ — fix(pwa): auto-reload page when new service worker activates
+- `483f8d0` _2026-06-25_ — feat(pharmacy): patient location tag ICU/Ward/Room/OT from treatment sheet
 - `be160b1` _2026-06-20_ — Lab report print: keep NORMAL RANGE hidden in preview/print
 - `1731547` _2026-06-20_ — Lab: auto-fill/auto-save default values, fix report print, editable text default
 - `bb2b551` _2026-06-19_ — Lab panels: add Numeric/Text Type + Text Value to nested sub-tests
@@ -102,9 +105,6 @@ extracted: 2026-06-25T06:00:25.007Z
 - `7eaa876` _2026-06-18_ — Show Cash Book Total + Closing Balance at top (mirror of footer)
 - `5525410` _2026-06-18_ — Restrict lab panel Edit button to superadmin@ayushman.com only
 - `3704051` _2026-06-17_ — Fix lab test reports visibility + remove 1000-row truncation
-- `05fe380` _2026-06-17_ — fix(account-logs): sync month label with manual date input
-- `3f8d20d` _2026-06-17_ — fix(cash-book): apply effectiveHospitalName to PHARMACY transaction type guard
-- `3ee8f83` _2026-06-17_ — fix(cash-book): wire company filter and sort entries by date
 
 ## README
 
