@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-06-25T11:34:09Z
-size_kb: 41569
+last_push: 2026-06-26T06:59:18Z
+size_kb: 41655
 language: TypeScript
 description: ""
-extracted: 2026-06-26T06:00:25.130Z
+extracted: 2026-06-27T06:00:22.001Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-06-25T11:34:09Z
-**Language:** TypeScript  ·  **Repo size:** 41569KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-26T06:59:18Z
+**Language:** TypeScript  ·  **Repo size:** 41655KB
 
 
 
@@ -95,6 +95,8 @@ extracted: 2026-06-26T06:00:25.130Z
 
 ## Recent commits
 
+- `e96ec69` _2026-06-26_ — Use simple patient stay options in treatment sheet
+- `b1d08c5` _2026-06-26_ — Show patient location in pharmacy notifications
 - `fa6732a` _2026-06-25_ — Lab Orders: search by Category/Service across all dates
 - `0df395c` _2026-06-25_ — fix(pwa): auto-reload page when new service worker activates
 - `483f8d0` _2026-06-25_ — feat(pharmacy): patient location tag ICU/Ward/Room/OT from treatment sheet
@@ -103,8 +105,6 @@ extracted: 2026-06-26T06:00:25.130Z
 - `bb2b551` _2026-06-19_ — Lab panels: add Numeric/Text Type + Text Value to nested sub-tests
 - `7ff14d2` _2026-06-18_ — Cash Book top summary: split into Hope + Ayushman + Total
 - `7eaa876` _2026-06-18_ — Show Cash Book Total + Closing Balance at top (mirror of footer)
-- `5525410` _2026-06-18_ — Restrict lab panel Edit button to superadmin@ayushman.com only
-- `3704051` _2026-06-17_ — Fix lab test reports visibility + remove 1000-row truncation
 
 ## README
 
