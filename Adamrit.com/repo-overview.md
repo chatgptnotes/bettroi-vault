@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-06-26T06:59:18Z
-size_kb: 41655
+last_push: 2026-06-27T14:06:11Z
+size_kb: 41318
 language: TypeScript
 description: ""
-extracted: 2026-06-27T06:00:22.001Z
+extracted: 2026-06-28T06:00:21.881Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-06-26T06:59:18Z
-**Language:** TypeScript  ·  **Repo size:** 41655KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-27T14:06:11Z
+**Language:** TypeScript  ·  **Repo size:** 41318KB
 
 
 
@@ -46,7 +46,7 @@ extracted: 2026-06-27T06:00:22.001Z
 
 - `.dockerignore` (445B)
 - `.env.example` (3KB)
-- `.gitignore` (395B)
+- `.gitignore` (407B)
 - `.npmrc` (22B)
 - `.nvmrc` (3B)
 - `.vercelignore` (188B)
@@ -86,7 +86,7 @@ extracted: 2026-06-27T06:00:22.001Z
 - `.claude/` — 17 files
 - `api/` — 12 files
 - `e2e/` — 12 files
-- `docs/` — 9 files
+- `docs/` — 10 files
 - `sidecar/` — 9 files
 - `docker/` — 6 files
 - `rephrase-sidecar/` — 6 files
@@ -95,16 +95,16 @@ extracted: 2026-06-27T06:00:22.001Z
 
 ## Recent commits
 
+- `34f7d0f` _2026-06-27_ — Fix Tally company selection and statements
+- `8473ec2` _2026-06-27_ — Revert "Add empanelment hospital report"
+- `9fd945a` _2026-06-27_ — Add empanelment hospital report
+- `23fa65a` _2026-06-27_ — Add on-prem SCADA AI scope specification
+- `8b2beb3` _2026-06-27_ — Add autosave for daily allocation sheet
+- `c8bcb66` _2026-06-27_ — Carry forward paid this month in daily allocation
 - `e96ec69` _2026-06-26_ — Use simple patient stay options in treatment sheet
 - `b1d08c5` _2026-06-26_ — Show patient location in pharmacy notifications
 - `fa6732a` _2026-06-25_ — Lab Orders: search by Category/Service across all dates
 - `0df395c` _2026-06-25_ — fix(pwa): auto-reload page when new service worker activates
-- `483f8d0` _2026-06-25_ — feat(pharmacy): patient location tag ICU/Ward/Room/OT from treatment sheet
-- `be160b1` _2026-06-20_ — Lab report print: keep NORMAL RANGE hidden in preview/print
-- `1731547` _2026-06-20_ — Lab: auto-fill/auto-save default values, fix report print, editable text default
-- `bb2b551` _2026-06-19_ — Lab panels: add Numeric/Text Type + Text Value to nested sub-tests
-- `7ff14d2` _2026-06-18_ — Cash Book top summary: split into Hope + Ayushman + Total
-- `7eaa876` _2026-06-18_ — Show Cash Book Total + Closing Balance at top (mirror of footer)
 
 ## README
 
