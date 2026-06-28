@@ -1,11 +1,11 @@
 ---
-date: 2026-06-21
+date: 2026-06-28
 source: competitor-monitor
 total_mentions: 0
 off_limits: false
 ---
 
-# Competitor Intel — 2026-06-21
+# Competitor Intel — 2026-06-28
 
 *Auto-generated from 0 mentions across the brain. Refreshed weekly.*
 
