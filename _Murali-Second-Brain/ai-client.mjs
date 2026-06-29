@@ -3,8 +3,8 @@
 //           (flat-rate). ANTHROPIC_API_KEY is stripped from the child env so the
 //           CLI authenticates via OAuth, NOT the metered API key. (See harvested
 //           skill: "Claude CLI: ANTHROPIC_API_KEY env silently overrides OAuth".)
-// Backup 1: nexaproc-ai-gateway (NEXAPROC_VPS_URL + NEXAPROC_VPS_KEY) — Sonnet.
-// Backup 2: direct Anthropic API (metered) via ANTHROPIC_API_KEY.
+// Backup:   direct Anthropic API (metered) via ANTHROPIC_API_KEY.
+// Optional: nexaproc-ai-gateway only when BRAIN_ALLOW_NEXAPROC_VPS=true.
 import Anthropic from '@anthropic-ai/sdk';
 import { spawn } from 'node:child_process';
 
@@ -12,6 +12,7 @@ const primary = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 // Model the local CLI is pinned to (override via BRAIN_CLAUDE_MODEL).
 const LOCAL_CLAUDE_MODEL = process.env.BRAIN_CLAUDE_MODEL || 'claude-haiku-4-5';
+const ALLOW_NEXAPROC_VPS = process.env.BRAIN_ALLOW_NEXAPROC_VPS === 'true';
 
 // Live-binding flag — set true when Anthropic returns a credits/billing error.
 // Callers can read this to decide whether to alert the user.
@@ -136,29 +137,28 @@ export async function callClaude(params) {
 
   // Text calls, in order of preference:
   //   1. local `claude` CLI on the Max-plan subscription, pinned to Haiku (flat-rate)
-  //   2. nexaproc-ai-gateway (subscription, Sonnet) if the CLI is unavailable
-  //   3. metered Anthropic API as the last resort
+  //   2. metered Anthropic API
+  //   3. optional nexaproc-ai-gateway only when explicitly enabled
   try {
     return await callLocalClaude(params);
   } catch (cliErr) {
-    console.warn(`  [ai-client] local Haiku CLI unavailable (${(cliErr.message || '').slice(0, 70)}) → VPS gateway`);
+    console.warn(`  [ai-client] local Haiku CLI unavailable (${(cliErr.message || '').slice(0, 70)}) → Anthropic API`);
     try {
-      return await callVPS(params);
-    } catch (vpsErr) {
-      console.warn(`  [ai-client] VPS sidecar unavailable (${(vpsErr.message || '').slice(0, 70)}) → Anthropic API`);
-      try {
-        return await primary.messages.create(params);
-      } catch (anthropicErr) {
-        if (isCreditsError(anthropicErr)) {
-          // Anthropic credits exhausted — the local CLI subscription is the only
-          // working path. Wait briefly, then try the CLI once more before giving up.
-          anthropicCreditsExhausted = true;
-          console.warn(`  [ai-client] Anthropic credits exhausted; retrying local Haiku CLI...`);
-          await new Promise(r => setTimeout(r, 5000));
-          return await callLocalClaude(params);
+      return await primary.messages.create(params);
+    } catch (anthropicErr) {
+      if (isCreditsError(anthropicErr)) {
+        anthropicCreditsExhausted = true;
+        if (ALLOW_NEXAPROC_VPS) {
+          console.warn(`  [ai-client] Anthropic credits exhausted → explicitly enabled Nexaproc VPS gateway`);
+          return await callVPS(params);
         }
-        throw anthropicErr;
+        // Anthropic credits exhausted — the local CLI subscription is the only
+        // default non-VPS path. Wait briefly, then try the CLI once more.
+        console.warn(`  [ai-client] Anthropic credits exhausted; Nexaproc VPS disabled; retrying local Haiku CLI...`);
+        await new Promise(r => setTimeout(r, 5000));
+        return await callLocalClaude(params);
       }
+      throw anthropicErr;
     }
   }
 }

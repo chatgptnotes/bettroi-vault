@@ -14,6 +14,8 @@ const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SER
 const VAULT_ROOT = new URL('../', import.meta.url).pathname;
 const DRY = process.argv.includes('--dry');
 const LOOKBACK_HOURS = parseInt(process.argv.find(a => a.startsWith('--hours='))?.split('=')[1] ?? '24', 10);
+const ALLOW_BACKFILL = process.argv.includes('--allow-backfill');
+const CLASSIFIER_MAX_PER_RUN = parseInt(process.env.EMAIL_CLASSIFIER_MAX_PER_RUN ?? '25', 10);
 // Explicit --hours=N = one-time date-based backfill. Otherwise: incremental mode,
 // processing only emails with UID greater than the last-seen watermark (local file).
 // Incremental avoids re-classifying the whole day every run (IMAP date search is
@@ -23,6 +25,11 @@ const UID_FILE = join(homedir(), '.brain-email-last-uid');
 
 const EMAIL_HOST = process.env.EMAIL_IMAP_HOST ?? 'imap.gmail.com';
 const EMAIL_PORT = parseInt(process.env.EMAIL_IMAP_PORT ?? '993', 10);
+
+if (BACKFILL && !ALLOW_BACKFILL) {
+  console.error('Refusing email backfill without --allow-backfill. Scheduled runs must use incremental UID mode without --hours=N.');
+  process.exit(1);
+}
 
 if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
   console.error('Missing EMAIL_USER or EMAIL_PASSWORD in .env.local');
@@ -136,16 +143,17 @@ async function run() {
 
   // Phase 2: classify + ingest (no IMAP connection needed now)
   // Quick pre-filter: skip obvious newsletters/notifications based on sender/subject pattern
-  const NOISE_PATTERNS = /noreply|no-reply|notifications?@|newsletter|updates@|alerts@|info@anthropic|@vercel\.com$|@supabase\.com$|@github\.com$|@google\.com$|unsubscribe|automated|do.not.reply/i;
+  const NOISE_PATTERNS = /noreply|no-reply|do[.-]?not[.-]?reply|notifications?@|newsletter|updates@|alerts@|security@|otp|one.?time password|verification code|bank alert|transaction alert|receipt|invoice paid|statement|promo|marketing|info@anthropic|@vercel\.com$|@supabase\.com$|@github\.com$|@google\.com$|unsubscribe|automated/i;
   const preFiltered = emails.filter(e => !NOISE_PATTERNS.test(e.from) && !NOISE_PATTERNS.test(e.subject));
-  console.log(`Pre-filtered to ${preFiltered.length} (skipped ${emails.length - preFiltered.length} noise)`);
+  const toClassify = preFiltered.slice(0, CLASSIFIER_MAX_PER_RUN);
+  console.log(`Pre-filtered to ${preFiltered.length} (skipped ${emails.length - preFiltered.length} noise). Classifying ${toClassify.length}/${preFiltered.length} this run.`);
 
   let ingested = 0, skipped = 0, errored = 0;
-  for (let i = 0; i < preFiltered.length; i++) {
-    const e = preFiltered[i];
+  for (let i = 0; i < toClassify.length; i++) {
+    const e = toClassify[i];
     const cls = await classifyEmail({ subject: e.subject, from: e.from, snippet: e.text });
     if (cls.type === 'error') errored++;
-    if (i % 25 === 0) console.log(`  [${i}/${preFiltered.length}] ingested=${ingested} skipped=${skipped} errored=${errored}`);
+    if (i % 25 === 0) console.log(`  [${i}/${toClassify.length}] ingested=${ingested} skipped=${skipped} errored=${errored}`);
     if (cls.score < 0.6) { skipped++; continue; }
 
     const project = await inferProject(e.subject, e.text);
@@ -203,7 +211,7 @@ async function run() {
     await writeFile(UID_FILE, String(newMax)).catch(() => {});
   }
 
-  console.log(`\nProcessed ${emails.length} emails · Ingested ${ingested} · Skipped ${skipped}`);
+  console.log(`\nProcessed ${emails.length} emails · Pre-filtered ${preFiltered.length} · Classified ${toClassify.length} · Ingested ${ingested} · Skipped ${skipped} · Errored ${errored}`);
 }
 
 run().catch(e => { console.error(e); process.exit(1); });
