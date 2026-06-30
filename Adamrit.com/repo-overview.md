@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-06-27T14:06:11Z
-size_kb: 41318
+last_push: 2026-06-29T08:33:50Z
+size_kb: 41339
 language: TypeScript
 description: ""
-extracted: 2026-06-29T06:00:23.106Z
+extracted: 2026-06-30T06:00:20.067Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-06-27T14:06:11Z
-**Language:** TypeScript  ·  **Repo size:** 41318KB
+**Default branch:** `main`  ·  **Last push:** 2026-06-29T08:33:50Z
+**Language:** TypeScript  ·  **Repo size:** 41339KB
 
 
 
@@ -95,6 +95,9 @@ extracted: 2026-06-29T06:00:23.106Z
 
 ## Recent commits
 
+- `6548a4d` _2026-06-29_ — fix lab text normal ranges (#326)
+- `8baf768` _2026-06-29_ — fix lab text normal ranges (#325)
+- `1beee30` _2026-06-29_ — fix lab text normal ranges (#324)
 - `34f7d0f` _2026-06-27_ — Fix Tally company selection and statements
 - `8473ec2` _2026-06-27_ — Revert "Add empanelment hospital report"
 - `9fd945a` _2026-06-27_ — Add empanelment hospital report
@@ -102,9 +105,6 @@ extracted: 2026-06-29T06:00:23.106Z
 - `8b2beb3` _2026-06-27_ — Add autosave for daily allocation sheet
 - `c8bcb66` _2026-06-27_ — Carry forward paid this month in daily allocation
 - `e96ec69` _2026-06-26_ — Use simple patient stay options in treatment sheet
-- `b1d08c5` _2026-06-26_ — Show patient location in pharmacy notifications
-- `fa6732a` _2026-06-25_ — Lab Orders: search by Category/Service across all dates
-- `0df395c` _2026-06-25_ — fix(pwa): auto-reload page when new service worker activates
 
 ## README
 
