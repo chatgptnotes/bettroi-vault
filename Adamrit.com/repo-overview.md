@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-06-29T08:33:50Z
-size_kb: 41339
+last_push: 2026-07-01T05:37:25Z
+size_kb: 41367
 language: TypeScript
 description: ""
-extracted: 2026-06-30T06:00:20.067Z
+extracted: 2026-07-01T06:00:23.831Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-06-29T08:33:50Z
-**Language:** TypeScript  ·  **Repo size:** 41339KB
+**Default branch:** `main`  ·  **Last push:** 2026-07-01T05:37:25Z
+**Language:** TypeScript  ·  **Repo size:** 41367KB
 
 
 
@@ -95,6 +95,7 @@ extracted: 2026-06-30T06:00:20.067Z
 
 ## Recent commits
 
+- `dfd374f` _2026-06-30_ — Fix Tally reports cache handling
 - `6548a4d` _2026-06-29_ — fix lab text normal ranges (#326)
 - `8baf768` _2026-06-29_ — fix lab text normal ranges (#325)
 - `1beee30` _2026-06-29_ — fix lab text normal ranges (#324)
@@ -104,7 +105,6 @@ extracted: 2026-06-30T06:00:20.067Z
 - `23fa65a` _2026-06-27_ — Add on-prem SCADA AI scope specification
 - `8b2beb3` _2026-06-27_ — Add autosave for daily allocation sheet
 - `c8bcb66` _2026-06-27_ — Carry forward paid this month in daily allocation
-- `e96ec69` _2026-06-26_ — Use simple patient stay options in treatment sheet
 
 ## README
 
