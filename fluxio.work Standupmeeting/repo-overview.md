@@ -2,17 +2,17 @@
 domain: fluxio.work
 repo: chatgptnotes/hopehospital-dashboard
 default_branch: main
-last_push: 2026-06-18T12:55:23Z
+last_push: 2026-07-02T05:49:44Z
 size_kb: 3230
 language: TypeScript
 description: "Hope Hospital + Ayushman Hospital - operations management dashboard. Live at fluxio.work."
-extracted: 2026-07-01T06:00:14.259Z
+extracted: 2026-07-02T06:00:16.566Z
 ---
 # Hope+Ayushman Operations — `fluxio.work`
 
 **Live URL:** https://fluxio.work/
 **GitHub repo:** https://github.com/chatgptnotes/hopehospital-dashboard
-**Default branch:** `main`  ·  **Last push:** 2026-06-18T12:55:23Z
+**Default branch:** `main`  ·  **Last push:** 2026-07-02T05:49:44Z
 **Language:** TypeScript  ·  **Repo size:** 3230KB
 
 > Hope Hospital + Ayushman Hospital - operations management dashboard. Live at fluxio.work.
@@ -77,6 +77,7 @@ extracted: 2026-07-01T06:00:14.259Z
 
 ## Recent commits
 
+- `971a387` _2026-07-02_ — feat(auth): add Google OAuth login button
 - `643de27` _2026-06-18_ — feat(staff-tasks): person tabs + per-person routes + Sonali Nurse In-Charge
 - `807dec4` _2026-06-18_ — feat(staff-tasks): add task lists for 9 more staff members
 - `62c18f7` _2026-06-18_ — feat(staff-tasks): add comments field to Confirm Day form
@@ -86,7 +87,6 @@ extracted: 2026-07-01T06:00:14.259Z
 - `20d5550` _2026-06-18_ — feat(staff-tasks): add Staff Tasks page with Yash Kuthe's 8 daily tasks
 - `6716fbd` _2026-06-18_ — feat(staff-jds): add Staff Job Descriptions page with 12 roles
 - `b8402f4` _2026-06-18_ — feat(admin-jd): add Hospital Administrator job description page
-- `a9301b3` _2026-06-18_ — feat(code-of-conduct): add Hospital Code of Conduct page with 13 operational rul
 
 ## README
 

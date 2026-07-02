@@ -2,18 +2,18 @@
 domain: adamrit.com
 repo: chatgptnotes/adamrit
 default_branch: main
-last_push: 2026-07-01T05:37:25Z
-size_kb: 41367
+last_push: 2026-07-02T04:53:45Z
+size_kb: 41467
 language: TypeScript
 description: ""
-extracted: 2026-07-01T06:00:23.831Z
+extracted: 2026-07-02T06:00:25.064Z
 ---
 # Hospital Management System — `adamrit.com`
 
 **Live URL:** https://adamrit.com/
 **GitHub repo:** https://github.com/chatgptnotes/adamrit
-**Default branch:** `main`  ·  **Last push:** 2026-07-01T05:37:25Z
-**Language:** TypeScript  ·  **Repo size:** 41367KB
+**Default branch:** `main`  ·  **Last push:** 2026-07-02T04:53:45Z
+**Language:** TypeScript  ·  **Repo size:** 41467KB
 
 
 
@@ -95,16 +95,16 @@ extracted: 2026-07-01T06:00:23.831Z
 
 ## Recent commits
 
+- `98b8708` _2026-07-02_ — Merge pull request #328 from chatgptnotes/performance-and-optimization
+- `9eb7078` _2026-07-02_ — fix: keep sidebar open by default, collapse header groups instead
+- `a5d055d` _2026-07-02_ — Merge pull request #327 from chatgptnotes/performance-and-optimization
+- `a44774f` _2026-07-02_ — changes made in financial summary
 - `dfd374f` _2026-06-30_ — Fix Tally reports cache handling
 - `6548a4d` _2026-06-29_ — fix lab text normal ranges (#326)
 - `8baf768` _2026-06-29_ — fix lab text normal ranges (#325)
 - `1beee30` _2026-06-29_ — fix lab text normal ranges (#324)
 - `34f7d0f` _2026-06-27_ — Fix Tally company selection and statements
 - `8473ec2` _2026-06-27_ — Revert "Add empanelment hospital report"
-- `9fd945a` _2026-06-27_ — Add empanelment hospital report
-- `23fa65a` _2026-06-27_ — Add on-prem SCADA AI scope specification
-- `8b2beb3` _2026-06-27_ — Add autosave for daily allocation sheet
-- `c8bcb66` _2026-06-27_ — Carry forward paid this month in daily allocation
 
 ## README
 
